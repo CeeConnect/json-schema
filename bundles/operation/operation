@@ -12,8 +12,10 @@ properties:
     $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/fiche
     title: Fiche d'opération standardisée
   bonification:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bonification
     title: Bonification
+    oneOf:
+      - type: "null"
+      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bonification
   dateVisitePrealable:
     title: Date de la visite préalable
     type: string
@@ -100,8 +102,9 @@ properties:
 required:
   - uuid
   - fiche
-  - dateEngagement
+  - bonification
   - dateVisitePrealable
+  - dateEngagement
   - dateDebutTravaux
   - dateAchevement
   - volumeCeeClassique
@@ -114,8 +117,8 @@ required:
   - precarite
   - documents
   - description
+# Sous-schémas par secteur d'application
 oneOf:
-  # Sous-schémas par secteur d'application
   - type: object
     properties:
       fiche:
@@ -125,10 +128,6 @@ oneOf:
       - fiche
     allOf:
       - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/operation_bar
-  # Bonifications
-  - if:
-      required:
-        - fiche
-        - bonification
-    then:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/operation_bonification
+# Bonifications
+allOf:
+  - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/operation_bonification
