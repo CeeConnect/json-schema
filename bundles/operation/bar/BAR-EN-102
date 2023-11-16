@@ -1,0 +1,180 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-EN-102
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-EN-102
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-EN-102
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2022-05-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-EN-102v39-2"
+$defs:
+  BAR-EN-102v39-2:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-EN-102v39-2
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-EN-102v39-2
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-EN-102v39-2
+      description:
+        type: object
+        properties:
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          typeIsolation:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_isolation#/$defs/murs
+          quantite:
+            title: Surface d'isolant posé (m²)
+            description: Dans le cas d'une pose superposée de plusieurs isolants, indiquer
+              la surface résultant de la superposition des isolants
+            type: number
+            minimum: 0
+          resistanceThermique:
+            title: Résistance thermmique de l'isolant
+            description: Dans le cas d'une pose superposée de plusieurs isolants, indiquer
+              la résistance thermique globale
+            type: number
+            minimum: 3.7
+          epaisseur:
+            title: Epaisseur de l'isolant (mm)
+            type: number
+            minimum: 0
+          references:
+            title: Marques et références
+            description: Dans le cas d'une pose superposée de plusieurs isolants, indiquer
+              les marques et références de chacun des isolants posés
+            type: array
+            minItems: 1
+            items:
+              type: object
+              properties:
+                marque:
+                  title: Marque de l'isolant
+                  type: string
+                reference:
+                  title: Référence de l'isolant
+                  type: string
+              required:
+                - marque
+                - reference
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/95
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/96
+            required:
+              - qualificationsRge
+        required:
+          - ancienneteBatiment
+          - typeIsolation
+          - quantite
+          - resistanceThermique
+          - epaisseur
+          - references
+          - installateur
+        allOf:
+          - if:
+              properties:
+                typeIsolation:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_isolation#/$defs/ISOLATION_MURS_INTERIEUR
+              required:
+                - typeIsolation
+            then:
+              type: object
+              properties:
+                installateur:
+                  type: object
+                  properties:
+                    qualificationsRge:
+                      type: array
+                      contains:
+                        oneOf:
+                          - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/95
+                  required:
+                    - qualificationsRge
+              required:
+                - installateur
+          - if:
+              properties:
+                typeIsolation:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_isolation#/$defs/ISOLATION_MURS_EXTERIEUR
+              required:
+                - typeIsolation
+            then:
+              type: object
+              properties:
+                installateur:
+                  type: object
+                  properties:
+                    qualificationsRge:
+                      type: array
+                      contains:
+                        oneOf:
+                          - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/96
+                  required:
+                    - qualificationsRge
+              required:
+                - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Preuve de qualification du professionnel
+              type: object
+              properties:
+                code:
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+examples:
+  - fiche: BAR-EN-102v39-2
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      ancienneteBatiment: EXISTANT
+      typeIsolation: ISOLATION_MURS_EXTERIEUR
+      quantite: 100
+      resistanceThermique: 4
+      epaisseur: 200
+      references:
+        - marque: MARQUE
+          reference: REFERENCE
+        - marque: MARQUE
+          reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

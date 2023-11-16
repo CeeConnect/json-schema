@@ -1,0 +1,118 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-148
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-148
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-148
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2015-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-148v15-2"
+$defs:
+  BAR-TH-148v15-2:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-148v15-2
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-148v15-2
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-148v15-2
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          typeEquipement:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/chauffeEauThermodynamique
+          performanceEnergetique:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/performance_energetique#/$defs/cop
+            exclusiveMinimum: 2.4
+          marque:
+            title: Marque
+            type: string
+          reference:
+            title: Référence
+            type: string
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/90
+            required:
+              - qualificationsRge
+        allOf:
+          - if:
+              properties:
+                typeEquipement:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_CET_AIR_EXTRAIT
+              required:
+                - typeEquipement
+            then:
+              properties:
+                performanceEnergetique:
+                  type: number
+                  exclusiveMinimum: 2.5
+              required:
+                - performanceEnergetique
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - typeEquipement
+          - performanceEnergetique
+          - marque
+          - reference
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Preuve de qualification du professionnel ayan réalisé l'opération
+              type: object
+              properties:
+                code:
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+examples:
+  - fiche: BAR-TH-148v15-2
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      typeEquipement: PAC_CET_AIR_EXTRAIT
+      performanceEnergetique: 2.6
+      marque: MARQUE
+      reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

@@ -1,0 +1,226 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-EN-108
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-EN-108
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-EN-108
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceOutreMer
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2021-04-01"
+          formatExclusiveMaximum: "2024-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-EN-108v37-2"
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2024-01-01"
+          formatExclusiveMaximum: "2028-07-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-EN-108v54-3"
+$defs:
+  BAR-EN-108v37-2:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-EN-108v37-2
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-EN-108v37-2
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-EN-108v37-2
+      description:
+        type: object
+        properties:
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          critereAncienneteEquipement:
+            title: La fenêtre ou porte-fenêtre sur laquelle est installée la fermeture
+              isolante est âgée de plus de 2 ans à la date d'engagement de
+              l'opération
+            type: boolean
+            const: true
+          energieChauffage:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffage
+          quantite:
+            title: Nombre de fermetures isolantes posées
+            type: integer
+            minimum: 0
+          resistanceThermique:
+            title: Résistance thermique additionnelle (m².K/W)
+            type: number
+            minimum: 0.22
+          marque:
+            title: Marque des équipements installés
+            type: string
+          reference:
+            title: Référence des équipements installés
+            type: string
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/93
+            required:
+              - qualificationsRge
+        required:
+          - ancienneteBatiment
+          - critereAncienneteEquipement
+          - energieChauffage
+          - quantite
+          - resistanceThermique
+          - marque
+          - reference
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Preuve de qualification du professionnel
+              type: object
+              properties:
+                code:
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+  BAR-EN-108v54-3:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-EN-108v54-3
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-EN-108v54-3
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-EN-108v54-3
+      adresse:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceOutreMer
+      description:
+        type: object
+        properties:
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          critereAncienneteEquipement:
+            title: La fenêtre ou porte-fenêtre sur laquelle est installée la fermeture
+              isolante est âgée de plus de 2 ans à la date d'engagement de
+              l'opération
+            type: boolean
+            const: true
+          quantite:
+            title: Nombre de fermetures isolantes posées
+            type: integer
+            minimum: 0
+          surface:
+            title: Surface totale de fermeture isolante posée (m²)
+            type: number
+            minimum: 0
+          resistanceThermique:
+            title: Résistance thermique additionnelle (m².K/W)
+            type: number
+            minimum: 0.22
+          marque:
+            title: Marque des équipements installés
+            type: string
+          reference:
+            title: Référence des équipements installés
+            type: string
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/93
+            required:
+              - qualificationsRge
+        required:
+          - ancienneteBatiment
+          - critereAncienneteEquipement
+          - quantite
+          - surface
+          - resistanceThermique
+          - marque
+          - reference
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Preuve de qualification du professionnel
+              type: object
+              properties:
+                code:
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - adresse
+      - description
+examples:
+  - fiche: BAR-EN-108v37-2
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/3
+    description:
+      ancienneteBatiment: EXISTANT
+      energieChauffage: COMBUSTIBLES
+      critereAncienneteEquipement: true
+      quantite: 10
+      resistanceThermique: 0.4
+      marque: MARQUE
+      reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+  - fiche: BAR-EN-108v54-3
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/3
+    description:
+      ancienneteBatiment: EXISTANT
+      critereAncienneteEquipement: true
+      quantite: 10
+      surface: 15
+      resistanceThermique: 0.4
+      marque: MARQUE
+      reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

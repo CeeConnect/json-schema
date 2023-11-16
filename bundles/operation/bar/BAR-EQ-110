@@ -1,0 +1,137 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-EQ-110
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-EQ-110
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-EQ-110
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2015-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-EQ-110v15-1"
+$defs:
+  BAR-EQ-110v15-1:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-EQ-110v15-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-EQ-110v15-1
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-EQ-110v15-1
+      description:
+        type: object
+        properties:
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          indiceProtectionChocs:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/indice_protection_chocs
+          efficaciteLumineuse:
+            title: Efficacité lumineuse (lm/W)
+            type: integer
+            minimum: 65
+          dureeVie:
+            title: Durée de vie (heures)
+            description: Durée de vie avec une chute de flux lumineux ≤ à 30 %
+            type: integer
+            minimum: 40000
+          quantite:
+            title: Quantité de luminaires installés
+            type: integer
+            minimum: 0
+          detecteurLumiere:
+            title: Système de détection tenant compte des apports de lumière du jour
+            type: boolean
+          detecteurPresence:
+            title: Détection de présence ou de mouvement
+            type: boolean
+          marque:
+            title: Marque
+            type: string
+          reference:
+            title: Référence
+            type: string
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+        required:
+          - ancienneteBatiment
+          - indiceProtectionChocs
+          - efficaciteLumineuse
+          - dureeVie
+          - quantite
+          - marque
+          - reference
+          - installateur
+        allOf:
+          - if:
+              not:
+                properties:
+                  indiceProtectionChocs:
+                    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/indice_protection_chocs#/$defs/10
+              required:
+                - indiceProtectionChocs
+            then:
+              properties:
+                efficaciteLumineuse:
+                  type: integer
+                  minimum: 90
+              required:
+                - indiceProtectionChocs
+          - if:
+              not:
+                properties:
+                  indiceProtectionChocs:
+                    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/indice_protection_chocs#/$defs/10
+              required:
+                - indiceProtectionChocs
+            then:
+              properties:
+                dureeVie:
+                  type: integer
+                  minimum: 50000
+              required:
+                - dureeVie
+        anyOf:
+          - properties:
+              detecteurLumiere:
+                type: boolean
+                const: true
+            required:
+              - detecteurLumiere
+          - properties:
+              detecteurPresence:
+                type: boolean
+                const: true
+            required:
+              - detecteurPresence
+    required:
+      - fiche
+      - description
+examples:
+  - fiche: BAR-EQ-110v15-1
+    description:
+      ancienneteBatiment: EXISTANT
+      indiceProtectionChocs: "10"
+      efficaciteLumineuse: 95
+      detecteurLumiere: true
+      dureeVie: 60000
+      quantite: 100
+      marque: MARQUE
+      reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0

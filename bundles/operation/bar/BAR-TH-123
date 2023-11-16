@@ -1,0 +1,217 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-123
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-123
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-123
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2015-01-01"
+          formatExclusiveMaximum: "2024-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-123v17-1"
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2024-01-01"
+          formatExclusiveMaximum: "2028-07-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-123v54-2"
+$defs:
+  BAR-TH-123v17-1:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-123v17-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-123v17-1
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-123v17-1
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            title: Le bâtiment est un immeuble collectif d'habitation
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          logements:
+            title: Nombre d'appartements
+            type: integer
+            minimum: 1
+          critereSystemeEligible:
+            title: >
+              L'équipement de régulation est installé sur un système de
+              chauffage collectif à combustible
+
+              existant depuis plus de 2 ans
+            type: boolean
+            const: true
+          marque:
+            title: Marque de l'équipement
+            type: string
+          reference:
+            title: Référence de l'équipement
+            type: string
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - logements
+          - critereSystemeEligible
+          - marque
+          - reference
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Preuve de réalisation de l'opération
+              description: >
+                La preuve de réalisation de l'opération mentionne la mise en
+                place d'un optimiseur de relance comprenant une
+
+                fonction auto-adaptative au sens de la norme NF EN 12098-1.
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: PREUVE_REALISATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+  BAR-TH-123v54-2:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-123v54-2
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-123v54-2
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-123v54-2
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            title: Le bâtiment est un immeuble collectif d'habitation
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          logements:
+            title: Nombre d'appartements
+            type: integer
+            minimum: 1
+          critereSystemeEligible:
+            title: >
+              L'équipement de régulation est installé sur un système de
+              chauffage collectif à combustible
+
+              existant depuis plus de 2 ans
+            type: boolean
+            const: true
+          critereFonctionCommutateur:
+            title: Le dispositif intègre une fonction commutateur été/hiver au sens de la
+              norme NF EN 12098-1
+            type: boolean
+            const: true
+          critereFonctionDescenteTemperature:
+            title: Le dispositif intègre une fonction descente de température (réduit de
+              nuit) au sens de la norme NF EN 12098-1
+            type: boolean
+            const: true
+          marque:
+            title: Marque de l'équipement
+            type: string
+          reference:
+            title: Référence de l'équipement
+            type: string
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+        required:
+          - ancienneteBatiment
+          - typeBatiment
+          - logements
+          - critereSystemeEligible
+          - critereFonctionCommutateur
+          - critereFonctionDescenteTemperature
+          - marque
+          - reference
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Preuve de réalisation de l'opération
+              description: >
+                La preuve de réalisation de l'opération mentionne la mise en
+                place d'un optimiseur de relance comprenant une
+
+                fonction auto-adaptative au sens de la norme NF EN 12098-1.
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: PREUVE_REALISATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+examples:
+  - fiche: BAR-TH-123v17-1
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      logements: 10
+      critereSystemeEligible: true
+      marque: MARQUE
+      reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: PREUVE_REALISATION
+        url: https://api.ceeconnect.fr/archivage/{uuid}
+  - fiche: BAR-TH-123v54-2
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      logements: 10
+      critereSystemeEligible: true
+      critereFonctionCommutateur: true
+      critereFonctionDescenteTemperature: true
+      marque: MARQUE
+      reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: PREUVE_REALISATION
+        url: https://api.ceeconnect.fr/archivage/{uuid}

@@ -1,0 +1,94 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-110
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-110
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-110
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2015-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-110v16-1"
+$defs:
+  BAR-TH-110v16-1:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-110v16-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-110v16-1
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-110v16-1
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          critereChauffageCentral:
+            title: Logement(s) chauffé(s) par un système de chauffage central
+            type: boolean
+            const: true
+          quantite:
+            title: Nombre de radiateurs installé
+            type: integer
+            minimum: 1
+          marque:
+            title: Marque des équipements
+            type: string
+          reference:
+            title: Référence des équipements
+            type: string
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+        allOf:
+          - if:
+              properties:
+                typeBatiment:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/APPARTEMENT
+              required:
+                - typeBatiment
+            then:
+              properties:
+                typeInstallation:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation
+              required:
+                - typeInstallation
+        required:
+          - ancienneteBatiment
+          - typeBatiment
+          - critereChauffageCentral
+          - quantite
+          - marque
+          - reference
+          - installateur
+    required:
+      - fiche
+      - description
+examples:
+  - fiche: BAR-TH-110v16-1
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      critereChauffageCentral: true
+      quantite: 10
+      marque: MARQUE
+      reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0

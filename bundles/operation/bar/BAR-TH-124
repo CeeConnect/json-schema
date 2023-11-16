@@ -1,0 +1,167 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-124
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-124
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-124
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceOutreMer
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2020-10-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-124v35-3"
+$defs:
+  BAR-TH-124v35-3:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-124v35-3
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-124v35-3
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-124v35-3
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/MAISON
+            title: Le bâtiment est une maison individuelle
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete
+            description: Les parties nouvelles de logements existants sont considérées comme
+              des logements neufs
+          typeVente:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_vente
+          quantite:
+            title: Nombre d'appareils installé
+            type: integer
+            minimum: 1
+          surfaceCapteurs:
+            title: Superficie hors-tout totale de capteurs solaires posés
+            type: number
+            minimum: 0
+          performanceEnergetique:
+            title: Efficacité énergétique pour le chauffage de l'eau (%)
+            description: Indiquer l'efficacité énergétique conformément au règlement (UE) n°
+              814/2013
+            type: number
+            minimum: 36
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/86
+            required:
+              - qualificationsRge
+        allOf:
+          - if:
+              properties:
+                typeBatiment:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/APPARTEMENT
+              required:
+                - typeBatiment
+            then:
+              properties:
+                surfaceCapteurs:
+                  type: number
+                  maximum: 40
+              required:
+                - surfaceCapteurs
+          - if:
+              properties:
+                typeVente:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_vente#/$defs/ABONNEMENT
+              required:
+                - typeVente
+            then:
+              properties:
+                critereAbonnement:
+                  title: >
+                    Le contrat de vente par abonnement a d'une durée minimale de
+                    dix ans et il comporte une clause
+
+                    de maintien, par le professionnel, du bon état de fonctionnement du CESI pendant toute la durée du
+
+                    contrat d'abonnement
+                  type: boolean
+                  const: true
+              required:
+                - critereAbonnement
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - typeVente
+          - quantite
+          - surfaceCapteurs
+          - performanceEnergetique
+          - marque
+          - reference
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Certification QB dont le domaine d'emploi de l'avis technique couvre
+                explicitement les départements d'outremer
+              type: object
+              properties:
+                code:
+                  const: CERTIFICATION
+              required:
+                - code
+          - contains:
+              title: Preuve de qualification du professionnel ayant assuré la réalisation de
+                l'opération
+              type: object
+              properties:
+                code:
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+examples:
+  - fiche: BAR-TH-124v35-3
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/3
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      typeVente: VENTE
+      quantite: 1
+      surfaceCapteurs: 15
+      performanceEnergetique: 80
+      marque: MARQUE
+      reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: CERTIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

@@ -1,0 +1,538 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-160
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-160
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-160
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2022-05-01"
+          formatExclusiveMaximum: "2023-04-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-160v39-2"
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2023-04-01"
+          formatExclusiveMaximum: "2023-10-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-160v50-3"
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2023-10-01"
+          formatExclusiveMaximum: "2028-04-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-160v54-4"
+$defs:
+  BAR-TH-160v39-2:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-160v39-2
+    $schema: https://json-schema.org/draft/2020-12/schema
+    $comment: >
+      - TODO: Vérifier si le rapport de contrôle n'est pas couvert par la
+      doctrine
+
+      contrôle avant dépôt
+
+      - TODO: Vérifier si le justificatif d'accréditation de l'ogranisme de contrôle n'est pas couvert par la doctrine contrôle avant dépôt
+    title: BAR-TH-160v39-2
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-160v39-2
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            title: Le bâtiment est un immeuble collectif d'habitation
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          critereRemplacementInstallation:
+            title: >
+              L'installation de chauffage collectif ou de production d'eau
+              chaude
+
+              sanitaire a été remplacée après le 01/01/2018
+            type: boolean
+            const: false
+          critereReseauExistant:
+            title: L'opération est réalisée sur un réseau hydraulique de chauffage ou d'eau
+              chaude sanitaire existant
+            type: boolean
+            const: true
+          critereReseauNonIsole:
+            title: |
+              L'opération est réalisée sur un réseau hydraulique de chauffage ou
+              d'eau chaude non isolé
+            type: boolean
+          critereReseauIsole:
+            title: |
+              L'opération est réalisée sur un réseau hydraulique de chauffage ou
+              d'eau chaude dont l'isolation 
+
+              en place est de classe inférieure ou égale à 2
+            type: boolean
+          quantite:
+            title: Longueur isolée de réseau
+            description: Longueur isolée de réseau de chauffage ou d'eau chaude sanitaire
+              situé hors du volume chauffé
+            type: integer
+            minimum: 0
+          epaisseur:
+            title: Epaisseur de l'isolant (mm)
+            type: number
+            minimum: 0
+          classeIsolation:
+            title: Classe de l'isolant
+            type: string
+            oneOf:
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/04
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/05
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/06
+          marque:
+            title: Marque de l'isolant
+            type: string
+          reference:
+            title: Référence de l'isolant
+            type: string
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+        anyOf:
+          - properties:
+              critereReseauNonIsole:
+                const: true
+          - properties:
+              critereReseauIsole:
+                const: true
+        required:
+          - ancienneteBatiment
+          - typeBatiment
+          - critereRemplacementInstallation
+          - critereReseauExistant
+          - critereReseauNonIsole
+          - critereReseauIsole
+          - quantite
+          - epaisseur
+          - classeIsolation
+          - marque
+          - reference
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Rapport de conformité établi par l'organisme d'inspection
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: RAPPORT_CONTROLE
+              required:
+                - code
+          - contains:
+              title: Justification de l'accréditation de l'organisme d'inspection
+              description: >
+                La décision de qualification ou le certificat Qualibat 553 ou
+                554 du
+
+                prestataire, à la date d'entrée en vigueur du contrat
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: ACCREDITATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+  BAR-TH-160v50-3:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-160v50-3
+    $schema: https://json-schema.org/draft/2020-12/schema
+    $comment: >
+      - TODO: Vérifier si le rapport de contrôle n'est pas couvert par la
+      doctrine
+
+      contrôle avant dépôt
+
+      - TODO: Vérifier si le justificatif d'accréditation de l'ogranisme de contrôle n'est pas couvert par la doctrine contrôle avant dépôt
+    title: BAR-TH-160v50-3
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-160v50-3
+      adresse:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            title: Le bâtiment est un immeuble collectif d'habitation
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          critereRemplacementInstallation:
+            title: >
+              L'installation de chauffage collectif ou de production d'eau
+              chaude
+
+              sanitaire a été remplacée après le 01/01/2018
+            type: boolean
+            const: false
+          critereReseauExistant:
+            title: L'opération est réalisée sur un réseau hydraulique de chauffage ou d'eau
+              chaude sanitaire existant
+            type: boolean
+            const: true
+          critereReseauNonIsole:
+            title: >
+              L'opération est réalisée sur un réseau hydraulique de chauffage ou
+              d'eau chaude non isolé
+            type: boolean
+          critereReseauIsole:
+            title: >
+              L'opération est réalisée sur un réseau hydraulique de chauffage ou
+              d'eau chaude dont l'isolation 
+
+              en place est de classe inférieure ou égale à 2
+            type: boolean
+          quantite:
+            title: Longueur isolée de réseau
+            description: Longueur isolée de réseau de chauffage ou d'eau chaude sanitaire
+              situé hors du volume chauffé
+            type: integer
+            minimum: 0
+          epaisseur:
+            title: Epaisseur de l'isolant (mm)
+            type: number
+            minimum: 0
+          classeIsolation:
+            title: Classe de l'isolant
+            type: string
+            oneOf:
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/04
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/05
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/06
+          marque:
+            title: Marque de l'isolant
+            type: string
+          reference:
+            title: Référence de l'isolant
+            type: string
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+        anyOf:
+          - properties:
+              critereReseauNonIsole:
+                const: true
+          - properties:
+              critereReseauIsole:
+                const: true
+        required:
+          - ancienneteBatiment
+          - typeBatiment
+          - critereRemplacementInstallation
+          - critereReseauExistant
+          - critereReseauNonIsole
+          - critereReseauIsole
+          - quantite
+          - epaisseur
+          - classeIsolation
+          - marque
+          - reference
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Rapport de conformité établi par l'organisme d'inspection
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: RAPPORT_CONTROLE
+              required:
+                - code
+          - contains:
+              title: Justification de l'accréditation de l'organisme d'inspection
+              description: >
+                La décision de qualification ou le certificat Qualibat 553 ou
+                554 du
+
+                prestataire, à la date d'entrée en vigueur du contrat
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: ACCREDITATION
+              required:
+                - code
+    required:
+      - fiche
+      - adresse
+      - description
+      - documents
+  BAR-TH-160v54-4:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-160v54-4
+    $schema: https://json-schema.org/draft/2020-12/schema
+    $comment: >
+      - TODO: Vérifier si le rapport de contrôle n'est pas couvert par la
+      doctrine
+
+      contrôle avant dépôt
+
+      - TODO: Vérifier si le justificatif d'accréditation de l'ogranisme de contrôle n'est pas couvert par la doctrine contrôle avant dépôt
+    title: BAR-TH-160v54-4
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-160v54-4
+      adresse:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            title: Le bâtiment est un immeuble collectif d'habitation
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          critereRemplacementInstallation:
+            title: >
+              L'installation de chauffage collectif ou de production d'eau
+              chaude
+
+              sanitaire a été remplacée après le 01/01/2018
+            type: boolean
+            const: false
+          critereReseauExistant:
+            title: L'opération est réalisée sur un réseau hydraulique de chauffage ou d'eau
+              chaude sanitaire existant
+            type: boolean
+            const: true
+          critereReseauNonIsole:
+            title: >
+              L'opération est réalisée sur un réseau hydraulique de chauffage ou
+              d'eau chaude non isolé
+            type: boolean
+          critereReseauIsole:
+            title: >
+              L'opération est réalisée sur un réseau hydraulique de chauffage ou
+              d'eau chaude dont l'isolation 
+
+              en place est de classe inférieure ou égale à 2
+            type: boolean
+          quantite:
+            title: Longueur isolée de réseau
+            description: Longueur isolée de réseau de chauffage ou d'eau chaude sanitaire
+              situé hors du volume chauffé
+            type: integer
+            minimum: 0
+          epaisseur:
+            title: Epaisseur de l'isolant (mm)
+            type: number
+            minimum: 0
+          classeIsolation:
+            title: Classe de l'isolant
+            type: string
+            oneOf:
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/04
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/05
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/06
+          marque:
+            title: Marque de l'isolant
+            type: string
+          reference:
+            title: Référence de l'isolant
+            type: string
+          organismeControle:
+            title: Organisme d'inspection ayant procédé au contrôle de l'opération
+            type: object
+            properties:
+              raisonSociale:
+                title: Raison sociale
+                type: string
+              siren:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siren
+              referenceRapport:
+                title: Référence du rapport établi par l'organisme
+                type: string
+              numeroAccreditation:
+                title: Numéro d'accréditation (COFRAC) ou équivalent de l'organisme
+                type: string
+              dateFinAccreditation:
+                title: Date de fin de validité de l'accréditation de l'organisme
+                type: string
+                format: date
+            required:
+              - raisonSociale
+              - siren
+              - referenceRapport
+              - numeroAccreditation
+              - dateFinAccreditation
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+        anyOf:
+          - properties:
+              critereReseauNonIsole:
+                const: true
+          - properties:
+              critereReseauIsole:
+                const: true
+        required:
+          - ancienneteBatiment
+          - typeBatiment
+          - critereRemplacementInstallation
+          - critereReseauExistant
+          - critereReseauNonIsole
+          - critereReseauIsole
+          - quantite
+          - epaisseur
+          - classeIsolation
+          - marque
+          - reference
+          - organismeControle
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Rapport de conformité établi par l'organisme d'inspection
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: RAPPORT_CONTROLE
+              required:
+                - code
+          - contains:
+              title: Justification de l'accréditation de l'organisme d'inspection
+              description: >
+                La décision de qualification ou le certificat Qualibat 553 ou
+                554 du
+
+                prestataire, à la date d'entrée en vigueur du contrat
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: ACCREDITATION
+              required:
+                - code
+    required:
+      - fiche
+      - adresse
+      - description
+      - documents
+examples:
+  - fiche: BAR-TH-160v39-2
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      critereRemplacementInstallation: false
+      critereReseauExistant: true
+      critereReseauNonIsole: true
+      critereReseauIsole: false
+      quantite: 100
+      epaisseur: 300
+      classeIsolation: "4"
+      marque: MARQUE
+      reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: RAPPORT_CONTROLE
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+      - code: ACCREDITATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+  - fiche: BAR-TH-160v50-3
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      critereRemplacementInstallation: false
+      critereReseauExistant: true
+      critereReseauNonIsole: true
+      critereReseauIsole: false
+      quantite: 100
+      epaisseur: 300
+      classeIsolation: "4"
+      marque: MARQUE
+      reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: RAPPORT_CONTROLE
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+      - code: ACCREDITATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+  - fiche: BAR-TH-160v54-4
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      critereRemplacementInstallation: false
+      critereReseauExistant: true
+      critereReseauNonIsole: true
+      critereReseauIsole: false
+      quantite: 100
+      epaisseur: 300
+      classeIsolation: "4"
+      marque: MARQUE
+      reference: REFERENCE
+      organismeControle:
+        raisonSociale: L'Organisme de Contrôle
+        siren: "000000000"
+        referenceRapport: Référence du rapport
+        numeroAccreditation: AF 15167191
+        dateFinAccreditation: 2025-10-23
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: RAPPORT_CONTROLE
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+      - code: ACCREDITATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

@@ -1,0 +1,167 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-158
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-158
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-158
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2020-10-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-158v35-2"
+$defs:
+  BAR-TH-158v35-2:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-158v35-2
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-158v35-2
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-158v35-2
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          equipements:
+            title: Liste des émetteurs électriques installés
+            description: Indiquer autant de lignes que d'équipements aux caractéristiques
+              identiques
+            type: array
+            minItems: 1
+            items:
+              type: object
+              properties:
+                numeroCertification:
+                  title: Numéro de certification NF Electricité performance catégorie 3* oeil
+                  type: string
+                critereFonctionRegulation:
+                  title: Régulation ayant une amplitude inférieure à 0,3K et une dérive inférieure
+                    à 1 K
+                  type: boolean
+                  const: true
+                critereFonctionDetectionOuvertureFenetre:
+                  title: Détection automatique et intégrée à l'appareil de l'ouverture d'une
+                    fenêtre par passage en mode « arrêt chauffage » ou « horsgel
+                    »
+                  type: boolean
+                  const: true
+                critereFonctionDetectionAbsence:
+                  title: Détection automatique d'absence, intégrée à l'appareil, par réduction
+                    d'allure et passage progressif jusqu'au mode « Eco »
+                  type: boolean
+                  const: true
+                critereFonctionIndicationSurconsommation:
+                  title: Indication de surconsommation par information visuelle du consommateur
+                    ayant a minima 3 niveaux de consommation basés sur la
+                    température de consigne et représentés par des couleurs
+                  type: boolean
+                  const: true
+                quantite:
+                  title: Nombre d'émetteurs
+                  type: integer
+                  minimum: 1
+                puissanceElectrique:
+                  title: Puissance électrique (W)
+                  type: number
+                  minimum: 0
+                marque:
+                  title: Marque
+                  type: string
+                reference:
+                  title: Référence
+                  type: string
+              required:
+                - quantite
+                - puissanceElectrique
+                - marque
+                - reference
+              anyOf:
+                - required:
+                    - numeroCertification
+                - allOf:
+                    - properties:
+                        critereFonctionRegulation:
+                          type: boolean
+                          const: true
+                        critereFonctionDetectionOuvertureFenetre:
+                          type: boolean
+                          const: true
+                        critereFonctionDetectionAbsence:
+                          type: boolean
+                          const: true
+                        critereFonctionIndicationSurconsommation:
+                          type: boolean
+                          const: true
+                      required:
+                        - critereFonctionRegulation
+                        - critereFonctionDetectionOuvertureFenetre
+                        - critereFonctionDetectionAbsence
+                        - critereFonctionIndicationSurconsommation
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/91
+            required:
+              - qualificationsRge
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - equipements
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Preuve de qualification du professionnel ayan réalisé l'opération
+              type: object
+              properties:
+                code:
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+examples:
+  - fiche: BAR-TH-158v35-2
+    description:
+      ancienneteBatiment: EXISTANT
+      typeBatiment: MAISON
+      equipements:
+        - numeroCertification: XXXXXXX
+          quantite: 10
+          puissanceElectrique: 1500
+          marque: MARQUE
+          reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

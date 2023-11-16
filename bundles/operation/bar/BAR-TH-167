@@ -1,0 +1,224 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-167
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-167
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-167
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2021-08-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-167v38-1"
+$defs:
+  BAR-TH-167v38-1:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-167v38-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-167v38-1
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-167v38-1
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          critereCombustibleGazeux:
+            title: Le chauffe-bain est individuel et utilise un combustible gazeux
+            type: boolean
+            const: true
+          critereRemplacement:
+            title: L'appareil installé vient en remplacement d'un chauffe-bain au gaz mural
+              à combustion atmosphérique
+            type: boolean
+            const: true
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/85
+            required:
+              - qualificationsRge
+        required:
+          - ancienneteBatiment
+          - typeBatiment
+          - critereCombustibleGazeux
+          - critereRemplacement
+          - installateur
+        allOf:
+          - if:
+              properties:
+                typeBatiment:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/MAISON
+              required:
+                - typeBatiment
+            then:
+              properties:
+                surfaceHabitable:
+                  title: Surface habitable (m²)
+                  type: number
+                  minimum: 0
+                typeEquipement:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/chauffeBain
+              required:
+                - surfaceHabitable
+                - typeEquipement
+          - if:
+              properties:
+                typeBatiment:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/APPARTEMENT
+              required:
+                - typeBatiment
+            then:
+              properties:
+                quantite:
+                  title: Nombre de chauffe-bain
+                  description: Indiquer le nombre de chauffe bain aux caractéristiques strictement
+                    identiques
+                  type: integer
+                  minimum: 1
+              required:
+                - quantite
+          - if:
+              properties:
+                typeBatiment:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/MAISON
+              required:
+                - typeBatiment
+            then:
+              allOf:
+                - $ref: "#/$defs/equipement"
+          - if:
+              properties:
+                typeBatiment:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/APPARTEMENT
+              required:
+                - typeBatiment
+            then:
+              properties:
+                equipements:
+                  title: Liste des équipements installés
+                  description: Renseigner la liste des équipements de caractéristiques strictement
+                    identiques
+                  type: array
+                  minItems: 1
+                  items:
+                    $ref: "#/$defs/equipement"
+              required:
+                - equipements
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Preuve de qualification du professionnel ayan réalisé l'opération
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+    $defs:
+      equipement:
+        title: Equipement installé
+        type: object
+        properties:
+          typeEquipement:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/chauffeBain
+          performanceEnergetique:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/performance_energetique#/$defs/rendementPCI
+            minimum: 0
+          classeEnergetique:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_efficacite_energetique#/$defs/chauffesBain
+          marque:
+            title: Marque de l'équipement
+            type: string
+          reference:
+            title: Référence de l'équipement
+            type: string
+        allOf:
+          - if:
+              properties:
+                typeEquipement:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/CHAUFFE_BAIN_FLUX_FORCE_HAUT_RENDEMENT
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/CHAUFFE_BAIN_COMBUSTION_HAUT_RENDEMENT
+              required:
+                - typeEquipement
+            then:
+              properties:
+                performanceEnergetique:
+                  type: number
+                  minimum: 85
+              required:
+                - performanceEnergetique
+          - if:
+              properties:
+                typeEquipement:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/CHAUFFE_BAIN_CONDENSATION
+              required:
+                - typeEquipement
+            then:
+              properties:
+                performanceEnergetique:
+                  type: number
+                  minimum: 100
+              required:
+                - performanceEnergetique
+        required:
+          - typeEquipement
+          - performanceEnergetique
+          - classeEnergetique
+          - marque
+          - reference
+examples:
+  - fiche: BAR-TH-167v38-1
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      typeEquipement: COMBUSTION_HAUT_RENDEMENT
+      performanceEnergetique: 90
+      classeEnergetique: A++
+      critereCombustibleGazeux: true
+      critereRemplacement: true
+      surfaceHabitable: 100
+      marque: MARQUE
+      reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

@@ -1,0 +1,137 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-168
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-168
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-168
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2021-12-29"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-168v40-1"
+$defs:
+  BAR-TH-168v40-1:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-168v40-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-168v40-1
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-168v40-1
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/MAISON
+            title: Le bâtiment est une maison individuelle
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          usage:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_usage#/$defs/ecs
+            title: Usage couvert par l'équipement installé
+          surfaceCapteurs:
+            title: Surface hors-tout totale de capteurs solaires (m²)
+            type: number
+            minimum: 0
+          productiviteCapteurs:
+            title: Productivité des capteurs (W/m²)
+            type: number
+            minimum: 600
+          capteursHybrides:
+            title: Les capteurs solaires produisent à la fois électricité et chaleur
+              (capteurs hybrides)
+            type: boolean
+            const: false
+          marque:
+            title: Marque de l'équipement
+            type: string
+          reference:
+            title: Référence de l'équipement
+            type: string
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/86
+            required:
+              - qualificationsRge
+        required:
+          - ancienneteBatiment
+          - typeBatiment
+          - usage
+          - productiviteCapteurs
+          - surfaceCapteurs
+          - capteursHybrides
+          - marque
+          - reference
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Certification CSTBat ou Solar Keymark
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: CERTIFICATION
+              required:
+                - code
+          - contains:
+              title: Preuve de qualification du professionnel ayan réalisé l'opération
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+examples:
+  - fiche: BAR-TH-168v40-1
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      usage: CHAUFFAGE_ECS
+      surfaceCapteurs: 10
+      productiviteCapteurs: 800
+      capteursHybrides: false
+      marque: MARQUE
+      reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: CERTIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

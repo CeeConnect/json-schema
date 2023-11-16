@@ -1,0 +1,467 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-127
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-127
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-127
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2022-04-01"
+          formatExclusiveMaximum: "2024-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-127v40-4"
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2024-01-01"
+          formatExclusiveMaximum: "2028-07-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-127v54-5"
+$defs:
+  BAR-TH-127v40-4:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-127v40-4
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-127v40-4
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-127v40-4
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          typeInstallation:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation
+          typeEquipement:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/vmcHygroreglable
+          typeCaisson:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_caisson_vmc
+            title: Type de caisson
+          referenceAvisTechnique:
+            title: Référence de l'avis technique
+            type: string
+          dateAvisTechnique:
+            title: Date de validitéde l'avis technique
+            type: string
+            format: date
+          marqueCaison:
+            title: Marque du caisson
+            type: string
+          referenceCaison:
+            title: Référence du caisson
+            type: string
+          marqueBouchesExtraction:
+            title: Marque des bouches d'extrations
+            type: string
+          referenceBouchesExtraction:
+            title: Référence des bouches d'extrations
+            type: string
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/92
+            required:
+              - qualificationsRge
+        allOf:
+          - if:
+              properties:
+                typeEquipement:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/VMC_TYPE_B
+              required:
+                - typeEquipement
+            then:
+              properties:
+                marqueBouchesEntreeAir:
+                  title: Marque des bouches d'entrée d'air
+                  type: string
+                referenceBouchesEntreeAir:
+                  title: Référence des bouches d'entrée d'air
+                  type: string
+              required:
+                - marqueBouchesEntreeAir
+                - referenceBouchesEntreeAir
+          - if:
+              properties:
+                typeInstallation:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/INDIVIDUEL
+              required:
+                - typeInstallation
+            then:
+              properties:
+                puissanceElectrique:
+                  title: Puissance électrique absorbée pondérée (WThC)
+                  type: number
+                  maximum: 15
+                typeCaisson:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_caisson_vmc#/$defs/BASSE_CONSOMMATION
+                classeEnergetique:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_efficacite_energetique#/$defs/ventilations
+              required:
+                - typeCaisson
+                - puissanceElectrique
+                - classeEnergetique
+          - if:
+              properties:
+                typeInstallation:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/COLLECTIF
+              required:
+                - typeInstallation
+            then:
+              properties:
+                logements:
+                  title: Nombre d'appartements
+                  description: Nombre d'appartement d'un même bâtiment
+                  type: integer
+                  minimum: 1
+                puissanceElectrique:
+                  title: Puissance électrique absorbée pondérée (WThC/(m3/h))
+                  type: number
+                  maximum: 0.25
+              required:
+                - logements
+                - puissanceElectrique
+          - if:
+              properties:
+                typeInstallation:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/COLLECTIF
+                typeCaisson:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_caisson_vmc#/$defs/BASSE_CONSOMMATION
+              required:
+                - typeInstallation
+                - typeCaisson
+            then:
+              properties:
+                puissanceElectrique:
+                  type: number
+                  maximum: 0.1
+              required:
+                - puissanceElectrique
+          - if:
+              properties:
+                typeInstallation:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/COLLECTIF
+                typeCaisson:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_caisson_vmc#/$defs/BASSE_PRESSION
+              required:
+                - typeInstallation
+                - typeCaisson
+            then:
+              properties:
+                puissanceElectrique:
+                  type: number
+                  maximum: 0.12
+              required:
+                - puissanceElectrique
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - typeInstallation
+          - typeEquipement
+          - typeCaisson
+          - puissanceElectrique
+          - referenceAvisTechnique
+          - dateAvisTechnique
+          - marqueCaison
+          - referenceCaison
+          - marqueBouchesExtraction
+          - referenceBouchesExtraction
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Avis technique du système de ventilation hybride hygroréglable
+              type: object
+              properties:
+                code:
+                  const: AVIS_TECHNIQUE
+              required:
+                - code
+          - contains:
+              title: Preuve de qualification de l'installateur
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+  BAR-TH-127v54-5:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-127v54-5
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-127v54-5
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-127v54-5
+      adresse:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          typeInstallation:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation
+          typeEquipement:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/vmcHygroreglable
+          typeCaisson:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_caisson_vmc
+            title: Type de caisson
+          referenceAvisTechnique:
+            title: Référence de l'avis technique
+            type: string
+          dateAvisTechnique:
+            title: Date de validitéde l'avis technique
+            type: string
+            format: date
+          marqueCaison:
+            title: Marque du caisson
+            type: string
+          referenceCaison:
+            title: Référence du caisson
+            type: string
+          marqueBouchesExtraction:
+            title: Marque des bouches d'extrations
+            type: string
+          referenceBouchesExtraction:
+            title: Référence des bouches d'extrations
+            type: string
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/92
+            required:
+              - qualificationsRge
+        allOf:
+          - if:
+              properties:
+                typeEquipement:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/VMC_TYPE_B
+              required:
+                - typeEquipement
+            then:
+              properties:
+                marqueBouchesEntreeAir:
+                  title: Marque des bouches d'entrée d'air
+                  type: string
+                referenceBouchesEntreeAir:
+                  title: Référence des bouches d'entrée d'air
+                  type: string
+              required:
+                - marqueBouchesEntreeAir
+                - referenceBouchesEntreeAir
+          - if:
+              properties:
+                typeInstallation:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/INDIVIDUEL
+              required:
+                - typeInstallation
+            then:
+              properties:
+                surfaceHabitable:
+                  title: Surface habitable (m²)
+                  type: number
+                  minimum: 0
+                puissanceElectrique:
+                  title: Puissance électrique absorbée pondérée (WThC)
+                  type: number
+                  maximum: 15
+                typeCaisson:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_caisson_vmc#/$defs/BASSE_CONSOMMATION
+                classeEnergetique:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_efficacite_energetique#/$defs/ventilations
+              required:
+                - surfaceHabitable
+                - typeCaisson
+                - puissanceElectrique
+                - classeEnergetique
+          - if:
+              properties:
+                typeInstallation:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/COLLECTIF
+              required:
+                - typeInstallation
+            then:
+              properties:
+                logements:
+                  title: Nombre de logements desservis
+                  description: Nombre d'appartement d'un même bâtiment
+                  type: integer
+                  minimum: 1
+                puissanceElectrique:
+                  title: Puissance électrique absorbée pondérée (WThC/(m3/h))
+                  type: number
+                  maximum: 0.25
+              required:
+                - logements
+                - puissanceElectrique
+          - if:
+              properties:
+                typeInstallation:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/COLLECTIF
+                typeCaisson:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_caisson_vmc#/$defs/BASSE_CONSOMMATION
+              required:
+                - typeInstallation
+                - typeCaisson
+            then:
+              properties:
+                puissanceElectrique:
+                  type: number
+                  maximum: 0.1
+              required:
+                - puissanceElectrique
+          - if:
+              properties:
+                typeInstallation:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/COLLECTIF
+                typeCaisson:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_caisson_vmc#/$defs/BASSE_PRESSION
+              required:
+                - typeInstallation
+                - typeCaisson
+            then:
+              properties:
+                puissanceElectrique:
+                  type: number
+                  maximum: 0.12
+              required:
+                - puissanceElectrique
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - typeInstallation
+          - typeEquipement
+          - typeCaisson
+          - puissanceElectrique
+          - referenceAvisTechnique
+          - dateAvisTechnique
+          - marqueCaison
+          - referenceCaison
+          - marqueBouchesExtraction
+          - referenceBouchesExtraction
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Avis technique du système de ventilation hybride hygroréglable
+              type: object
+              properties:
+                code:
+                  const: AVIS_TECHNIQUE
+              required:
+                - code
+          - contains:
+              title: Preuve de qualification de l'installateur
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - adresse
+      - description
+      - documents
+examples:
+  - fiche: BAR-TH-127v40-4
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      typeInstallation: INDIVIDUEL
+      typeEquipement: TYPE_A
+      typeCaisson: BASSE_CONSOMMATION
+      puissanceElectrique: 10
+      classeEnergetique: A+
+      referenceAvisTechnique: REFERENCE
+      dateAvisTechnique: 2020-01-01
+      marqueCaison: MARQUE
+      referenceCaison: REFERENCE
+      marqueBouchesExtraction: MARQUE
+      referenceBouchesExtraction: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: AVIS_TECHNIQUE
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+  - fiche: BAR-TH-127v54-5
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      typeInstallation: INDIVIDUEL
+      typeEquipement: TYPE_A
+      typeCaisson: BASSE_CONSOMMATION
+      surfaceHabitable: 100
+      puissanceElectrique: 10
+      classeEnergetique: A+
+      referenceAvisTechnique: REFERENCE
+      dateAvisTechnique: 2020-01-01
+      marqueCaison: MARQUE
+      referenceCaison: REFERENCE
+      marqueBouchesExtraction: MARQUE
+      referenceBouchesExtraction: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: AVIS_TECHNIQUE
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

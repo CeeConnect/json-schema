@@ -1,0 +1,127 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-112
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-112
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-112
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2022-10-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-112v46-3"
+$defs:
+  BAR-TH-112v46-3:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-112v46-3
+    $schema: https://json-schema.org/draft/2020-12/schema
+    $comment: Scénario Flamme verte uniquement couvert
+    title: BAR-TH-112v46-3
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-112v46-3
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/MAISON
+            title: Le logement est une maison individuelle
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          typeCombustible:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_combustible_biomasse
+            title: Type de combustible
+          performanceEnergetique:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/performance_energetique#/$defs/etas
+            minimum: 66
+          critereFlammeVerte:
+            title: La chaudière installée possède le label Flamme Verte 7*
+            type: boolean
+            const: true
+          marque:
+            title: Marque des équipements
+            type: string
+          reference:
+            title: Référence des équipements
+            type: string
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/87
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/88
+            required:
+              - qualificationsRge
+        allOf:
+          - if:
+              properties:
+                typeCombustible:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_combustible_biomasse#/$defs/GRANULES
+              required:
+                - typeCombustible
+            then:
+              properties:
+                performanceEnergetique:
+                  type: number
+                  minimum: 80
+              required:
+                - performanceEnergetique
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - typeCombustible
+          - performanceEnergetique
+          - critereFlammeVerte
+          - marque
+          - reference
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Preuve de qualification du professionnel
+              type: object
+              properties:
+                code:
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+examples:
+  - fiche: BAR-TH-112v46-3
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      typeCombustible: GRANULES
+      performanceEnergetique: 90
+      critereFlammeVerte: true
+      marque: MARQUE
+      reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

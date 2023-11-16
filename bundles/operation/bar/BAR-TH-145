@@ -1,0 +1,620 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-145
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-145
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-145
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2020-10-12"
+          formatExclusiveMaximum: "2023-08-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-145v36-3"
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2023-08-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-145v52-4"
+$defs:
+  BAR-TH-145v36-3:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-145v36-3
+    $schema: https://json-schema.org/draft/2020-12/schema
+    $comment: >
+      - TODO: Vérifier la possibilité d'intégrer l'attestation de réalisation
+      ANAH
+
+      comme document justificatif spécifique
+    title: BAR-TH-145v36-3
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-145v36-3
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            title: Le bâtiment est un immeuble collectif d'habitation
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          critereRegimeCopropriete:
+            title: L'immeuble relève du régime de la copropriété défini par la loi n° 65-557
+              du 10 juillet 1965
+            type: boolean
+          surfaceHabitable:
+            title: Surface habitable (m²)
+            description: Indiquer la surface habitable totale de l'immeuble
+            type: number
+            minimum: 0
+          logements:
+            title: Nombre de logements
+            type: integer
+            minimum: 1
+          auditEnergetique:
+            title: Audit énergétique
+            description: Renseigner les informations issues de l'audit énergétique
+            type: object
+            properties:
+              reference:
+                title: Référence de l'audit énergétique
+                type: string
+              dateRealisation:
+                title: Date de réalisation de l'audit énergétique
+                type: string
+                format: date
+              cepInitial:
+                title: Cep initial (kWh/m².an)
+                description: Consommation conventionnelle en énergie primaire avant les travaux
+                  de rénovation
+                type: number
+                exclusiveMaximum: 331
+              cepProjet:
+                title: Cep initial (kWh/m².an)
+                description: Consommation conventionnelle en énergie primaire après les travaux
+                  de rénovation
+                type: number
+                minimum: 0
+              cefInitial:
+                title: Cef initial (kWh/m².an)
+                description: Consommation conventionnelle en énergie finale avant les travaux de
+                  rénovation
+                type: number
+                minimum: 0
+              cefProjet:
+                title: Cef projet (kWh/m².an)
+                description: Consommation conventionnelle en énergie après avant les travaux de
+                  rénovation
+                type: number
+                minimum: 0
+              gainEnergetique:
+                title: Gain énergétique du projet (%)
+                description: Gain énergétique du projet par rapport à la consommation
+                  conventionnelle en énergie primaire avant travaux
+                type: number
+                minimum: 35
+              critereEmissionsGes:
+                title: >
+                  Les émissions de gaz à effet de serre après rénovation,
+                  exprimées en kgeqCO2/m².an, sont inférieures 
+
+                  ou égales à la valeur initiale de ces émissions avant travaux
+                type: boolean
+                const: true
+            required:
+              - reference
+              - dateRealisation
+              - cepInitial
+              - cepProjet
+              - cefInitial
+              - cefProjet
+              - gainEnergetique
+              - critereEmissionsGes
+          logicielAuditEnergetique:
+            title: Logiciel utilisé pour réaliser l'audit énergétique
+            type: object
+            properties:
+              nom:
+                title: Nom du logiciel
+                type: string
+              editeur:
+                title: Nom de l'éditeur
+                type: string
+              date:
+                title: Date de création du logiciel
+                type: string
+                format: date
+              version:
+                title: Numéro de version du logiciel
+                type: string
+            required:
+              - nom
+              - editeur
+              - date
+              - version
+          auditeur:
+            title: Professionnel ayant assuré l'audit énergétique
+            type: object
+            properties:
+              raisonSociale:
+                title: Raison sociale
+                type: string
+              siren:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siren
+            required:
+              - raisonSociale
+              - siren
+          installateurs:
+            title: Liste des professionnels
+            description: Indiquer les informations de chaque intervenant
+            type: array
+            minItems: 1
+            items:
+              type: object
+              properties:
+                nom:
+                  title: Nom du représentant
+                  type: string
+                prenom:
+                  title: Prenom du représentant
+                  type: string
+                raisonSociale:
+                  title: Raison sociale
+                  type: string
+                siret:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siret
+                domaineTravaux:
+                  title: Domaine des travaux réalisés
+                  type: string
+                referenceQualification:
+                  title: Référende de la qualification ou certification
+                  type: string
+                dateQualification:
+                  title: Date de la qualification ou certification
+                  type: string
+                  format: date
+              required:
+                - nom
+                - prenom
+                - raisonSociale
+                - siret
+                - domaineTravaux
+                - referenceQualification
+                - dateQualification
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - critereRegimeCopropriete
+          - surfaceHabitable
+          - logements
+          - auditEnergetique
+          - logicielAuditEnergetique
+          - auditeur
+          - installateurs
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Rapport de synthèse de l'audit énergétique
+              description: >
+                Le rapport de synthèse mentionne les données de consommations
+
+                conventionnelles en énergie primaire 
+
+                et en énergie finale (sans déduction de la production d'électricité autoconsommée ou exportée), avant 
+
+                et après travaux ainsi que le gain énergétique apporté par la rénovation du bâtiment et les quantités 
+
+                annuelles de gaz à effet de serre émis dans l'atmosphère avant et après travaux du fait de la quantité 
+
+                d'énergie consommée, rapportés à la surface habitable du bâtiment.
+
+                Ce rapport précise le nom du logiciel de calcul utilisé dans le cadre de l'opération et son numéro de version.
+              type: object
+              properties:
+                code:
+                  const: AUDIT_ENERGETIQUE
+              required:
+                - code
+          - contains:
+              title: Attestation de réalistion de travaux
+              description: >
+                L'attestation de réalisation de travaux mentionne :
+
+                - la liste des travaux préconisés avec leurs niveaux de performance et la correspondance avec la liste 
+
+                des travaux réalisés, datée et signée par le bénéficiaire, le professionnel ayant réalisé l'audit 
+
+                énergétique et chaque professionnel mettant en oeuvre ou assurant la maîtrise d'oeuvre de tout ou partie 
+
+                de l'opération, permettant d'atteindre les performances énergétiques requises ;
+
+                - la liste des entreprises ayant effectué les travaux de rénovation en indiquant la nature de ces travaux 
+
+                et la référence de leur qualification ou certification lorsque celle-ci est requise.
+              type: object
+              properties:
+                code:
+                  const: ATTESTATION_REALISATION_TRAVAUX
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+  BAR-TH-145v52-4:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-145v52-4
+    $schema: https://json-schema.org/draft/2020-12/schema
+    $comment: >
+      - TODO: Vérifier la possibilité d'intégrer l'attestation de réalisation
+      ANAH
+
+      comme document justificatif spécifique
+
+      - TODO: Intégrer les dates de qualification au bundle installateur ?
+    title: BAR-TH-145v52-4
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-145v52-4
+      adresse:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            title: Le bâtiment est un immeuble collectif d'habitation
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          critereRegimeCopropriete:
+            title: L'immeuble relève du régime de la copropriété défini par la loi n° 65-557
+              du 10 juillet 1965
+            type: boolean
+          critereAuditEnergetiqueReglementaire:
+            title: >
+              Un audit énergétique réglementaire effectué dans le cadre d'une
+              vente
+
+              ou d'une location a été réalisé préalablement aux travaux
+            type: boolean
+          critereAuditEnergetiqueIncitatif:
+            title: >
+              Un audit énergétique incitatif effectué par un professionnel
+              qualifié
+
+              et certifié RGE a été réalisé préalablement aux travaux
+            type: boolean
+          surfaceHabitable:
+            title: Surface habitable (m²)
+            description: Indiquer la surface habitable totale de l'immeuble
+            type: number
+            minimum: 0
+          logements:
+            title: Nombre de logements
+            type: integer
+            minimum: 1
+          auditEnergetique:
+            title: Audit énergétique
+            description: Renseigner les informations issues de l'audit énergétique
+            type: object
+            properties:
+              reference:
+                title: Référence de l'audit énergétique
+                type: string
+              dateRealisation:
+                title: Date de réalisation de l'audit énergétique
+                type: string
+                format: date
+              cepInitial:
+                title: Cep initial (kWh/m².an)
+                description: Consommation conventionnelle en énergie primaire avant les travaux
+                  de rénovation
+                type: number
+                exclusiveMaximum: 331
+              cepProjet:
+                title: Cep initial (kWh/m².an)
+                description: Consommation conventionnelle en énergie primaire après les travaux
+                  de rénovation
+                type: number
+                minimum: 0
+              cefInitial:
+                title: Cef initial (kWh/m².an)
+                description: Consommation conventionnelle en énergie finale avant les travaux de
+                  rénovation
+                type: number
+                minimum: 0
+              cefProjet:
+                title: Cef projet (kWh/m².an)
+                description: Consommation conventionnelle en énergie après avant les travaux de
+                  rénovation
+                type: number
+                minimum: 0
+              gainEnergetique:
+                title: Gain énergétique du projet (%)
+                description: Gain énergétique du projet par rapport à la consommation
+                  conventionnelle en énergie primaire avant travaux
+                type: number
+                minimum: 35
+              critereEmissionsGes:
+                title: >
+                  Les émissions de gaz à effet de serre après rénovation,
+                  exprimées
+
+                  en kgeqCO2/m².an, sont inférieures ou égales à la valeur initiale de ces émissions avant travaux
+                type: boolean
+                const: true
+              auditeur:
+                title: Professionnel ayant assuré l'audit énergétique
+                type: object
+                properties:
+                  raisonSociale:
+                    title: Raison sociale
+                    type: string
+                  siren:
+                    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siren
+                required:
+                  - raisonSociale
+                  - siren
+              logiciel:
+                title: Logiciel utilisé pour réaliser l'audit énergétique
+                type: object
+                properties:
+                  nom:
+                    title: Nom du logiciel
+                    type: string
+                  editeur:
+                    title: Nom de l'éditeur
+                    type: string
+                  date:
+                    title: Date de création du logiciel
+                    type: string
+                    format: date
+                  version:
+                    title: Numéro de version du logiciel
+                    type: string
+                required:
+                  - nom
+                  - editeur
+                  - date
+                  - version
+            required:
+              - reference
+              - dateRealisation
+              - cepInitial
+              - cepProjet
+              - cefInitial
+              - cefProjet
+              - gainEnergetique
+              - critereEmissionsGes
+              - auditeur
+              - logiciel
+          installateurs:
+            title: Liste des professionnels
+            description: Indiquer les informations de chaque intervenant
+            type: array
+            minItems: 1
+            items:
+              type: object
+              properties:
+                nom:
+                  title: Nom du représentant
+                  type: string
+                prenom:
+                  title: Prenom du représentant
+                  type: string
+                raisonSociale:
+                  title: Raison sociale
+                  type: string
+                siret:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siret
+                domaineTravaux:
+                  title: Domaine des travaux réalisés
+                  type: string
+                referenceQualification:
+                  title: Référende de la qualification ou certification
+                  type: string
+                dateQualification:
+                  title: Date de la qualification ou certification
+                  type: string
+                  format: date
+              required:
+                - nom
+                - prenom
+                - raisonSociale
+                - siret
+                - domaineTravaux
+                - referenceQualification
+                - dateQualification
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - critereRegimeCopropriete
+          - critereAuditEnergetiqueIncitatif
+          - critereAuditEnergetiqueReglementaire
+          - surfaceHabitable
+          - logements
+          - auditEnergetique
+          - installateurs
+        allOf:
+          - if:
+              properties:
+                regimeCopropriete:
+                  const: true
+              required:
+                - regimeCopropriete
+            then:
+              properties:
+                critereAuditEnergetiqueIncitatif:
+                  type: boolean
+                  const: true
+              required:
+                - critereAuditEnergetiqueIncitatif
+        anyOf:
+          - properties:
+              critereAuditEnergetiqueReglementaire:
+                const: true
+          - properties:
+              critereAuditEnergetiqueIncitatif:
+                const: true
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Rapport de synthèse de l'audit énergétique
+              description: >
+                Le rapport de synthèse mentionne les données de consommations
+                conventionnelles en énergie primaire et 
+
+                en énergie finale (sans déduction de la production d'électricité autoconsommée ou exportée), avant 
+
+                et après travaux ainsi que le gain énergétique apporté par la rénovation du bâtiment et les quantités 
+
+                annuelles de gaz à effet de serre émis dans l'atmosphère avant et après travaux du fait de la quantité 
+
+                d'énergie consommée, rapportés à la surface habitable du bâtiment.
+
+                Ce rapport précise le nom du logiciel de calcul utilisé dans le cadre de l'opération et son numéro de version.
+              type: object
+              properties:
+                code:
+                  const: AUDIT_ENERGETIQUE
+              required:
+                - code
+          - contains:
+              title: Attestation de réalistion de travaux
+              description: >
+                L'attestation de réalisation de travaux mentionne :
+
+                - la liste des travaux préconisés avec leurs niveaux de performance et la correspondance avec la liste 
+
+                des travaux réalisés, datée et signée par le bénéficiaire, le professionnel ayant réalisé l'audit 
+
+                énergétique et chaque professionnel mettant en oeuvre ou assurant la maîtrise d'oeuvre de tout ou partie 
+
+                de l'opération, permettant d'atteindre les performances énergétiques requises ;
+
+                - la liste des entreprises ayant effectué les travaux de rénovation en indiquant la nature de ces travaux 
+
+                et la référence de leur qualification ou certification lorsque celle-ci est requise.
+              type: object
+              properties:
+                code:
+                  const: ATTESTATION_REALISATION_TRAVAUX
+              required:
+                - code
+    required:
+      - fiche
+      - adresse
+      - description
+      - documents
+examples:
+  - fiche: BAR-TH-145v36-3
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      critereRegimeCopropriete: true
+      surfaceHabitable: 1000
+      logements: 40
+      auditEnergetique:
+        dateRealisation: 2023-02-07
+        reference: REFERENCE
+        cepInitial: 200
+        cepProjet: 130
+        cefInitial: 200
+        cefProjet: 130
+        gainEnergetique: 70
+        critereEmissionsGes: true
+      auditeur:
+        raisonSociale: RAISON SOCIALE
+        siren: "000000000"
+      logicielAuditEnergetique:
+        nom: NOM
+        editeur: EDITEUR
+        date: 2022-02-06
+        version: "2.3"
+      installateurs:
+        - nom: NOM
+          prenom: PRENOM
+          raisonSociale: RAISON SOCIALE
+          siret: "00000000000000"
+          domaineTravaux: DOMAINE DE TRAVAUX
+          referenceQualification: REFERENCE
+          dateQualification: 2022-01-01
+    documents:
+      - code: AUDIT_ENERGETIQUE
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+      - code: ATTESTATION_REALISATION_TRAVAUX
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+  - fiche: BAR-TH-145v52-4
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      critereRegimeCopropriete: true
+      critereAuditEnergetiqueIncitatif: true
+      critereAuditEnergetiqueReglementaire: false
+      surfaceHabitable: 1000
+      logements: 40
+      auditEnergetique:
+        dateRealisation: 2023-02-07
+        reference: REFERENCE
+        cepInitial: 200
+        cepProjet: 130
+        cefInitial: 200
+        cefProjet: 130
+        gainEnergetique: 70
+        critereEmissionsGes: true
+        auditeur:
+          raisonSociale: RAISON SOCIALE
+          siren: "000000000"
+        logiciel:
+          nom: NOM
+          editeur: EDITEUR
+          date: 2022-02-06
+          version: "2.3"
+      installateurs:
+        - nom: NOM
+          prenom: PRENOM
+          raisonSociale: RAISON SOCIALE
+          siret: "00000000000000"
+          domaineTravaux: DOMAINE DE TRAVAUX
+          referenceQualification: REFERENCE
+          dateQualification: 2022-01-01
+    documents:
+      - code: AUDIT_ENERGETIQUE
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+      - code: ATTESTATION_REALISATION_TRAVAUX
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

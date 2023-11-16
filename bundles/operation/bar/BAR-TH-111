@@ -1,0 +1,87 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-111
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-111
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-111
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2015-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-111v17-1"
+$defs:
+  BAR-TH-111v17-1:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-111v17-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-111v17-1
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-111v17-1
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/MAISON
+            title: Le logement est une maison individuelle
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          energieChauffage:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffage
+          critereAncienneteEquipement:
+            title: Système de chauffage sur boucle à eau chaude existant depuis plus de 2
+              ans
+            type: boolean
+            const: true
+          surfaceHabitable:
+            title: Surface habitable
+            type: number
+            minimum: 0
+          marque:
+            title: Marque des équipements
+            type: string
+          reference:
+            title: Référence des équipements
+            type: string
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - energieChauffage
+          - critereAncienneteEquipement
+          - surfaceHabitable
+          - marque
+          - reference
+          - installateur
+    required:
+      - fiche
+      - description
+examples:
+  - fiche: BAR-TH-111v17-1
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      energieChauffage: ELECTRICITE
+      critereAncienneteEquipement: true
+      surfaceHabitable: 100
+      marque: MARQUE
+      reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0

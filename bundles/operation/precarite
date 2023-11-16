@@ -1,4 +1,4 @@
-$id: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/precarite
+$id: https://schemas.ceeconnect/bundles/operation/precarite
 $schema: 'https://json-schema.org/draft/2020-12/schema'
 title: Précarité énergétique
 description: Prise en compte de la précarité énergétique du bénéficiaire

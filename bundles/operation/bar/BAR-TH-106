@@ -1,0 +1,193 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-106
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-106
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-106
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2017-02-01"
+          formatExclusiveMaximum: "2024-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-106v23-2"
+$defs:
+  BAR-TH-106v23-2:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-106v23-2
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-106v23-2
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-106v23-2
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/85
+            required:
+              - qualificationsRge
+        allOf:
+          - if:
+              properties:
+                typeBatiment:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/MAISON
+              required:
+                - typeBatiment
+            then:
+              properties:
+                surfaceHabitable:
+                  title: Surface habitable du logement (m²)
+                  type: number
+                  minimum: 0
+              required:
+                - surfaceHabitable
+          - if:
+              properties:
+                typeBatiment:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/APPARTEMENT
+              required:
+                - typeBatiment
+            then:
+              properties:
+                logements:
+                  title: Nombre d'appartements
+                  description: Renseigner le nombre de logements équipés d'une chaudière à haute
+                    performance énergétique
+                  type: integer
+                  minimum: 1
+              required:
+                - logements
+          - if:
+              properties:
+                typeBatiment:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/MAISON
+              required:
+                - typeBatiment
+            then:
+              allOf:
+                - $ref: "#/$defs/equipement"
+          - if:
+              properties:
+                typeBatiment:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/APPARTEMENT
+              required:
+                - typeBatiment
+            then:
+              properties:
+                equipements:
+                  title: Liste des équipements installés
+                  description: Regrouper les équipements par caractéristiques et performances
+                    identiques
+                  type: array
+                  minItems: 1
+                  items:
+                    $ref: "#/$defs/equipement"
+              required:
+                - equipements
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Preuve de qualification du professionnel
+              type: object
+              properties:
+                code:
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+    $defs:
+      equipement:
+        type: object
+        properties:
+          puissanceNominale:
+            title: Puissance thermique nominale unitaire (kW)
+            type: number
+            minimum: 0
+            maximum: 70
+          quantite:
+            title: Nombre d'équipements installé
+            type: integer
+            minimum: 1
+          performanceEnergetique:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/performance_energetique#/$defs/etas
+            minimum: 90
+          marque:
+            title: Marque des équipements
+            type: string
+          reference:
+            title: Référence des équipements
+            type: string
+          performanceEnergetiqueRegulateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_regulateur
+            title: Classe du régulateur
+          marqueRegulateur:
+            title: Marque du régulateur
+            type: string
+          referenceRegulateur:
+            title: Référence du régulateur
+            type: string
+        required:
+          - puissanceNominale
+          - quantite
+          - performanceEnergetique
+          - marque
+          - reference
+          - performanceEnergetiqueRegulateur
+          - marqueRegulateur
+          - referenceRegulateur
+examples:
+  - fiche: BAR-TH-106v23-2
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      surfaceHabitable: 100
+      quantite: 1
+      puissanceNominale: 20
+      performanceEnergetique: 95
+      performanceEnergetiqueRegulateur: VII
+      marque: MARQUE
+      reference: REFERENCE
+      marqueRegulateur: MARQUE
+      referenceRegulateur: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

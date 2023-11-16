@@ -1,0 +1,511 @@
+$id: https://schemas.ceeconnect.com/bundles/operation/operation_bar
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Opération d'économies d'énergie - Secteur résidentiel
+type: object
+properties:
+  fiche:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation#/properties/fiche
+  dateEngagement:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation#/properties/dateEngagement
+required:
+  - fiche
+  - dateEngagement
+discriminator:
+  propertyName: fiche
+oneOf:
+  - type: object
+    properties:
+      fiche:
+        const: BAR-EN-101
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-101
+  - type: object
+    properties:
+      fiche:
+        const: BAR-EN-102
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-102
+  - type: object
+    properties:
+      fiche:
+        const: BAR-EN-103
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-103
+  - type: object
+    properties:
+      fiche:
+        const: BAR-EN-104
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-104
+  - type: object
+    properties:
+      fiche:
+        const: BAR-EN-105
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-105
+  - type: object
+    properties:
+      fiche:
+        const: BAR-EN-106
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-106
+  - type: object
+    properties:
+      fiche:
+        const: BAR-EN-107
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-107
+  - type: object
+    properties:
+      fiche:
+        const: BAR-EN-108
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-108
+  - type: object
+    properties:
+      fiche:
+        const: BAR-EN-109
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-109
+  - type: object
+    properties:
+      fiche:
+        const: BAR-EN-110
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-110
+  - type: object
+    properties:
+      fiche:
+        const: BAR-EQ-110
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110
+  - type: object
+    properties:
+      fiche:
+        const: BAR-EQ-115
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-115
+  - type: object
+    properties:
+      fiche:
+        const: BAR-SE-104
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-SE-104
+  - type: object
+    properties:
+      fiche:
+        const: BAR-SE-105
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-SE-105
+  - type: object
+    properties:
+      fiche:
+        const: BAR-SE-106
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-SE-106
+  - type: object
+    properties:
+      fiche:
+        const: BAR-SE-107
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-SE-107
+  - type: object
+    properties:
+      fiche:
+        const: BAR-SE-108
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-SE-108
+  - type: object
+    properties:
+      fiche:
+        const: BAR-SE-109
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-SE-109
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-101
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-101
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-102
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-102
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-104
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-104
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-106
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-106
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-107
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-107
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-107-SE
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-107-SE
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-110
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-110
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-111
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-111
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-112
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-112
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-113
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-113
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-116
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-116
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-117
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-117
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-118
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-118
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-122
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-122
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-123
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-123
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-124
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-124
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-125
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-125
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-127
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-127
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-129
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-129
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-130
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-130
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-135
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-135
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-137
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-137
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-139
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-139
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-141
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-143
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-143
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-145
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-148
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-148
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-150
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-150
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-155
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-155
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-158
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-158
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-159
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-159
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-160
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-161
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-162
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-162
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-163
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-163
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-164
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-165
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-165
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-166
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-167
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-167
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-168
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-168
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-169
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-169
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-170
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-170
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-171
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-171
+  - type: object
+    properties:
+      fiche:
+        const: BAR-TH-172
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-172

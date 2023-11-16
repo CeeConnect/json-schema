@@ -1,0 +1,166 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-163
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-163
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-163
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2021-11-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-163v38-2"
+$defs:
+  BAR-TH-163v38-2:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-163v38-2
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-163v38-2
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-163v38-2
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            title: Le bâtiment est un immeuble collectif d'habitation
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          critereChaudiereIndividuelle:
+            title: Le chauffage central de chaque logement est assuré par une chaudière
+              individuelle au gaz
+            type: boolean
+            const: false
+          typeInstallation:
+            $ref: "#/$defs/typeInstallation"
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+        allOf:
+          - if:
+              properties:
+                typeInstallation:
+                  $ref: "#/$defs/typeInstallation/oneOf/0"
+              required:
+                - typeInstallation
+            then:
+              properties:
+                typeConduit:
+                  $ref: "#/$defs/typeConduitCollectif"
+                quantite:
+                  title: Nombre de chaudières à raccorder au conduit
+                  type: integer
+                  minimum: 1
+              required:
+                - typeConduit
+                - quantite
+          - if:
+              properties:
+                typeInstallation:
+                  $ref: "#/$defs/typeInstallation/oneOf/1"
+              required:
+                - typeInstallation
+            then:
+              properties:
+                longueurConduit:
+                  title: Longueur du conduit individuel d'évacuation des produits de combustion
+                  description: >
+                    Dans le cas de la mise en place d'un conduit individuel
+                    d'évacuation des produits de combustion
+
+                    dans un conduit de fumée individuel existant
+                  type: number
+                  minimum: 10
+              required:
+                - longueurConduit
+          - if:
+              properties:
+                typeInstallation:
+                  $ref: "#/$defs/typeInstallation/oneOf/2"
+              required:
+                - typeInstallation
+            then:
+              properties:
+                critereRenovationEnsemble:
+                  title: >
+                    L'installation des conduits individuels d'évacuation est
+                    réalisée simultanément et concerne
+
+                    l'ensemble des logements raccordés à un conduit collectif existant
+                  type: boolean
+                  const: true
+                typeConduit:
+                  $ref: "#/$defs/typeConduitIndividuel"
+              required:
+                - typeConduit
+                - critereRenovationEnsemble
+        required:
+          - ancienneteBatiment
+          - typeBatiment
+          - critereChaudiereIndividuelle
+          - typeInstallation
+          - installateur
+    required:
+      - fiche
+      - description
+    $defs:
+      typeInstallation:
+        title: Type d'installation
+        type: string
+        oneOf:
+          - const: COLLECTIF
+            title: Collectif
+          - const: INDIVIDUEL
+            title: Individuel dans un conduit de fumée individuel
+          - const: INDIVIDUEL_COLLECTIF
+            title: Individuel dans un conduit de fumée collectif
+      typeConduitCollectif:
+        title: Type de conduit
+        type: string
+        oneOf:
+          - const: SHUNT
+            title: Shunt pour chaudières non étanches
+          - const: ALSACE
+            title: Alsace pour chaudières non étanches
+          - const: ALVEOLE
+            title: Alvéole technique gaz pour chaudières non étanches
+          - const: VMC
+            title: VMC gaz pour chaudières non étanches
+          - const: ETANCHES
+            title: Conduits collectifs pour chaudières étanches à tirage naturel
+      typeConduitIndividuel:
+        title: Type de conduit
+        type: string
+        oneOf:
+          - const: SHUNT
+            title: Shunt
+          - const: ALSACE
+            title: Alsace
+          - const: VMC
+            title: VMC gaz
+examples:
+  - fiche: BAR-TH-163v38-2
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      critereChaudiereIndividuelle: false
+      typeInstallation: COLLECTIF
+      typeConduit: SHUNT
+      quantite: 10
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0

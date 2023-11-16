@@ -1,0 +1,157 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-171
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-171
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-171
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2024-01-01"
+          formatExclusiveMaximum: "2028-07-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-171v55-1"
+$defs:
+  BAR-TH-171v55-1:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-171v55-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-171v55-1
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-171v55-1
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          temperatureDistribution:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution
+          surfaceChauffee:
+            title: Surface chaufée par l'équipement (m²)
+            type: number
+            minimum: 0
+          usage:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_usage#/$defs/chauffages
+            title: Usage couvert par l'équipement installé
+          performanceEnergetique:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/performance_energetique#/$defs/etas
+            minimum: 111
+          marque:
+            title: Marque des équipements
+            type: string
+          reference:
+            title: Référence des équipements
+            type: string
+          performanceEnergetiqueRegulateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_regulateur
+            title: Classe du régulateur
+          marqueRegulateur:
+            title: Marque du régulateur
+            type: string
+          referenceRegulateur:
+            title: Référence du régulateur
+            type: string
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/89
+            required:
+              - qualificationsRge
+        allOf:
+          - if:
+              properties:
+                temperatureDistribution:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution#/$defs/BASSE_TEMPERATURE
+              required:
+                - temperatureDistribution
+            then:
+              properties:
+                performanceEnergetique:
+                  type: number
+                  minimum: 126
+              required:
+                - performanceEnergetique
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - temperatureDistribution
+          - surfaceChauffee
+          - usage
+          - performanceEnergetique
+          - marque
+          - reference
+          - performanceEnergetiqueRegulateur
+          - marqueRegulateur
+          - referenceRegulateur
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Note de dimensionnement
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: NOTE_DIMENSIONNEMENT
+              required:
+                - code
+          - contains:
+              title: Preuve de qualification du professionnel
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+examples:
+  - fiche: BAR-TH-171v55-1
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      temperatureDistribution: BASSE_TEMPERATURE
+      usage: CHAUFFAGE_ECS
+      surfaceChauffee: 100
+      performanceEnergetique: 130
+      marque: MARQUE
+      reference: REFERENCE
+      performanceEnergetiqueRegulateur: VII
+      marqueRegulateur: MARQUE
+      referenceRegulateur: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+      - code: NOTE_DIMENSIONNEMENT
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

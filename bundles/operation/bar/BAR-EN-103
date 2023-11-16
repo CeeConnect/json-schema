@@ -1,0 +1,135 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-EN-103
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-EN-103
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-EN-103
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2022-05-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-EN-103v39-5"
+$defs:
+  BAR-EN-103v39-5:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-EN-103v39-5
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-EN-103v39-5
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-EN-103v39-5
+      description:
+        type: object
+        properties:
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          quantite:
+            title: Surface d'isolant posé (m²)
+            description: Dans le cas d'une pose superposée de plusieurs isolants, indiquer
+              la surface résultant de la superposition des isolants
+            type: number
+            minimum: 0
+          resistanceThermique:
+            title: Résistance thermmique de l'isolant
+            description: Dans le cas d'une pose superposée de plusieurs isolants, indiquer
+              la résistance thermique globale
+            type: number
+            minimum: 3
+          epaisseur:
+            title: Epaisseur de l'isolant (mm)
+            type: number
+            minimum: 0
+          posePareVapeur:
+            title: Mise en place d'un pare-vapeur
+            description: L'isolation thermique réalisée a nécessité la mise en place d'un
+              pare-vapeur ou tout autre dispositif permettant d'atteindre un
+              résultat équivalent
+            type: boolean
+          references:
+            title: Marques et références
+            description: Dans le cas d'une pose superposée de plusieurs isolants, indiquer
+              les marques et références de chacun des isolants posés
+            type: array
+            minItems: 1
+            items:
+              type: object
+              properties:
+                marque:
+                  title: Marque de l'isolant
+                  type: string
+                reference:
+                  title: Référence de l'isolant
+                  type: string
+              required:
+                - marque
+                - reference
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/99
+            required:
+              - qualificationsRge
+        required:
+          - ancienneteBatiment
+          - quantite
+          - resistanceThermique
+          - epaisseur
+          - posePareVapeur
+          - references
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Preuve de qualification du professionnel
+              type: object
+              properties:
+                code:
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+examples:
+  - fiche: BAR-EN-103v39-5
+    description:
+      ancienneteBatiment: EXISTANT
+      quantite: 100
+      resistanceThermique: 4
+      epaisseur: 200
+      posePareVapeur: true
+      references:
+        - marque: MARQUE
+          reference: REFERENCE
+        - marque: MARQUE
+          reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

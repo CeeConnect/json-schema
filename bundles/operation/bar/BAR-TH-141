@@ -1,0 +1,107 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-141
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-141
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-141
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceOutreMer
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2015-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-141v15-1"
+$defs:
+  BAR-TH-141v15-1:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-141v15-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-141v15-1
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-141v15-1
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          typeEquipement:
+            title: L'appareil installé est un climatiseur fixe
+            const: CLIMATISEUR_FIXE
+          critereRemplacement:
+            title: Le matériel existant a été déposé préalablement à l'installation du
+              nouveau climatiseur
+            type: boolean
+            const: true
+          puissanceFrigorifique:
+            title: Puissance frigorifique (BTU/h)
+            type: number
+            oneOf:
+              - const: 7000
+              - const: 9000
+          classeEnergetique:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_efficacite_energetique#/$defs/climatiseurs
+            title: Classe d'efficacité énergétique
+          quantite:
+            title: Nombre d'équipements installés
+            description: Indiquer le nombre de climatiseurs de caractéristiques et de classe
+              d'efficacité énergétique identiques installés
+            type: integer
+            minimum: 1
+          marque:
+            title: Marque de l'équipement
+            type: string
+          reference:
+            title: Référence de l'équipement
+            type: string
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - typeEquipement
+          - critereRemplacement
+          - puissanceFrigorifique
+          - classeEnergetique
+          - quantite
+          - marque
+          - reference
+          - installateur
+    required:
+      - fiche
+      - description
+examples:
+  - fiche: BAR-TH-141v15-1
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/3
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      typeEquipement: CLIMATISEUR_FIXE
+      critereRemplacement: true
+      puissanceFrigorifique: 7000
+      classeEnergetique: A
+      quantite: 4
+      marque: MARQUE
+      reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0

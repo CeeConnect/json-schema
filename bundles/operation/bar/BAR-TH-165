@@ -1,0 +1,258 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-165
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-165
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-165
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2020-05-20"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-165v34-1"
+$defs:
+  BAR-TH-165v34-1:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-165v34-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    $comment: |
+      - TODO: Véfifier les cas de plusieurs chaudières biommasses installées
+    title: BAR-TH-165v34-1
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-165v34-1
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            title: Le bâtiment est un immeuble collectif d'habitation
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          logements:
+            title: Nombre d'appartements
+            description: Nombre d'appartement d'un même bâtiment
+            type: integer
+            minimum: 1
+          surfaceChauffee:
+            title: Surface totale chauffée du bâtiment
+            type: number
+            minimum: 0
+          critereBiomasseLigneuse:
+            title: Biomasse ligneuse à base de bûches de bois, de copeaux de bois, de bois
+              comprimé sous forme de granulés, de bois comprimé sous forme de
+              briquettes ou de sciure de bois
+            type: boolean
+            const: true
+          puissanceNominale:
+            title: Puissance nominale de la chaudière
+            type: number
+            minimum: 0
+          quantiteChaleurUtile:
+            title: Quantité de chaleur nette utile (kWh)
+            description: Cette donnée est reprise de l'étude de dimensionnement préalable à
+              l'installation de la chaudière biomasse
+            type: number
+            exclusiveMaximum: 12000000
+          classeRegulateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_regulateur
+          marque:
+            title: Marque de la chaudière
+            type: string
+          reference:
+            title: Référence de la chaudière
+            type: string
+          entrepriseEtudeDimensionnement:
+            title: Coordonnées de l'entité ayant établi l'étude de dimensionnement
+            type: object
+            properties:
+              raisonSociale:
+                title: Raison sociale
+                type: string
+              siren:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siren
+              referenceEtude:
+                title: Référence de l'étude de dimensionnement
+                type: string
+            required:
+              - raisonSociale
+              - siren
+              - referenceEtude
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/87
+            required:
+              - qualificationsRge
+        required:
+          - ancienneteBatiment
+          - typeBatiment
+          - surfaceChauffee
+          - logements
+          - critereBiomasseLigneuse
+          - puissanceNominale
+          - quantiteChaleurUtile
+          - classeRegulateur
+          - marque
+          - reference
+          - entrepriseEtudeDimensionnement
+          - installateur
+        allOf:
+          - if:
+              properties:
+                puissanceNominale:
+                  type: number
+                  maximum: 500
+              required:
+                - puissanceNominale
+            then:
+              type: object
+              title: Chaudière de puissance nominale inférieure ou égale à 70kw
+              properties:
+                performanceEnergetique:
+                  title: Efficacité énergétique saisonnière (ηs) de la chaudière biomasse
+                  type: number
+                  minimum: 83
+                typeEquipement:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/chaudiereBiomasse
+                critereFlammeVerte:
+                  title: L'équipement possède le label Flamme Verte 7*
+                  type: boolean
+                  const: true
+              required:
+                - performanceEnergetique
+                - typeEquipement
+                - critereFlammeVerte
+              allOf:
+                - if:
+                    properties:
+                      typeEquipement:
+                        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/CHAUDIERE_BIOMASSE_CHARGEMENT_AUTOMATIQUE
+                    required:
+                      - typeEquipement
+                  then:
+                    properties:
+                      criterePresenceSilo:
+                        title: Présence d'un silo d'au moins 225 litres
+                        type: boolean
+                        const: true
+                    required:
+                      - criterePresenceSilo
+                - if:
+                    properties:
+                      typeEquipement:
+                        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/CHAUDIERE_BIOMASSE_CHARGEMENT_MANUEL
+                    required:
+                      - typeEquipement
+                  then:
+                    properties:
+                      criterePresenceBallon:
+                        title: Présence d'un ballon tampon
+                        type: boolean
+                        const: true
+                    required:
+                      - criterePresenceBallon
+          - if:
+              properties:
+                puissanceNominale:
+                  type: number
+                  exclusiveMinimum: 500
+              required:
+                - puissanceNominale
+            then:
+              type: object
+              title: Chaudière de puissance nominale supérieure à 500kw
+              properties:
+                performanceEnergetique:
+                  title: Rendement PCI à pleine charge de la chaudière
+                  type: number
+                  minimum: 92
+                emissionsParticules:
+                  title: Émissions saisonnières de particules en mg/Nm3
+                  type: number
+                  minimum: 0
+                  exclusiveMaximum: 75
+                emissionsAzote:
+                  title: Émissions saisonnières d'oxydes d'azote (NOx) en mg/Nm3
+                  type: number
+                  minimum: 0
+                  exclusiveMaximum: 300
+              required:
+                - performanceEnergetique
+                - emissionsParticules
+                - emissionsAzote
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Note de dimensionnement
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: NOTE_DIMENSIONNEMENT
+              required:
+                - code
+          - contains:
+              title: Preuve de qualification de l'installateur
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+examples:
+  - fiche: BAR-TH-165v34-1
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      logements: 10
+      surfaceChauffee: 800
+      critereBiomasseLigneuse: true
+      performanceEnergetique: 84
+      quantiteChaleurUtile: 360000
+      puissanceNominale: 60
+      classeRegulateur: V
+      typeEquipement: CHARGEMENT_AUTOMATIQUE
+      criterePresenceSilo: true
+      critereFlammeVerte: true
+      marque: MARQUE
+      reference: REFERENCE
+      entrepriseEtudeDimensionnement:
+        raisonSociale: Raison sociale
+        siren: "000000000"
+        referenceEtude: Référence.
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: NOTE_DIMENSIONNEMENT
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

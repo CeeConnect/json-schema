@@ -1,4 +1,4 @@
-$id: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+$id: https://schemas.ceeconnect/bundles/operation/installateur
 $schema: https://json-schema.org/draft/2020-12/schema
 title: Installateur
 description: Professionnel assurant la réalisation de l'opération

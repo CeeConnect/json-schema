@@ -1,0 +1,149 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-SE-109
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-SE-109
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-SE-109
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2023-09-30"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-SE-109v54-1"
+$defs:
+  BAR-SE-109v54-1:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-SE-109v54-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    $comment: >
+      - TODO: Implémentation des critères de qualification Qualibat ou
+      équivalents
+    title: BAR-SE-109v54-1
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-SE-109v54-1
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            title: Le bâtiment est un immeuble collectif d'habitation
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          typeInstallation:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/COLLECTIF
+          typeEquipement:
+            title: Type d'équipement de chauffage
+            type: string
+            oneOf:
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/CHAUDIERE_HORS_CONDENSATION
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/CHAUDIERE_CONDENSATION
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/RESEAU_CHALEUR
+          logements:
+            title: Nombre d'appartements
+            type: integer
+            minimum: 1
+          critereInjection:
+            title: >
+              Le désembouage comporte l'injection d'un réactif désembouant et
+              circulation selon le dosage et le
+
+              temps de contact préconisés, avec l'utilisation d'une pompe de désembouage (général puis réseau par
+
+              réseau ainsi que dans les deux sens de circulation)
+            type: boolean
+            const: true
+          critereRincage:
+            title: Le désembouage comporte le rinçage des circuits à l'eau claire (général
+              puis réseau par réseau)
+            type: boolean
+            const: true
+          critereVerification:
+            title: >
+              Le désembouage comporte la vérification du filtre (ou pot à boues)
+              existant et/ou installation d'un
+
+              filtre sur le ou les circuits de retour au générateur, ainsi que l'injection d'un réactif inhibiteur
+
+              au dosage préconisé
+            type: boolean
+            const: true
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - typeInstallation
+          - typeEquipement
+          - logements
+          - critereInjection
+          - critereRincage
+          - critereVerification
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Preuve de réalisation de l'opération
+              description: >
+                La preuve de réalisation mentionnne :
+
+                - l'adresse du bâtiment concerné par l'opération ;
+
+                - le fait que l'opération concerne le désembouage du système de distribution par boucle d'eau
+                  d'une installation collective de chauffage et le nombre de logements concernés ;
+                - le descriptif des étapes de l'opération de désembouage, conformément à la présente fiche ;
+
+                - le type d'installation de chauffage (chaudière hors condensation, chaudière à condensation,
+                  réseau de chaleur) et sa puissance nominale ;
+                - le nombre d'émetteurs désemboués ;
+
+                - la nature du réseau (cuivre, acier, multicouche, matériaux de synthèse) ;
+
+                - le volume d'eau total du circuit ;
+
+                - le réactif désembouant et le réactif inhibiteur utilisés.
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: PREUVE_REALISATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+examples:
+  - fiche: BAR-SE-109v54-1
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      typeInstallation: COLLECTIF
+      typeEquipement: CHAUDIERE_HORS_CONDENSATION
+      logements: 10
+      critereInjection: true
+      critereRincage: true
+      critereVerification: true
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: PREUVE_REALISATION
+        url: https://api.ceeconnect.fr/archivage/{uuid}

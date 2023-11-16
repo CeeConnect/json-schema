@@ -1,7 +1,5 @@
-$id: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/operation
+$id: https://schemas.ceeconnect/bundles/operation/operation
 $schema: https://json-schema.org/draft/2020-12/schema
-$comment: |
-  - TODO: Insérer les documents génériques (preuve d'engagement, de réalisation...)
 title: Opération d'économies d'énergie
 type: object
 properties:
@@ -116,22 +114,21 @@ required:
   - precarite
   - documents
   - description
-allOf:
-  - if:
-      type: object
-      properties:
-        fiche:
-          type: string
-          pattern: ^BAR.+$
-      required:
-        - fiche
-    then:
-      allOf:
-        - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/operation
+oneOf:
+  # Sous-schémas par secteur d'application
+  - type: object
+    properties:
+      fiche:
+        type: string
+        pattern: ^BAR[-].+$
+    required:
+      - fiche
+    allOf:
+      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/operation_bar
   # Bonifications
   - if:
       required:
         - fiche
         - bonification
     then:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bonification/operation
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/operation_bonification

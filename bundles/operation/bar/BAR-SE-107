@@ -1,0 +1,177 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-SE-107
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-SE-107
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-SE-107
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2020-12-31"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-SE-107v37-1"
+$defs:
+  BAR-SE-107v37-1:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-SE-107v37-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-SE-107v37-1
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-SE-107v37-1
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            title: Le bâtiment est un immeuble collectif d'habitation
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          logements:
+            title: Nombre d'appartements
+            description: Nombre d'appartement d'un même bâtiment
+            type: integer
+            minimum: 1
+          typeIntervention:
+            title: Type d'intervention
+            type: string
+            oneOf:
+              - title: Suppression de l'ensemble des points de recyclage dans la sous-station
+                  raccordée au réseau de chaleur
+                const: SOUS_STATION
+              - title: Suppression de l'ensemble des points de recyclage et équilibrage de
+                  l'ensemble des sous-stations raccordées au réseau de chaleur
+                const: ENSEMBLE_SOUS_STATIONS
+              - title: Suppression de l'ensemble des points de recyclage et équilibrage de
+                  l'ensemble des sous-stations implantées sur le circuit
+                  secondaire de distribution de chaleur concernées par
+                  l'opération
+                const: CIRCUIT_SECONDAIRE
+          entrepriseEtudeTechnique:
+            title: Coordonnées de l'entité ayant établi l'étude technique préalable aux
+              travaux d'abaissement de la température de retour vers le réseau
+              de chaleur
+            type: object
+            properties:
+              raisonSociale:
+                title: Raison sociale
+                type: string
+              siren:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siren
+              referenceEtude:
+                title: Référence de l'étude énergétique
+                type: string
+            required:
+              - raisonSociale
+              - siren
+              - referenceEtude
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+          gestionnaire:
+            title: Prestataire titulaire du contrat d'exploitation et de maintenance
+            type: object
+            properties:
+              nom:
+                title: Nom du représentant
+                type: string
+              prenom:
+                title: Prénom du représentant
+                type: string
+              raisonSociale:
+                title: Raison sociale
+                type: string
+              siret:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siret
+              email:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/email
+              telephone:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/telephone
+              adresse:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
+            required:
+              - nom
+              - prenom
+              - raisonSociale
+              - siret
+              - email
+              - telephone
+              - adresse
+        required:
+          - ancienneteBatiment
+          - typeBatiment
+          - logements
+          - typeIntervention
+          - entrepriseEtudeTechnique
+          - installateur
+          - gestionnaire
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Attestation, établie par le professionnel, d'absence de points de
+                recyclage et de situation de débit constant
+              description: Pour les cas d'intervention sur un circuit de distribution avec
+                plusieurs sousstations, ce document spécifique atteste, de plus,
+                de la bonne répartition des débits, soit par la mesure des
+                débits, soit par mesure des températures de retour, vannes de
+                régulation positionnées en grande ouverture. Le gestionnaire du
+                réseau approuve ce document en le signant.
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: ATTESTATION_SITUATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+examples:
+  - fiche: BAR-SE-107v37-1
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      consommationSuivie: CHAUFFAGE_GAZ
+      logements: 10
+      typeIntervention: ENSEMBLE_SOUS_STATIONS
+      entrepriseEtudeTechnique:
+        raisonSociale: ENTREPRISE
+        siren: "000000000"
+        referenceEtude: REFERENCE ETUDE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+      gestionnaire:
+        nom: NOM
+        prenom: PRENOM
+        raisonSociale: RAISON SOCIALE
+        siret: "00000000000000"
+        email: contact@email.com
+        telephone: "0836656565"
+        adresse:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    documents:
+      - code: ATTESTATION_SITUATION
+        url: https://api.ceeconnect.fr/archivage/

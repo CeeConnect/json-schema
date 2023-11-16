@@ -1,0 +1,137 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-104
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-104
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-104
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2022-04-01"
+          formatExclusiveMaximum: "2024-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-104v41-3"
+$defs:
+  BAR-TH-104v41-3:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-104v41-3
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-104v41-3
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-104v41-3
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          temperatureDistribution:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution
+          surfaceChauffee:
+            title: Surface chaufée par l'équipement (m²)
+            type: number
+            minimum: 0
+          performanceEnergetique:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/performance_energetique#/$defs/etas
+            minimum: 111
+          marque:
+            title: Marque des équipements
+            type: string
+          reference:
+            title: Référence des équipements
+            type: string
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/89
+            required:
+              - qualificationsRge
+        allOf:
+          - if:
+              properties:
+                temperatureDistribution:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution#/$defs/BASSE_TEMPERATURE
+              required:
+                - temperatureDistribution
+            then:
+              properties:
+                performanceEnergetique:
+                  type: number
+                  minimum: 126
+              required:
+                - performanceEnergetique
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - temperatureDistribution
+          - performanceEnergetique
+          - surfaceChauffee
+          - marque
+          - reference
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Note de dimensionnement
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: NOTE_DIMENSIONNEMENT
+              required:
+                - code
+          - contains:
+              title: Preuve de qualification du professionnel
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+examples:
+  - fiche: BAR-TH-104v41-3
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      temperatureDistribution: BASSE_TEMPERATURE
+      surfaceChauffee: 100
+      performanceEnergetique: 130
+      marque: MARQUE
+      reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+      - code: NOTE_DIMENSIONNEMENT
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

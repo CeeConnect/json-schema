@@ -1,0 +1,174 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-155
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-155
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-155
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2022-04-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-155v40-4"
+$defs:
+  BAR-TH-155v40-4:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-155v40-4
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-155v40-4
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-155v40-4
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/collectif
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          ventilationExistante:
+            title: Système de ventilation existant
+            type: string
+            oneOf:
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_ventilation#/$defs/NATURELLE
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_ventilation#/$defs/SANS
+          logements:
+            title: Nombre d'appartements
+            type: integer
+            minimum: 1
+          typeEquipement:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/vmcHygroreglable
+          typeExtracteur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_extracteur_vmc
+          puissanceExtracteur:
+            title: Puissance spécifique de l'extracteur (Wh/m3)
+            type: number
+            maximum: 0.25
+          marqueExtracteur:
+            title: Marque de l'extracteur
+            type: string
+          referenceExtracteur:
+            title: Référence de l'extracteur
+            type: string
+          marqueBouchesEntreeAir:
+            title: Marque des bouches d'entrée d'air
+            type: string
+          referenceBouchesEntreeAir:
+            title: Référence des bouches d'entrée d'air
+            type: string
+          marqueBouchesExtraction:
+            title: Marque des bouches d'extraction
+            type: string
+          referenceBouchesExtraction:
+            title: Référence des bouches d'extraction
+            type: string
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/92
+            required:
+              - qualificationsRge
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - ventilationExistante
+          - logements
+          - typeEquipement
+          - typeExtracteur
+          - puissanceExtracteur
+          - marqueExtracteur
+          - referenceExtracteur
+          - marqueBouchesEntreeAir
+          - referenceBouchesEntreeAir
+          - marqueBouchesExtraction
+          - referenceBouchesExtraction
+          - installateur
+        allOf:
+          - if:
+              properties:
+                typeExtracteur:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_extracteur_vmc#/$defs/BASSE_CONSOMMATION
+              required:
+                - typeExtracteur
+            then:
+              properties:
+                puissanceExtracteur:
+                  type: number
+                  maximum: 0.1
+              required:
+                - puissanceExtracteur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Avis technique du système de ventilation hybride hygroréglable
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: AVIS_TECHNIQUE
+              required:
+                - code
+          - contains:
+              title: Preuve de qualification de l'installateur
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+examples:
+  - fiche: BAR-TH-155v40-4
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      ventilationExistante: SANS
+      logements: 50
+      typeEquipement: TYPE_A
+      typeExtracteur: BASSE_CONSOMMATION
+      puissanceExtracteur: 0.05
+      marqueExtracteur: MARQUE
+      referenceExtracteur: REFERENCE
+      marqueBouchesEntreeAir: MARQUE
+      referenceBouchesEntreeAir: REFERENCE
+      marqueBouchesExtraction: MARQUE
+      referenceBouchesExtraction: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: AVIS_TECHNIQUE
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

@@ -1,0 +1,134 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-EN-110
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-EN-110
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-EN-110
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2020-08-03"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-EN-110v35-1"
+$defs:
+  BAR-EN-110v35-1:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-EN-110v35-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-EN-110v35-1
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-EN-110v35-1
+      description:
+        type: object
+        properties:
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          typeVentilation:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_ventilation#/$defs/mecanique
+          quantite:
+            title: Nombre de fenêtres ou portes fenêtres complètes pariétodynamiques posées
+            type: integer
+            minimum: 0
+          coefficientSurfacique:
+            title: Coefficient de transmission surfacique Uw (W/m².K)
+            type: number
+            maximum: 1.4
+          facteurSolaire:
+            title: Facteur solaire
+            type: number
+            minimum: 0.5
+          marque:
+            title: Marque des équipements
+            type: string
+          reference:
+            title: Référence des équipements
+            type: string
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/93
+            required:
+              - qualificationsRge
+        required:
+          - ancienneteBatiment
+          - typeVentilation
+          - quantite
+          - coefficientSurfacique
+          - facteurSolaire
+          - marque
+          - reference
+          - installateur
+        anyOf:
+          - properties:
+              coefficientSurfacique:
+                type: number
+                maximum: 1.1
+              facteurSolaire:
+                type: number
+                minimum: 0.5
+            required:
+              - coefficientSurfacique
+              - facteurSolaire
+          - properties:
+              coefficientSurfacique:
+                type: number
+                maximum: 1.4
+              facteurSolaire:
+                type: number
+                minimum: 0.55
+            required:
+              - coefficientSurfacique
+              - facteurSolaire
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Preuve de qualification du professionnel
+              type: object
+              properties:
+                code:
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+examples:
+  - fiche: BAR-EN-110v35-1
+    description:
+      ancienneteBatiment: EXISTANT
+      typeVentilation: NATURELLE
+      quantite: 10
+      coefficientSurfacique: 0.8
+      facteurSolaire: 0.6
+      marque: MARQUE
+      reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

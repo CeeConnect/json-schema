@@ -1,0 +1,174 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-SE-108
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-SE-108
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-SE-108
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2022-10-14"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-SE-108v48-1"
+$defs:
+  BAR-SE-108v48-1:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-SE-108v48-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-SE-108v48-1
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-SE-108v48-1
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          typeInstallation:
+            title: L'opération concerne une installation individuelle de chauffage
+            type: string
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/INDIVIDUEL
+          puissanceNominale:
+            title: Puissance thermique nominale de l'installation de chauffage (kW)
+            type: number
+            maximum: 70
+          critereInjection:
+            title: >
+              Le désembouage comporte l'injection d'un réactif désembouant et
+              circulation selon le dosage et le
+
+              temps de contact préconisés, avec l'utilisation d'une pompe de désembouage (général puis réseau par
+
+              réseau ainsi que dans les deux sens de circulation)
+            type: boolean
+            const: true
+          critereRincageSysteme:
+            title: Le désembouage comporte le rinçage des circuits à l'eau claire (général
+              puis réseau par réseau)
+            type: boolean
+            const: true
+          critereRincageDistribution:
+            title: Le désembouage comporte le à l'eau du système de distribution par boucle
+              d'eau (général puis réseau par réseau)
+            type: boolean
+            const: true
+          critereVerification:
+            title: >
+              Le désembouage comporte la vérification du filtre (ou pot à boues)
+              existant et/ou installation d'un
+
+              filtre sur le ou les circuits de retour au générateur, ainsi que l'injection d'un réactif inhibiteur
+
+              au dosage préconisé
+            type: boolean
+            const: true
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/85
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/86
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/87
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/89
+            required:
+              - qualificationsRge
+        required:
+          - ancienneteBatiment
+          - typeBatiment
+          - typeInstallation
+          - puissanceNominale
+          - critereInjection
+          - critereRincageSysteme
+          - critereRincageDistribution
+          - critereVerification
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Justificatif spécifique à l'opération
+              description: >
+                Document établi, daté et signé par le professionnel réalisant
+                l'opération, mentionnant :
+
+                - l'adresse du bâtiment concerné par l'opération ;
+
+                - le fait que l'opération concerne le désembouage du système de distribution par boucle d'eau d'une installation individuelle de chauffage ;
+
+                - le descriptif des étapes de l'opération de désembouage, conformément à la présente fiche ;
+
+                - le type de générateur (chaudière, chaudière biomasse, pompe à chaleur, équipement solaire thermique) et sa puissance nominale ;
+
+                - le nombre d'émetteurs désemboués ;
+
+                - la nature du réseau (cuivre, acier, multicouche, matériaux de synthèse) ;
+
+                - le volume d'eau total du circuit ;
+
+                - le réactif désembouant et le réactif inhibiteur utilisés.
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: JUSTIFICATIF_OPERATION
+              required:
+                - code
+          - contains:
+              title: Preuve de qualification de l'installateur
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+examples:
+  - fiche: BAR-SE-108v48-1
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      typeInstallation: INDIVIDUEL
+      puissanceNominale: 65
+      critereInjection: true
+      critereRincageSysteme: true
+      critereRincageDistribution: true
+      critereVerification: true
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: JUSTIFICATIF_OPERATION
+        url: https://api.ceeconnect.fr/archivage/
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

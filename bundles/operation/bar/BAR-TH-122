@@ -1,0 +1,112 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-122
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-122
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-122
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2015-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-122v15-1"
+$defs:
+  BAR-TH-122v15-1:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-122v15-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-122v15-1
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-122v15-1
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            title: Le bâtiment est un immeuble collectif d'habitation
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          logements:
+            title: Nombre d'appartements
+            description: Nombre d'appartement régulés par la programmation d'intermittence
+            type: integer
+            minimum: 1
+          critereEquipementExistant:
+            title: Le récupérateur de chaleur est installé sur une chaudière existante
+              depuis plus de 2 ans raccordée à un système de chauffage collectif
+            type: boolean
+            const: true
+          puissanceEligibleAutresFiches:
+            title: Puissance totale de la pompe à chaleur installée (kW)
+            type: number
+            minimum: 0
+          puissanceEligible:
+            title: Puissance nominale totale de la ou des chaudières nouvellement équipée(s)
+              du (des) récupérateur(s) à condensation (kW)
+            type: number
+            minimum: 0
+          puissanceChaufferie:
+            title: Puissance nominale totale de la chaufferie après travaux (kW)
+            type: number
+            minimum: 0
+          marque:
+            title: Marque du récupérateur de chaleur à condensation
+            type: string
+          reference:
+            title: Référence du récupérateur de chaleur à condensation
+            type: string
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+        allOf:
+          - if:
+              properties:
+                puissanceEligibleAutresFiches:
+                  type: number
+                  exclusiveMinimum: 0
+              required:
+                - puissanceEligibleAutresFiches
+                - puissanceChaufferie
+            then:
+              required:
+                - puissanceEligible
+                - puissanceChaufferie
+        required:
+          - ancienneteBatiment
+          - typeBatiment
+          - logements
+          - critereEquipementExistant
+          - puissanceEligibleAutresFiches
+          - marque
+          - reference
+          - installateur
+    required:
+      - fiche
+      - description
+examples:
+  - fiche: BAR-TH-122v15-1
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      logements: 10
+      critereEquipementExistant: true
+      marque: MARQUE
+      reference: REFERENCE
+      puissanceEligibleAutresFiches: 0
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0

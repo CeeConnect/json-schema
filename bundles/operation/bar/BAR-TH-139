@@ -1,0 +1,168 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-139
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-139
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-139
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2017-02-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-139v23-2"
+$defs:
+  BAR-TH-139v23-2:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-139v23-2
+    $schema: https://json-schema.org/draft/2020-12/schema
+    $comment: |
+      - TODO: Définir la nature neuve d'une pompe en fonction de sa date d'achat
+    title: BAR-TH-139v23-2
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-139v23-2
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            title: Le bâtiment est un immeuble collectif d'habitation
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          typeInstallation:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/COLLECTIF
+            title: Système collectif de chauffage, de conditionnement d'ambiance ou de
+              surpression d'eau
+          equipements:
+            title: Liste des pompes de caractéristiques strictement identiques
+            description: Indiquer les caractéristiques des pompes nouvellement équipées d'un
+              système de variation électronique de vitesse
+            type: array
+            minItems: 1
+            items:
+              type: object
+              properties:
+                moteurClasseIE2:
+                  title: La pompe est équipée équipée d'un moteur de classe IE2
+                  type: boolean
+                dateAchat:
+                  title: Date d'achat
+                  type: string
+                  format: date
+                  formatMinimum: 2015-01-01
+                puissanceNominale:
+                  title: Puissance nominale du moteur de la pompe (kW)
+                  type: number
+                  minimum: 630
+                quantite:
+                  title: Nombre de pompes
+                  type: integer
+                  minimum: 1
+                marque:
+                  title: Marque de la pompe
+                  type: string
+                reference:
+                  title: Référence de la pompe
+                  type: string
+                marqueVariateur:
+                  title: Marque du variateur
+                  description: Indiquer la marque du variateur de vitesse ou de l'équipement
+                    intégrant le variateur
+                  type: string
+                referenceVariateur:
+                  title: Référence du variateur
+                  description: Indiquer la référence du variateur de vitesse ou de l'équipement
+                    intégrant le variateur
+                  type: string
+              anyOf:
+                - properties:
+                    moteurClasseIE2:
+                      type: boolean
+                      const: false
+                  required:
+                    - moteurClasseIE2
+                - properties:
+                    moteurClasseIE2:
+                      type: boolean
+                      const: true
+                    dateAchat:
+                      type: string
+                      format: date
+                      formatMinimum: 2015-01-01
+                      formatMaximum: 2016-12-31
+                    puissanceNominale:
+                      type: number
+                      minimum: 7.5
+                      maximum: 375
+                  required:
+                    - moteurClasseIE2
+                    - dateAchat
+                    - puissanceNominale
+                - properties:
+                    moteurClasseIE2:
+                      type: boolean
+                      const: true
+                    dateAchat:
+                      type: string
+                      format: date
+                      formatMinimum: 2017-01-01
+                    puissanceNominale:
+                      type: number
+                      minimum: 0.75
+                      maximum: 375
+                  required:
+                    - moteurClasseIE2
+                    - dateAchat
+                    - puissanceNominale
+              required:
+                - moteurClasseIE2
+                - dateAchat
+                - puissanceNominale
+                - quantite
+                - marque
+                - reference
+                - marqueVariateur
+                - referenceVariateur
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - typeInstallation
+          - equipements
+          - installateur
+    required:
+      - fiche
+      - description
+examples:
+  - fiche: BAR-TH-139v23-2
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      typeInstallation: COLLECTIF
+      equipements:
+        - moteurClasseIE2: false
+          dateAchat: 2023-01-01
+          puissanceNominale: 800
+          quantite: 10
+          marque: MARQUE
+          reference: REFERENCE
+          marqueVariateur: MARQUE
+          referenceVariateur: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0

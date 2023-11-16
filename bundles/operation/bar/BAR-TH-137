@@ -1,0 +1,191 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-137
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-137
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-137
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2022-09-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-137v45-3"
+$defs:
+  BAR-TH-137v45-3:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-137v45-3
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-137v45-3
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-137v45-3
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/batiment
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          identifiantReseau:
+            title: Nom du réseau
+            type: string
+            maxLength: 240
+          critereRaccordementAnterieur:
+            title: Le bâtiment n'a jamais été raccordé à un réseau de chaleur dans le délai
+              de cinq ans précédant la date de l'engagement de l'opération
+            type: boolean
+          critereDemandeAnterieure:
+            title: Dans le cas où le bâtiment a été raccordé précédemment, le ou les
+              raccordements précédents ont fait l'objet d'une demande de
+              certificats d'économies d'énergie
+            type: boolean
+            const: false
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+          gestionnaire:
+            title: Prestataire titulaire du contrat d'exploitation et de maintenance
+            type: object
+            properties:
+              nom:
+                title: Nom du représentant
+                type: string
+              prenom:
+                title: Prénom du représentant
+                type: string
+              raisonSociale:
+                title: Raison sociale
+                type: string
+              siret:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siret
+              email:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/email
+              telephone:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/telephone
+              adresse:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
+            required:
+              - nom
+              - prenom
+              - raisonSociale
+              - siret
+              - email
+              - telephone
+              - adresse
+        anyOf:
+          - properties:
+              critereRaccordementAnterieur:
+                const: false
+            required:
+              - critereRaccordementAnterieur
+          - properties:
+              critereRaccordementAnterieur:
+                const: true
+              critereDemandeAnterieure:
+                const: false
+            required:
+              - critereRaccordementAnterieur
+              - critereDemandeAnterieure
+        allOf:
+          - if:
+              properties:
+                typeBatiment:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/MAISON
+              required:
+                - typeBatiment
+            then:
+              properties:
+                surfaceHabitable:
+                  title: Surface habitable
+                  type: number
+                  minimum: 0
+              required:
+                - surfaceHabitable
+          - if:
+              properties:
+                typeBatiment:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+              required:
+                - typeBatiment
+            then:
+              properties:
+                logements:
+                  title: Nombre d'appartements
+                  description: Nombre d'appartement d'un même bâtiment
+                  type: integer
+                  minimum: 1
+              required:
+                - logements
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - identifiantReseau
+          - critereRaccordementAnterieur
+          - installateur
+          - gestionnaire
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Preuve de réalisation de l'opération
+              description: >
+                Le document de preuve de réalisation de l'opération produit à
+                l'appui de la demande de certificats 
+
+                d'économies d'énergie comporte les extraits d'intérêt du contrat de fourniture de chaleur mentionnant :
+
+
+                - les parties signataires et leurs signatures (nom ou raison sociale, adresse et représentants) ;
+
+                - la date de signature du contrat et celle de sa prise d'effet ou de la première livraison de chaleur ;
+
+                - la désignation, l'adresse et le nombre de logements desservis par le réseau de chaleur lors de ce raccordement.
+              type: object
+              properties:
+                code:
+                  const: PREUVE_REALISATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+examples:
+  - fiche: BAR-TH-137v45-3
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      critereRaccordementAnterieur: false
+      identifiantReseau: RESEAU
+      surfaceHabitable: 100
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+      gestionnaire:
+        nom: NOM
+        prenom: PRENOM
+        fonction: FONCTION
+        raisonSociale: RAISON SOCIALE
+        siret: "00000000000000"
+        adresse:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+        email: contact@email.com
+        telephone: "0400000000"
+    documents:
+      - code: PREUVE_REALISATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

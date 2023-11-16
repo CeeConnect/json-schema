@@ -1,0 +1,279 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-107-SE
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-107-SE
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-107-SE
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2015-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-107-SEv14-1"
+$defs:
+  BAR-TH-107-SEv14-1:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-107-SEv14-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-107-SEv14-1
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-107-SEv14-1
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            title: Le bâtiment est un immeuble collectif d'habitation
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          logements:
+            title: Nombre d'appartements
+            description: Nombre d'appartement d'un même bâtiment
+            type: integer
+            minimum: 1
+          puissanceNominale:
+            title: Puissance nominale de la chaudière (kW)
+            type: number
+            minimum: 0
+          puissanceEligibleAutresFiches:
+            title: Puissance totale de la pompe à chaleur installée (kW)
+            description: Puissance nominale totale des chaudières nouvellement installés
+              respectant les conditions des fiches d'opérations standardisées en
+              vigueur
+            type: number
+            minimum: 0
+          puissanceEligible:
+            title: Puissance nominale totale des chaudières nouvellement installées (kW)
+            type: number
+            minimum: 0
+          puissanceChaufferie:
+            title: Puissance nominale totale de la chaufferie après travaux (kW)
+            type: number
+            minimum: 0
+          marque:
+            title: Marque de la chaudière
+            type: string
+          reference:
+            title: Référence de la chaudière
+            type: string
+          contrat:
+            type: object
+            properties:
+              dateContrat:
+                title: Date de prise d'effet du contrat
+                type: string
+                format: date
+              dureeContrat:
+                title: Durée du contrat
+                type: integer
+                minimum: 1
+              critereObjet:
+                title: Au travers du contrat le prestataire assure la conduite de ces
+                  installations pendant la durée du contrat
+                description: Le contrat est un contrat d'exploitation des installations de
+                  chauffage et, le cas échéant, d'eau-chaude sanitaire, établi
+                  entre le bénéficiaire de l'opération et le prestataire. Au
+                  travers de ce contrat le prestataire assure la conduite de ces
+                  installations pendant la durée du contrat, dans les périodes
+                  précisées dans le contrat
+                const: true
+              critereDebutContrat:
+                title: Le contrat est daté, signé et prend effet moins d'un an après la date
+                  d'achèvement de l'opération
+                type: boolean
+                const: true
+              critereConditionsClimatiques:
+                title: Forfait sur la base de conditions climatiques réévalué chaque année
+                description: "(type de prestation communément appelé MT) Le contrat comporte une
+                  prestation de conduite des installations et de travaux de
+                  petits entretiens, et dont le montant afférent au combustible
+                  (et dont la fourniture est la charge du titulaire du contrat)
+                  : est initialement fixé forfaitairement sur la base de
+                  conditions climatiques de référence définies dans le contrat
+                  puis réévalué chaque année en fonction des conditions
+                  climatiques réelles"
+                type: boolean
+                const: true
+              critereQuantiteChaleur:
+                title: Prix unitaire en fonction de la quantité de chaleur fournie et mesurée
+                  par comptage
+                description: "(type de prestation communément appelé MC) Le contrat comporte une
+                  prestation de conduite des installations et de travaux de
+                  petits entretiens, et dont le montant afférent au combustible
+                  (et dont la fourniture est la charge du titulaire du contrat)
+                  : est évalué à un prix unitaire en fonction de la quantité de
+                  chaleur fournie et mesurée par comptage"
+                type: boolean
+                const: true
+              critereClauseInteressement:
+                title: Le contrat comporte une clause d'intéressement
+                description: (types de prestation communément appelés MTI ou MCI ou PFI ou CPI).
+                  Le contrat comporte une clause d'intéressement, prévoyant le
+                  partage des économies ou des excès de consommation de
+                  combustible, par rapport à une consommation de base définie
+                  pour les conditions climatiques de référence
+                type: boolean
+                const: true
+              critereGarantieTotale:
+                title: Le contrat comporte une prestation de garantie totale ou de gros
+                  entretien et renouvellement des matériels
+                description: (communément appelée P3) Le contrat comporte une prestation de
+                  garantie totale ou de gros entretien et renouvellement des
+                  matériels
+                type: boolean
+                const: true
+            required:
+              - dateContrat
+              - critereDebutContrat
+              - dureeContrat
+              - critereObjet
+              - critereConditionsClimatiques
+              - critereQuantiteChaleur
+              - critereClauseInteressement
+              - critereGarantieTotale
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/86
+            required:
+              - qualificationsRge
+          titulaire:
+            title: Professionnel titulaire du contrat de pilotage assurant la conduite de
+              l’installation
+            type: object
+            properties:
+              nom:
+                title: Nom du représentant
+                type: string
+              prenom:
+                title: Prénom du représentant
+                type: string
+              raisonSociale:
+                title: Raison sociale
+                type: string
+              siret:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siret
+              email:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/email
+              telephone:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/telephone
+              adresse:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
+            required:
+              - nom
+              - prenom
+              - raisonSociale
+              - siret
+              - email
+              - telephone
+              - adresse
+        required:
+          - ancienneteBatiment
+          - typeBatiment
+          - logements
+          - puissanceNominale
+          - puissanceEligibleAutresFiches
+          - marque
+          - reference
+          - contrat
+          - installateur
+          - titulaire
+        allOf:
+          - if:
+              properties:
+                puissanceEligibleAutresFiches:
+                  type: number
+                  exclusiveMinimum: 0
+              required:
+                - puissanceEligibleAutresFiches
+                - puissanceChaufferie
+            then:
+              required:
+                - puissanceEligible
+                - puissanceChaufferie
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Contrat signé entre le prestataire et le bénéficiaire
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: CONTRAT
+              required:
+                - code
+          - contains:
+              title: Preuve de qualification ou de certification
+              description: La décision de qualification ou le certificat Qualibat 553 ou 554
+                du prestataire, à la date d'entrée en vigueur du contrat
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+examples:
+  - fiche: BAR-TH-107-SEv14-1
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      logements: 10
+      puissanceNominale: 300
+      puissanceEligibleAutresFiches: 0
+      marque: MARQUE
+      reference: REFERENCE
+      autreEquipement: false
+      contrat:
+        dateContrat: 2023-09-25
+        dureeContrat: 5
+        critereDebutContrat: true
+        critereObjet: true
+        critereConditionsClimatiques: true
+        critereQuantiteChaleur: true
+        critereClauseInteressement: true
+        critereGarantieTotale: true
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+      titulaire:
+        nom: NOM
+        prenom: PRENOM
+        raisonSociale: RAISON SOCIALE
+        siret: "00000000000000"
+        email: contact@email.com
+        telephone: "0836656565"
+        adresse:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    documents:
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+      - code: CONTRAT
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

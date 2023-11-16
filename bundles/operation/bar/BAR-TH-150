@@ -1,0 +1,180 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-150
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-150
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-150
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2015-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-150v14-1"
+$defs:
+  BAR-TH-150v14-1:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-150v14-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-150v14-1
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-150v14-1
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            title: Le bâtiment est un immeuble collectif d'habitation
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          logements:
+            title: Nombre d'appartements chauffés
+            type: integer
+            minimum: 1
+          usage:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_usage#/$defs/chauffages
+          temperatureDistribution:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution
+          puissanceNominale:
+            title: Puissance nominale (kW)
+            type: number
+            minimum: 0
+          puissanceEligibleAutresFiches:
+            title: Puissance totale de(s) chaudière(s) collective(s) installée(s) (kW)
+            description: Renseigner la puissance nominale totale des chaudières nouvellement
+              installées respectant les conditions de la fiches BAR-TH-107
+            type: number
+            minimum: 0
+          puissanceEligible:
+            title: Puissance totale des pompes à chaleur éligibles
+            type: number
+            minimum: 0
+          puissanceChaufferie:
+            title: Puissance totale de la chaufferie après travaux
+            type: number
+            minimum: 0
+          marque:
+            title: Marque
+            type: string
+          reference:
+            title: Référence
+            type: string
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/89
+            required:
+              - qualificationsRge
+        anyOf:
+          - properties:
+              puissanceNominale:
+                type: number
+                exclusiveMinimum: 400
+              performanceEnergetique:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/performance_energetique#/$defs/cop
+                minimum: 1.3
+            required:
+              - puissanceNominale
+              - performanceEnergetique
+          - properties:
+              temperatureDistribution:
+                oneOf:
+                  - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution#/$defs/MOYENNE_TEMPERATURE
+                  - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution#/$defs/HAUTE_TEMPERATURE
+              puissanceNominale:
+                type: number
+                maximum: 400
+              performanceEnergetique:
+                title: Efficacité énergétique saisonnière (%)
+                type: number
+                minimum: 111
+            required:
+              - temperatureDistribution
+              - puissanceNominale
+              - performanceEnergetique
+          - properties:
+              temperatureDistribution:
+                oneOf:
+                  - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution#/$defs/BASSE_TEMPERATURE
+              puissanceNominale:
+                type: number
+                maximum: 400
+              performanceEnergetique:
+                title: Efficacité énergétique saisonnière (%)
+                type: number
+                minimum: 126
+            required:
+              - temperatureDistribution
+              - puissanceNominale
+              - performanceEnergetique
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - logements
+          - usage
+          - temperatureDistribution
+          - puissanceNominale
+          - puissanceEligibleAutresFiches
+          - puissanceEligible
+          - puissanceChaufferie
+          - marque
+          - reference
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Preuve de qualification de l'installateur
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+examples:
+  - fiche: BAR-TH-150v14-1
+    description:
+      ancienneteBatiment: EXISTANT
+      typeBatiment: IMMEUBLE
+      logements: 50
+      usage: CHAUFFAGE_ECS
+      temperatureDistribution: BASSE_TEMPERATURE
+      puissanceNominale: 300
+      puissanceEligible: 300
+      puissanceChaufferie: 300
+      puissanceEligibleAutresFiches: 0
+      performanceEnergetique: 140
+      marque: MARQUE
+      reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

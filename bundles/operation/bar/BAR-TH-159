@@ -1,0 +1,356 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-159
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-159
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-159
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2022-11-01"
+          formatExclusiveMaximum: "2023-04-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-159v44-3"
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2023-04-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-159v50-4"
+$defs:
+  BAR-TH-159v44-3:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-159v44-3
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-159v44-3
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-159v44-3
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          surfaceChauffee:
+            title: Surface chauffée par la pompe à chaleur installée (m²)
+            type: number
+            minimum: 0
+          performanceEnergetique:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/performance_energetique#/$defs/etas
+            minimum: 111
+          tauxCouverture:
+            title: Taux de couverture de la pompe à chaleur (%)
+            description: Hors dispositif d'appoint indiqué dans la note de dimensionnement
+            type: number
+            minimum: 70
+          usage:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_usage#/$defs/ECS
+            title: La pompe à chaleur est utilisée uniquement pour la production d'eau
+              chaude sanitaire
+          temperatureDistribution:
+            title: Température de fonctionnement
+            type: string
+            oneOf:
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution#/$defs/MOYENNE_TEMPERATURE
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution#/$defs/HAUTE_TEMPERATURE
+          critereDispositifAppoint:
+            title: La pompe à chaleur est de type air/eau comportant un dispositif d'appoint
+              utilisant un combustible liquide ou gazeux
+            type: boolean
+            const: true
+          marque:
+            title: Marque de l'équipement
+            type: string
+          reference:
+            title: Référence de l'équipement
+            type: string
+          regulateur:
+            title: Caractéristiques du régulateur
+            type: object
+            properties:
+              classe:
+                title: Classe
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_regulateur
+              marque:
+                title: Marque
+                type: string
+              reference:
+                title: Référence
+                type: string
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/89
+            required:
+              - qualificationsRge
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - surfaceChauffee
+          - performanceEnergetique
+          - tauxCouverture
+          - critereDispositifAppoint
+          - usage
+          - temperatureDistribution
+          - marque
+          - reference
+          - regulateur
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Preuve de réalisation de l'opération
+              description: >
+                Le document mentionne :
+
+                - que l'équipement de marque et référence mis en place est une pompe à chaleur air/eau avec un dispositif 
+
+                d'appoint par combustible liquide ou gazeux ;
+
+                - le type de pompe à chaleur (moyenne ou haute température) ;
+
+                - l'efficacité énergétique saisonnière (ηs) selon le règlement (EU) n° 813/2013 de la commission du 2 août 
+
+                2013 de la pompe à chaleur munie de son dispositif d'appoint (hors dispositif de régulation de la température) ;
+
+                - la classe du régulateur.
+              type: object
+              properties:
+                code:
+                  const: PREUVE_REALISATION
+              required:
+                - code
+          - contains:
+              title: Note de dimensionnement
+              type: object
+              properties:
+                code:
+                  const: NOTE_DIMENSIONNEMENT
+              required:
+                - code
+          - contains:
+              title: Preuve de qualification du professionnel ayan réalisé l'opération
+              type: object
+              properties:
+                code:
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+  BAR-TH-159v50-4:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-159v50-4
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-159v50-4
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-159v50-4
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          surfaceChauffee:
+            title: Surface chauffée par la pompe à chaleur installée (m²)
+            type: number
+            minimum: 0
+          performanceEnergetique:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/performance_energetique#/$defs/etas
+            minimum: 111
+          tauxCouverture:
+            title: Taux de couverture de la pompe à chaleur (%)
+            description: Hors dispositif d'appoint indiqué dans la note de dimensionnement
+            type: number
+            minimum: 70
+          usage:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_usage#/$defs/ECS
+            title: La pompe à chaleur est utilisée uniquement pour la production d'eau
+              chaude sanitaire
+          temperatureDistribution:
+            title: Température de fonctionnement
+            type: string
+            oneOf:
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution#/$defs/MOYENNE_TEMPERATURE
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution#/$defs/HAUTE_TEMPERATURE
+          critereDispositifAppoint:
+            title: La pompe à chaleur est de type air/eau comportant un dispositif d'appoint
+              utilisant un combustible liquide ou gazeux
+            type: boolean
+            const: true
+          marque:
+            title: Marque de l'équipement
+            type: string
+          reference:
+            title: Référence de l'équipement
+            type: string
+          regulateur:
+            title: Caractéristiques du régulateur
+            type: object
+            properties:
+              classe:
+                title: Classe
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_regulateur
+              marque:
+                title: Marque
+                type: string
+              reference:
+                title: Référence
+                type: string
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/89
+            required:
+              - qualificationsRge
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - surfaceChauffee
+          - performanceEnergetique
+          - tauxCouverture
+          - critereDispositifAppoint
+          - usage
+          - temperatureDistribution
+          - marque
+          - reference
+          - regulateur
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Preuve de réalisation de l'opération
+              description: >
+                Le document mentionne :
+
+                - que l'équipement de marque et référence mis en place est une pompe à chaleur air/eau avec un dispositif 
+
+                d'appoint par combustible liquide ou gazeux ;
+
+                - le type de pompe à chaleur (moyenne ou haute température) ;
+
+                - l'efficacité énergétique saisonnière (ηs) selon le règlement (EU) n° 813/2013 de la commission du 2 août 
+
+                2013 de la pompe à chaleur munie de son dispositif d'appoint (hors dispositif de régulation de la température) ;
+
+                - la classe du régulateur.
+              type: object
+              properties:
+                code:
+                  const: PREUVE_REALISATION
+              required:
+                - code
+          - contains:
+              title: Note de dimensionnement
+              type: object
+              properties:
+                code:
+                  const: NOTE_DIMENSIONNEMENT
+              required:
+                - code
+          - contains:
+              title: Preuve de qualification du professionnel ayan réalisé l'opération
+              type: object
+              properties:
+                code:
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+examples:
+  - fiche: BAR-TH-159v44-3
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      surfaceChauffee: 100
+      performanceEnergetique: 127
+      tauxCouverture: 80
+      critereDispositifAppoint: true
+      usage: ECS
+      temperatureDistribution: HAUTE_TEMPERATURE
+      marque: MARQUE
+      reference: REFERENCE
+      regulateur:
+        classe: V
+        marque: MARQUE
+        reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: PREUVE_REALISATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+      - code: NOTE_DIMENSIONNEMENT
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+  - fiche: BAR-TH-159v50-4
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      surfaceChauffee: 100
+      performanceEnergetique: 127
+      tauxCouverture: 80
+      critereDispositifAppoint: true
+      usage: ECS
+      temperatureDistribution: HAUTE_TEMPERATURE
+      marque: MARQUE
+      reference: REFERENCE
+      regulateur:
+        classe: V
+        marque: MARQUE
+        reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: PREUVE_REALISATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+      - code: NOTE_DIMENSIONNEMENT
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

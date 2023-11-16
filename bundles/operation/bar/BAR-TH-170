@@ -1,0 +1,233 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-170
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-170
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-170
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2023-09-30"
+          formatExclusiveMaximum: "2028-07-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-170v54-1"
+$defs:
+  BAR-TH-170v54-1:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-170v54-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-170v54-1
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-170v54-1
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            title: Le bâtiment est un immeuble collectif d'habitation
+          indicateurEfficaciteEnergetique:
+            title: Indicateur d'efficacité énergétique (PUE)
+            type: number
+            maximum: 1.15
+          indicateurEfficaciteReutilisationEnergie:
+            title: Indicateur d'efficacité de réutilisation de l'énergie (ERE)
+            type: number
+            maximum: 0.2
+          puissanceElectrique:
+            title: Puissance électrique de l'installation (kW)
+            type: number
+            minimum: 0
+          critereEtudeDimensionnement:
+            title: Une étude préalable de dimensionnement a été remise au bénéficiaire
+            type: boolean
+            const: true
+          critereTemperature:
+            title: Le système de récupération de chaleur permet d'atteindre une température
+              de 55°
+            type: boolean
+            const: true
+          critereRefroidissementAuxiliaire:
+            title: L'installation fonctionne avec un ou plusieurs système(s) de
+              refroidissement(s) auxiliaire(s)
+            type: boolean
+            const: false
+          crietereCouvertureUsages:
+            title: L'installation intègre un autre moyen de consommation de la chaleur
+              récupérée que l'eau chaude sanitaire
+            type: boolean
+            const: false
+          contrat:
+            title: Caractéristiques du contrat d'exploitation et de maintenance de
+              l'installation
+            type: object
+            properties:
+              dateSignature:
+                title: Date de signature
+                type: string
+                format: date
+              dateDebut:
+                title: Date d'entrée en vigueur
+                type: string
+                format: date
+              duree:
+                title: Durée du contrat (en années)
+                type: integer
+                minimum: 4
+              critereObject:
+                title: >
+                  Le contrat est un contrat d'exploitation et de maintenance de
+
+                  l'installation établi entre le bénéficiaire de l'opération et le
+
+                  prestataire, par lequel ce dernier assure le bon fonctionnement de
+
+                  l'installation constituée du système de récupération de la chaleur
+
+                  et des serveurs informatiques, y compris le remplacement, sans
+
+                  frais, des serveurs informatiques, garantissant la fourniture de
+
+                  la puissance thermique évaluée dans l'étude préalable de
+
+                  dimensionnement :
+                type: boolean
+                const: true
+            required:
+              - dateSignature
+              - dateDebut
+              - duree
+              - critereObject
+          prestataire:
+            title: Prestataire titulaire du contrat d'exploitation et de maintenance
+            type: object
+            properties:
+              nom:
+                title: Nom du représentant
+                type: string
+              prenom:
+                title: Prénom du représentant
+                type: string
+              raisonSociale:
+                title: Raison sociale
+                type: string
+              siret:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siret
+              email:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/email
+              telephone:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/telephone
+              adresse:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
+            required:
+              - nom
+              - prenom
+              - raisonSociale
+              - siret
+              - email
+              - telephone
+              - adresse
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+        required:
+          - typeBatiment
+          - indicateurEfficaciteEnergetique
+          - indicateurEfficaciteReutilisationEnergie
+          - puissanceElectrique
+          - critereEtudeDimensionnement
+          - critereTemperature
+          - critereRefroidissementAuxiliaire
+          - crietereCouvertureUsages
+          - prestataire
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Étude préalable de dimensionnement
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: ETURE_DIMENSIONNEMENT
+              required:
+                - code
+          - contains:
+              title: Les extraits d'intérêts du contrat d'exploitation et de maintenance
+              description: >
+                Les extraits d'intérêts du contrat d'exploitation et de
+                maintenance mentionnant:
+
+                - la référence du contrat ;
+
+                - l'identification du bénéficiaire (pour un particulier : ses prénom, nom et adresse ; pour une personne morale : sa raison sociale, son numéro SIREN et l'adresse du siège social) ;
+
+                - l'adresse du bâtiment où est située l'installation constituée du système de récupération de chaleur et des serveurs informatiques ;
+
+                - une prestation d'exploitation et de maintenance de l'installation incluant le remplacement, sans frais, des serveurs informatiques ;
+
+                - la puissance thermique garantie en kW ;
+
+                - les dates de signature et d'entrée en vigueur du contrat ;
+
+                - la date de fin du contrat ou la durée du contrat (hors reconduction tacite).
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: EXTRAIT_CONTRAT
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+examples:
+  - fiche: BAR-TH-170v54-1
+    description:
+      typeBatiment: IMMEUBLE
+      indicateurEfficaciteEnergetique: 1
+      indicateurEfficaciteReutilisationEnergie: 0.1
+      puissanceElectrique: 20
+      critereEtudeDimensionnement: true
+      critereTemperature: true
+      critereRefroidissementAuxiliaire: false
+      crietereCouvertureUsages: false
+      contrat:
+        dateSignature: 2024-01-01
+        dateDebut: 2024-02-01
+        duree: 5
+        critereObject: true
+      prestataire:
+        nom: NOM
+        prenom: PRENOM
+        raisonSociale: RAISON SOCIALE
+        siret: "00000000000000"
+        email: contact@email.com
+        telephone: "0836656565"
+        adresse:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: ETURE_DIMENSIONNEMENT
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+      - code: EXTRAIT_CONTRAT
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

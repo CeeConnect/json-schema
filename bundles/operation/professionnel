@@ -1,4 +1,4 @@
-$id: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/professionnel
+$id: https://schemas.ceeconnect/bundles/operation/professionnel
 $schema: https://json-schema.org/draft/2020-12/schema
 title: Professionnel
 description: Professionnel assurant la maîtrise d'oeuvre ou la réalisation des opérations

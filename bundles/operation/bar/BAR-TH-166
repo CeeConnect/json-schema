@@ -1,0 +1,189 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-166
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-166
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-166
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2021-08-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-166v38-1"
+$defs:
+  BAR-TH-166v38-1:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-166v38-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-166v38-1
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-166v38-1
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            title: Le bâtiment est un immeuble collectif d'habitation
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          logements:
+            title: Nombre d'appartements chauffés
+            description: Nombre d'appartement d'un même bâtiment
+            type: integer
+            minimum: 1
+          typeEquipement:
+            title: Type de pompe à chaleur
+            type: string
+            oneOf:
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_AIR_EAU
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_EAU_EAU
+          temperatureDistribution:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution
+          usage:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_usage
+          performanceEnergetique:
+            title: Efficacité énergétique saisonnière (ηs)
+            type: number
+            minimum: 0
+          puissanceNominale:
+            title: Puissance nominale (kW)
+            type: number
+            minimum: 0
+          puissanceEligible:
+            title: Puissance nominale de la (ou des) pompe(s) à chaleur installée(s) (kW)
+            type: number
+            minimum: 0
+          puissanceEligibleAutresFiches:
+            title: Puissance nominale totale des équipements nouvellement installés (kW)
+            description: Puissance nominale totale des équipements nouvellement installés
+              respectant les conditions des fiches d'opérations standardisées en
+              vigueur
+            type: number
+            minimum: 0
+          puissanceChaufferie:
+            title: Puissance nominale totale de la chaufferie après travaux (kW)
+            type: number
+            minimum: 0
+          marque:
+            title: Marque de la pompe à chaleur installée
+            type: string
+          reference:
+            title: Référence de la pompe à chaleur installée
+            type: string
+          autreEquipement:
+            title: Mise en place d'un ou plusieurs autres équipements (chaudières ou pompes
+              à chaleur)
+            description: La mise en place de la chaudière haute performance énergétique
+              s'accompagne de la mise en place d'un ou plusieurs autres
+              équipements (chaudières ou pompes à chaleur)
+            type: boolean
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/89
+            required:
+              - qualificationsRge
+        allOf:
+          - if:
+              properties:
+                temperatureDistribution:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution#/$defs/BASSE_TEMPERATURE
+              required:
+                - temperatureDistribution
+            then:
+              properties:
+                performanceEnergetique:
+                  type: number
+                  minimum: 126
+              required:
+                - performanceEnergetique
+          - if:
+              properties:
+                temperatureDistribution:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution#/$defs/MOYENNE_TEMPERATURE
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution#/$defs/HAUTE_TEMPERATURE
+              required:
+                - temperatureDistribution
+            then:
+              properties:
+                performanceEnergetique:
+                  type: number
+                  minimum: 111
+              required:
+                - performanceEnergetique
+        required:
+          - ancienneteBatiment
+          - typeBatiment
+          - logements
+          - typeEquipement
+          - temperatureDistribution
+          - usage
+          - performanceEnergetique
+          - marque
+          - reference
+          - puissanceNominale
+          - puissanceEligible
+          - puissanceEligibleAutresFiches
+          - puissanceChaufferie
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Preuve de qualification du professionnel
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+examples:
+  - fiche: BAR-TH-166v38-1
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      logements: 10
+      usage: CHAUFFAGE
+      typeEquipement: PAC_EAU_EAU
+      temperatureDistribution: BASSE_TEMPERATURE
+      performanceEnergetique: 127
+      puissanceNominale: 100
+      puissanceEligible: 100
+      puissanceEligibleAutresFiches: 0
+      puissanceChaufferie: 100
+      marque: MARQUE
+      reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

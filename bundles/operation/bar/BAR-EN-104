@@ -1,4 +1,4 @@
-$id: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-104v14-1
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-EN-104
 $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
 title: BAR-EN-104
 type: object
@@ -17,27 +17,36 @@ allOf:
       properties:
         dateEngagement:
           type: string
+          format: date
+          formatMinimum: "2015-01-01"
           formatExclusiveMaximum: "2024-01-01"
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-EN-104v14-1"
+        - "#/$defs/BAR-EN-104v14-1"
   - if:
       properties:
         dateEngagement:
           type: string
+          format: date
           formatMinimum: "2024-01-01"
+          formatExclusiveMaximum: "2028-07-01"
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-EN-104v54-2"
+        - "#/$defs/BAR-EN-104v54-2"
 $defs:
   BAR-EN-104v14-1:
-    title: BAR-EN-104 - A compter du 1er janvier 2015
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-EN-104v14-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-EN-104v14-1
     type: object
     properties:
+      fiche:
+        type: string
+        const: BAR-EN-104v14-1
       description:
         type: object
         properties:
@@ -114,7 +123,7 @@ $defs:
           - if:
               properties:
                 typeIsolation:
-                    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_isolation#/$defs/FENETRE_TOITURE
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_isolation#/$defs/FENETRE_TOITURE
               required:
                 - typeIsolation
             then:
@@ -189,12 +198,18 @@ $defs:
               required:
                 - code
     required:
+      - fiche
       - description
       - documents
   BAR-EN-104v54-2:
-    title: BAR-EN-104 - A compter du 1er janvier 2024
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-EN-104v54-2
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-EN-104v54-2
     type: object
     properties:
+      fiche:
+        type: string
+        const: BAR-EN-104v54-2
       description:
         type: object
         properties:
@@ -274,7 +289,7 @@ $defs:
           - if:
               properties:
                 typeIsolation:
-                    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_isolation#/$defs/FENETRE_TOITURE
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_isolation#/$defs/FENETRE_TOITURE
               required:
                 - typeIsolation
             then:
@@ -362,11 +377,11 @@ $defs:
               required:
                 - code
     required:
+      - fiche
       - description
       - documents
 examples:
   - fiche: BAR-EN-104v14-1
-    dateEngagement: "2023-01-01"
     description:
       ancienneteBatiment: EXISTANT
       energieChauffage: COMBUSTIBLES
@@ -381,8 +396,7 @@ examples:
     documents:
       - code: PREUVE_QUALIFICATION
         url: https://api.ceeconnect.fr/document/documents/{uuid}
-  - fiche: BAR-EN-104
-    dateEngagement: "2024-01-01"
+  - fiche: BAR-EN-104v54-2
     description:
       ancienneteBatiment: EXISTANT
       quantite: 10

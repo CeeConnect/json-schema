@@ -1,0 +1,153 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-102
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-102
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-102
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2015-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - "#/$defs/BAR-TH-102v17-1"
+$defs:
+  BAR-TH-102v17-1:
+    $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-102v17-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-102v17-1
+    type: object
+    properties:
+      fiche:
+        type: string
+        const: BAR-TH-102v17-1
+      description:
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            title: Le bâtiment est un immeuble collectif d'habitation
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+          surfaceCapteurs:
+            title: Surface totale de capteurs solaires posés (m²)
+            type: number
+            minimum: 0
+          besoinEauChaudeSanitaire:
+            title: Besoin annuel en eau chaude sanitaire (kWh/an)
+            description: Indiquer le besoin annuel en eau chaude sanitaire issu de l'étude
+              de dimensionnement
+            type: number
+            minimum: 0
+          tauxCouvertureSolaire:
+            title: Taux de couverture par l'énergie solaire (%)
+            description: Indiquer le taux de couverture par l'énergie solaire issu de
+              l'étude de dimensionnement
+            type: number
+            minimum: 0
+          productionSolaireUtile:
+            title: Production solaire utile (kWh/an)
+            description: Indiquer la production solaire utile issue de l'étude de
+              dimensionnement
+            type: number
+            minimum: 0
+          marque:
+            title: Marque de l'équipement
+            type: string
+          reference:
+            title: Référence de l'équipement
+            type: string
+          installateur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/86
+            required:
+              - qualificationsRge
+        required:
+          - ancienneteBatiment
+          - typeBatiment
+          - surfaceCapteurs
+          - besoinEauChaudeSanitaire
+          - tauxCouvertureSolaire
+          - productionSolaireUtile
+          - marque
+          - reference
+          - installateur
+      documents:
+        type: array
+        items:
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+        allOf:
+          - contains:
+              title: Certification
+              description: Certification CSTBat ou SolarKeymark des capteurs solaires
+              type: object
+              properties:
+                code:
+                  const: CERTIFICATION
+              required:
+                - code
+          - contains:
+              title: Etude de dimensionnement
+              type: object
+              properties:
+                code:
+                  const: ETUDE_DIMENSIONNEMENT
+              required:
+                - code
+          - contains:
+              title: Preuve de qualification de l'installateur
+              type: object
+              properties:
+                code:
+                  type: string
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - fiche
+      - description
+      - documents
+examples:
+  - fiche: BAR-TH-102v17-1
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      surfaceCapteurs: 30
+      besoinEauChaudeSanitaire: 100000
+      tauxCouvertureSolaire: 80
+      productionSolaireUtile: 80000
+      marque: MARQUE
+      reference: REFERENCE
+      installateur:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+    documents:
+      - code: CERTIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+      - code: ETUDE_DIMENSIONNEMENT
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
