@@ -1,0 +1,44 @@
+$id: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/demandeur
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Demandeur
+description: Obligé au titre du dispositif des certificats d'économies d'énergie
+type: object
+properties:
+  raisonSociale: 
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/raison_sociale
+  siren: 
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siren
+  email: 
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/email
+  telephone: 
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/telephone
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse
+  nom:
+    title: Nom de famille du représentant
+    type: string
+  prenom:
+    title: Prénom du représentant
+    type: string
+  fonction:
+    title: Fonction du représentant
+    type: string
+required:
+  - raisonSociale
+  - siren
+  - email
+  - telephone
+  - adresse
+  - nom
+  - prenom
+  - fonction
+examples:
+  - raisonSociale: RAISON SOCIALE
+    siren: "000000000"
+    email: contact@email.fr
+    telephone: "0836656565"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    nom: NOM
+    prenom: PRENOM
+    fonction: FONCTION
