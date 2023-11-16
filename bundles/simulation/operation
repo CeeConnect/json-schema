@@ -35,7 +35,7 @@ oneOf:
     required:
       - fiche
     allOf:
-      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/operation_bar
+      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/operation_bar
 # Bonifications
 allOf:
   - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/operation_bonification
