@@ -1,0 +1,166 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bonification/CRC
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: Coup de pouce Rénovation performante de bâtiment résidentiel collectif
+type: object
+properties:
+  fiche:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/fiche
+    pattern: BAR-TH-145
+  bonification:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bonification
+    const: CRC
+  dateEngagement:
+    title: Date d'engagement
+    type: string
+    format: date
+required:
+  - fiche
+  - bonification
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2023-07-02"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        $ref: "#/$defs/CRCv51-1"
+$defs:
+  CRCv51-1:
+    title: Version en vigueur à compter du 02/07/2023
+    type: object
+    properties:
+      description:
+        type: object
+        properties:
+          critereRegimeCopropriete:
+            title: L'immeuble relève du régime de la copropriété défini par la loi n° 65-557 du 10 juillet 1965
+            type: boolean
+          critereChangemenentEquipement:
+            title: Changement des équipements de chauffage ou de production d'eau chaude sanitaire
+            description: Cas de travaux incluant le changement de tous les équipements de chauffage ou de production d'eau chaude sanitaire
+            type: boolean
+        required:
+          - critereRegimeCopropriete
+          - critereChangemenentEquipement
+        allOf:
+          - if:
+              type: object
+              properties:
+                critereChangemenentEquipement:
+                  type: boolean
+                  const: true
+              required:
+                - critereChangemenentEquipement
+            then:
+              properties:
+                critereAlimentationReseauChaleur:
+                  title: Raccordement à un réseau de chaleur alimenté majoritairement par des énergies renouvelables ou de récupération
+                  type: boolean
+                critereEquipementEligible:
+                  title: Eligibilité des chaudières
+                  description: Le changement des équipements de chauffage ou de production d'eau chaude sanitaire ne comporte pas de chaudières consommant du charbon ou du fioul, ou de chaudières consommant du gaz autres qu'à condensation.
+                  type: boolean
+                  const: true
+                tauxEnergieRenouvelable:
+                  title: Poucentage d'énergie renouvelable ou de récupération utilisée
+                  type: number
+                  minimum: 0
+              required:
+                - critereAlimentationReseauChaleur
+                - critereEquipementEligible
+                - tauxEnergieRenouvelable
+    required:
+      - description
+    allOf:
+      - if:
+          type: object
+          properties:
+            description:
+              type: object
+              properties:
+                critereRegimeCopropriete:
+                  type: boolean
+                  const: true
+              required:
+                - critereRegimeCopropriete
+          required:
+            - description
+        then:
+          type: object
+          properties:
+            documents:
+              type: array
+              items:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+              allOf:
+                - contains:
+                    title: Délibération, votée par l'Assemblée générale
+                    description: |
+                      Dans le cas d'une copropriété, le syndic représentant le syndicat des copropriétaires inscrit à l'ordre du jour de l'Assemblée générale des copropriétaires, 
+                      outre le vote de la réalisation des travaux de rénovation globale, la question de retenir ou rejeter ces prestations. Ce document comprend la délibération, 
+                      votée par l'Assemblée générale des copropriétaires, relative à la réalisation des travaux de rénovation globale composant l'opération, à la prestation d'assistance 
+                      à maîtrise d'ouvrage et aux solutions de financement de ces travaux. Dans les autres cas, la réponse écrite du bénéficiaire sur l'acceptation ou le refus des prestations proposées par le demandeur.
+                    type: object
+                    properties:
+                      code:
+                        const: ASSEMBLEE_GENERALE
+                    required:
+                      - code
+          required:
+            - documents
+      - if:
+          type: object
+          properties:
+            description:
+              type: object
+              properties:
+                critereAlimentationReseauChaleur:
+                  type: boolean
+                  const: false
+              required:
+                - critereAlimentationReseauChaleur
+          required:
+            - description
+        then:
+          properties:
+            documents:
+              type: array
+              items:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+              allOf:
+                - contains:
+                    title: Justification de l'impossibilité technique ou économique du raccordement
+                    description: |
+                      Le changement, le cas échéant, des équipements de chauffage ou de production d'eau chaude sanitaire 
+                      est réalisé au profit d'un raccordement à un réseau de chaleur alimenté majoritairement par des énergies 
+                      renouvelables ou de récupération (dans son état actuel ou dans le cadre d'un projet décidé), sauf à avoir 
+                      obtenu de la part du gestionnaire du réseau de chaleur la justification de l'impossibilité technique ou 
+                      économique du raccordement.
+                    type: object
+                    properties:
+                      code:
+                        const: JUSTIFICATIF_GESTIONNAIRE
+                    required:
+                      - code
+          required:
+            - documents
+examples:
+  - fiche: BAR-TH-145
+    bonification: CRC
+    dateEngagement: "2024-01-01"
+    description:
+      critereChangemenentEquipement: true
+      critereRegimeCopropriete: true
+      critereAlimentationReseauChaleur: false
+      critereEquipementEligible: true
+      tauxEnergieRenouvelable: 50
+    documents:
+      - code: JUSTIFICATIF_GESTIONNAIRE
+        url: https://api.ceeconnect.fr/archivage/archives/{uuid}
+      - code: ASSEMBLEE_GENERALE
+        url: https://api.ceeconnect.fr/archivage/archives/{uuid}

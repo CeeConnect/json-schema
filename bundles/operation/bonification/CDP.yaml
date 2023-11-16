@@ -1,0 +1,264 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bonification/CDP
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: Coup de pouce Chauffage
+type: object
+properties:
+  fiche:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/fiche
+    pattern: BAR[-]TH[-](104|106|112|113|137|143|159|171|172)
+  bonification:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bonification
+    const: CDP
+  dateEngagement:
+    title: Date d'engagement
+    type: string
+    format: date
+required:
+  - fiche
+  - bonification
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2023-03-01"
+          formatExclusiveMaximum: "2023-10-07"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        $ref: "#/$defs/CDPv50-1"
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2023-10-07"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        $ref: "#/$defs/CDPv52-1"
+$defs:
+  CDPv50-1:
+    title: Version en vigueur du 01/03/2023 au 06/10/2023
+    type: object
+    allOf:
+      - if:
+          type: object
+          properties:
+            fiche:
+              type: string
+              pattern: BAR[-]TH[-](104|106|112|113|137|143|159|171|172)
+          required:
+            - fiche
+            - bonification
+        then:
+          properties:
+            description:
+              type: object
+              properties:
+                energieChauffage:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffageFossiles
+                critereEquipementExistant:
+                  title: L'équipement vient en remplacement d'une chaudière individuelle
+                  type: boolean
+                  const: true
+              required:
+                - energieChauffage
+                - critereEquipementExistant
+          required:
+            - description
+      - if:
+          type: object
+          properties:
+            fiche:
+              type: string
+              const: BAR-TH-137
+          required:
+            - fiche
+            - bonification
+        then:
+          properties:
+            description:
+              type: object
+              properties:
+                critereEquipementExistant:
+                  title: Le raccordement au réseau de chaleur vient en remplacement d'une chaudière individuelle
+                  type: boolean
+                  const: true
+              required:
+                - critereEquipementExistant
+          required:
+            - description
+  CDPv52-1:
+    title: Version en vigueur à compter du 07/10/2023
+    type: object
+    allOf:
+      - if:
+          type: object
+          properties:
+            fiche:
+              type: string
+              pattern: BAR[-]TH[-](104|106|113|137|143|159|171|172).*
+          required:
+            - fiche
+            - bonification
+        then:
+          properties:
+            description:
+              type: object
+              properties:
+                energieChauffage:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffageFossiles
+                critereEquipementExistant:
+                  title: L'équipement vient en remplacement d'une chaudière individuelle
+                  type: boolean
+                  const: true
+              required:
+                - energieChauffage
+                - critereEquipementExistant
+          required:
+            - description
+      - if:
+          type: object
+          properties:
+            fiche:
+              type: string
+              pattern: BAR[-]TH[-]112.*
+          required:
+            - fiche
+            - bonification
+        then:
+          properties:
+            description:
+              type: object
+              properties:
+                energieChauffage:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/CHARBON
+                  title: L'appareil vient en remplacement d'un équipement de chauffage fonctionnant principalement au charbon
+              required:
+                - energieChauffage
+          required:
+            - description
+      - if:
+          type: object
+          properties:
+            fiche:
+              type: string
+              pattern: BAR[-]TH[-]137.*
+          required:
+            - fiche
+            - bonification
+        then:
+          properties:
+            description:
+              type: object
+              properties:
+                critereEquipementExistant:
+                  title: Le raccordement au réseau de chaleur vient en remplacement d'une chaudière individuelle
+                  type: boolean
+                  const: true
+              required:
+                - critereEquipementExistant
+          required:
+            - description
+examples:
+  - fiche: BAR-TH-104
+    bonification: CDP
+    dateEnagement: "2023-06-01"
+    description:
+      critereEquipementExistant: true
+      energieChauffage: FIOUL
+  - fiche: BAR-TH-106
+    bonification: CDP
+    dateEnagement: "2023-06-01"
+    description:
+      critereEquipementExistant: true
+      energieChauffage: FIOUL
+  - fiche: BAR-TH-113
+    bonification: CDP
+    dateEnagement: "2023-06-01"
+    description:
+      critereEquipementExistant: true
+      energieChauffage: FIOUL
+  - fiche: BAR-TH-137
+    bonification: CDP
+    dateEnagement: "2023-06-01"
+    description:
+      critereEquipementExistant: true
+      energieChauffage: FIOUL
+  - fiche: BAR-TH-143
+    bonification: CDP
+    dateEnagement: "2023-06-01"
+    description:
+      critereEquipementExistant: true
+      energieChauffage: FIOUL
+  - fiche: BAR-TH-159
+    bonification: CDP
+    dateEnagement: "2023-06-01"
+    description:
+      critereEquipementExistant: true
+      energieChauffage: FIOUL
+  - fiche: BAR-TH-171
+    bonification: CDP
+    dateEnagement: "2023-06-01"
+    description:
+      critereEquipementExistant: true
+      energieChauffage: FIOUL
+  - fiche: BAR-TH-172
+    bonification: CDP
+    dateEnagement: "2023-06-01"
+    description:
+      critereEquipementExistant: true
+      energieChauffage: FIOUL
+  - fiche: BAR-TH-104
+    bonification: CDP
+    dateEnagement: "2024-01-01"
+    description:
+      critereEquipementExistant: true
+      energieChauffage: FIOUL
+  - fiche: BAR-TH-106
+    bonification: CDP
+    dateEnagement: "2024-01-01"
+    description:
+      critereEquipementExistant: true
+      energieChauffage: FIOUL
+  - fiche: BAR-TH-113
+    bonification: CDP
+    dateEnagement: "2024-01-01"
+    description:
+      critereEquipementExistant: true
+      energieChauffage: FIOUL
+  - fiche: BAR-TH-137
+    bonification: CDP
+    dateEnagement: "2024-01-01"
+    description:
+      critereEquipementExistant: true
+      energieChauffage: FIOUL
+  - fiche: BAR-TH-143
+    bonification: CDP
+    dateEnagement: "2024-01-01"
+    description:
+      critereEquipementExistant: true
+      energieChauffage: FIOUL
+  - fiche: BAR-TH-159
+    bonification: CDP
+    dateEnagement: "2024-01-01"
+    description:
+      critereEquipementExistant: true
+      energieChauffage: FIOUL
+  - fiche: BAR-TH-171
+    bonification: CDP
+    dateEnagement: "2024-01-01"
+    description:
+      critereEquipementExistant: true
+      energieChauffage: FIOUL
+  - fiche: BAR-TH-172
+    bonification: CDP
+    dateEnagement: "2024-01-01"
+    description:
+      critereEquipementExistant: true
+      energieChauffage: FIOUL

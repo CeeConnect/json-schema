@@ -1,0 +1,39 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bonification/ZNI
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: Zones non interconnectées au réseau métropolitain continental de transport d'électricité
+type: object
+properties:
+  fiche:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/fiche
+  bonification:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bonification
+    const: ZNI
+  dateEngagement:
+    title: Date d'engagement
+    type: string
+    format: date
+required:
+  - fiche
+  - bonification
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2021-04-17"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        $ref: "#/$defs/ZNIv35-1"
+$defs:
+  ZNIv35-1:
+    title: Version en vigueur à compter du 17/04/2021
+    type: object
+    properties:
+      adresse:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceOutreMer
+    required:
+      - adresse
