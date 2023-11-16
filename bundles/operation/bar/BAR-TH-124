@@ -30,7 +30,7 @@ allOf:
 $defs:
   BAR-TH-124v35-3:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-124v35-3
-    $schema: https://json-schema.org/draft/2020-12/schema
+    $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
     title: BAR-TH-124v35-3
     type: object
     properties:

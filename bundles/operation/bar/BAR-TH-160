@@ -55,7 +55,7 @@ allOf:
 $defs:
   BAR-TH-160v39-2:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-160v39-2
-    $schema: https://json-schema.org/draft/2020-12/schema
+    $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
     $comment: >
       - TODO: Vérifier si le rapport de contrôle n'est pas couvert par la
       doctrine
@@ -181,7 +181,7 @@ $defs:
       - documents
   BAR-TH-160v50-3:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-160v50-3
-    $schema: https://json-schema.org/draft/2020-12/schema
+    $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
     $comment: >
       - TODO: Vérifier si le rapport de contrôle n'est pas couvert par la
       doctrine
@@ -310,7 +310,7 @@ $defs:
       - documents
   BAR-TH-160v54-4:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-160v54-4
-    $schema: https://json-schema.org/draft/2020-12/schema
+    $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
     $comment: >
       - TODO: Vérifier si le rapport de contrôle n'est pas couvert par la
       doctrine

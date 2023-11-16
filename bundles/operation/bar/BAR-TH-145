@@ -42,7 +42,7 @@ allOf:
 $defs:
   BAR-TH-145v36-3:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-145v36-3
-    $schema: https://json-schema.org/draft/2020-12/schema
+    $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
     $comment: >
       - TODO: Vérifier la possibilité d'intégrer l'attestation de réalisation
       ANAH
@@ -270,7 +270,7 @@ $defs:
       - documents
   BAR-TH-145v52-4:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-145v52-4
-    $schema: https://json-schema.org/draft/2020-12/schema
+    $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
     $comment: >
       - TODO: Vérifier la possibilité d'intégrer l'attestation de réalisation
       ANAH

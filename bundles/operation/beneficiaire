@@ -1,5 +1,5 @@
 $id: https://schemas.ceeconnect/bundles/operation/beneficiaire
-$schema: https://json-schema.org/draft/2020-12/schema
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
 title: Bénéficiaire
 description: Bénéficiaire de l'opération d'économies d'énergie
 type: object

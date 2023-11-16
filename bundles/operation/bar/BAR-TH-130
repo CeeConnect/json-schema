@@ -43,7 +43,7 @@ allOf:
 $defs:
   BAR-TH-130v26-1:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-130v26-1
-    $schema: https://json-schema.org/draft/2020-12/schema
+    $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
     title: BAR-TH-130v26-1
     type: object
     properties:
@@ -184,7 +184,7 @@ $defs:
       - documents
   BAR-TH-130v54-2:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-130v54-2
-    $schema: https://json-schema.org/draft/2020-12/schema
+    $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
     title: BAR-TH-130v54-2
     type: object
     properties:

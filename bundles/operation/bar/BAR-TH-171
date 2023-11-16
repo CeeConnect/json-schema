@@ -28,7 +28,7 @@ allOf:
 $defs:
   BAR-TH-171v55-1:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-171v55-1
-    $schema: https://json-schema.org/draft/2020-12/schema
+    $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
     title: BAR-TH-171v55-1
     type: object
     properties:

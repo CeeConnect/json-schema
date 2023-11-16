@@ -1,5 +1,5 @@
 $id: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
-$schema: https://json-schema.org/draft/2020-12/schema
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
 title: Document
 type: object
 properties:

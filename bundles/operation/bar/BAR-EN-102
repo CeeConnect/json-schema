@@ -30,7 +30,7 @@ allOf:
 $defs:
   BAR-EN-102v39-2:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-EN-102v39-2
-    $schema: https://json-schema.org/draft/2020-12/schema
+    $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
     title: BAR-EN-102v39-2
     type: object
     properties:

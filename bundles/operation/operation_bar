@@ -1,5 +1,5 @@
 $id: https://schemas.ceeconnect.com/bundles/operation/operation_bar
-$schema: https://json-schema.org/draft/2020-12/schema
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
 title: Opération d'économies d'énergie - Secteur résidentiel
 type: object
 properties:
