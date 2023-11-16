@@ -1,0 +1,7 @@
+$id: https://schemas.ceeconnect.fr/formats/reference_avis_imposition
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Référence de l'avis d'imposition
+type: string
+pattern: ^[0-9A-Z]{13,14}$
+examples:
+  - "00000000000000"

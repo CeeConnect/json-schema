@@ -1,0 +1,11 @@
+$id: https://schemas.ceeconnect.fr/formats/code_quartier_prioritaire
+$schema: https://json-schema.org/draft/2020-12/schema
+$comment: Base de données accessible à l'adresse
+  https://www.data.gouv.fr/fr/datasets/quartiers-prioritaires-de-la-politique-de-la-ville-qpv/
+title: Quartier prioritaire
+description: Code du quartier prioritaire de la politique de la ville
+type: string
+pattern: ^QP[0-9AB]{6,6}
+examples:
+  - QP001001
+  - QP001002

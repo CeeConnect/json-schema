@@ -1,0 +1,7 @@
+$id: https://schemas.ceeconnect.fr/formats/siren
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Numéro de SIREN
+type: string
+pattern: ^[0-9]{9,9}$
+examples:
+  - "000000000"

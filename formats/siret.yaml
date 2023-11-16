@@ -1,0 +1,7 @@
+$id: https://schemas.ceeconnect.fr/formats/siret
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Numéro de SIRET
+type: string
+pattern: ^[0-9]{14,14}$
+examples:
+  - "90232479700015"

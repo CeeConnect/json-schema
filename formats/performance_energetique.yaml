@@ -1,0 +1,31 @@
+$id: https://schemas.ceeconnect.fr/formats/performance_energetique
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Performance énergétique des équipements
+type: number
+anyOf:
+  - $ref: "#/$defs/etas"
+  - $ref: "#/$defs/cop"
+  - $ref: "#/$defs/scop"
+  - $ref: "#/$defs/rendementPCI"
+$defs:
+  etas:
+    title: Efficacité énergétique saisonnière (%)
+    type: number
+    minimum: 0
+  cop:
+    title: Coefficient de performance énergétique
+    type: number
+    minimum: 0
+  scop:
+    title: Coefficient de performance saisonnier
+    type: number
+    minimum: 0
+  rendementPCI:
+    title: Rendement PCI nominal (%)
+    type: number
+    minimum: 0
+examples:
+  - 130
+  - 4.5
+  - 4
+  - 80

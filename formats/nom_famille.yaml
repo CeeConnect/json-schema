@@ -1,0 +1,7 @@
+$id: https://schemas.ceeconnect.fr/formats/nom_famille
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Nom de famille
+type: string
+maxLength: 240
+examples:
+  - DOE

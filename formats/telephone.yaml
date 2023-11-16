@@ -1,0 +1,7 @@
+$id: https://schemas.ceeconnect.fr/formats/telephone
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Téléphone
+type: string
+examples:
+  - "0836656565"
+  - "+33836656565"
