@@ -1,0 +1,24 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://schemas.ceeconnect.fr/meta-schema
+$vocabulary:
+  https://json-schema.org/draft/2020-12/vocab/core: true
+  https://json-schema.org/draft/2020-12/vocab/applicator: true
+  https://json-schema.org/draft/2020-12/vocab/validation: true
+  https://json-schema.org/draft/2020-12/vocab/meta-data: true
+  https://json-schema.org/draft/2020-12/vocab/format-annotation: true
+  https://json-schema.org/draft/2020-12/vocab/content: true
+  https://json-schema.org/draft/2020-12/vocab/unevaluated: true
+  https://schemas.ceeconnect.fr/my-vocab: true
+allOf:
+  - $ref: https://json-schema.org/draft/2020-12/schema
+properties:
+  formatMinimum:
+    type: string
+  formatExclusiveMinimum:
+    type: string
+  formatMaximum:
+    type: string
+  formatExclusiveMaximum:
+    type: string
+  unit:
+    type: string
