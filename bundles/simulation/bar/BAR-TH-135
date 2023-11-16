@@ -1,0 +1,78 @@
+$id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-135
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-135
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-135
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceOutreMer
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2020-10-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-TH-135v35-2"
+$defs:
+  BAR-TH-135v35-2:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-135v35-2
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-135v35-2
+    type: object
+    properties:
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            title: Le bâtiment est un immeuble collectif d'habitation
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batiment
+          typeEquipement:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/chauffeEauSolaireCollectif
+          besoinEauChaudeSanitaire:
+            title: Besoin annuel d'eau chaude sanitaire (kWh/an)
+            description: Besoin annuel en eau chaude sanitaire à produire par l'énergie
+              solaire exprimé en kWh par an et issu de l'étude de dimensionnemen
+            type: number
+            minimum: 0
+          tauxCouverture:
+            title: Taux de couverture solaire (%)
+            description: Indiquer le taux de couverture par l'énergie solaire de
+              l'installation issu de l'étude de dimensionnement
+            type: number
+            minimum: 0
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - typeEquipement
+          - besoinEauChaudeSanitaire
+          - tauxCouverture
+    required:
+      - description
+examples:
+  - fiche: BAR-TH-135
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/3
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      typeEquipement: CESCI
+      besoinEauChaudeSanitaire: 100000
+      tauxCouverture: 80

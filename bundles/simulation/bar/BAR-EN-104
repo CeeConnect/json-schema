@@ -1,0 +1,107 @@
+$id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-EN-104
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-EN-104
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-EN-104
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2015-01-01"
+          formatExclusiveMaximum: "2024-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-EN-104v14-1"
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2024-01-01"
+          formatExclusiveMaximum: "2028-07-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-EN-104v54-2"
+$defs:
+  BAR-EN-104v14-1:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-EN-104v14-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-EN-104v14-1
+    type: object
+    properties:
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-104v14-1#/properties/description/properties/ancienneteBatiment
+          energieChauffage:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffage
+          quantite:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-104v14-1#/properties/description/properties/quantite
+        required:
+          - ancienneteBatiment
+          - energieChauffage
+          - quantite
+    required:
+      - description
+  BAR-EN-104v54-2:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-EN-104v54-2
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-EN-104v54-2
+    type: object
+    properties:
+      adresse:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-104v54-2#/properties/description/properties/ancienneteBatiment
+          energieChauffage:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffage
+          surface:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-104v54-2#/properties/description/properties/surface
+        required:
+          - ancienneteBatiment
+          - energieChauffage
+          - surface
+    required:
+      - adresse
+      - description
+examples:
+  - fiche: BAR-EN-104
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      ancienneteBatiment: EXISTANT
+      energieChauffage: ELECTRICITE
+      quantite: 10
+  - fiche: BAR-EN-104
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      ancienneteBatiment: EXISTANT
+      energieChauffage: ELECTRICITE
+      surface: 10

@@ -26,7 +26,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        - "#/$defs/BAR-TH-124v35-3"
+        - $ref: "#/$defs/BAR-TH-124v35-3"
 $defs:
   BAR-TH-124v35-3:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-124v35-3
@@ -146,7 +146,8 @@ $defs:
       - description
       - documents
 examples:
-  - fiche: BAR-TH-124v35-3
+  - fiche: BAR-TH-124
+    dateEngagement: "2024-01-01"
     adresse:
       $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/3
     description:

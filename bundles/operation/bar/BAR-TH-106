@@ -24,7 +24,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        - "#/$defs/BAR-TH-106v23-2"
+        - $ref: "#/$defs/BAR-TH-106v23-2"
 $defs:
   BAR-TH-106v23-2:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-106v23-2
@@ -173,7 +173,8 @@ $defs:
           - marqueRegulateur
           - referenceRegulateur
 examples:
-  - fiche: BAR-TH-106v23-2
+  - fiche: BAR-TH-106
+    dateEngagement: "2024-01-01"
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT

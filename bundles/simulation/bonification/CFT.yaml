@@ -1,0 +1,121 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/simulation/CFT
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: Coup de pouce Chauffage des bâtiments résidentiels collectifs et tertiaires
+type: object
+properties:
+  fiche:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/fiche
+    pattern: BAR[-]TH[-](137|150|165|166)
+  bonification:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bonification
+    const: CFT
+  dateEngagement:
+    title: Date d'engagement
+    type: string
+    format: date
+required:
+  - fiche
+  - bonification
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2023-03-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        $ref: "#/$defs/CFTv50-1"
+$defs:
+  CFTv50-1:
+    title: Version en vigueur à compter du 01/03/2023
+    type: object
+    allOf:
+      - if:
+          type: object
+          properties:
+            fiche:
+              type: string
+              pattern: BAR[-]TH[-](137|150|165|166)
+          required:
+            - fiche
+            - bonification
+        then:
+          properties:
+            description:
+              type: object
+              properties:
+                critereRegimeCopropriete:
+                  title: L'immeuble relève du régime de la copropriété défini par la loi n° 65-557 du 10 juillet 1965
+                  description: |
+                    Dans le cas de travaux réalisés dans une copropriété résidentielle, le syndicat de copropriétaires 
+                    attaché à la copropriété, bénéficiaire de l'opération, est immatriculé sur le registre d'immatriculation 
+                    prévu par les articles L. 711-1 et suivants du code de la construction et de l'habitation
+                  type: boolean
+                critereEquipementExistant:
+                  title: L'équipement vient en remplacement d'une chaudière individuelle au fioul, au gaz ou au charbon
+                  type: boolean
+                  const: true
+                energieChauffage:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffageFossiles
+              required:
+                - critereRegimeCopropriete
+                - critereEquipementExistant
+                - energieChauffage
+          required:
+            - description
+      - if:
+          type: object
+          properties:
+            fiche:
+              type: string
+              pattern: BAR[-]TH[-]137
+          required:
+            - fiche
+            - bonification
+        then:
+          properties:
+            description:
+              type: object
+              properties:
+                critereEquipementExistant:
+                  title: Le raccordement au réseau de chaleur vient en remplacement d'une chaudière au charbon, au fioul ou au gaz
+                  type: boolean
+                  const: true
+                critereAlimentationReseauChaleur:
+                  title: Raccordement à un réseau de chaleur alimenté majoritairement par des énergies renouvelables ou de récupération
+                  type: boolean
+              required:
+                - critereEquipementExistant
+                - critereAlimentationReseauChaleur
+          required:
+            - description
+examples:
+  - fiche: BAR-TH-137
+    bonification: CFT
+    description:
+      critereRegimeCopropriete: true
+      critereEquipementExistant: true
+      critereAlimentationReseauChaleur: true
+      energieChauffage: FIOUL
+  - fiche: BAR-TH-150
+    bonification: CFT
+    description:
+      critereRegimeCopropriete: true
+      critereEquipementExistant: true
+      energieChauffage: FIOUL
+  - fiche: BAR-TH-165
+    bonification: CFT
+    description:
+      critereRegimeCopropriete: true
+      critereEquipementExistant: true
+      energieChauffage: FIOUL
+  - fiche: BAR-TH-166
+    bonification: CFT
+    description:
+      critereRegimeCopropriete: true
+      critereEquipementExistant: true
+      energieChauffage: FIOUL

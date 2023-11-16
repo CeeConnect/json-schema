@@ -1,0 +1,207 @@
+$id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-130
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-130
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-130
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2015-01-01"
+          formatExclusiveMaximum: "2024-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-TH-130v26-1"
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2024-01-01"
+          formatExclusiveMaximum: "2028-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-TH-130v54-2"
+$defs:
+  BAR-TH-130v26-1:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-130v26-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-130v26-1
+    type: object
+    properties:
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batiment
+          extensionBatiment:
+            title: L'opération concerne une partie nouvelle d'un bâtiment existant
+            type: boolean
+          energieChauffage:
+            title: Energie de chauffage principale
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffage
+          energieEauChaudeSanitaire:
+            title: Energie de production de l'eau chaude sanitaire
+            oneOf:
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/ELECTRICITE
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/COMBUSTIBLES
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/HYBRIDE
+          surfaceThermique:
+            title: Surface thermique (m²)
+            description: Surface thermique du bâtiment au sens de la règlementation
+              thermique
+            type: number
+            minimum: 0
+          cefBat:
+            title: Consommation finale du bâtiment (kWh/m²/an)
+            description: Consommation conventionnelle du bâtiment exprimée en énergie finale
+            type: number
+          cepMax:
+            title: Consommation primaire maximale (kWh/m²/an)
+            description: Consommation conventionnelle exprimée en énergie finale maximale
+            type: number
+        required:
+          - energieChauffage
+          - energieEauChaudeSanitaire
+          - surfaceThermique
+          - cefBat
+          - cepMax
+        anyOf:
+          - properties:
+              ancienneteBatiment:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/NEUF
+              extensionBatiment:
+                type: boolean
+                const: false
+            required:
+              - ancienneteBatiment
+              - extensionBatiment
+          - properties:
+              ancienneteBatiment:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+              extensionBatiment:
+                type: boolean
+                const: true
+            required:
+              - ancienneteBatiment
+              - extensionBatiment
+    required:
+      - description
+  BAR-TH-130v54-2:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-130v54-2
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-130v54-2
+    type: object
+    properties:
+      adresse:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batiment
+          extensionBatiment:
+            title: L'opération concerne une partie nouvelle d'un bâtiment existant
+            type: boolean
+          energieChauffage:
+            title: Energie de chauffage principale
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffage
+          energieEauChaudeSanitaire:
+            title: Energie de production de l'eau chaude sanitaire
+            oneOf:
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/ELECTRICITE
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/COMBUSTIBLES
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/HYBRIDE
+          surfaceReference:
+            title: Surface de référence (m²)
+            description: Surface thermique du bâtiment au sens de la règlementation
+              thermique RE2020
+            type: number
+            minimum: 0
+          cefBat:
+            title: Consommation finale du bâtiment (kWh/m²/an)
+            description: Consommation conventionnelle du bâtiment exprimée en énergie finale
+            type: number
+          cepMax:
+            title: Consommation primaire maximale (kWh/m²/an)
+            description: Consommation conventionnelle exprimée en énergie finale maximale
+            type: number
+        required:
+          - energieChauffage
+          - energieEauChaudeSanitaire
+          - surfaceReference
+          - cefBat
+          - cepMax
+        anyOf:
+          - properties:
+              ancienneteBatiment:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/NEUF
+              extensionBatiment:
+                type: boolean
+                const: false
+            required:
+              - ancienneteBatiment
+              - extensionBatiment
+          - properties:
+              ancienneteBatiment:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+              extensionBatiment:
+                type: boolean
+                const: true
+            required:
+              - ancienneteBatiment
+              - extensionBatiment
+    required:
+      - adresse
+      - description
+examples:
+  - fiche: BAR-TH-130
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: NEUF
+      extensionBatiment: false
+      energieChauffage: ELECTRICITE
+      energieEauChaudeSanitaire: ELECTRICITE
+      surfaceThermique: 120
+      cefBat: 20
+      cepMax: 50
+  - fiche: BAR-TH-130
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: NEUF
+      extensionBatiment: false
+      energieChauffage: ELECTRICITE
+      energieEauChaudeSanitaire: ELECTRICITE
+      surfaceReference: 120
+      cefBat: 20
+      cepMax: 50

@@ -1,0 +1,65 @@
+$id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-SE-107
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-SE-107
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-SE-107
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2020-12-31"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-SE-107v37-1"
+$defs:
+  BAR-SE-107v37-1:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-SE-107v37-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-SE-107v37-1
+    type: object
+    properties:
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            title: Le bâtiment est un immeuble collectif d'habitation
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batiment
+          logements:
+            title: Nombre d'appartements
+            description: Nombre d'appartements raccordés à un réseau de chaleur
+            type: integer
+            minimum: 0
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - logements
+    required:
+      - description
+examples:
+  - fiche: BAR-SE-107
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      logements: 20

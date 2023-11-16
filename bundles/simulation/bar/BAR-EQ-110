@@ -1,0 +1,64 @@
+$id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-EQ-110
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-EQ-110
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-EQ-110
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2015-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-EQ-110v15-1"
+$defs:
+  BAR-EQ-110v15-1:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-EQ-110v15-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-EQ-110v15-1
+    type: object
+    properties:
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110v15-1#/properties/description/properties/ancienneteBatiment
+          quantite:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110v15-1#/properties/description/properties/quantite
+          indiceProtectionChocs:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110v15-1#/properties/description/properties/indiceProtectionChocs
+          detecteurLumiere:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110v15-1#/properties/description/properties/detecteurLumiere
+          detecteurPresence:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110v15-1#/properties/description/properties/detecteurPresence
+        required:
+          - ancienneteBatiment
+          - quantite
+          - indiceProtectionChocs
+          - detecteurLumiere
+          - detecteurPresence
+    required:
+      - description
+examples:
+  - fiche: BAR-EQ-110
+    dateEngagement: "2024-01-01"
+    description:
+      ancienneteBatiment: EXISTANT
+      detecteurLumiere: true
+      detecteurPresence: false
+      quantite: 50
+      indiceProtectionChocs: "08"

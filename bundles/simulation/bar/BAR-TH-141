@@ -1,0 +1,72 @@
+$id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-141
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-141
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-141
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceOutreMer
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2015-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-TH-141v15-1"
+$defs:
+  BAR-TH-141v15-1:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-141v15-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    $comment: |
+      TODO: Référencer /properties/description/properties/classeEnergetique
+    title: BAR-TH-141v15-1
+    type: object
+    properties:
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141v15-1#/properties/description/properties/typeBatiment
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141v15-1#/properties/description/properties/ancienneteBatiment
+          quantite:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141v15-1#/properties/description/properties/quantite
+          puissanceFrigorifique:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141v15-1#/properties/description/properties/puissanceFrigorifique
+          classeEnergetique:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_efficacite_energetique#/$defs/climatiseurs
+            title: Classe d'efficacité énergétique
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - quantite
+          - puissanceFrigorifique
+          - classeEnergetique
+    required:
+      - description
+examples:
+  - fiche: BAR-TH-141
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/3
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      quantite: 5
+      puissanceFrigorifique: 7000
+      classeEnergetique: A+++

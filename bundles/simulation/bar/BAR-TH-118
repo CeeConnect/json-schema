@@ -1,0 +1,116 @@
+$id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-118
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-118
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-118
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2015-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-TH-118v14-1"
+$defs:
+  BAR-TH-118v14-1:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-118v14-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-118v14-1
+    type: object
+    properties:
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batiment
+          energieChauffage:
+            title: Energie de chauffage principale
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffage
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - energieChauffage
+        allOf:
+          - if:
+              properties:
+                typeBatiment:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/MAISON
+              required:
+                - typeBatiment
+            then:
+              properties:
+                energieChauffage:
+                  title: Energie de chauffage principale
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffage
+                surfaceChauffee:
+                  title: Surface chauffée par le système de chauffage existant
+                  type: number
+                  minimum: 0
+              required:
+                - energieChauffage
+                - surfaceChauffee
+          - if:
+              properties:
+                typeBatiment:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/APPARTEMENT
+              required:
+                - typeBatiment
+            then:
+              properties:
+                typeInstallationChauffage:
+                  title: Type d'installation de chauffage
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation
+              required:
+                - typeInstallationChauffage
+          - if:
+              properties:
+                typeInstallationChauffage:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/COLLECTIF
+              required:
+                - typeInstallationChauffage
+            then:
+              properties:
+                logements:
+                  title: Nombre d'appartements raccordés à la chaudière collective
+                  type: integer
+                  minimum: 0
+              required:
+                - logements
+            else:
+              properties:
+                energieChauffage:
+                  title: Energie de chauffage principale
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffage
+              required:
+                - energieChauffage
+    required:
+      - description
+examples:
+  - fiche: BAR-TH-118
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      energieChauffage: COMBUSTIBLES
+      surfaceChauffee: 100

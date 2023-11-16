@@ -1,0 +1,57 @@
+$id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-SE-106
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-SE-106
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-SE-106
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2020-04-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-SE-106v32-1"
+$defs:
+  BAR-SE-106v32-1:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-SE-106v32-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-SE-106v32-1
+    type: object
+    properties:
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
+          consommationSuivie:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/consommation_suivie
+        required:
+          - typeBatiment
+          - consommationSuivie
+    required:
+      - description
+examples:
+  - fiche: BAR-SE-106
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/1
+    description:
+      typeBatiment: MAISON
+      consommationSuivie: CHAUFFAGE_ELECTRIQUE

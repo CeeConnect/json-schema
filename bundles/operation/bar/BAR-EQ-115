@@ -23,7 +23,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        - "#/$defs/BAR-EQ-115v28-1"
+        - $ref: "#/$defs/BAR-EQ-115v28-1"
 $defs:
   BAR-EQ-115v28-1:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-EQ-115v28-1
@@ -232,7 +232,8 @@ $defs:
       - description
       - documents
 examples:
-  - fiche: BAR-EQ-115v28-1
+  - fiche: BAR-EQ-115
+    dateEngagement: "2024-01-01"
     description:
       typeBatiment: APPARTEMENT
       ancienneteBatiment: EXISTANT

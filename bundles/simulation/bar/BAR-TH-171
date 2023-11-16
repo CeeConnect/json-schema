@@ -1,0 +1,79 @@
+$id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-171
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-171
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-171
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2024-01-01"
+          formatExclusiveMaximum: "2028-07-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-TH-171v55-1"
+$defs:
+  BAR-TH-171v55-1:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-171v55-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-171v55-1
+    type: object
+    properties:
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-171v55-1#/properties/description/properties/typeBatiment
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-171v55-1#/properties/description/properties/ancienneteBatiment
+          energieChauffage:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffageResidentiel
+          usage:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-171v55-1#/properties/description/properties/usage
+          surfaceChauffee:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-171v55-1#/properties/description/properties/surfaceChauffee
+          performanceEnergetique:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-171v55-1#/properties/description/properties/performanceEnergetique
+          critereEquipementExistant:
+            title: L'équipement vient en remplacement d'une chaudière individuelle
+            type: boolean
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - energieChauffage
+          - usage
+          - surfaceChauffee
+          - performanceEnergetique
+          - critereEquipementExistant
+    required:
+      - description
+examples:
+  - fiche: BAR-TH-171
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      energieChauffage: FIOUL
+      usage: CHAUFFAGE
+      surfaceChauffee: 100
+      performanceEnergetique: 111
+      critereEquipementExistant: true

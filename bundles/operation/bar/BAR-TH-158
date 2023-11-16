@@ -23,7 +23,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        - "#/$defs/BAR-TH-158v35-2"
+        - $ref: "#/$defs/BAR-TH-158v35-2"
 $defs:
   BAR-TH-158v35-2:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-158v35-2
@@ -150,7 +150,8 @@ $defs:
       - description
       - documents
 examples:
-  - fiche: BAR-TH-158v35-2
+  - fiche: BAR-TH-158
+    dateEngagement: "2024-01-01"
     description:
       ancienneteBatiment: EXISTANT
       typeBatiment: MAISON

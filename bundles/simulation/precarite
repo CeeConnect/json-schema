@@ -1,0 +1,100 @@
+$id: https://schemas.ceeconnect.com/bundles/simulation/precarite
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: Précarité énergétique
+description: Prise en compte de la précarité énergétique du bénéficiaire
+type: object
+properties:
+  scenarioPrecarite:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/scenario_precarite
+required:
+  - scenarioPrecarite
+discriminator:
+  propertyName: scenarioPrecarite
+oneOf:
+  - $ref: '#/$defs/8.1'
+  - $ref: '#/$defs/8.3'
+  - $ref: '#/$defs/8.4'
+  - $ref: '#/$defs/8.5'
+$defs:
+  '8.1':
+    type: object
+    properties:
+      scenarioPrecarite:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/scenario_precarite#/$defs/8.1
+      categorieRessource:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/categorie_ressource
+    required:
+      - scenarioPrecarite
+      - categorieRessource
+  '8.2':
+    type: object
+    properties:
+      scenarioPrecarite:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/scenario_precarite#/$defs/8.2
+    required:
+      - scenarioPrecarite
+  '8.3':
+    type: object
+    properties:
+      scenarioPrecarite:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/scenario_precarite#/$defs/8.3
+      nombreMenages:
+        title: Nombre de ménages
+        description: Indiquer le nombre de ménages concernés par l'opération
+        type: integer
+        minimum: 1
+      nombreMenagesModestes:
+        title: Nombre de ménages modestes
+        description: |
+          Indiquer le nombre de ménages concernés par l'opération dont les ressources sont inférieures au plafond des 
+          catégories "Modeste" et "Très modestes" du barème Ma Prime Rénov'
+        type: integer
+        minimum: 0
+      nombreMenagesTresModestes:
+        title: Nombre de ménages précaires
+        description: |
+          Indiquer le nombre de ménages concernés par l'opération dont les ressources sont inférieures au plafond de 
+          catégorie "Très modestes" du barème Ma Prime Rénov'
+        type: integer
+        minimum: 0
+    required:
+      - scenarioPrecarite
+      - nombreMenages
+      - nombreMenagesModestes
+      - nombreMenagesTresModestes
+  '8.4':
+    type: object
+    properties:
+      scenarioPrecarite:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/scenario_precarite#/$defs/8.4
+    required:
+      - scenarioPrecarite
+  '8.5':
+    type: object
+    properties:
+      scenarioPrecarite:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/scenario_precarite#/$defs/8.5
+      nombreMenages:
+        title: Nombre de ménages
+        description: Indiquer le nombre de ménages concernés par l'opération
+        type: integer
+        minimum: 1
+      nombreMenagesModestes:
+        title: Nombre de ménages modestes
+        description: |
+          Indiquer le nombre de ménages concernés par l'opération dont les ressources sont inférieures au plafond des 
+          catégories "Modeste" et "Très modestes" du barème Ma Prime Rénov'
+        type: integer
+        minimum: 0
+      nombreMenagesTresModestes:
+        title: Nombre de ménages précaires
+        description: |
+          Indiquer le nombre de ménages concernés par l'opération dont les ressources sont inférieures au plafond de 
+          catégorie "Très modestes" du barème Ma Prime Rénov'
+        type: integer
+        minimum: 0
+    required:
+      - scenarioPrecarite
+      - nombreMenages
+      - nombreMenagesModestes
+      - nombreMenagesTresModestes

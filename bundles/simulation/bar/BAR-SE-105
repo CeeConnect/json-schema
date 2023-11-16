@@ -1,0 +1,73 @@
+$id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-SE-105
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-SE-105
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-SE-105
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2018-12-19"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-SE-105v28-1"
+$defs:
+  BAR-SE-105v28-1:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-SE-105v28-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-SE-105v28-1
+    type: object
+    properties:
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            title: Le bâtiment est un immeuble collectif d'habitation
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batiment
+          logements:
+            title: Nombre d'appartements
+            description: Nombre d'appartements raccordés à l'installation collective de
+              chauffage
+            type: integer
+            minimum: 0
+          dureeGarantie:
+            title: Durée de garantie
+            description: Durée de garantie du contrat de performance énergétique
+            type: integer
+            minimum: 2
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - logements
+          - dureeGarantie
+    required:
+      - description
+examples:
+  - fiche: BAR-SE-105
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/2
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      logements: 20
+      dureeGarantie: 2

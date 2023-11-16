@@ -1,5 +1,7 @@
 $id: https://schemas.ceeconnect.fr/bundles/operation/bonification/ZNI
 $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+$comment: |
+  - TODO: Adresse France outre mer + Corse
 title: Zones non interconnectées au réseau métropolitain continental de transport d'électricité
 type: object
 properties:

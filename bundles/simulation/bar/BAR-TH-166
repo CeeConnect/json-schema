@@ -1,0 +1,93 @@
+$id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-166
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-166
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-166
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2021-08-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-TH-166v38-1"
+$defs:
+  BAR-TH-166v38-1:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-166v38-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-166v38-1
+    type: object
+    properties:
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166v38-1#/properties/description/properties/typeBatiment
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166v38-1#/properties/description/properties/ancienneteBatiment
+          logements:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166v38-1#/properties/description/properties/logements
+          usage:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166v38-1#/properties/description/properties/usage
+          typeEquipement:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166v38-1#/properties/description/properties/typeEquipement
+          performanceEnergetique:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166v38-1#/properties/description/properties/performanceEnergetique
+          puissanceNominale:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166v38-1#/properties/description/properties/puissanceNominale
+          puissanceChaufferie:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166v38-1#/properties/description/properties/puissanceChaufferie
+          critereRegimeCopropriete:
+            title: L'immeuble relève du régime de la copropriété défini par la loi n° 65-557
+              du 10 juillet 1965
+            type: boolean
+          critereEquipementExistant:
+            title: L'équipement vient en remplacement d'une chaudière collective au fioul,
+              au gaz ou au charbon
+            type: boolean
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - logements
+          - usage
+          - typeEquipement
+          - performanceEnergetique
+          - puissanceNominale
+          - puissanceChaufferie
+          - critereRegimeCopropriete
+          - critereEquipementExistant
+    required:
+      - description
+examples:
+  - fiche: BAR-TH-166
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      logements: 10
+      usage: CHAUFFAGE
+      typeEquipement: PAC_EAU_EAU
+      performanceEnergetique: 111
+      puissanceNominale: 200
+      puissanceChaufferie: 200
+      critereRegimeCopropriete: true
+      critereEquipementExistant: true

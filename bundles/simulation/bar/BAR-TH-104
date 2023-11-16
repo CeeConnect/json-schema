@@ -1,0 +1,75 @@
+$id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-104
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-104
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-104
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2022-04-01"
+          formatExclusiveMaximum: "2024-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-TH-104v41-3"
+$defs:
+  BAR-TH-104v41-3:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-104v41-3
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-104v41-3
+    type: object
+    properties:
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-104v41-3#/properties/description/properties/typeBatiment
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-104v41-3#/properties/description/properties/ancienneteBatiment
+          energieChauffage:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffageResidentiel
+          surfaceChauffee:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-104v41-3#/properties/description/properties/surfaceChauffee
+          performanceEnergetique:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-104v41-3#/properties/description/properties/performanceEnergetique
+          critereEquipementExistant:
+            title: L'équipement vient en remplacement d'une chaudière individuelle
+            type: boolean
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - energieChauffage
+          - surfaceChauffee
+          - performanceEnergetique
+          - critereEquipementExistant
+    required:
+      - description
+examples:
+  - fiche: BAR-TH-104
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      energieChauffage: FIOUL
+      surfaceChauffee: 100
+      performanceEnergetique: 111
+      critereEquipementExistant: true

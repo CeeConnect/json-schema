@@ -1,0 +1,73 @@
+$id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-SE-109
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-SE-109
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-SE-109
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2023-09-30"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-SE-109v54-1"
+$defs:
+  BAR-SE-109v54-1:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-SE-109v54-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-SE-109v54-1
+    type: object
+    properties:
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            title: Le bâtiment est un immeuble collectif d'habitation
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batiment
+          typeEquipementExistant:
+            title: Type d'équipement assurant l'alimentation de chauffage
+            type: string
+            oneOf:
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/CHAUDIERE_HORS_CONDENSATION
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/CHAUDIERE_CONDENSATION
+              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/RESEAU_CHALEUR
+          logements:
+            title: Nombre de logements
+            type: integer
+            minimum: 0
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - typeEquipementExistant
+          - logements
+    required:
+      - description
+examples:
+  - fiche: BAR-SE-109
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      typeEquipementExistant: CHAUDIERE_HORS_CONDENSATION
+      logements: 50

@@ -27,7 +27,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        - "#/$defs/BAR-TH-127v40-4"
+        - $ref: "#/$defs/BAR-TH-127v40-4"
   - if:
       properties:
         dateEngagement:
@@ -39,7 +39,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        - "#/$defs/BAR-TH-127v54-5"
+        - $ref: "#/$defs/BAR-TH-127v54-5"
 $defs:
   BAR-TH-127v40-4:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-127v40-4
@@ -416,7 +416,8 @@ $defs:
       - description
       - documents
 examples:
-  - fiche: BAR-TH-127v40-4
+  - fiche: BAR-TH-127
+    dateEngagement: "2024-01-01"
     adresse:
       $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
@@ -428,7 +429,7 @@ examples:
       puissanceElectrique: 10
       classeEnergetique: A+
       referenceAvisTechnique: REFERENCE
-      dateAvisTechnique: 2020-01-01
+      dateAvisTechnique: "2020-01-01"
       marqueCaison: MARQUE
       referenceCaison: REFERENCE
       marqueBouchesExtraction: MARQUE
@@ -440,7 +441,8 @@ examples:
         url: https://api.ceeconnect.fr/document/documents/{uuid}
       - code: PREUVE_QUALIFICATION
         url: https://api.ceeconnect.fr/document/documents/{uuid}
-  - fiche: BAR-TH-127v54-5
+  - fiche: BAR-TH-127
+    dateEngagement: "2024-01-01"
     adresse:
       $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
@@ -453,7 +455,7 @@ examples:
       puissanceElectrique: 10
       classeEnergetique: A+
       referenceAvisTechnique: REFERENCE
-      dateAvisTechnique: 2020-01-01
+      dateAvisTechnique: "2020-01-01"
       marqueCaison: MARQUE
       referenceCaison: REFERENCE
       marqueBouchesExtraction: MARQUE

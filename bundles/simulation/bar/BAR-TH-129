@@ -1,0 +1,69 @@
+$id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-129
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-129
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-129
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2018-04-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-TH-129v27-3"
+$defs:
+  BAR-TH-129v27-3:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-129v27-3
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-129v27-3
+    type: object
+    properties:
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batiment
+          surfaceChauffee:
+            title: Surface chauffée par la pompe à chaleur (m²)
+            type: number
+            minimum: 0
+          performanceEnergetique:
+            title: Coefficient de performance saisonnier
+            type: number
+            minimum: 3.9
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - surfaceChauffee
+          - performanceEnergetique
+    required:
+      - description
+examples:
+  - fiche: BAR-TH-129
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      performanceEnergetique: 4.7
+      surfaceChauffee: 100

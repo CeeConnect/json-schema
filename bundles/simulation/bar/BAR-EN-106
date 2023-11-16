@@ -1,0 +1,61 @@
+$id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-EN-106
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-EN-106
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-EN-106
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceOutreMer
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2020-09-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-EN-106v33-4"
+$defs:
+  BAR-EN-106v33-4:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-EN-106v33-4
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-EN-106v33-4
+    type: object
+    properties:
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-106v33-4#/properties/description/properties/typeBatiment
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-106v33-4#/properties/description/properties/ancienneteBatiment
+          quantite:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-106v33-4#/properties/description/properties/quantite
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - quantite
+    required:
+      - description
+examples:
+  - fiche: BAR-EN-106
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/3
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      quantite: 100

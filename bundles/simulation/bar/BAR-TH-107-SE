@@ -1,0 +1,110 @@
+$id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-107-SE
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-107-SE
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-107-SE
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2015-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-TH-107-SEv14-1"
+$defs:
+  BAR-TH-107-SEv14-1:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-107-SEv14-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-107-SEv14-1
+    type: object
+    properties:
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            title: Le bâtiment est un immeuble collectif d'habitation
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batiment
+          logements:
+            title: Nombre d'appartements
+            description: Nombre d'appartements raccordés à la chaudière collective
+            type: integer
+            minimum: 0
+          puissanceNominale:
+            title: Puissance nominale (kW)
+            description: Puissance nominale de la chaudière collective en kW
+            type: integer
+            minimum: 0
+          puissanceEligibleAutresFiches:
+            title: Puissance totale de la pompe à chaleur installée (kW)
+            description: Puissance nominale totale des chaudières nouvellement installés
+              respectant les conditions des fiches d'opérations standardisées en
+              vigueur
+            type: number
+            minimum: 0
+          puissanceEligible:
+            title: Puissance nominale totale des chaudières nouvellement installées (kW)
+            type: number
+            minimum: 0
+          puissanceChaufferie:
+            title: Puissance nominale totale de la chaufferie après travaux (kW)
+            type: number
+            minimum: 0
+          dureeContrat:
+            title: Durée du contrat
+            type: integer
+            minimum: 1
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - logements
+          - puissanceNominale
+          - puissanceEligibleAutresFiches
+          - dureeContrat
+        allOf:
+          - if:
+              properties:
+                puissanceEligibleAutresFiches:
+                  type: number
+                  exclusiveMinimum: 0
+              required:
+                - puissanceEligibleAutresFiches
+                - puissanceChaufferie
+            then:
+              required:
+                - puissanceEligible
+                - puissanceChaufferie
+    required:
+      - description
+examples:
+  - fiche: BAR-TH-107-SE
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      logements: 50
+      puissanceNominale: 100
+      puissanceEligibleAutresFiches: 0
+      puissanceChaufferie: 100
+      puissanceEligible: 100
+      dureeContrat: 10

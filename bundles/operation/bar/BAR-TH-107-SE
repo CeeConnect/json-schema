@@ -23,7 +23,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        - "#/$defs/BAR-TH-107-SEv14-1"
+        - $ref: "#/$defs/BAR-TH-107-SEv14-1"
 $defs:
   BAR-TH-107-SEv14-1:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-107-SEv14-1
@@ -242,7 +242,8 @@ $defs:
       - description
       - documents
 examples:
-  - fiche: BAR-TH-107-SEv14-1
+  - fiche: BAR-TH-107-SE
+    dateEngagement: "2024-01-01"
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT
@@ -253,7 +254,7 @@ examples:
       reference: REFERENCE
       autreEquipement: false
       contrat:
-        dateContrat: 2023-09-25
+        dateContrat: "2023-09-25"
         dureeContrat: 5
         critereDebutContrat: true
         critereObjet: true

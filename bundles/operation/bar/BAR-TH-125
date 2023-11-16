@@ -27,7 +27,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        - "#/$defs/BAR-TH-125v40-4"
+        - $ref: "#/$defs/BAR-TH-125v40-4"
   - if:
       properties:
         dateEngagement:
@@ -39,7 +39,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        - "#/$defs/BAR-TH-125v54-5"
+        - $ref: "#/$defs/BAR-TH-125v54-5"
 $defs:
   BAR-TH-125v40-4:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-125v40-4
@@ -319,7 +319,8 @@ $defs:
       - description
       - documents
 examples:
-  - fiche: BAR-TH-125v40-4
+  - fiche: BAR-TH-125
+    dateEngagement: "2024-01-01"
     adresse:
       $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
@@ -339,7 +340,8 @@ examples:
     documents:
       - code: PREUVE_QUALIFICATION
         url: https://api.ceeconnect.fr/document/documents/{uuid}
-  - fiche: BAR-TH-125v54-5
+  - fiche: BAR-TH-125
+    dateEngagement: "2024-01-01"
     adresse:
       $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:

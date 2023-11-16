@@ -1,0 +1,78 @@
+$id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-110
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-110
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-110
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2015-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-TH-110v16-1"
+$defs:
+  BAR-TH-110v16-1:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-110v16-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-110v16-1
+    type: object
+    properties:
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batiment
+          quantite:
+            title: Nombre de radiateurs
+            type: integer
+            minimum: 0
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - quantite
+        allOf:
+          - if:
+              properties:
+                typeBatiment:
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/APPARTEMENT
+              required:
+                - typeBatiment
+            then:
+              properties:
+                typeInstallationChauffage:
+                  title: Type d'installation de chauffage
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation
+              required:
+                - typeInstallationChauffage
+    required:
+      - description
+examples:
+  - fiche: BAR-TH-110
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: APPARTEMENT
+      ancienneteBatiment: EXISTANT
+      typeInstallationChauffage: COLLECTIF
+      quantite: 10

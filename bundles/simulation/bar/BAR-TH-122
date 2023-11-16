@@ -1,0 +1,66 @@
+$id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-122
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-122
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-122
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2015-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-TH-122v15-1"
+$defs:
+  BAR-TH-122v15-1:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-122v15-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    $comment: |
+      - TODO: Données d'entrée pour le calcul du coefficient R
+    title: BAR-TH-122v15-1
+    type: object
+    properties:
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            title: Le bâtiment est un immeuble collectif d'habitation
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batiment
+          logements:
+            title: Nombre d'appartements raccordés à la chaudière collective
+            type: integer
+            minimum: 0
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - logements
+    required:
+      - description
+examples:
+  - fiche: BAR-TH-122
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      logements: 10

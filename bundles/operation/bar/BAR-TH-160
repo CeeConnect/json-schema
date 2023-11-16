@@ -27,7 +27,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        - "#/$defs/BAR-TH-160v39-2"
+        - $ref: "#/$defs/BAR-TH-160v39-2"
   - if:
       properties:
         dateEngagement:
@@ -39,7 +39,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        - "#/$defs/BAR-TH-160v50-3"
+        - $ref: "#/$defs/BAR-TH-160v50-3"
   - if:
       properties:
         dateEngagement:
@@ -51,7 +51,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        - "#/$defs/BAR-TH-160v54-4"
+        - $ref: "#/$defs/BAR-TH-160v54-4"
 $defs:
   BAR-TH-160v39-2:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-160v39-2
@@ -464,7 +464,8 @@ $defs:
       - description
       - documents
 examples:
-  - fiche: BAR-TH-160v39-2
+  - fiche: BAR-TH-160
+    dateEngagement: "2024-01-01"
     adresse:
       $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
@@ -486,7 +487,8 @@ examples:
         url: https://api.ceeconnect.fr/document/documents/{uuid}
       - code: ACCREDITATION
         url: https://api.ceeconnect.fr/document/documents/{uuid}
-  - fiche: BAR-TH-160v50-3
+  - fiche: BAR-TH-160
+    dateEngagement: "2024-01-01"
     adresse:
       $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
@@ -508,7 +510,8 @@ examples:
         url: https://api.ceeconnect.fr/document/documents/{uuid}
       - code: ACCREDITATION
         url: https://api.ceeconnect.fr/document/documents/{uuid}
-  - fiche: BAR-TH-160v54-4
+  - fiche: BAR-TH-160
+    dateEngagement: "2024-01-01"
     adresse:
       $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
@@ -528,7 +531,7 @@ examples:
         siren: "000000000"
         referenceRapport: Référence du rapport
         numeroAccreditation: AF 15167191
-        dateFinAccreditation: 2025-10-23
+        dateFinAccreditation: "2025-10-23"
       installateur:
         $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
     documents:

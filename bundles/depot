@@ -1,0 +1,38 @@
+$id: https://schemas.ceeconnect.fr/bundles/depot
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Dépôt d'opération d'économies d'énergie
+type: object
+properties:
+  uuid:
+    title: Identifiant
+    description: Identifiant unique au format UUID
+    type: string
+    format: uuid
+  referenceEmmy:
+    title: Référence Emmy du dépôt
+    type: string
+  demandeur:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/demandeur
+  dateDepot:
+    title: Date de dépôt
+    description: Date de dépôt des opérations au PNCEE
+    type: string
+    format: date
+  operations:
+    title: Liste des opérations d'économies d'énergie
+    type: array
+    items:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/operation
+required:
+  - uuid
+  - referenceEmmy
+  - demandeur
+  - dateDepot
+  - operations
+examples:
+  - uuid: 974aa6de-deaf-4452-b491-3badde8972ac
+    referenceEmmy: 974aa6de-deaf-4452-b491-3badde8972ac
+    demandeur:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/demandeur#/examples/0
+    dateDepot: "2023-01-01"
+    operations: []

@@ -27,7 +27,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        - "#/$defs/BAR-TH-130v26-1"
+        - $ref: "#/$defs/BAR-TH-130v26-1"
   - if:
       properties:
         dateEngagement:
@@ -39,7 +39,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        - "#/$defs/BAR-TH-130v54-2"
+        - $ref: "#/$defs/BAR-TH-130v54-2"
 $defs:
   BAR-TH-130v26-1:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-130v26-1
@@ -339,7 +339,8 @@ $defs:
       - description
       - documents
 examples:
-  - fiche: BAR-TH-130v26-1
+  - fiche: BAR-TH-130
+    dateEngagement: "2024-01-01"
     adresse:
       $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
@@ -365,7 +366,8 @@ examples:
         url: https://api.ceeconnect.fr/document/documents/{uuid}
       - code: DAACT
         url: https://api.ceeconnect.fr/document/documents/{uuid}
-  - fiche: BAR-TH-130v54-2
+  - fiche: BAR-TH-130
+    dateEngagement: "2024-01-01"
     adresse:
       $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:

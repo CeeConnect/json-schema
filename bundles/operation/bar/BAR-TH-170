@@ -24,7 +24,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        - "#/$defs/BAR-TH-170v54-1"
+        - $ref: "#/$defs/BAR-TH-170v54-1"
 $defs:
   BAR-TH-170v54-1:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-170v54-1
@@ -200,7 +200,8 @@ $defs:
       - description
       - documents
 examples:
-  - fiche: BAR-TH-170v54-1
+  - fiche: BAR-TH-170
+    dateEngagement: "2024-01-01"
     description:
       typeBatiment: IMMEUBLE
       indicateurEfficaciteEnergetique: 1
@@ -211,8 +212,8 @@ examples:
       critereRefroidissementAuxiliaire: false
       crietereCouvertureUsages: false
       contrat:
-        dateSignature: 2024-01-01
-        dateDebut: 2024-02-01
+        dateSignature: "2024-01-01"
+        dateDebut: "2024-02-01"
         duree: 5
         critereObject: true
       prestataire:

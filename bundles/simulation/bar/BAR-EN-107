@@ -1,0 +1,65 @@
+$id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-EN-107
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-EN-107
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-EN-107
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceOutreMer
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2016-03-13"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-EN-107v20-3"
+$defs:
+  BAR-EN-107v20-3:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-EN-107v20-3
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-EN-107v20-3
+    type: object
+    properties:
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-107v20-3#/properties/description/properties/typeBatiment
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-107v20-3#/properties/description/properties/ancienneteBatiment
+          quantite:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-107v20-3#/properties/description/properties/quantite
+          resistanceThermique:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-107v20-3#/properties/description/properties/resistanceThermique
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - quantite
+          - resistanceThermique
+    required:
+      - description
+examples:
+  - fiche: BAR-EN-107
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/3
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      quantite: 100
+      resistanceThermique: 0.5

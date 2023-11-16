@@ -1,0 +1,88 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/simulation/CRC
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: Coup de pouce Rénovation performante de bâtiment résidentiel collectif
+type: object
+properties:
+  fiche:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/fiche
+    pattern: BAR-TH-145
+  bonification:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bonification
+    const: CRC
+  dateEngagement:
+    title: Date d'engagement
+    type: string
+    format: date
+required:
+  - fiche
+  - bonification
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2023-07-02"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        $ref: "#/$defs/CRCv51-1"
+$defs:
+  CRCv51-1:
+    title: Version en vigueur à compter du 02/07/2023
+    type: object
+    properties:
+      description:
+        type: object
+        properties:
+          critereRegimeCopropriete:
+            title: L'immeuble relève du régime de la copropriété défini par la loi n° 65-557 du 10 juillet 1965
+            type: boolean
+          critereChangemenentEquipement:
+            title: Changement des équipements de chauffage ou de production d'eau chaude sanitaire
+            description: Cas de travaux incluant le changement de tous les équipements de chauffage ou de production d'eau chaude sanitaire
+            type: boolean
+        required:
+          - critereRegimeCopropriete
+          - critereChangemenentEquipement
+        allOf:
+          - if:
+              type: object
+              properties:
+                critereChangemenentEquipement:
+                  type: boolean
+                  const: true
+              required:
+                - critereChangemenentEquipement
+            then:
+              properties:
+                critereAlimentationReseauChaleur:
+                  title: Raccordement à un réseau de chaleur alimenté majoritairement par des énergies renouvelables ou de récupération
+                  type: boolean
+                critereEquipementEligible:
+                  title: Eligibilité des chaudières
+                  description: Le changement des équipements de chauffage ou de production d'eau chaude sanitaire ne comporte pas de chaudières consommant du charbon ou du fioul, ou de chaudières consommant du gaz autres qu'à condensation.
+                  type: boolean
+                  const: true
+                tauxEnergieRenouvelable:
+                  title: Poucentage d'énergie renouvelable ou de récupération utilisée
+                  type: number
+                  minimum: 0
+              required:
+                - critereAlimentationReseauChaleur
+                - critereEquipementEligible
+                - tauxEnergieRenouvelable
+    required:
+      - description
+examples:
+  - fiche: BAR-TH-145
+    bonification: CRC
+    dateEngagement: "2024-01-01"
+    description:
+      critereChangemenentEquipement: true
+      critereRegimeCopropriete: true
+      critereAlimentationReseauChaleur: false
+      critereEquipementEligible: true
+      tauxEnergieRenouvelable: 50

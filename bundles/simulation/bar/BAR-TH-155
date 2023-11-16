@@ -1,0 +1,67 @@
+$id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-155
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-155
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-155
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2022-04-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-TH-155v40-4"
+$defs:
+  BAR-TH-155v40-4:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-155v40-4
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-155v40-4
+    type: object
+    properties:
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-155v40-4#/properties/description/properties/typeBatiment
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-155v40-4#/properties/description/properties/ancienneteBatiment
+          typeEquipement:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-155v40-4#/properties/description/properties/typeEquipement
+          typeExtracteur:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-155v40-4#/properties/description/properties/typeExtracteur
+          logements:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-155v40-4#/properties/description/properties/logements
+        required:
+          - ancienneteBatiment
+          - typeEquipement
+          - typeExtracteur
+          - logements
+    required:
+      - description
+examples:
+  - fiche: BAR-TH-155
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      ancienneteBatiment: EXISTANT
+      logements: 20
+      typeEquipement: TYPE_B
+      typeExtracteur: STANDARD

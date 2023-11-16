@@ -1,0 +1,56 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/simulation/CPE
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: Contrat de performance énergétique
+type: object
+properties:
+  fiche:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/fiche
+    pattern: ^(BAR|BAT).*
+  bonification:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bonification
+    const: CPE
+  dateEngagement:
+    title: Date d'engagement
+    type: string
+    format: date
+required:
+  - fiche
+  - bonification
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2021-12-24"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        $ref: "#/$defs/CPEv40-1"
+$defs:
+  CPEv40-1:
+    title: Version en vigueur à compter du 24/12/2021
+    type: object
+    properties:
+      description:
+        type: object
+        properties:
+          dureeGarantie:
+            title: Durée de garantie
+            description: |
+              Indiquer la durée du contrat de performance énergétique pendant laquelle les économies d'énergie 
+              sont garanties
+            type: integer
+            minimum: 1
+        required:
+          - dureeGarantie
+    required:
+      - description
+examples:
+  - fiche: BAR-TH-101
+    bonification: CPE
+    dateEngagement: "2024-01-01"
+    description:
+      dureeGarantie: 10

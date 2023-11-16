@@ -1,0 +1,116 @@
+$id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-143
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-143
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-143
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2015-01-01"
+          formatExclusiveMaximum: "2023-03-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-TH-143v25-1"
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2023-03-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-TH-143v51-5"
+$defs:
+  BAR-TH-143v25-1:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-143v25-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-143v25-1
+    type: object
+    properties:
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-143v25-1#/properties/description/properties/typeBatiment
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-143v25-1#/properties/description/properties/ancienneteBatiment
+          energieChauffage:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffageResidentiel
+          critereEquipementExistant:
+            title: L'équipement vient en remplacement d'une chaudière individuelle
+            type: boolean
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - energieChauffage
+          - critereEquipementExistant
+    required:
+      - description
+  BAR-TH-143v51-5:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-143v51-5
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-143v51-5
+    type: object
+    properties:
+      adresse:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-143v51-5#/properties/description/properties/typeBatiment
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-143v51-5#/properties/description/properties/ancienneteBatiment
+          energieChauffage:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffageResidentiel
+          critereEquipementExistant:
+            title: L'équipement vient en remplacement d'une chaudière individuelle
+            type: boolean
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - energieChauffage
+          - critereEquipementExistant
+    required:
+      - adresse
+      - description
+examples:
+  - fiche: BAR-TH-143
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      energieChauffage: FIOUL
+      critereEquipementExistant: true
+  - fiche: BAR-TH-143
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      energieChauffage: FIOUL
+      critereEquipementExistant: true

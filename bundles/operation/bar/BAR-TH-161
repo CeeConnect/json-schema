@@ -24,7 +24,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        - "#/$defs/BAR-TH-161v28-1"
+        - $ref: "#/$defs/BAR-TH-161v28-1"
   - if:
       properties:
         dateEngagement:
@@ -35,7 +35,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        - "#/$defs/BAR-TH-161v54-2"
+        - $ref: "#/$defs/BAR-TH-161v54-2"
 $defs:
   BAR-TH-161v28-1:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-161v28-1
@@ -354,11 +354,12 @@ $defs:
       - description
       - documents
 examples:
-  - fiche: BAR-TH-161v28-1
+  - fiche: BAR-TH-161
+    dateEngagement: "2024-01-01"
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT
-      dateEtatRecapitulatif: 2023-12-12
+      dateEtatRecapitulatif: "2023-12-12"
       equipements:
         - typePointSingulier: ECHANGEUR
           temperatureFluide: 60
@@ -377,11 +378,12 @@ examples:
         url: https://api.ceeconnect.fr/document/documents/{uuid}
       - code: ACCREDITATION_ORGANISME_CONTROLE
         url: https://api.ceeconnect.fr/document/documents/{uuid}
-  - fiche: BAR-TH-161v54-2
+  - fiche: BAR-TH-161
+    dateEngagement: "2024-01-01"
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT
-      dateEtatRecapitulatif: 2023-12-12
+      dateEtatRecapitulatif: "2023-12-12"
       equipements:
         - typePointSingulier: ECHANGEUR
           temperatureFluide: 60

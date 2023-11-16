@@ -1,0 +1,204 @@
+$id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-145
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-145
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-145
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v36-3#/properties/adresse
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2020-10-12"
+          formatExclusiveMaximum: "2023-08-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-TH-145v36-3"
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2023-08-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-TH-145v52-4"
+$defs:
+  BAR-TH-145v36-3:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-145v36-3
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-145v36-3
+    type: object
+    properties:
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v36-3#/properties/description/properties/typeBatiment
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v36-3#/properties/description/properties/ancienneteBatiment
+          critereRegimeCopropriete:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v36-3#/properties/description/properties/critereRegimeCopropriete
+          surfaceHabitable:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v36-3#/properties/description/properties/surfaceHabitable
+          logements:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v36-3#/properties/description/properties/logements
+          critereChangemenentEquipement:
+            title: Changement des équipements de chauffage ou de production d'eau chaude
+              sanitaire
+            description: Cas de travaux incluant le changement de tous les équipements de
+              chauffage ou de production d'eau chaude sanitaire
+            type: boolean
+          auditEnergetique:
+            title: Audit énergétique
+            description: Renseigner les informations issues de l'audit énergétique
+            type: object
+            properties:
+              cefInitial:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v36-3#/properties/description/properties/auditEnergetique/properties/cefInitial
+              cefProjet:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v36-3#/properties/description/properties/auditEnergetique/properties/cefProjet
+            required:
+              - cefInitial
+              - cefProjet
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - critereRegimeCopropriete
+          - surfaceHabitable
+          - logements
+          - critereChangemenentEquipement
+          - auditEnergetique
+        allOf:
+          - if:
+              properties:
+                critereChangemenentEquipement:
+                  type: boolean
+                  const: true
+              required:
+                - critereChangemenentEquipement
+            then:
+              properties:
+                tauxEnergieRenouvelable:
+                  title: Poucentage d'énergie renouvelable ou de récupération utilisée
+                  type: number
+                  minimum: 0
+              required:
+                - tauxEnergieRenouvelable
+    required:
+      - description
+  BAR-TH-145v52-4:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-145v52-4
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-145v52-4
+    type: object
+    properties:
+      adresse:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v52-4#/properties/adresse
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v52-4#/properties/description/properties/typeBatiment
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v52-4#/properties/description/properties/ancienneteBatiment
+          critereRegimeCopropriete:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v52-4#/properties/description/properties/critereRegimeCopropriete
+          surfaceHabitable:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v52-4#/properties/description/properties/surfaceHabitable
+          logements:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v52-4#/properties/description/properties/logements
+          critereChangemenentEquipement:
+            title: Changement des équipements de chauffage ou de production d'eau chaude
+              sanitaire
+            description: Cas de travaux incluant le changement de tous les équipements de
+              chauffage ou de production d'eau chaude sanitaire
+            type: boolean
+          auditEnergetique:
+            title: Audit énergétique
+            description: Renseigner les informations issues de l'audit énergétique
+            type: object
+            properties:
+              cefInitial:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v52-4#/properties/description/properties/auditEnergetique/properties/cefInitial
+              cefProjet:
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v52-4#/properties/description/properties/auditEnergetique/properties/cefProjet
+            required:
+              - cefInitial
+              - cefProjet
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - critereRegimeCopropriete
+          - surfaceHabitable
+          - logements
+          - critereChangemenentEquipement
+          - auditEnergetique
+        allOf:
+          - if:
+              properties:
+                critereChangemenentEquipement:
+                  type: boolean
+                  const: true
+              required:
+                - critereChangemenentEquipement
+            then:
+              properties:
+                tauxEnergieRenouvelable:
+                  title: Poucentage d'énergie renouvelable ou de récupération utilisée
+                  type: number
+                  minimum: 0
+              required:
+                - tauxEnergieRenouvelable
+    required:
+      - adresse
+      - description
+examples:
+  - fiche: BAR-TH-145
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      surfaceHabitable: 1000
+      logements: 40
+      critereRegimeCopropriete: true
+      critereChangemenentEquipement: true
+      tauxEnergieRenouvelable: 60
+      auditEnergetique:
+        cefInitial: 400
+        cefProjet: 200
+  - fiche: BAR-TH-145
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      surfaceHabitable: 1000
+      logements: 40
+      critereRegimeCopropriete: true
+      critereChangemenentEquipement: true
+      tauxEnergieRenouvelable: 60
+      auditEnergetique:
+        cefInitial: 400
+        cefProjet: 200

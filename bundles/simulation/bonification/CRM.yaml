@@ -1,0 +1,137 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/simulation/CRM
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: Coup de pouce Rénovation performante d'une maison individuelle
+type: object
+properties:
+  fiche:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/fiche
+    const: BAR-TH-164
+  bonification:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bonification
+    const: CRM
+  dateEngagement:
+    title: Date d'engagement
+    type: string
+    format: date
+required:
+  - fiche
+  - bonification
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2023-03-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        $ref: "#/$defs/CRMv51-1"
+$defs:
+  CRMv51-1:
+    title: Version en vigueur à compter du 01/03/2023
+    type: object
+    properties:
+      description:
+        type: object
+        properties:
+          categoriesTravaux:
+            title: Catégories de travaux
+            description: |
+              Les travaux doivent couvrir l'une des catégories suivantes :
+              - L'isolation thermique des murs
+              - L'isolation thermique des toitures
+              - L'isolation thermique des planchers des combles perdus ET des planchers bas
+            type: array
+            uniqueItems: true
+            minItems: 1
+            oneOf:
+              - contains:
+                  enum:
+                    - ISOLATION_MURS
+                    - ISOLATION_TOITURES
+              - allOf:
+                  - contains:
+                      enum:
+                        - ISOLATION_PLANCHERS_HAUTS
+                  - contains:
+                      enum:
+                        - ISOLATION_PLANCHERS_BAS
+            items: 
+              type: string
+              oneOf:
+                - const: ISOLATION_MURS
+                  title: Isolation thermique des murs
+                  description: |
+                    Travaux d'isolation thermique des murs couvrant au moins 75 % de la surface totale des murs 
+                    donnant sur l'extérieur et mettant en œuvre un procédé d'isolation par l'intérieur ou par l'extérieur. 
+                - const: ISOLATION_TOITURES
+                  title: Isolation thermique des toitures
+                  description: |
+                    Travaux d'isolation thermique des toitures mettant en œuvre un procédé d'isolation comportant un ou des 
+                    matériaux d'isolation thermique en toiture-terrasse ou en rampant de toiture et couvrant au moins 75 % de 
+                    la surface totale des toitures.
+                - const: ISOLATION_PLANCHERS_HAUTS
+                  title: Isolation thermique des planchers des combles perdus
+                  description: |
+                    Travaux d'isolation thermique d'au moins 75% de la surface totale des planchers des combles perdus.
+                - const: ISOLATION_PLANCHERS_BAS
+                  title: Isolation thermique des planchers bas
+                  description: |
+                    Travaux d'isolation thermique d'au moins 75% des planchers bas situés entre un volume 
+                    chauffé et un sous-sol non chauffé, un vide sanitaire ou un passage ouvert.
+                - const: CHAUFFAGE
+                  title: Changement des équipements de chauffage
+                  description: Les travaux incluent le changement de tous les équipements de chauffage.
+                - const: EAU_CHAUDE_SANITAIRE
+                  title: Changement des équipements de production d'eau chaude sanitaire
+                  description: Les travaux incluent le changement de tous les équipements de production d'eau chaude sanitaire.
+          auditEnergetique:
+            type: object
+            properties:
+              gainEnergetique:
+                type: number
+                minimum: 55
+            required:
+              - gainEnergetique
+        required:
+          - categoriesTravaux
+          - auditEnergetique
+        allOf:
+          - if:
+              type: object
+              properties:
+                categoriesTravaux:
+                  type: array
+                  contains:
+                    enum:
+                      - CHAUFFAGE
+                      - EAU_CHAUDE_SANITAIRE
+              required:
+                - categoriesTravaux
+            then:
+              properties:
+                critereEquipementEligible:
+                  title: Eligibilité des équipements de chauffage ou de production d'eau chaude sanitaire
+                  description: |
+                    Les changements d'équipements de chauffage ou de production d'eau chaude sanitaire ne doivent conduire 
+                    ni à l'installation d'équipements de chauffage ou de production d'eau chaude sanitaire consommant majoritairement du charbon, du fioul ou du gaz.
+                  type: boolean
+                  const: true
+              required:
+                - critereEquipementEligible
+    required:
+      - description
+examples:
+  - fiche: BAR-TH-164
+    bonification: CRM
+    dateEngagement: "2024-01-01"
+    description:
+      categoriesTravaux:
+        - ISOLATION_MURS
+        - CHAUFFAGE
+      critereEquipementEligible: true
+      auditEnergetique:
+        gainEnergetique: 70

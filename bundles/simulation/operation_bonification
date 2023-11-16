@@ -1,0 +1,71 @@
+$id: https://schemas.ceeconnect.com/bundles/simulation/operation_bar
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: Opération bonifiée
+type: object
+properties:
+  fiche:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation#/properties/fiche
+  bonification:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation#/properties/bonification
+  dateEngagement:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation#/properties/dateEngagement
+required:
+  - fiche
+  - dateEngagement
+discriminator:
+  propertyName: bonification
+oneOf:
+  - type: object
+    properties:
+      bonification:
+        const: CDP
+    required:
+      - bonification
+    allOf:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/bonification/CDP
+  - type: object
+    properties:
+      bonification:
+        const: CFT
+    required:
+      - bonification
+    allOf:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/bonification/CFT
+  - type: object
+    properties:
+      bonification:
+        const: CPE
+    required:
+      - bonification
+    allOf:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/bonification/CPE
+  - type: object
+    properties:
+      bonification:
+        const: CRC
+    required:
+      - bonification
+    allOf:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/bonification/CRC
+  - type: object
+    properties:
+      bonification:
+        const: CDM
+    required:
+      - bonification
+    allOf:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/bonification/CDM
+  - type: object
+    properties:
+      bonification:
+        const: ZNI
+    required:
+      - bonification
+    allOf:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/bonification/ZNI
+  - type: object
+    properties:
+      bonification:
+        type: "null"
+    required:
+      - bonification

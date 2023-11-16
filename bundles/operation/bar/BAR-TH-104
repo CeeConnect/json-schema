@@ -24,7 +24,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        - "#/$defs/BAR-TH-104v41-3"
+        - $ref: "#/$defs/BAR-TH-104v41-3"
 $defs:
   BAR-TH-104v41-3:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-104v41-3
@@ -119,7 +119,8 @@ $defs:
       - description
       - documents
 examples:
-  - fiche: BAR-TH-104v41-3
+  - fiche: BAR-TH-104
+    dateEngagement: "2024-01-01"
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT

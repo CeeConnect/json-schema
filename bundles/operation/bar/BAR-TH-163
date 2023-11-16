@@ -23,7 +23,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        - "#/$defs/BAR-TH-163v38-2"
+        - $ref: "#/$defs/BAR-TH-163v38-2"
 $defs:
   BAR-TH-163v38-2:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-163v38-2
@@ -154,7 +154,8 @@ $defs:
           - const: VMC
             title: VMC gaz
 examples:
-  - fiche: BAR-TH-163v38-2
+  - fiche: BAR-TH-163
+    dateEngagement: "2024-01-01"
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT

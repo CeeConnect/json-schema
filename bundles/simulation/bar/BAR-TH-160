@@ -1,0 +1,152 @@
+$id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-160
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-TH-160
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-TH-160
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2022-05-01"
+          formatExclusiveMaximum: "2023-04-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-TH-160v39-2"
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2023-04-01"
+          formatExclusiveMaximum: "2023-10-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-TH-160v50-3"
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2023-10-01"
+          formatExclusiveMaximum: "2028-04-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-TH-160v54-4"
+$defs:
+  BAR-TH-160v39-2:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-160v39-2
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-160v39-2
+    type: object
+    properties:
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160v39-2#/properties/description/properties/typeBatiment
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160v39-2#/properties/description/properties/ancienneteBatiment
+          quantite:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160v39-2#/properties/description/properties/quantite
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - quantite
+    required:
+      - description
+  BAR-TH-160v50-3:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-160v50-3
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-160v50-3
+    type: object
+    properties:
+      adresse:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160v50-3#/properties/description/properties/typeBatiment
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160v50-3#/properties/description/properties/ancienneteBatiment
+          quantite:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160v50-3#/properties/description/properties/quantite
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - quantite
+    required:
+      - adresse
+      - description
+  BAR-TH-160v54-4:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-160v54-4
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-TH-160v54-4
+    type: object
+    properties:
+      adresse:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160v54-4#/properties/description/properties/typeBatiment
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160v54-4#/properties/description/properties/ancienneteBatiment
+          quantite:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160v54-4#/properties/description/properties/quantite
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - quantite
+    required:
+      - adresse
+      - description
+examples:
+  - fiche: BAR-TH-160
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      quantite: 50
+  - fiche: BAR-TH-160
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      quantite: 50
+  - fiche: BAR-TH-160
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: IMMEUBLE
+      ancienneteBatiment: EXISTANT
+      quantite: 50

@@ -1,0 +1,66 @@
+$id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-EQ-115
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-EQ-115
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-EQ-115
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          format: date
+          formatMinimum: "2019-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-EQ-115v28-1"
+$defs:
+  BAR-EQ-115v28-1:
+    $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-EQ-115v28-1
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: BAR-EQ-115v28-1
+    type: object
+    properties:
+      description:
+        title: Caractéristiques
+        type: object
+        properties:
+          typeBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-115v28-1#/properties/description/properties/typeBatiment
+          ancienneteBatiment:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-115v28-1#/properties/description/properties/ancienneteBatiment
+          surfaceHabitable:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-115v28-1#/properties/description/properties/surfaceHabitable
+          optionSuiviConfort:
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-115v28-1#/properties/description/properties/optionSuiviConfort
+        required:
+          - typeBatiment
+          - ancienneteBatiment
+          - surfaceHabitable
+          - optionSuiviConfort
+    required:
+      - fiche
+      - description
+examples:
+  - fiche: BAR-EQ-115
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+    description:
+      typeBatiment: MAISON
+      ancienneteBatiment: EXISTANT
+      surfaceHabitable: 100
+      optionSuiviConfort: true
