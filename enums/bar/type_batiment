@@ -1,0 +1,40 @@
+$id: https://schemas.ceeconnect.fr/enums/bar/type_batiment
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Type de bâtiment
+type: string
+oneOf:
+  - $ref: "#/$defs/MAISON"
+  - $ref: "#/$defs/APPARTEMENT"
+  - $ref: "#/$defs/IMMEUBLE"
+$defs:
+  MAISON:
+    title: Maison individuelle
+    const: MAISON
+  APPARTEMENT:
+    title: Appartement
+    const: APPARTEMENT
+  IMMEUBLE:
+    title: Immeuble collectif
+    const: IMMEUBLE
+    description: |
+      Sont considérés comme des bâtiments résidentiels collectifs dans le cadre de ce dispositif, les immeubles 
+      dont au moins 75 % de la surface totale chauffée est utilisée ou destinée à être utilisée en tant 
+      qu'habitation.
+  individuel:
+    title: Type de logement
+    type: string
+    oneOf:
+      - $ref: "#/$defs/MAISON"
+      - $ref: "#/$defs/APPARTEMENT"
+  collectif:
+    title: Type de bâtiment
+    type: string
+    oneOf:
+      - $ref: "#/$defs/IMMEUBLE"
+      - $ref: "#/$defs/APPARTEMENT"
+  batiment:
+    title: Type de bâtiment
+    type: string
+    oneOf:
+      - $ref: "#/$defs/MAISON"
+      - $ref: "#/$defs/IMMEUBLE"

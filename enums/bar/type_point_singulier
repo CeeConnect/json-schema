@@ -1,0 +1,14 @@
+$id: https://schemas.ceeconnect.fr/enums/bar/type_point_singulier
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Type de points singuliers
+type: string
+oneOf:
+  - $ref: "#/$defs/ECHANGEUR"
+  - $ref: "#/$defs/HORS_ECHANGEUR"
+$defs:
+  ECHANGEUR:
+    const: ECHANGEUR
+    title: Echangeur à plaques
+  HORS_ECHANGEUR:
+    const: HORS_ECHANGEUR
+    title: Autres

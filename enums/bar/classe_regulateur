@@ -1,0 +1,29 @@
+$id: https://schemas.ceeconnect.fr/enums/bar/classe_regulateur
+$schema: https://json-schema.org/draft/2020-12/schema
+$comment: Classe du régulateur telle que définie au paragraphe 6.1 de la
+  communication de la Commission 2014/C 207/02 dans le cadre du règlement (UE)
+  n°813/2013
+title: Classe du régulateur
+type: string
+oneOf:
+  - $ref: "#/$defs/IV"
+  - $ref: "#/$defs/V"
+  - $ref: "#/$defs/VI"
+  - $ref: "#/$defs/VII"
+  - $ref: "#/$defs/VIII"
+$defs:
+  IV:
+    const: IV
+    title: Classe IV
+  V:
+    const: V
+    title: Classe V
+  VI:
+    const: VI
+    title: Classe VI
+  VII:
+    const: VII
+    title: Classe VII
+  VIII:
+    const: VIII
+    title: Classe VIII

@@ -1,0 +1,18 @@
+$id: https://schemas.ceeconnect.fr/enums/bar/consommation_suivie
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Nature des consommations suivies
+type: string
+oneOf:
+  - $ref: "#/$defs/CHAUFFAGE_ELECTRIQUE"
+  - $ref: "#/$defs/CHAUFFAGE_GAZ"
+  - $ref: "#/$defs/ELECTRICITE_SPECIFIQUE"
+$defs:
+  CHAUFFAGE_ELECTRIQUE:
+    const: CHAUFFAGE_ELECTRIQUE
+    title: Chauffage électrique
+  CHAUFFAGE_GAZ:
+    const: CHAUFFAGE_GAZ
+    title: Chauffage gaz
+  ELECTRICITE_SPECIFIQUE:
+    const: ELECTRICITE_SPECIFIQUE
+    title: Électricité spécifique

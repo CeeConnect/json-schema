@@ -20,6 +20,17 @@ $defs:
         title: Bâtiment de moins de 2 ans
       - $ref: "#/$defs/EXISTANT"
         title: Bâtiment de plus de deux ans
+  equipement:
+    title: Ancienneté de l'équipement
+    type: string
+    oneOf:
+      - $ref: "#/$defs/NEUF"
+        title: Équipement de moins de 2 ans
+      - $ref: "#/$defs/EXISTANT"
+        title: Équipement de plus de deux ans
   batimentExistant:
     $ref: "#/$defs/EXISTANT"
     title: Bâtiment de plus de deux ans à la date d'engagement de l'opération
+  equipementExistant:
+    $ref: "#/$defs/EXISTANT"
+    title: Équipement installé depuis plus de deux ans à la date d'engagement de l'opération

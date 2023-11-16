@@ -1,0 +1,14 @@
+$id: https://schemas.ceeconnect.fr/enums/bar/type_vente
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Type de vente
+type: string
+oneOf:
+  - $ref: "#/$defs/VENTE"
+  - $ref: "#/$defs/ABONNEMENT"
+$defs:
+  VENTE:
+    const: VENTE
+    title: Vente
+  ABONNEMENT:
+    const: ABONNEMENT
+    title: Abonnement

@@ -1,0 +1,14 @@
+$id: https://schemas.ceeconnect.fr/enums/bar/type_combustible_biomasse
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Type de combustible
+type: string
+oneOf:
+  - $ref: "#/$defs/GRANULES"
+  - $ref: "#/$defs/AUTRES"
+$defs:
+  GRANULES:
+    const: GRANULES
+    title: Granulés
+  AUTRES:
+    const: AUTRES
+    title: Autres combustibles

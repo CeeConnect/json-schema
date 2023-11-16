@@ -1,0 +1,14 @@
+$id: https://schemas.ceeconnect.fr/enums/bar/type_extracteur_vmc
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Type d'extracteur
+type: string
+oneOf:
+  - $ref: "#/$defs/STANDARD"
+  - $ref: "#/$defs/BASSE_CONSOMMATION"
+$defs:
+  STANDARD:
+    const: STANDARD
+    title: Extracteur standard
+  BASSE_CONSOMMATION:
+    const: BASSE_CONSOMMATION
+    title: Extracteur basse consommation

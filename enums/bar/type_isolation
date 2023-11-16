@@ -1,0 +1,58 @@
+$id: https://schemas.ceeconnect.fr/enums/bar/type_isolation
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Type d'isolation
+type: string
+oneOf:
+  - $ref: "#/$defs/ISOLATION_COMBLES_PERDUS"
+  - $ref: "#/$defs/ISOLATION_RAMPANT_TOITURES"
+  - $ref: "#/$defs/ISOLATION_MURS_INTERIEUR"
+  - $ref: "#/$defs/ISOLATION_MURS_EXTERIEUR"
+  - $ref: "#/$defs/FENETRE"
+  - $ref: "#/$defs/PORTE_FENETRE"
+  - $ref: "#/$defs/DOUBLE_FENETRE"
+  - $ref: "#/$defs/FENETRE_TOITURE"
+$defs:
+  combles:
+    title: Type d'isolation
+    type: string
+    oneOf:
+      - $ref: "#/$defs/ISOLATION_COMBLES_PERDUS"
+      - $ref: "#/$defs/ISOLATION_RAMPANT_TOITURES"
+  murs:
+    title: Type d'isolation
+    type: string
+    oneOf:
+      - $ref: "#/$defs/ISOLATION_MURS_INTERIEUR"
+      - $ref: "#/$defs/ISOLATION_MURS_EXTERIEUR"
+  fenetres:
+    title: Type de fenêtre
+    type: string
+    oneOf:
+      - $ref: "#/$defs/FENETRE"
+      - $ref: "#/$defs/PORTE_FENETRE"
+      - $ref: "#/$defs/DOUBLE_FENETRE"
+      - $ref: "#/$defs/FENETRE_TOITURE"
+  ISOLATION_COMBLES_PERDUS:
+    const: ISOLATION_COMBLES_PERDUS
+    title: Isolation des planchers combles perdus
+  ISOLATION_RAMPANT_TOITURES:
+    const: ISOLATION_RAMPANT_TOITURES
+    title: Isolation par l'intérieur des rampants de toitures
+  ISOLATION_MURS_INTERIEUR:
+    const: ISOLATION_MURS_INTERIEUR
+    title: Isolation des murs par l'intérieur
+  ISOLATION_MURS_EXTERIEUR:
+    const: ISOLATION_MURS_EXTERIEUR
+    title: Isolation des murs par l'extérieur
+  FENETRE:
+    const: FENETRE
+    title: Fenêtre
+  PORTE_FENETRE:
+    const: PORTE_FENETRE
+    title: Porte-fenêtre
+  DOUBLE_FENETRE:
+    const: DOUBLE_FENETRE
+    title: Double fenêtre
+  FENETRE_TOITURE:
+    const: FENETRE_TOITURE
+    title: Fenêtre de toiture

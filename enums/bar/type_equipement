@@ -1,0 +1,148 @@
+$id: https://schemas.ceeconnect.fr/enums/bar/type_equipement
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Type d'équipement
+type: string
+oneOf:
+  - $ref: "#/$defs/CHAUDIERE_HORS_CONDENSATION"
+  - $ref: "#/$defs/CHAUDIERE_CONDENSATION"
+  - $ref: "#/$defs/RESEAU_CHALEUR"
+  # Chaudière biomasse
+  - $ref: "#/$defs/CHAUDIERE_BIOMASSE_CHARGEMENT_AUTOMATIQUE"
+  - $ref: "#/$defs/CHAUDIERE_BIOMASSE_CHARGEMENT_MANUEL"
+  # Chauffe-bain
+  - $ref: "#/$defs/CHAUFFE_BAIN_FLUX_FORCE_HAUT_RENDEMENT"
+  - $ref: "#/$defs/CHAUFFE_BAIN_COMBUSTION_HAUT_RENDEMENT"
+  - $ref: "#/$defs/CHAUFFE_BAIN_CONDENSATION"
+  # Chauffe eau solaire
+  - $ref: "#/$defs/CESC"
+  - $ref: "#/$defs/CESCI"
+  # Pompe à chaleur
+  - $ref: "#/$defs/PAC_AIR_EAU"
+  - $ref: "#/$defs/PAC_EAU_EAU"
+  - $ref: "#/$defs/PAC_CET"
+  - $ref: "#/$defs/PAC_CET_AIR_EXTRAIT"
+  - $ref: "#/$defs/PAC_AIR_EXTERIEUR_EAU"
+  - $ref: "#/$defs/PAC_AIR_EXTRAIT_EAU"
+  - $ref: "#/$defs/PAC_EAU_NAPPE_EAU"
+  - $ref: "#/$defs/PAC_EAU_GLYCOLEE_EAU"
+  - $ref: "#/$defs/PAC_SOLAIRE"
+  - $ref: "#/$defs/PAC_EAUX_GRISES"
+  - $ref: "#/$defs/PAC_CO2"
+  # VMC
+  - $ref: "#/$defs/VMC_TYPE_A"
+  - $ref: "#/$defs/VMC_TYPE_B"
+  - $ref: "#/$defs/VMC_AUTOREGLABLE"
+  - $ref: "#/$defs/VMC_MODULE"
+$defs:
+  CHAUDIERE_HORS_CONDENSATION:
+    const: CHAUDIERE_HORS_CONDENSATION
+    title: Chaudière autre qu'à condensation
+  CHAUDIERE_CONDENSATION:
+    const: CHAUDIERE_CONDENSATION
+    title: Chaudière à condensation
+  CHAUDIERE_BIOMASSE_CHARGEMENT_AUTOMATIQUE:
+    const: CHARGEMENT_AUTOMATIQUE
+    title: Chaudière à chargement automatique
+  CHAUDIERE_BIOMASSE_CHARGEMENT_MANUEL:
+    const: CHARGEMENT_MANUEL
+    title: Chaudière à chargement manuel
+  CHAUFFE_BAIN_FLUX_FORCE_HAUT_RENDEMENT:
+    const: FLUX_FORCE_HAUT_RENDEMENT
+    title: Chauffe bain à flux forcé à haut rendement
+  CHAUFFE_BAIN_COMBUSTION_HAUT_RENDEMENT:
+    const: COMBUSTION_HAUT_RENDEMENT
+    title: Chauffe bain à combustion atmosphérique à haut rendement
+  CHAUFFE_BAIN_CONDENSATION:
+    const: CONDENSATION
+    title: Chauffe bain à condensation
+  CESC:
+    const: CESC
+    title: Chauffe-eau solaire collectif à appoint centralisé
+  CESCI:
+    const: CESCI
+    title: Chauffe-eau solaire collectif à appoint individualisé
+  RESEAU_CHALEUR:
+    const: RESEAU_CHALEUR
+    title: Réseau de chaleur
+  PAC_AIR_EAU:
+    const: PAC_AIR_EAU
+    title: Pompe à chaleur air/eau
+  PAC_EAU_EAU:
+    const: PAC_EAU_EAU
+    title: Pompe à chaleur eau/eau
+  PAC_CET:
+    const: PAC_CET
+    title: Chauffe-eau thermodynamique
+  PAC_CET_AIR_EXTRAIT:
+    const: PAC_CET_AIR_EXTRAIT
+    title: Chauffe-eau thermodynamique sur air extrait
+  PAC_AIR_EXTERIEUR_EAU:
+    const: PAC_AIR_EXTERIEUR_EAU
+    title: Pompe à chaleur air extérieur/eau
+  PAC_AIR_EXTRAIT_EAU:
+    const: PAC_AIR_EXTRAIT_EAU
+    title: Pompe à chaleur air extrait/eau
+  PAC_EAU_NAPPE_EAU:
+    const: PAC_EAU_NAPPE_EAU
+    title: Pompe à chaleur eau de nappe/eau
+  PAC_EAU_GLYCOLEE_EAU:
+    const: PAC_EAU_GLYCOLEE_EAU
+    title: Pompe à chaleur eau glycolée/eau sur capteurs enterrés
+  PAC_SOLAIRE:
+    const: PAC_SOLAIRE
+    title: Pompe à chaleur à capteur solaire atmosphérique
+  PAC_EAUX_GRISES:
+    const: PAC_EAU_GLYCOLEE_EAU
+    title: Pompe à chaleur sur eaux grises
+  PAC_CO2:
+    const: PAC_CO2
+    title: Pompe à chaleur sur CO2
+  VMC_TYPE_A:
+    const: TYPE_A
+    title: VMC hygroréglable de type A
+  VMC_TYPE_B:
+    const: TYPE_B
+    title: VMC hygroréglable de type B
+  VMC_AUTOREGLABLE:
+    const: AUTOREGLABLE
+    title: VMC autoréglable
+  VMC_MODULE:
+    const: MODULE
+    title: VMC modulée
+  chaudiereBiomasse:
+    title: Type de chaudière biomasse
+    type: string
+    oneOf:
+      - $ref: "#/$defs/CHAUDIERE_BIOMASSE_CHARGEMENT_AUTOMATIQUE"
+      - $ref: "#/$defs/CHAUDIERE_BIOMASSE_CHARGEMENT_MANUEL"
+  chauffeBain:
+    title: Type de chauffe bain
+    type: string
+    oneOf:
+      - $ref: "#/$defs/CHAUFFE_BAIN_FLUX_FORCE_HAUT_RENDEMENT"
+      - $ref: "#/$defs/CHAUFFE_BAIN_COMBUSTION_HAUT_RENDEMENT"
+      - $ref: "#/$defs/CHAUFFE_BAIN_CONDENSATION"
+  chauffeEauThermodynamique:
+    title: Type de chauffe-eau thermodynamique
+    type: string
+    oneOf:
+      - $ref: "#/$defs/PAC_CET"
+      - $ref: "#/$defs/PAC_CET_AIR_EXTRAIT"
+  chauffeEauSolaireCollectif:
+    title: Type de chauffe-eau solaire
+    type: string
+    oneOf:
+      - $ref: "#/$defs/CESC"
+      - $ref: "#/$defs/CESCI"
+  vmcHygroreglable:
+    title: Type de VMC hygroreglable
+    type: string
+    oneOf:
+      - $ref: "#/$defs/VMC_TYPE_A"
+      - $ref: "#/$defs/VMC_TYPE_B"
+  vmcDoubleFlux:
+    title: Type de VMC double flux
+    type: string
+    oneOf:
+      - $ref: "#/$defs/VMC_AUTOREGLABLE"
+      - $ref: "#/$defs/VMC_MODULE"

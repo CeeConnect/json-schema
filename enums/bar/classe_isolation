@@ -1,0 +1,35 @@
+$id: https://schemas.ceeconnect.fr/enums/bar/classe_isolation
+$schema: https://json-schema.org/draft/2020-12/schema
+$comment: Classe de l'isolation selon la norme NF EN 12 828+A1:2014
+title: Classe d'isolation
+type: string
+oneOf:
+  - $ref: "#/$defs/00"
+  - $ref: "#/$defs/01"
+  - $ref: "#/$defs/02"
+  - $ref: "#/$defs/03"
+  - $ref: "#/$defs/04"
+  - $ref: "#/$defs/05"
+  - $ref: "#/$defs/06"
+$defs:
+  "00":
+    const: "0"
+    title: Isolation de classe 0
+  "01":
+    const: "1"
+    title: Isolation de classe 1
+  "02":
+    const: "2"
+    title: Isolation de classe 2
+  "03":
+    const: "3"
+    title: Isolation de classe 3
+  "04":
+    const: "4"
+    title: Isolation de classe 4
+  "05":
+    const: "5"
+    title: Isolation de classe 5
+  "06":
+    const: "6"
+    title: Isolation de classe 6

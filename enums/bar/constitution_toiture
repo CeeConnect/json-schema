@@ -1,0 +1,16 @@
+$id: https://schemas.ceeconnect.fr/enums/bar/constitution_toiture
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Constitution d'une toiture performante
+type: string
+oneOf:
+  - $ref: "#/$defs/SYSTEME"
+  - $ref: "#/$defs/ENSEMBLE_ELEMENTS"
+$defs:
+  SYSTEME:
+    const: SYSTEME
+    title: Toiture contituée d'un système de toiture assurant à lui seul le facteur
+      solaire requis
+  ENSEMBLE_ELEMENTS:
+    const: ENSEMBLE_ELEMENTS
+    title: Toiture constituée d'un ensemble d'éléments dont la composition permet
+      d'obtenir le facteur solaire requis

@@ -1,0 +1,51 @@
+$id: https://schemas.ceeconnect.fr/enums/bar/indice_protection_chocs
+$schema: https://json-schema.org/draft/2020-12/schema
+$comment: https://www.seton.fr/media/cms/files/stfr/DMEU_TDS_2584_std.lang.all.pdf
+title: Indice de de protection aux chocs
+type: string
+oneOf:
+  - $ref: "#/$defs/00"
+  - $ref: "#/$defs/01"
+  - $ref: "#/$defs/02"
+  - $ref: "#/$defs/03"
+  - $ref: "#/$defs/04"
+  - $ref: "#/$defs/05"
+  - $ref: "#/$defs/06"
+  - $ref: "#/$defs/07"
+  - $ref: "#/$defs/08"
+  - $ref: "#/$defs/09"
+  - $ref: "#/$defs/10"
+$defs:
+  "10":
+    const: "10"
+    title: "10"
+  "00":
+    const: "00"
+    title: "00"
+  "01":
+    const: "01"
+    title: "01"
+  "02":
+    const: "02"
+    title: "02"
+  "03":
+    const: "03"
+    title: "03"
+  "04":
+    const: "04"
+    title: "04"
+  "05":
+    const: "05"
+    title: "05"
+  "06":
+    const: "06"
+    title: "06"
+  "07":
+    const: "07"
+    title: "07"
+  "08":
+    const: "08"
+    title: "08"
+  "09":
+    const: "09"
+    title: "09"

@@ -1,0 +1,29 @@
+$id: https://schemas.ceeconnect.fr/enums/bar/type_ventilation
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Type de ventilation présent
+type: string
+oneOf:
+  - $ref: "#/$defs/AUTOREGLABLE"
+  - $ref: "#/$defs/HYGROREGLABLE"
+  - $ref: "#/$defs/NATURELLE"
+  - $ref: "#/$defs/SANS"
+$defs:
+  AUTOREGLABLE:
+    const: AUTOREGLABLE
+    title: Simple flux autoréglable
+  HYGROREGLABLE:
+    const: HYGROREGLABLE
+    title: Simple flux hygroréglable de type A
+  NATURELLE:
+    const: NATURELLE
+    title: Ventilation naturelle assitée
+  SANS:
+    const: SANS
+    title: Absence de système de ventilation
+  mecanique:
+    title: Type de système ventilation mécanique présent
+    type: string
+    oneOf:
+      - $ref: "#/$defs/AUTOREGLABLE"
+      - $ref: "#/$defs/HYGROREGLABLE"
+      - $ref: "#/$defs/NATURELLE"

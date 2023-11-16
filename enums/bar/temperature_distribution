@@ -1,0 +1,18 @@
+$id: https://schemas.ceeconnect.fr/enums/bar/temperature_distribution
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Température de distribution (°C)
+type: string
+oneOf:
+  - $ref: "#/$defs/BASSE_TEMPERATURE"
+  - $ref: "#/$defs/MOYENNE_TEMPERATURE"
+  - $ref: "#/$defs/HAUTE_TEMPERATURE"
+$defs:
+  BASSE_TEMPERATURE:
+    const: BASSE_TEMPERATURE
+    title: Distribution à basse température
+  MOYENNE_TEMPERATURE:
+    const: MOYENNE_TEMPERATURE
+    title: Distribution à moyenne température
+  HAUTE_TEMPERATURE:
+    const: HAUTE_TEMPERATURE
+    title: Distribution à haute température

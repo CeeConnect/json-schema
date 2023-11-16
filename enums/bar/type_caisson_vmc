@@ -1,0 +1,19 @@
+$id: https://schemas.ceeconnect.fr/enums/bar/type_caisson_vmc
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Type de caisson
+description: Type de caisson pour ventilation mécanique centralisée
+type: string
+oneOf:
+  - $ref: "#/$defs/BASSE_CONSOMMATION"
+  - $ref: "#/$defs/STANDARD"
+  - $ref: "#/$defs/BASSE_PRESSION"
+$defs:
+  BASSE_CONSOMMATION:
+    const: BASSE_CONSOMMATION
+    title: Caisson basse consommation
+  STANDARD:
+    const: STANDARD
+    title: Caisson standard
+  BASSE_PRESSION:
+    const: BASSE_PRESSION
+    title: Caisson basse pression

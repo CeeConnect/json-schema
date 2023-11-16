@@ -1,0 +1,23 @@
+$id: https://schemas.ceeconnect.fr/enums/bar/type_support_numerique
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Le dispositif permet l'affichage de statistiques de consommation sur au
+  moins un support numérique
+type: string
+oneOf:
+  - $ref: "#/$defs/ECRAN"
+  - $ref: "#/$defs/WEB"
+  - $ref: "#/$defs/APP"
+  - $ref: "#/$defs/TV"
+$defs:
+  ECRAN:
+    const: ECRAN
+    title: Écran dédié
+  WEB:
+    const: WEB
+    title: Web
+  APP:
+    const: APP
+    title: tablette ou Smartphone (via des applications dédiées)
+  TV:
+    const: TV
+    title: Télévision

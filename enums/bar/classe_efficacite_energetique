@@ -1,0 +1,57 @@
+$id: https://schemas.ceeconnect.fr/enums/bar/classe_efficacite_energetique
+$schema: https://json-schema.org/draft/2020-12/schema
+$comment: "Climatiseur : réglement (UE) n°626/2011 | Chauffe-eau : réglement
+  (UE) 812/2013 | VMC : réglement (UE) 1254/2014"
+title: Classes d'efficacité énergétique
+type: string
+oneOf:
+  - $ref: "#/$defs/A+++"
+  - $ref: "#/$defs/A++"
+  - $ref: "#/$defs/A+"
+  - $ref: "#/$defs/A"
+  - $ref: "#/$defs/B"
+$defs:
+  A+++:
+    const: A+++
+    title: A+++
+  A++:
+    const: A++
+    title: A++
+  A+:
+    const: A+
+    title: A+
+  A:
+    const: A
+    title: A
+  B:
+    const: B
+    title: B
+  climatiseurs:
+    title: Classes d'efficacité énergétique
+    type: string
+    oneOf:
+      - $ref: "#/$defs/A+++"
+      - $ref: "#/$defs/A++"
+      - $ref: "#/$defs/A+"
+      - $ref: "#/$defs/A"
+    examples:
+      - A+++
+  chauffesBain:
+    title: Classes d'efficacité énergétique
+    type: string
+    oneOf:
+      - $ref: "#/$defs/A+++"
+      - $ref: "#/$defs/A++"
+      - $ref: "#/$defs/A+"
+      - $ref: "#/$defs/A"
+    examples:
+      - A+++
+  ventilations:
+    title: Classes d'efficacité énergétique
+    type: string
+    oneOf:
+      - $ref: "#/$defs/A+"
+      - $ref: "#/$defs/A"
+      - $ref: "#/$defs/B"
+    examples:
+      - A+++

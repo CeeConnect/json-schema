@@ -1,0 +1,33 @@
+$id: https://schemas.ceeconnect.fr/enums/bar/type_usage
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Type d'usage
+type: string
+oneOf:
+  - $ref: "#/$defs/CHAUFFAGE"
+  - $ref: "#/$defs/ECS"
+$defs:
+  CHAUFFAGE:
+    const: CHAUFFAGE
+    title: Chauffage
+  ECS:
+    const: ECS
+    title: Eau chaude sanitaire
+  CHAUFFAGE_ECS:
+    const: CHAUFFAGE_ECS
+    title: Chauffage et eau chaude sanitaire
+  chauffages:
+    title: Type d'usage
+    type: string
+    oneOf:
+      - const: CHAUFFAGE
+        title: Chauffage
+      - const: CHAUFFAGE_ECS
+        title: Chauffage et eau chaude sanitaire
+  ecs:
+    title: Type d'usage
+    type: string
+    oneOf:
+      - const: ECS
+        title: Eau chaude sanitaire
+      - const: CHAUFFAGE_ECS
+        title: Chauffage et eau chaude sanitaire

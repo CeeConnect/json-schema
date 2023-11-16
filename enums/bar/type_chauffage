@@ -1,0 +1,14 @@
+$id: https://schemas.ceeconnect.fr/enums/bar/type_chauffage
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Type de chauffage
+type: string
+oneOf:
+  - $ref: "#/$defs/INDIVIDUEL"
+  - $ref: "#/$defs/COLLECTIF"
+$defs:
+  INDIVIDUEL:
+    const: INDIVIDUEL
+    title: Chauffage central individuel
+  COLLECTIF:
+    const: COLLECTIF
+    title: Chauffage central collectif

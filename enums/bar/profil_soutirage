@@ -1,0 +1,42 @@
+$id: https://schemas.ceeconnect.fr/enums/bar/profil_soutirage
+$schema: https://json-schema.org/draft/2020-12/schema
+$comment: |
+  - Chauffe-eau solaire indivicuel : réglement (UE) n°814/2013
+title: Profil de soutirage
+type: string
+oneOf:
+  - $ref: "#/$defs/M"
+  - $ref: "#/$defs/L"
+  - $ref: "#/$defs/XL"
+  - $ref: "#/$defs/XXL"
+  - $ref: "#/$defs/3XL"
+  - $ref: "#/$defs/4XL"
+$defs:
+  M:
+    const: M
+    title: M
+  L:
+    const: L
+    title: L
+  XL:
+    const: XL
+    title: XL
+  XXL:
+    const: XXL
+    title: XXL
+  3XL:
+    const: 3XL
+    title: 3XL
+  4XL:
+    const: 4XL
+    title: 4XL
+  chauffeEauSolaireIndividuel:
+    title: Profil de soutirage
+    type: string
+    oneOf:
+      - $ref: "#/$defs/M"
+      - $ref: "#/$defs/L"
+      - $ref: "#/$defs/XL"
+      - $ref: "#/$defs/XXL"
+    examples:
+      - M
