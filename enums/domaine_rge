@@ -1,0 +1,134 @@
+$id: https://schemas.ceeconnect.fr/enums/domaine_rge
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Domaine RGE
+type: string
+oneOf:
+  - $ref: "#/$defs/21"
+  - $ref: "#/$defs/23"
+  - $ref: "#/$defs/29"
+  - $ref: "#/$defs/72"
+  - $ref: "#/$defs/73"
+  - $ref: "#/$defs/74"
+  - $ref: "#/$defs/75"
+  - $ref: "#/$defs/76"
+  - $ref: "#/$defs/77"
+  - $ref: "#/$defs/78"
+  - $ref: "#/$defs/79"
+  - $ref: "#/$defs/80"
+  - $ref: "#/$defs/81"
+  - $ref: "#/$defs/82"
+  - $ref: "#/$defs/83"
+  - $ref: "#/$defs/85"
+  - $ref: "#/$defs/86"
+  - $ref: "#/$defs/87"
+  - $ref: "#/$defs/88"
+  - $ref: "#/$defs/89"
+  - $ref: "#/$defs/90"
+  - $ref: "#/$defs/91"
+  - $ref: "#/$defs/92"
+  - $ref: "#/$defs/93"
+  - $ref: "#/$defs/94"
+  - $ref: "#/$defs/95"
+  - $ref: "#/$defs/96"
+  - $ref: "#/$defs/97"
+  - $ref: "#/$defs/98"
+  - $ref: "#/$defs/99"
+  - $ref: "#/$defs/100"
+  - $ref: "#/$defs/101"
+$defs:
+  "21":
+    const: "21"
+    title: Fenêtres, volets, portes extérieures 2020
+  "23":
+    const: "23"
+    title: Isolation du toit 2020
+  "29":
+    const: "29"
+    title: Projet complet de rénovation
+  "72":
+    const: "72"
+    title: Audit énergétique
+  "73":
+    const: "73"
+    title: Etude solaire thermique
+  "74":
+    const: "74"
+    title: Etude solaire photovoltaïque
+  "75":
+    const: "75"
+    title: Etude thermique reglementaire
+  "76":
+    const: "76"
+    title: Etude forage géothermique
+  "77":
+    const: "77"
+    title: Etude ACV
+  "78":
+    const: "78"
+    title: Etude enveloppe du bâtiment
+  "79":
+    const: "79"
+    title: Etude système technique bâtiment
+  "80":
+    const: "80"
+    title: Etude bois énergie
+  "81":
+    const: "81"
+    title: Etude eclairage
+  "82":
+    const: "82"
+    title: Commisionnement
+  "83":
+    const: "83"
+    title: Architecte
+  "85":
+    const: "85"
+    title: Chaudière condensation ou micro-cogénération gaz ou fioul
+  "86":
+    const: "86"
+    title: Chauffage et/ou eau chaude solaire
+  "87":
+    const: "87"
+    title: Chaudière bois
+  "88":
+    const: "88"
+    title: Poêle ou insert bois
+  "89":
+    const: "89"
+    title: "Pompe à chaleur : chauffage"
+  "90":
+    const: "90"
+    title: Chauffe-Eau Thermodynamique
+  "91":
+    const: "91"
+    title: Radiateurs électriques, dont régulation.
+  "92":
+    const: "92"
+    title: Ventilation mécanique
+  "93":
+    const: "93"
+    title: Fenêtres, volets, portes donnant sur l'extérieur
+  "94":
+    const: "94"
+    title: Fenêtres de toit
+  "95":
+    const: "95"
+    title: Isolation par l'intérieur des murs ou rampants de toitures  ou plafonds
+  "96":
+    const: "96"
+    title: Isolation des murs par l'extérieur
+  "97":
+    const: "97"
+    title: Isolation des toitures terrasses ou des toitures par l'extérieur
+  "98":
+    const: "98"
+    title: Isolation des combles perdus
+  "99":
+    const: "99"
+    title: Isolation des planchers bas
+  "100":
+    const: "100"
+    title: Forage géothermique
+  "101":
+    const: "101"
+    title: Panneaux solaires photovoltaïques

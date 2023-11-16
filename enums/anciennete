@@ -1,0 +1,25 @@
+$id: https://schemas.ceeconnect.fr/enums/anciennete
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Ancienneté
+type: string
+oneOf:
+  - $ref: "#/$defs/NEUF"
+  - $ref: "#/$defs/EXISTANT"
+$defs:
+  NEUF:
+    const: NEUF
+    title: Moins de 2 ans
+  EXISTANT:
+    const: EXISTANT
+    title: Plus de 2 ans
+  batiment:
+    title: Ancienneté du bâtiment
+    description: Ancienneté du bâtiment à la date d'engagement de l'opération
+    oneOf:
+      - $ref: "#/$defs/NEUF"
+        title: Bâtiment de moins de 2 ans
+      - $ref: "#/$defs/EXISTANT"
+        title: Bâtiment de plus de deux ans
+  batimentExistant:
+    $ref: "#/$defs/EXISTANT"
+    title: Bâtiment de plus de deux ans à la date d'engagement de l'opération

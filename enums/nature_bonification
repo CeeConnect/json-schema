@@ -1,0 +1,41 @@
+$id: https://schemas.ceeconnect.fr/enums/nature_bonification
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Nature
+type: string
+oneOf:
+  - $ref: "#/$defs/ZNI"
+  - $ref: "#/$defs/CPE"
+  - $ref: "#/$defs/CFT"
+  - $ref: "#/$defs/CRC"
+  - $ref: "#/$defs/CRM"
+  - $ref: "#/$defs/CDP"
+$defs:
+  ZNI:
+    const: ZNI
+    title: Zones non interconnectées au réseau métropolitain continental de
+      transport d'électricité
+  CPE:
+    const: CPE
+    title: Contrat de performance énergétique
+  CFT:
+    const: CFT
+    title: Coup de pouce Chauffage des bâtiments résidentiels collectifs et tertiaires
+  CRC:
+    const: CRC
+    title: Coup de pouce Rénovation performante de bâtiment résidentiel collectif
+  CRM:
+    const: CRM
+    title: Coup de pouce Rénovation performante d'une maison individuelle
+  CDP:
+    const: CDP
+    title: Coup de pouce Chauffage
+  CDC:
+    const: CDC
+    title: Coup de pouce Covoiturage
+examples:
+  - ZNI
+  - CPE
+  - CFT
+  - CRC
+  - CRM
+  - CDP

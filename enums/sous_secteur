@@ -1,0 +1,47 @@
+$id: https://schemas.ceeconnect.fr/enums/sous_secteur
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Sous-secteur d'application
+type: string
+oneOf:
+  - $ref: "#/$defs/BA"
+  - $ref: "#/$defs/CH"
+  - $ref: "#/$defs/EC"
+  - $ref: "#/$defs/EN"
+  - $ref: "#/$defs/EQ"
+  - $ref: "#/$defs/SE"
+  - $ref: "#/$defs/TH"
+  - $ref: "#/$defs/UT"
+$defs:
+  BA:
+    const: BA
+    title: Bâtiments
+  CH:
+    const: CH
+    title: Chaleur et Froid
+  EC:
+    const: EC
+    title: Eclairage
+  EN:
+    const: EN
+    title: Enveloppe
+  EQ:
+    const: EQ
+    title: Equipement
+  SE:
+    const: SE
+    title: Services
+  TH:
+    const: TH
+    title: Thermique
+  UT:
+    const: UT
+    title: Utilités
+examples:
+  - BA
+  - CH
+  - EC
+  - EN
+  - EQ
+  - SE
+  - TH
+  - UT

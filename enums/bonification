@@ -1,0 +1,30 @@
+$id: https://schemas.ceeconnect.fr/enums/bonification
+title: Bonification
+type: string
+oneOf:
+  - const: CDPv50-1
+  - const: CDPv52-1
+  - const: CFTv50-1
+  - const: CPEv40-1
+  - const: CRCv51-1
+  - const: CRMv51-1
+  - const: ZNIv35-1
+$defs:
+  CDP:
+    type: string
+    pattern: ^CDPv[0-9]{2}[-][0-9]+$
+  CFT:
+    type: string
+    pattern: ^CFTv[0-9]{2}[-][0-9]+$
+  CPE:
+    type: string
+    pattern: ^CPEv[0-9]{2}[-][0-9]+$
+  CRC:
+    type: string
+    pattern: ^CRCv[0-9]{2}[-][0-9]+$
+  CRM:
+    type: string
+    pattern: ^CRMv[0-9]{2}[-][0-9]+$
+  ZNI:
+    type: string
+    pattern: ^ZNIv[0-9]{2}[-][0-9]+$

@@ -1,0 +1,61 @@
+$id: https://schemas.ceeconnect.fr/enums/type_beneficiaire
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Type
+type: string
+oneOf:
+  - $ref: "#/$defs/PROPRIETAIRE_UNIQUE"
+  - $ref: "#/$defs/LOCATAIRE"
+  - $ref: "#/$defs/COPROPRIETAIRE"
+  - $ref: "#/$defs/MAITRE_OUVRAGE"
+  - $ref: "#/$defs/OCCUPANT_FINANCEUR"
+  - $ref: "#/$defs/SYNDICAT_COPROPRIETAIRES"
+  - $ref: "#/$defs/COLLECTIVITE_AFFECTATAIRE"
+$defs:
+  PROPRIETAIRE_UNIQUE:
+    const: PROPRIETAIRE_UNIQUE
+    title: Propriétaire unique
+  LOCATAIRE:
+    const: LOCATAIRE
+    title: Locataire de l'équipement
+  COPROPRIETAIRE:
+    const: COPROPRIETAIRE
+    title: Copropriétaire des équipements
+  MAITRE_OUVRAGE:
+    const: MAITRE_OUVRAGE
+    title: Maître d'ouvrage
+  OCCUPANT_FINANCEUR:
+    const: OCCUPANT_FINANCEUR
+    title: Occupant financeur
+  SYNDICAT_COPROPRIETAIRES:
+    const: SYNDICAT_COPROPRIETAIRES
+    title: Syndicat de copropriétaires
+  COLLECTIVITE_AFFECTATAIRE:
+    const: COLLECTIVITE_AFFECTATAIRE
+    title: Collectivité affectataire
+  PERSONNE_MORALE:
+    title: Type
+    type: string
+    oneOf:
+      - $ref: "#/$defs/PROPRIETAIRE_UNIQUE"
+      - $ref: "#/$defs/LOCATAIRE"
+      - $ref: "#/$defs/COPROPRIETAIRE"
+      - $ref: "#/$defs/MAITRE_OUVRAGE"
+      - $ref: "#/$defs/SYNDICAT_COPROPRIETAIRES"
+      - $ref: "#/$defs/COLLECTIVITE_AFFECTATAIRE"
+  PERSONNE_PHYSIQUE:
+    title: Type
+    type: string
+    oneOf:
+      - $ref: "#/$defs/PROPRIETAIRE_UNIQUE"
+      - $ref: "#/$defs/LOCATAIRE"
+      - $ref: "#/$defs/COPROPRIETAIRE"
+      - $ref: "#/$defs/MAITRE_OUVRAGE"
+      - $ref: "#/$defs/OCCUPANT_FINANCEUR"
+examples:
+  - PROPRIETAIRE_UNIQUE
+  - LOCATAIRE
+  - COPROPRIETAIRE
+  - MAITRE_OUVRAGE
+  - OCCUPANT_FINANCEUR
+  - SYNDICAT_COPROPRIETAIRES
+  - COLLECTIVITE_AFFECTATAIRE

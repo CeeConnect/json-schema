@@ -1,0 +1,56 @@
+$id: https://schemas.ceeconnect.fr/enums/code_document
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Code du document
+type: string
+oneOf:
+  - $ref: "#/$defs/PREUVE_ENGAGEMENT"
+  - $ref: "#/$defs/PREUVE_ACHEVEMENT"
+  - $ref: "#/$defs/PREUVE_QUALIFICATION"
+  - $ref: "#/$defs/ATTESTATION_HONNEUR"
+  - $ref: "#/$defs/PREUVE_ROLE_ACTIF_INCITATIF"
+  - $ref: "#/$defs/NOTE_DIMENSIONNEMENT"
+  - $ref: "#/$defs/ACCORD_COPROPRIETAIRES"
+  - $ref: "#/$defs/ACCORD_PROPRIETAIRE_MAITRE_OUVRAGE"
+  - $ref: "#/$defs/JUSTIFICATIF_TRANSFERT_COMPETENCE"
+  - $ref: "#/$defs/JUSTIFICATIF_REVENUS"
+  - $ref: "#/$defs/JUSTIFICATIF_SUBVENTION_ANAH"
+  - $ref: "#/$defs/ENQUETE_SOCIALE"
+$defs:
+  PREUVE_ENGAGEMENT:
+    const: PREUVE_ENGAGEMENT
+    title: Preuve d'engagement de l'opération
+  PREUVE_ACHEVEMENT:
+    const: PREUVE_ACHEVEMENT
+    title: Preuve de réalisation de l'opération
+  PREUVE_QUALIFICATION:
+    const: PREUVE_QUALIFICATION
+    title: Preuve de qualification
+  ATTESTATION_HONNEUR:
+    const: ATTESTATION_HONNEUR
+    title: Attestation sur l'honneur
+  PREUVE_ROLE_ACTIF_INCITATIF:
+    const: PREUVE_ROLE_ACTIF_INCITATIF
+    title: Preuve du rôle actif et incitatif du demandeur
+  NOTE_DIMENSIONNEMENT:
+    const: NOTE_DIMENSIONNEMENT
+    title: Note de dimensionnement
+  ACCORD_COPROPRIETAIRES:
+    const: ACCORD_COPROPRIETAIRES
+    title: Accord écrit des propriétaires pour désigner l'un d'entre eux comme bénéficiaire de l'opération
+  ACCORD_PROPRIETAIRE_MAITRE_OUVRAGE:
+    const: ACCORD_PROPRIETAIRE_MAITRE_OUVRAGE
+    title: Accord écrit du propriétaire pour désigner le maître d'ouvrage comme bénéficiaire de l'opération
+  JUSTIFICATIF_TRANSFERT_COMPETENCE:
+    const: JUSTIFICATIF_TRANSFERT_COMPETENCE
+    title: Justification du transfert de compétence entre collectivités territoriales et leurs groupements
+  JUSTIFICATIF_REVENUS:
+    const: JUSTIFICATIF_REVENUS
+    title: Justification de revenus
+  JUSTIFICATIF_SUBVENTION_ANAH:
+    const: JUSTIFICATIF_SUBVENTION_ANAH
+    title: Décision de l'Agence nationale de l'habitat d'attribution d'une subvention au syndicat de copropriétaires
+  ENQUETE_SOCIALE:
+    const: ENQUETE_SOCIALE
+    title: Enquête sociale relative aux ressources des occupants de l'immeuble
+examples:
+  - PREUVE_ENGAGEMENT

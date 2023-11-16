@@ -1,0 +1,99 @@
+$id: https://schemas.ceeconnect.fr/enums/fiche
+title: Fiche d'opération standardisée
+type: string
+oneOf:
+  - const: BAR-EN-101v39-4
+  - const: BAR-EN-101v54-5
+  - const: BAR-EN-102v39-2
+  - const: BAR-EN-103v39-5
+  - const: BAR-EN-104v14-1
+  - const: BAR-EN-104v54-2
+  - const: BAR-EN-105v39-3
+  - const: BAR-EN-106v33-4
+  - const: BAR-EN-107v20-3
+  - const: BAR-EN-108v37-2
+  - const: BAR-EN-108v54-3
+  - const: BAR-EN-109v24-1
+  - const: BAR-EN-110v35-1
+  - const: BAR-EQ-110v15-1
+  - const: BAR-EQ-115v28-1
+  - const: BAR-SE-104v19-1
+  - const: BAR-SE-105v28-1
+  - const: BAR-SE-106v32-1
+  - const: BAR-SE-107v37-1
+  - const: BAR-SE-108v48-1
+  - const: BAR-SE-109v54-1
+  - const: BAR-TH-101v17-1
+  - const: BAR-TH-102v17-1
+  - const: BAR-TH-104v41-3
+  - const: BAR-TH-106v23-2
+  - const: BAR-TH-107-SEv14-1
+  - const: BAR-TH-107v14-1
+  - const: BAR-TH-110v16-1
+  - const: BAR-TH-111v17-1
+  - const: BAR-TH-112v46-3
+  - const: BAR-TH-113v41-3
+  - const: BAR-TH-116v17-1
+  - const: BAR-TH-117v14-1
+  - const: BAR-TH-118v14-1
+  - const: BAR-TH-122v15-1
+  - const: BAR-TH-123v17-1
+  - const: BAR-TH-123v54-2
+  - const: BAR-TH-124v35-3
+  - const: BAR-TH-125v40-4
+  - const: BAR-TH-125v54-5
+  - const: BAR-TH-127v40-4
+  - const: BAR-TH-127v54-5
+  - const: BAR-TH-129v27-3
+  - const: BAR-TH-130v26-1
+  - const: BAR-TH-130v54-2
+  - const: BAR-TH-135v35-2
+  - const: BAR-TH-137v45-3
+  - const: BAR-TH-139v23-2
+  - const: BAR-TH-141v15-1
+  - const: BAR-TH-143v25-1
+  - const: BAR-TH-143v51-5
+  - const: BAR-TH-145v36-3
+  - const: BAR-TH-145v52-4
+  - const: BAR-TH-148v15-2
+  - const: BAR-TH-150v14-1
+  - const: BAR-TH-155v40-4
+  - const: BAR-TH-158v35-2
+  - const: BAR-TH-159v44-3
+  - const: BAR-TH-159v50-4
+  - const: BAR-TH-160v39-2
+  - const: BAR-TH-160v50-3
+  - const: BAR-TH-160v54-4
+  - const: BAR-TH-161v28-1
+  - const: BAR-TH-161v54-2
+  - const: BAR-TH-162v28-1
+  - const: BAR-TH-163v38-2
+  - const: BAR-TH-164v36-2
+  - const: BAR-TH-164v52-3
+  - const: BAR-TH-165v34-1
+  - const: BAR-TH-166v38-1
+  - const: BAR-TH-167v38-1
+  - const: BAR-TH-168v40-1
+  - const: BAR-TH-169v46-1
+  - const: BAR-TH-170v54-1
+  - const: BAR-TH-171v55-1
+  - const: BAR-TH-172v55-1
+$defs:
+  agri:
+    type: string
+    pattern: (AGRI)[-](BA|CH|EC|EN|EQ|SE|TH|UT)[-][0-9]+([-]SE)?v[0-9]+[-][0-9]+
+  bar:
+    type: string
+    pattern: (BAR)[-](BA|CH|EC|EN|EQ|SE|TH|UT)[-][0-9]+([-]SE)?v[0-9]+[-][0-9]+
+  bat:
+    type: string
+    pattern: (BAT)[-](BA|CH|EC|EN|EQ|SE|TH|UT)[-][0-9]+([-]SE)?v[0-9]+[-][0-9]+
+  ind:
+    type: string
+    pattern: (IND)[-](BA|CH|EC|EN|EQ|SE|TH|UT)[-][0-9]+([-]SE)?v[0-9]+[-][0-9]+
+  res:
+    type: string
+    pattern: (RES)[-](BA|CH|EC|EN|EQ|SE|TH|UT)[-][0-9]+([-]SE)?v[0-9]+[-][0-9]+
+  tra:
+    type: string
+    pattern: (TRA)[-](BA|CH|EC|EN|EQ|SE|TH|UT)[-][0-9]+([-]SE)?v[0-9]+[-][0-9]+

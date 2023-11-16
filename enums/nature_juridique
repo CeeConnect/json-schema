@@ -1,0 +1,17 @@
+$id: https://schemas.ceeconnect.fr/enums/nature_juridique
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Nature juridique
+type: string
+oneOf:
+  - $ref: "#/$defs/PERSONNE_PHYSIQUE"
+  - $ref: "#/$defs/PERSONNE_MORALE"
+$defs:
+  PERSONNE_PHYSIQUE:
+    const: PERSONNE_PHYSIQUE
+    title: Personne physique
+  PERSONNE_MORALE:
+    const: PERSONNE_MORALE
+    title: Personne morale
+examples:
+  - PERSONNE_PHYSIQUE
+  - PERSONNE_MORALE

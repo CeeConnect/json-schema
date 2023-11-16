@@ -1,0 +1,32 @@
+$id: https://schemas.ceeconnect.fr/enums/nature_contribution
+$schema: https://json-schema.org/draft/2020-12/schema
+$comment: Nomenclature accessible à l'adresse https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000044200266
+title: Nature
+description: Code de la nature du rôle actif et incitatif du demandeur
+type: string
+oneOf:
+  - $ref: "#/$defs/PRIME"
+  - $ref: "#/$defs/BON_ACHAT"
+  - $ref: "#/$defs/PRET"
+  - $ref: "#/$defs/CONSEIL"
+  - $ref: "#/$defs/PSO"
+  - $ref: "#/$defs/PATRIM"
+$defs:
+  PRIME:
+    const: PRIME
+    title: Prime
+  BON_ACHAT:
+    const: BON_ACHAT
+    title: Bon d'achat
+  PRET:
+    const: PRET
+    title: Prêt bonifié
+  CONSEIL:
+    const: CONSEIL
+    title: Conseil personnalisé
+  PSO:
+    const: PSO
+    title: Produit ou service offert
+  PATRIM:
+    const: PATRIM
+    title: Opération sur patrimoine propre

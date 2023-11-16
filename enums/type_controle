@@ -1,0 +1,17 @@
+$id: https://schemas.ceeconnect.fr/enums/type_controle
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Type de contrôle
+type: string
+oneOf:
+  - $ref: "#/$defs/CONTACT"
+  - $ref: "#/$defs/SUR_SITE"
+$defs:
+  CONTACT:
+    const: CONTACT
+    title: Contrôle par contact
+  SUR_SITE:
+    const: SUR_SITE
+    title: Contrôle sur site
+examples:
+  - CONTACT
+  - SUR_SITE

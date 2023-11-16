@@ -1,0 +1,37 @@
+$id: https://schemas.ceeconnect.fr/enums/secteur
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Secteur d'application
+type: string
+oneOf:
+  - $ref: "#/$defs/AGRI"
+  - $ref: "#/$defs/BAR"
+  - $ref: "#/$defs/BAT"
+  - $ref: "#/$defs/IND"
+  - $ref: "#/$defs/RES"
+  - $ref: "#/$defs/TRA"
+$defs:
+  AGRI:
+    const: AGRI
+    title: Agriculture
+  BAR:
+    const: BAR
+    title: Bâtiment résidentiel
+  BAT:
+    const: BAT
+    title: Bâtiment tertiaire
+  IND:
+    const: IND
+    title: Industrie
+  RES:
+    const: RES
+    title: Réseaux
+  TRA:
+    const: TRA
+    title: Transport
+examples:
+  - AGRI
+  - BAR
+  - BAT
+  - IND
+  - RES
+  - TRA

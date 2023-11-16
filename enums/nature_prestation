@@ -1,0 +1,19 @@
+$id: https://schemas.ceeconnect.fr/enums/nature_prestation
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Prestation
+description: Nature de la prestation assurée par le professionnel signataire de
+  l'attestation sur l'honneur
+type: string
+oneOf:
+  - $ref: "#/$defs/MISE_EN_OEUVRE"
+  - $ref: "#/$defs/MAITRISE_OEUVRE"
+$defs:
+  MISE_EN_OEUVRE:
+    const: MISE_EN_OEUVRE
+    title: Mise en oeuvre
+  MAITRISE_OEUVRE:
+    const: MAITRISE_OEUVRE
+    title: Maîtrise d'oeuvre
+examples:
+  - MISE_EN_OEUVRE
+  - MAITRISE_OEUVRE

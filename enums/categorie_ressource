@@ -1,0 +1,29 @@
+$id: https://schemas.ceeconnect.fr/enums/categorie_ressource
+$schema: https://json-schema.org/draft/2020-12/schema
+$comment: Reprise des catégories de ressources Ma Prime Rénov'
+title: Catégorie de ressource
+description: Catégorie de ressource pour la prise en compte de la précarité énergétique
+type: string
+oneOf:
+  - $ref: "#/$defs/TRES_MODESTE"
+  - $ref: "#/$defs/MODESTE"
+  - $ref: "#/$defs/INTERMEDIAIRE"
+  - $ref: "#/$defs/SUPERIEUR"
+$defs:
+  TRES_MODESTE:
+    const: TRES_MODESTE
+    title: Très modeste
+  MODESTE:
+    const: MODESTE
+    title: Modeste
+  INTERMEDIAIRE:
+    const: INTERMEDIAIRE
+    title: Intermédiaire
+  SUPERIEUR:
+    const: SUPERIEUR
+    title: Supérieur
+examples:
+  - TRES_MODESTE
+  - MODESTE
+  - INTERMEDIAIRE
+  - SUPERIEUR

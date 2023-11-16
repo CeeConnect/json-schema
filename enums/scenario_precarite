@@ -1,0 +1,33 @@
+$id: https://schemas.ceeconnect.fr/enums/scenario_precarite
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Scénario
+description: Scénario de prise en compte de la précarité énergétique
+type: string
+oneOf:
+  - $ref: "#/$defs/8.1"
+  - $ref: "#/$defs/8.2"
+  - $ref: "#/$defs/8.3"
+  - $ref: "#/$defs/8.4"
+  - $ref: "#/$defs/8.5"
+$defs:
+  "8.1":
+    const: "8.1"
+    title: Ménage en situation de précarité énergétique
+  "8.2":
+    const: "8.2"
+    title: Opération concernant au moins un logement locatif social
+  "8.3":
+    const: "8.3"
+    title: Copropriété objet d'une subvention de l'Agence nationale de l'habitat
+  "8.4":
+    const: "8.4"
+    title: Quartier prioritaire de la politique de la ville
+  "8.5":
+    const: "8.5"
+    title: Autres cas
+examples:
+  - "8.1"
+  - "8.2"
+  - "8.3"
+  - "8.4"
+  - "8.5"
