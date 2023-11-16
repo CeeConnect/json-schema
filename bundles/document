@@ -1,0 +1,19 @@
+$id: https://schemas.ceeconnect.fr/bundles/document
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Document
+type: object
+properties:
+  code:
+    title: Code du document
+    type:
+      - string
+      - "null"
+  url:
+    $ref: https://schemas.ceeconnect.fr/formats/url
+    title: URL d'accès au document
+required:
+  - code
+  - url
+examples:
+  - code: PREUVE_QUALIFICATION
+    url: https://api.ceeconnect.fr/archivage/archives/{uuid}

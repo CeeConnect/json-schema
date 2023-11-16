@@ -1,0 +1,399 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-EN-104v14-1
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-EN-104
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-EN-104
+  dateEngagement:
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          formatExclusiveMaximum: "2024-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-EN-104v14-1"
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          formatMinimum: "2024-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-EN-104v54-2"
+$defs:
+  BAR-EN-104v14-1:
+    title: BAR-EN-104 - A compter du 1er janvier 2015
+    type: object
+    properties:
+      description:
+        type: object
+        properties:
+          ancienneteBatiment:
+            $ref: https://schemas.ceeconnect.fr/enums/anciennete#/$defs/batimentExistant
+          energieChauffage:
+            $ref: https://schemas.ceeconnect.fr/enums/energie#/$defs/energiesChauffage
+          quantite:
+            title: Nombre de fenêtres ou portes fenêtres complètes avec vitrage isolant
+              posées
+            type: integer
+            minimum: 1
+          typeIsolation:
+            $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/fenetres
+          coefficientSurfacique:
+            title: Coefficient de transmission surfacique Uw (W/m².K)
+            type: number
+            maximum: 1.7
+          facteurSolaire:
+            title: Facteur solaire
+            type: number
+          marque:
+            title: Marque des équipements
+            type: string
+          reference:
+            title: Référence des équipements
+            type: string
+          installateur:
+            $ref: https://schemas.ceeconnect.fr/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/93
+                    - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/94
+            required:
+              - qualificationsRge
+        required:
+          - ancienneteBatiment
+          - energieChauffage
+          - quantite
+          - typeIsolation
+          - coefficientSurfacique
+          - facteurSolaire
+          - marque
+          - reference
+          - installateur
+        allOf:
+          - if:
+              properties:
+                typeIsolation:
+                  oneOf:
+                    - $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/FENETRE
+                    - $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/PORTE_FENETRE
+                    - $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/DOUBLE_FENETRE
+              required:
+                - typeIsolation
+            then:
+              properties:
+                installateur:
+                  type: object
+                  properties:
+                    qualificationsRge:
+                      type: array
+                      contains:
+                        oneOf:
+                          - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/93
+                  required:
+                    - qualificationsRge
+              required:
+                - installateur
+          - if:
+              properties:
+                typeIsolation:
+                    $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/FENETRE_TOITURE
+              required:
+                - typeIsolation
+            then:
+              properties:
+                installateur:
+                  type: object
+                  properties:
+                    qualificationsRge:
+                      type: array
+                      contains:
+                        oneOf:
+                          - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/94
+                  required:
+                    - qualificationsRge
+              required:
+                - installateur
+        anyOf:
+          - properties:
+              typeIsolation:
+                $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/FENETRE_TOITURE
+              coefficientSurfacique:
+                type: number
+                maximum: 1.5
+              facteurSolaire:
+                type: number
+                maximum: 0.36
+            required:
+              - typeIsolation
+              - coefficientSurfacique
+              - facteurSolaire
+          - properties:
+              typeIsolation:
+                oneOf:
+                  - $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/FENETRE
+                  - $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/PORTE_FENETRE
+              coefficientSurfacique:
+                type: number
+                maximum: 1.3
+              facteurSolaire:
+                type: number
+                maximum: 0.3
+            required:
+              - typeIsolation
+              - coefficientSurfacique
+              - facteurSolaire
+          - properties:
+              typeIsolation:
+                oneOf:
+                  - $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/FENETRE
+                  - $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/PORTE_FENETRE
+              coefficientSurfacique:
+                type: number
+                maximum: 1.7
+              facteurSolaire:
+                type: number
+                maximum: 0.36
+            required:
+              - typeIsolation
+              - coefficientSurfacique
+              - facteurSolaire
+      documents:
+        type: array
+        items:
+          $ref: https://schemas.ceeconnect.fr/bundles/document
+        allOf:
+          - contains:
+              title: Preuve de qualification du professionnel
+              type: object
+              properties:
+                code:
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - description
+      - documents
+  BAR-EN-104v54-2:
+    title: BAR-EN-104 - A compter du 1er janvier 2024
+    type: object
+    properties:
+      description:
+        type: object
+        properties:
+          ancienneteBatiment:
+            $ref: https://schemas.ceeconnect.fr/enums/anciennete#/$defs/batimentExistant
+          quantite:
+            title: Nombre de fenêtres ou portes fenêtres complètes avec vitrage isolant
+              posées
+            type: integer
+            minimum: 1
+          surface:
+            title: Surface totale de fenêtres, doubles fenêtres, fenêtres de toiture ou
+              portes-fenêtres posée
+            type: number
+            minimum: 0
+          typeIsolation:
+            $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/fenetres
+          coefficientSurfacique:
+            title: Coefficient de transmission surfacique Uw (W/m².K)
+            type: number
+            maximum: 1.8
+          facteurSolaire:
+            title: Facteur solaire
+            type: number
+          marque:
+            title: Marque des équipements
+            type: string
+          reference:
+            title: Référence des équipements
+            type: string
+          installateur:
+            $ref: https://schemas.ceeconnect.fr/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/93
+                    - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/94
+            required:
+              - qualificationsRge
+        required:
+          - ancienneteBatiment
+          - quantite
+          - surface
+          - typeIsolation
+          - coefficientSurfacique
+          - facteurSolaire
+          - marque
+          - reference
+          - installateur
+        allOf:
+          - if:
+              properties:
+                typeIsolation:
+                  oneOf:
+                    - $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/FENETRE
+                    - $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/PORTE_FENETRE
+                    - $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/DOUBLE_FENETRE
+              required:
+                - typeIsolation
+            then:
+              properties:
+                installateur:
+                  type: object
+                  properties:
+                    qualificationsRge:
+                      type: array
+                      contains:
+                        oneOf:
+                          - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/93
+                  required:
+                    - qualificationsRge
+              required:
+                - installateur
+          - if:
+              properties:
+                typeIsolation:
+                    $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/FENETRE_TOITURE
+              required:
+                - typeIsolation
+            then:
+              properties:
+                installateur:
+                  type: object
+                  properties:
+                    qualificationsRge:
+                      type: array
+                      contains:
+                        oneOf:
+                          - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/94
+                  required:
+                    - qualificationsRge
+              required:
+                - installateur
+        anyOf:
+          - properties:
+              typeIsolation:
+                $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/FENETRE_TOITURE
+              coefficientSurfacique:
+                type: number
+                maximum: 1.5
+              facteurSolaire:
+                type: number
+                maximum: 0.36
+            required:
+              - typeIsolation
+              - coefficientSurfacique
+              - facteurSolaire
+          - properties:
+              typeIsolation:
+                oneOf:
+                  - $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/FENETRE
+                  - $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/PORTE_FENETRE
+              coefficientSurfacique:
+                type: number
+                maximum: 1.3
+              facteurSolaire:
+                type: number
+                maximum: 0.3
+            required:
+              - typeIsolation
+              - coefficientSurfacique
+              - facteurSolaire
+          - properties:
+              typeIsolation:
+                oneOf:
+                  - $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/FENETRE
+                  - $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/PORTE_FENETRE
+              coefficientSurfacique:
+                type: number
+                maximum: 1.7
+              facteurSolaire:
+                type: number
+                maximum: 0.36
+            required:
+              - typeIsolation
+              - coefficientSurfacique
+              - facteurSolaire
+          - properties:
+              typeIsolation:
+                $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/DOUBLE_FENETRE
+              coefficientSurfacique:
+                type: number
+                maximum: 1.8
+              facteurSolaire:
+                type: number
+                minimum: 0.32
+            required:
+              - typeIsolation
+              - coefficientSurfacique
+              - facteurSolaire
+      documents:
+        type: array
+        items:
+          $ref: https://schemas.ceeconnect.fr/bundles/document
+        allOf:
+          - contains:
+              title: Preuve de qualification du professionnel
+              type: object
+              properties:
+                code:
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - description
+      - documents
+examples:
+  - fiche: BAR-EN-104v14-1
+    dateEngagement: "2023-01-01"
+    description:
+      ancienneteBatiment: EXISTANT
+      energieChauffage: COMBUSTIBLES
+      quantite: 100
+      typeIsolation: FENETRE
+      coefficientSurfacique: 1.2
+      facteurSolaire: 0.2
+      marque: MARQUE
+      reference: REFERENCE
+      installateur:
+        $ref: https://schemas.ceeconnect.fr/bundles/operation/installateur#/examples/0
+    documents:
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+  - fiche: BAR-EN-104
+    dateEngagement: "2024-01-01"
+    description:
+      ancienneteBatiment: EXISTANT
+      quantite: 10
+      surface: 15
+      typeIsolation: FENETRE
+      coefficientSurfacique: 1.2
+      facteurSolaire: 0.2
+      marque: MARQUE
+      reference: REFERENCE
+      installateur:
+        $ref: https://schemas.ceeconnect.fr/bundles/operation/installateur#/examples/0
+    documents:
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

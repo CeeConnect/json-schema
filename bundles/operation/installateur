@@ -1,0 +1,57 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/installateur
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Installateur
+description: Professionnel assurant la réalisation de l'opération
+type: object
+properties:
+  raisonSociale: 
+    $ref: https://schemas.ceeconnect.fr/formats/raison_sociale
+  siret: 
+    $ref: https://schemas.ceeconnect.fr/formats/siret
+  nom:
+    $ref: https://schemas.ceeconnect.fr/formats/nom_famille
+    title: Nom de famille du représentant
+  prenom:
+    $ref: https://schemas.ceeconnect.fr/formats/prenom
+    title: Prénom du représentant
+  fonction:
+    $ref: https://schemas.ceeconnect.fr/formats/fonction
+    title: Fonction du représentant
+  qualificationsRge:
+    title: Qualifications RGE
+    description: Renseignier les domaines de qualification RGE
+    type: array
+    items:
+      $ref: https://schemas.ceeconnect.fr/enums/domaine_rge
+required:
+  - raisonSociale
+  - siret
+  - nom
+  - prenom
+  - fonction
+  - qualificationsRge
+examples:
+  - raisonSociale: RAISON SOCIALE
+    siret: "00000000000000"
+    nom: NOM
+    prenom: PRENOM
+    fonction: FONCTION
+    qualificationsRge: 
+        - "29"
+        - "85"
+        - "86"
+        - "87"
+        - "88"
+        - "89"
+        - "90"
+        - "91"
+        - "92"
+        - "93"
+        - "94"
+        - "95"
+        - "96"
+        - "97"
+        - "98"
+        - "99"
+        - "100"
+        - "101"

@@ -1,0 +1,299 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-EN-104v14-1
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: BAR-EN-104
+type: object
+properties:
+  fiche:
+    type: string
+    const: BAR-EN-104
+  dateEngagement:
+    type: string
+    format: date
+  adresse:
+    $ref: https://schemas.ceeconnect.fr/mixins/adresse#/$defs/franceMetropolitaine
+required:
+  - fiche
+  - dateEngagement
+  - adresse
+allOf:
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          formatExclusiveMaximum: "2024-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-EN-101v39-4"
+  - if:
+      properties:
+        dateEngagement:
+          type: string
+          formatMinimum: "2024-01-01"
+      required:
+        - dateEngagement
+    then:
+      allOf:
+        - $ref: "#/$defs/BAR-EN-101v54-5"
+$defs:
+  BAR-EN-101v39-4:
+    title: BAR-EN-101 - A compter du 1er mai 2022
+    type: object
+    properties:
+      description:
+        type: object
+        properties:
+          ancienneteBatiment:
+            $ref: https://schemas.ceeconnect.fr/enums/anciennete#/$defs/batimentExistant
+          quantite:
+            title: Surface d'isolant posé (m²)
+            description:
+              Dans le cas d'une pose superposée de plusieurs isolants, indiquer
+              la surface résultant de la superposition des isolants
+            type: number
+            minimum: 0
+          typeIsolation:
+            $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/combles
+          resistanceThermique:
+            title: Résistance thermmique de l'isolant
+            description:
+              Dans le cas d'une pose superposée de plusieurs isolants, indiquer
+              la résistance thermique globale
+            type: number
+            minimum: 6
+          epaisseur:
+            title: Epaisseur de l'isolant (mm)
+            type: number
+            minimum: 0
+          posePareVapeur:
+            title: Mise en place d'un pare-vapeur
+            description:
+              L'isolation thermique réalisée a nécessité la mise en place d'un
+              pare-vapeur ou tout autre dispositif permettant d'atteindre un
+              résultat équivalent
+            type: boolean
+          references:
+            title: Marques et références
+            description:
+              Dans le cas d'une pose superposée de plusieurs isolants, indiquer
+              les marques et références de chacun des isolants posés
+            type: array
+            minItems: 1
+            items:
+              type: object
+              properties:
+                marque:
+                  title: Marque de l'isolant
+                  type: string
+                reference:
+                  title: Référence de l'isolant
+                  type: string
+              required:
+                - marque
+                - reference
+          installateur:
+            $ref: https://schemas.ceeconnect.fr/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/95
+                    - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/97
+                    - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/98
+            required:
+              - qualificationsRge
+        required:
+          - ancienneteBatiment
+          - quantite
+          - typeIsolation
+          - resistanceThermique
+          - epaisseur
+          - posePareVapeur
+          - references
+          - installateur
+        allOf:
+          - if:
+              properties:
+                typeIsolation:
+                  $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/ISOLATION_COMBLES_PERDUS
+              required:
+                - typeIsolation
+            then:
+              properties:
+                resistanceThermique:
+                  type: number
+                  minimum: 7
+      documents:
+        type: array
+        items:
+          $ref: https://schemas.ceeconnect.fr/bundles/document
+        allOf:
+          - contains:
+              title: Preuve de qualification du professionnel
+              type: object
+              properties:
+                code:
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - description
+      - documents
+  BAR-EN-101v54-5:
+    title: BAR-EN-101 - A compter du 1er janvier 2024
+    type: object
+    properties:
+      description:
+        type: object
+        properties:
+          ancienneteBatiment:
+            $ref: https://schemas.ceeconnect.fr/enums/anciennete#/$defs/batimentExistant
+          quantite:
+            title: Surface d'isolant posé (m²)
+            description: Dans le cas d'une pose superposée de plusieurs isolants, indiquer
+              la surface résultant de la superposition des isolants
+            type: number
+            minimum: 0
+          typeIsolation:
+            $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/combles
+          resistanceThermique:
+            title: Résistance thermmique de l'isolant
+            description: Dans le cas d'une pose superposée de plusieurs isolants, indiquer
+              la résistance thermique globale
+            type: number
+            minimum: 6
+          epaisseur:
+            title: Epaisseur de l'isolant (mm)
+            type: number
+            minimum: 0
+          posePareVapeur:
+            title: Mise en place d'un pare-vapeur
+            description: L'isolation thermique réalisée a nécessité la mise en place d'un
+              pare-vapeur ou tout autre dispositif permettant d'atteindre un
+              résultat équivalent
+            type: boolean
+          references:
+            title: Marques et références
+            description: Dans le cas d'une pose superposée de plusieurs isolants, indiquer
+              les marques et références de chacun des isolants posés
+            type: array
+            minItems: 1
+            items:
+              type: object
+              properties:
+                marque:
+                  title: Marque de l'isolant
+                  type: string
+                reference:
+                  title: Référence de l'isolant
+                  type: string
+              required:
+                - marque
+                - reference
+          installateur:
+            $ref: https://schemas.ceeconnect.fr/bundles/operation/installateur
+            type: object
+            properties:
+              qualificationsRge:
+                type: array
+                contains:
+                  oneOf:
+                    - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/95
+                    - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/97
+                    - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/98
+            required:
+              - qualificationsRge
+        required:
+          - ancienneteBatiment
+          - quantite
+          - typeIsolation
+          - resistanceThermique
+          - epaisseur
+          - posePareVapeur
+          - references
+          - installateur
+        allOf:
+          - if:
+              properties:
+                typeIsolation:
+                  $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/ISOLATION_COMBLES_PERDUS
+              required:
+                - typeIsolation
+            then:
+              properties:
+                resistanceThermique:
+                  type: number
+                  minimum: 7
+      documents:
+        type: array
+        items:
+          $ref: https://schemas.ceeconnect.fr/bundles/document
+        allOf:
+          - contains:
+              title: Preuve de qualification du professionnel
+              type: object
+              properties:
+                code:
+                  const: PREUVE_QUALIFICATION
+              required:
+                - code
+    required:
+      - description
+      - documents
+examples:
+  - fiche: BAR-EN-101
+    dateEngagement: "2023-01-01"
+    adresse:
+      $ref: https://schemas.ceeconnect.fr/mixins/adresse#/examples/0
+    description:
+      ancienneteBatiment: EXISTANT
+      typeIsolation: ISOLATION_COMBLES_PERDUS
+      quantite: 100
+      resistanceThermique: 8
+      epaisseur: 400
+      posePareVapeur: true
+      references:
+        - marque: MARQUE
+          reference: REFERENCE
+        - marque: MARQUE
+          reference: REFERENCE
+      installateur:
+        $ref: https://schemas.ceeconnect.fr/bundles/operation/installateur#/examples/0
+    documents:
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}
+  - fiche: BAR-EN-101
+    dateEngagement: "2024-01-01"
+    adresse:
+      $ref: https://schemas.ceeconnect.fr/mixins/adresse#/examples/0
+    description:
+      ancienneteBatiment: EXISTANT
+      typeIsolation: ISOLATION_COMBLES_PERDUS
+      quantite: 100
+      resistanceThermique: 8
+      epaisseur: 400
+      posePareVapeur: true
+      references:
+        - marque: MARQUE
+          reference: REFERENCE
+        - marque: MARQUE
+          reference: REFERENCE
+      installateur:
+        $ref: https://schemas.ceeconnect.fr/bundles/operation/installateur#/examples/0
+        type: object
+        properties:
+          qualificationsRge:
+            type: array
+            contains:
+              oneOf:
+                - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/95
+                - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/97
+                - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/98
+        required:
+          - qualificationsRge
+    documents:
+      - code: PREUVE_QUALIFICATION
+        url: https://api.ceeconnect.fr/document/documents/{uuid}

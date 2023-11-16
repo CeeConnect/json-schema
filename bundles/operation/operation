@@ -1,0 +1,137 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/operation
+$schema: https://json-schema.org/draft/2020-12/schema
+$comment: |
+  - TODO: Insérer les documents génériques (preuve d'engagement, de réalisation...)
+title: Opération d'économies d'énergie
+type: object
+properties:
+  uuid:
+    title: Identifiant
+    description: Identifiant unique au format UUID
+    type: string
+    format: uuid
+  fiche:
+    $ref: https://schemas.ceeconnect.fr/enums/fiche
+    title: Fiche d'opération standardisée
+  bonification:
+    $ref: https://schemas.ceeconnect.fr/enums/bonification
+    title: Bonification
+  dateVisitePrealable:
+    title: Date de la visite préalable
+    type: string
+    format: date
+  dateEngagement:
+    title: Date d'engagement de l'opération
+    type: string
+    format: date
+  dateDebutTravaux:
+    title: Date de début des travaux
+    type: string
+    format: date
+  dateAchevement:
+    title: Date d'achèvement de l'opération
+    type: string
+    format: date
+  volumeCeeClassique:
+    title: Volume de CEE classique
+    type: integer
+    minimum: 0
+  volumeCeePrecarite:
+    title: Volume de CEE précarité
+    type: integer
+    minimum: 0
+  natureContribution:
+    $ref: https://schemas.ceeconnect.fr/enums/nature_contribution
+    title: Nature du rôle actif et incitatif
+  valeurContribution:
+    title: Montant du rôle actif et incitatif
+    type: number
+    minimum: 0
+  adresse:
+    $ref: https://schemas.ceeconnect.fr/mixins/adresse#/$defs/france
+  beneficiaire:
+    $ref: https://schemas.ceeconnect.fr/bundles/operation/beneficiaire
+  professionnel:
+    $ref: https://schemas.ceeconnect.fr/bundles/operation/professionnel
+  precarite:
+    title: Précarité énergétique
+    oneOf:
+      - $ref: https://schemas.ceeconnect.fr/bundles/operation/precarite
+      - type: "null"
+  documents:
+    title: Liste des documents
+    type: array
+    items:
+      $ref: https://schemas.ceeconnect.fr/bundles/document
+    allOf:
+      - contains:
+          title: Preuve d'engagement de l'opération
+          type: object
+          properties:
+            code:
+              $ref: https://schemas.ceeconnect.fr/enums/code_document#/$defs/PREUVE_ENGAGEMENT
+          required:
+            - code
+      - contains:
+          title: Preuve de réalisation de l'opération
+          type: object
+          properties:
+            code:
+              $ref: https://schemas.ceeconnect.fr/enums/code_document#/$defs/PREUVE_ACHEVEMENT
+          required:
+            - code
+      - contains:
+          title: Preuve du rôle actif et incitatif du demandeur
+          type: object
+          properties:
+            code:
+              $ref: https://schemas.ceeconnect.fr/enums/code_document#/$defs/PREUVE_ROLE_ACTIF_INCITATIF
+          required:
+            - code
+      - contains:
+          title: Attestation sur l'honneur
+          type: object
+          properties:
+            code:
+              $ref: https://schemas.ceeconnect.fr/enums/code_document#/$defs/ATTESTATION_HONNEUR
+          required:
+            - code
+  description:
+    title: Descriptif de l'opération
+    type: object
+required:
+  - uuid
+  - fiche
+  - dateEngagement
+  - dateVisitePrealable
+  - dateDebutTravaux
+  - dateAchevement
+  - volumeCeeClassique
+  - volumeCeePrecarite
+  - natureContribution
+  - valeurContribution
+  - adresse
+  - beneficiaire
+  - professionnel
+  - precarite
+  - documents
+  - description
+allOf:
+  - if:
+      type: object
+      properties:
+        fiche:
+          type: string
+          pattern: ^BAR.+$
+      required:
+        - fiche
+    then:
+      allOf:
+        - $ref: https://schemas.ceeconnect.fr/bundles/operation/bar/operation
+  # Bonifications
+  - if:
+      required:
+        - fiche
+        - bonification
+    then:
+      $ref: https://schemas.ceeconnect.fr/bundles/operation/bonification/operation

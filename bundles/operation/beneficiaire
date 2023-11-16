@@ -1,0 +1,83 @@
+$id: https://schemas.ceeconnect.fr/bundles/operation/beneficiaire
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Bénéficiaire
+description: Bénéficiaire de l'opération d'économies d'énergie
+type: object
+properties:
+  nature:
+    $ref: https://schemas.ceeconnect.fr/enums/nature_juridique
+    title: Nature du bénéficiaire
+  email:
+    $ref: https://schemas.ceeconnect.fr/formats/email
+    title: Email de contact
+  telephone:
+    $ref: https://schemas.ceeconnect.fr/formats/telephone
+    title: Numéro de téléphone
+  adresse:
+    $ref: https://schemas.ceeconnect.fr/mixins/adresse
+    title: Adresse
+discriminator:
+  propertyName: nature
+oneOf:
+  - $ref: "#/$defs/personnePhysique"
+  - $ref: "#/$defs/personneMorale"
+required:
+  - nature
+  - email
+  - telephone
+  - adresse
+$defs:
+  personnePhysique:
+    title: Personne physique
+    type: object
+    properties:
+      nature:
+        $ref: https://schemas.ceeconnect.fr/enums/nature_juridique#/$defs/PERSONNE_PHYSIQUE
+      nom:
+        title: Nom
+        type: string
+      prenom:
+        title: Prénom
+        type: string
+    required:
+      - type
+      - nom
+      - prenom
+  personneMorale:
+    title: Personne morale
+    type: object
+    properties:
+      nature:
+        $ref: https://schemas.ceeconnect.fr/enums/nature_juridique#/$defs/PERSONNE_MORALE
+      type:
+        $ref: https://schemas.ceeconnect.fr/enums/type_beneficiaire#/$defs/PERSONNE_MORALE
+      raisonSociale:
+        $ref: https://schemas.ceeconnect.fr/formats/raison_sociale
+      siren:
+        $ref: https://schemas.ceeconnect.fr/formats/siren
+      nom:
+        title: Nom de famille du représentant
+        type: string
+      prenom:
+        title: Prénom du représentant
+        type: string
+      fonction:
+        title: Fonction du représentant
+        type: string
+    required:
+      - nature
+      - type
+      - raisonSociale
+      - siren
+      - nom
+      - prenom
+      - fonction
+examples:
+  - nature: PERSONNE_PHYSIQUE
+    type: PROPRIETAIRE_UNIQUE
+    email: contact@email.fr
+    telephone: "0836656565"
+    adresse:
+      $ref: https://schemas.ceeconnect.fr/mixins/adresse#/examples/0
+    nom: NOM
+    prenom: PRENOM
