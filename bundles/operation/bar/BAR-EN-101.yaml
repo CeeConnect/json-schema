@@ -1,4 +1,4 @@
-$id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-EN-104v14-1
+$id: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-104v14-1
 $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
 title: BAR-EN-104
 type: object
@@ -10,7 +10,7 @@ properties:
     type: string
     format: date
   adresse:
-    $ref: https://schemas.ceeconnect.fr/mixins/adresse#/$defs/franceMetropolitaine
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
 required:
   - fiche
   - dateEngagement
@@ -45,7 +45,7 @@ $defs:
         type: object
         properties:
           ancienneteBatiment:
-            $ref: https://schemas.ceeconnect.fr/enums/anciennete#/$defs/batimentExistant
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           quantite:
             title: Surface d'isolant posé (m²)
             description:
@@ -54,7 +54,7 @@ $defs:
             type: number
             minimum: 0
           typeIsolation:
-            $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/combles
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_isolation#/$defs/combles
           resistanceThermique:
             title: Résistance thermmique de l'isolant
             description:
@@ -93,16 +93,16 @@ $defs:
                 - marque
                 - reference
           installateur:
-            $ref: https://schemas.ceeconnect.fr/bundles/operation/installateur
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
             type: object
             properties:
               qualificationsRge:
                 type: array
                 contains:
                   oneOf:
-                    - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/95
-                    - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/97
-                    - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/98
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/95
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/97
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/98
             required:
               - qualificationsRge
         required:
@@ -118,7 +118,7 @@ $defs:
           - if:
               properties:
                 typeIsolation:
-                  $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/ISOLATION_COMBLES_PERDUS
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_isolation#/$defs/ISOLATION_COMBLES_PERDUS
               required:
                 - typeIsolation
             then:
@@ -129,7 +129,7 @@ $defs:
       documents:
         type: array
         items:
-          $ref: https://schemas.ceeconnect.fr/bundles/document
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
         allOf:
           - contains:
               title: Preuve de qualification du professionnel
@@ -150,7 +150,7 @@ $defs:
         type: object
         properties:
           ancienneteBatiment:
-            $ref: https://schemas.ceeconnect.fr/enums/anciennete#/$defs/batimentExistant
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           quantite:
             title: Surface d'isolant posé (m²)
             description: Dans le cas d'une pose superposée de plusieurs isolants, indiquer
@@ -158,7 +158,7 @@ $defs:
             type: number
             minimum: 0
           typeIsolation:
-            $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/combles
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_isolation#/$defs/combles
           resistanceThermique:
             title: Résistance thermmique de l'isolant
             description: Dans le cas d'une pose superposée de plusieurs isolants, indiquer
@@ -194,16 +194,16 @@ $defs:
                 - marque
                 - reference
           installateur:
-            $ref: https://schemas.ceeconnect.fr/bundles/operation/installateur
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
             type: object
             properties:
               qualificationsRge:
                 type: array
                 contains:
                   oneOf:
-                    - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/95
-                    - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/97
-                    - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/98
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/95
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/97
+                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/98
             required:
               - qualificationsRge
         required:
@@ -219,7 +219,7 @@ $defs:
           - if:
               properties:
                 typeIsolation:
-                  $ref: https://schemas.ceeconnect.fr/enums/bar/type_isolation#/$defs/ISOLATION_COMBLES_PERDUS
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_isolation#/$defs/ISOLATION_COMBLES_PERDUS
               required:
                 - typeIsolation
             then:
@@ -230,7 +230,7 @@ $defs:
       documents:
         type: array
         items:
-          $ref: https://schemas.ceeconnect.fr/bundles/document
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
         allOf:
           - contains:
               title: Preuve de qualification du professionnel
@@ -247,7 +247,7 @@ examples:
   - fiche: BAR-EN-101
     dateEngagement: "2023-01-01"
     adresse:
-      $ref: https://schemas.ceeconnect.fr/mixins/adresse#/examples/0
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
       ancienneteBatiment: EXISTANT
       typeIsolation: ISOLATION_COMBLES_PERDUS
@@ -261,14 +261,14 @@ examples:
         - marque: MARQUE
           reference: REFERENCE
       installateur:
-        $ref: https://schemas.ceeconnect.fr/bundles/operation/installateur#/examples/0
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
     documents:
       - code: PREUVE_QUALIFICATION
         url: https://api.ceeconnect.fr/document/documents/{uuid}
   - fiche: BAR-EN-101
     dateEngagement: "2024-01-01"
     adresse:
-      $ref: https://schemas.ceeconnect.fr/mixins/adresse#/examples/0
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
       ancienneteBatiment: EXISTANT
       typeIsolation: ISOLATION_COMBLES_PERDUS
@@ -282,16 +282,16 @@ examples:
         - marque: MARQUE
           reference: REFERENCE
       installateur:
-        $ref: https://schemas.ceeconnect.fr/bundles/operation/installateur#/examples/0
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
         type: object
         properties:
           qualificationsRge:
             type: array
             contains:
               oneOf:
-                - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/95
-                - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/97
-                - $ref: https://schemas.ceeconnect.fr/enums/domaine_rge#/$defs/98
+                - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/95
+                - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/97
+                - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/98
         required:
           - qualificationsRge
     documents:

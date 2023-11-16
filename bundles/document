@@ -1,4 +1,4 @@
-$id: https://schemas.ceeconnect.fr/bundles/document
+$id: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
 $schema: https://json-schema.org/draft/2020-12/schema
 title: Document
 type: object
@@ -9,7 +9,7 @@ properties:
       - string
       - "null"
   url:
-    $ref: https://schemas.ceeconnect.fr/formats/url
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/url
     title: URL d'accès au document
 required:
   - code

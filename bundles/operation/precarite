@@ -1,11 +1,11 @@
-$id: https://schemas.ceeconnect.fr/bundles/operation/precarite
+$id: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/precarite
 $schema: 'https://json-schema.org/draft/2020-12/schema'
 title: Précarité énergétique
 description: Prise en compte de la précarité énergétique du bénéficiaire
 type: object
 properties:
   scenarioPrecarite:
-    $ref: https://schemas.ceeconnect.fr/enums/scenario_precarite
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/scenario_precarite
 required:
   - scenarioPrecarite
 discriminator:
@@ -22,9 +22,9 @@ $defs:
     type: object
     properties:
       scenarioPrecarite:
-        $ref: https://schemas.ceeconnect.fr/enums/scenario_precarite#/$defs/8.1
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/scenario_precarite#/$defs/8.1
       categorieRessource:
-        $ref: https://schemas.ceeconnect.fr/enums/categorie_ressource
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/categorie_ressource
     required:
       - scenarioPrecarite
       - categorieRessource
@@ -35,7 +35,7 @@ $defs:
     type: object
     properties:
       scenarioPrecarite:
-        $ref: https://schemas.ceeconnect.fr/enums/scenario_precarite#/$defs/8.2
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/scenario_precarite#/$defs/8.2
       bailleursSociaux:
         title: Liste des bailleurs sociaux
         type: array
@@ -58,7 +58,7 @@ $defs:
     type: object
     properties:
       scenarioPrecarite:
-        $ref: https://schemas.ceeconnect.fr/enums/scenario_precarite#/$defs/8.3
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/scenario_precarite#/$defs/8.3
       nombreMenages:
         title: Nombre de ménages
         description: Indiquer le nombre de ménages concernés par l'opération
@@ -88,10 +88,10 @@ $defs:
     type: object
     properties:
       scenarioPrecarite:
-        $ref: https://schemas.ceeconnect.fr/enums/scenario_precarite#/$defs/8.4
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/scenario_precarite#/$defs/8.4
       codeQuartierPrioritaire:
         title: Code du quartier prioritaire de la politique de la ville
-        $ref: https://schemas.ceeconnect.fr/formats/code_quartier_prioritaire
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/code_quartier_prioritaire
       nomQuartierPrioritaire:
         title: Nom du quartier prioritaire de la politique de la ville
         type: string
@@ -105,7 +105,7 @@ $defs:
     type: object
     properties:
       scenarioPrecarite:
-        $ref: https://schemas.ceeconnect.fr/enums/scenario_precarite#/$defs/8.5
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/scenario_precarite#/$defs/8.5
       nombreMenages:
         title: Nombre de ménages
         description: Indiquer le nombre de ménages concernés par l'opération
@@ -143,16 +143,16 @@ $defs:
     type: object
     properties:
       nom:
-        $ref: https://schemas.ceeconnect.fr/formats/nom_famille
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/nom_famille
       prenom:
-        $ref: https://schemas.ceeconnect.fr/formats/prenom
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/prenom
       composition:
         title: Composition
         description: Nombre de personnes composant le ménage
         type: integer
         minimum: 1
       categorieRessource:
-        $ref: https://schemas.ceeconnect.fr/enums/categorie_ressource
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/categorie_ressource
       foyersFiscaux:
         title: Liste de foyers fiscaux
         description: Liste des foyers fiscaux composant le ménage
@@ -169,9 +169,9 @@ $defs:
               title: Prénom du représentant du foyer fiscal
               type: string
             identifiantFiscal:
-              $ref: https://schemas.ceeconnect.fr/formats/numero_fiscal
+              $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/numero_fiscal
             referenceAvis:
-              $ref: https://schemas.ceeconnect.fr/formats/reference_avis_imposition
+              $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/reference_avis_imposition
           required:
             - nom
             - prenom
@@ -188,23 +188,23 @@ $defs:
     properties:
       nom:
         title: Nom du représentant
-        $ref: https://schemas.ceeconnect.fr/formats/nom_famille
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/nom_famille
       prenom:
         title: Prénom du représentant
-        $ref: https://schemas.ceeconnect.fr/formats/prenom
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/prenom
       fonction:
         title: Fonction du représentant
-        $ref: https://schemas.ceeconnect.fr/formats/fonction
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/fonction
       raisonSociale:
-        $ref: https://schemas.ceeconnect.fr/formats/raison_sociale
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/raison_sociale
       siren:
-        $ref: https://schemas.ceeconnect.fr/formats/siren
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siren
       adresse:
-        $ref: https://schemas.ceeconnect.fr/mixins/adresse
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse
       email:
-        $ref: https://schemas.ceeconnect.fr/formats/email
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/email
       telephone:
-        $ref: https://schemas.ceeconnect.fr/formats/telephone
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/telephone
       nombreMenages:
         title: Nombre de ménages couverts
         description: Nombre de ménages habitant un logement conventionné géré par l'organisme

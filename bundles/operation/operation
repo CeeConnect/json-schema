@@ -1,4 +1,4 @@
-$id: https://schemas.ceeconnect.fr/bundles/operation/operation
+$id: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/operation
 $schema: https://json-schema.org/draft/2020-12/schema
 $comment: |
   - TODO: Insérer les documents génériques (preuve d'engagement, de réalisation...)
@@ -11,10 +11,10 @@ properties:
     type: string
     format: uuid
   fiche:
-    $ref: https://schemas.ceeconnect.fr/enums/fiche
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/fiche
     title: Fiche d'opération standardisée
   bonification:
-    $ref: https://schemas.ceeconnect.fr/enums/bonification
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bonification
     title: Bonification
   dateVisitePrealable:
     title: Date de la visite préalable
@@ -41,35 +41,35 @@ properties:
     type: integer
     minimum: 0
   natureContribution:
-    $ref: https://schemas.ceeconnect.fr/enums/nature_contribution
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/nature_contribution
     title: Nature du rôle actif et incitatif
   valeurContribution:
     title: Montant du rôle actif et incitatif
     type: number
     minimum: 0
   adresse:
-    $ref: https://schemas.ceeconnect.fr/mixins/adresse#/$defs/france
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
   beneficiaire:
-    $ref: https://schemas.ceeconnect.fr/bundles/operation/beneficiaire
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/beneficiaire
   professionnel:
-    $ref: https://schemas.ceeconnect.fr/bundles/operation/professionnel
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/professionnel
   precarite:
     title: Précarité énergétique
     oneOf:
-      - $ref: https://schemas.ceeconnect.fr/bundles/operation/precarite
+      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/precarite
       - type: "null"
   documents:
     title: Liste des documents
     type: array
     items:
-      $ref: https://schemas.ceeconnect.fr/bundles/document
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
     allOf:
       - contains:
           title: Preuve d'engagement de l'opération
           type: object
           properties:
             code:
-              $ref: https://schemas.ceeconnect.fr/enums/code_document#/$defs/PREUVE_ENGAGEMENT
+              $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/code_document#/$defs/PREUVE_ENGAGEMENT
           required:
             - code
       - contains:
@@ -77,7 +77,7 @@ properties:
           type: object
           properties:
             code:
-              $ref: https://schemas.ceeconnect.fr/enums/code_document#/$defs/PREUVE_ACHEVEMENT
+              $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/code_document#/$defs/PREUVE_ACHEVEMENT
           required:
             - code
       - contains:
@@ -85,7 +85,7 @@ properties:
           type: object
           properties:
             code:
-              $ref: https://schemas.ceeconnect.fr/enums/code_document#/$defs/PREUVE_ROLE_ACTIF_INCITATIF
+              $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/code_document#/$defs/PREUVE_ROLE_ACTIF_INCITATIF
           required:
             - code
       - contains:
@@ -93,7 +93,7 @@ properties:
           type: object
           properties:
             code:
-              $ref: https://schemas.ceeconnect.fr/enums/code_document#/$defs/ATTESTATION_HONNEUR
+              $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/code_document#/$defs/ATTESTATION_HONNEUR
           required:
             - code
   description:
@@ -127,11 +127,11 @@ allOf:
         - fiche
     then:
       allOf:
-        - $ref: https://schemas.ceeconnect.fr/bundles/operation/bar/operation
+        - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/operation
   # Bonifications
   - if:
       required:
         - fiche
         - bonification
     then:
-      $ref: https://schemas.ceeconnect.fr/bundles/operation/bonification/operation
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bonification/operation

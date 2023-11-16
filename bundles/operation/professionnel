@@ -1,36 +1,36 @@
-$id: https://schemas.ceeconnect.fr/bundles/operation/professionnel
+$id: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/professionnel
 $schema: https://json-schema.org/draft/2020-12/schema
 title: Professionnel
 description: Professionnel assurant la maîtrise d'oeuvre ou la réalisation des opérations
 type: object
 properties:
   prestation:
-    $ref: https://schemas.ceeconnect.fr/enums/nature_prestation
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/nature_prestation
   raisonSociale: 
-    $ref: https://schemas.ceeconnect.fr/formats/raison_sociale
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/raison_sociale
   siret: 
-    $ref: https://schemas.ceeconnect.fr/formats/siret
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siret
   email: 
-    $ref: https://schemas.ceeconnect.fr/formats/email
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/email
   telephone: 
-    $ref: https://schemas.ceeconnect.fr/formats/telephone
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/telephone
   adresse:
-    $ref: https://schemas.ceeconnect.fr/mixins/adresse
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse
   nom:
-    $ref: https://schemas.ceeconnect.fr/formats/nom_famille
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/nom_famille
     title: Nom de famille du représentant
   prenom:
-    $ref: https://schemas.ceeconnect.fr/formats/prenom
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/prenom
     title: Prénom du représentant
   fonction:
-    $ref: https://schemas.ceeconnect.fr/formats/fonction
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/fonction
     title: Fonction du représentant
   qualificationsRge:
     title: Qualifications RGE
     description: Renseignier les domaines de qualification RGE
     type: array
     items:
-      $ref: https://schemas.ceeconnect.fr/enums/domaine_rge
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge
 required:
   - prestation
   - raisonSociale
@@ -49,7 +49,7 @@ examples:
     email: contact@email.fr
     telephone: "0836656565"
     adresse:
-      $ref: https://schemas.ceeconnect.fr/mixins/adresse#/examples/0
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     nom: NOM
     prenom: PRENOM
     fonction: FONCTION
