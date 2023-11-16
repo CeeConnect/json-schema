@@ -1,7 +1,0 @@
-$id: https://schemas.ceeconnect.fr/formats/fonction
-$schema: https://json-schema.org/draft/2020-12/schema
-title: Fonction
-type: string
-maxLength: 240
-examples:
-  - RESPONSABLE

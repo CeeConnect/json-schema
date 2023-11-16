@@ -1,9 +1,0 @@
-$id: https://schemas.ceeconnect.fr/formats/uuid
-$schema: https://json-schema.org/draft/2020-12/schema
-title: Identifiant unique
-description: Identifiant unique universel conforme au standard RFC 4122 (UUID)
-type: string
-format: uuid
-examples:
-  - 9b0db150-e758-4ba7-986f-d6bc0bd27af8
-  - 78f2e106-8bfc-44fa-a736-ae36f9a5f7f8
