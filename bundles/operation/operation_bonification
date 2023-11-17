@@ -4,13 +4,13 @@ title: Opération bonifiée
 type: object
 properties:
   fiche:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation#/properties/fiche
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/operation#/properties/fiche
   bonification:
     oneOf:
       - type: "null"
-      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation#/properties/bonification
+      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/operation#/properties/bonification
   dateEngagement:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation#/properties/dateEngagement
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/operation#/properties/dateEngagement
 required:
   - fiche
   - bonification
