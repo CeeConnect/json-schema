@@ -10,7 +10,7 @@ properties:
     type: string
     format: date
   adresse:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145#/$defs/BAR-TH-145v36-3/properties/adresse
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145#/properties/adresse
 required:
   - fiche
   - dateEngagement
@@ -110,8 +110,6 @@ $defs:
     title: BAR-TH-145v52-4
     type: object
     properties:
-      adresse:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145#/$defs/BAR-TH-145v52-4/properties/adresse
       description:
         title: Caractéristiques
         type: object
@@ -169,7 +167,6 @@ $defs:
               required:
                 - tauxEnergieRenouvelable
     required:
-      - adresse
       - description
 examples:
   - fiche: BAR-TH-145
