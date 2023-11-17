@@ -18,7 +18,7 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2022-08-05"
+          formatMinimum: 2022-08-05
       required:
         - dateEngagement
     then:
@@ -31,9 +31,6 @@ $defs:
     title: BAR-TH-169v46-1
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-TH-169v46-1
       description:
         type: object
         properties:
@@ -142,8 +139,9 @@ $defs:
                   $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/profil_soutirage#/$defs/pacCollective
                 efficaciteEnergetique:
                   title: Efficacité énergétique pour la production d'ECS (Eta wh en %)
-                  description: |
-                    Pour les chauffe-eau thermodynamiques concernés par le règlement (UE) n° 814/2013 de la Commission du 2 août 2013
+                  description: >
+                    Pour les chauffe-eau thermodynamiques concernés par le
+                    règlement (UE) n° 814/2013 de la Commission du 2 août 2013
                   type: number
                   minimum: 61
               allOf:
@@ -301,12 +299,11 @@ $defs:
               required:
                 - code
     required:
-      - fiche
       - description
       - documents
 examples:
   - fiche: BAR-TH-169
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT

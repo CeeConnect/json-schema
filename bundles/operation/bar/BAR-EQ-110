@@ -18,7 +18,7 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2015-01-01"
+          formatMinimum: 2015-01-01
       required:
         - dateEngagement
     then:
@@ -31,9 +31,6 @@ $defs:
     title: BAR-EQ-110v15-1
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-EQ-110v15-1
       description:
         type: object
         properties:
@@ -120,11 +117,10 @@ $defs:
             required:
               - detecteurPresence
     required:
-      - fiche
       - description
 examples:
   - fiche: BAR-EQ-110
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     description:
       ancienneteBatiment: EXISTANT
       indiceProtectionChocs: "10"

@@ -18,8 +18,8 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2015-01-01"
-          formatExclusiveMaximum: "2024-01-01"
+          formatMinimum: 2015-01-01
+          formatExclusiveMaximum: 2024-01-01
       required:
         - dateEngagement
     then:
@@ -30,8 +30,8 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2024-01-01"
-          formatExclusiveMaximum: "2028-07-01"
+          formatMinimum: 2024-01-01
+          formatExclusiveMaximum: 2028-07-01
       required:
         - dateEngagement
     then:
@@ -44,9 +44,6 @@ $defs:
     title: BAR-TH-123v17-1
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-TH-123v17-1
       description:
         type: object
         properties:
@@ -103,7 +100,6 @@ $defs:
               required:
                 - code
     required:
-      - fiche
       - description
       - documents
   BAR-TH-123v54-2:
@@ -112,9 +108,6 @@ $defs:
     title: BAR-TH-123v54-2
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-TH-123v54-2
       description:
         type: object
         properties:
@@ -183,12 +176,11 @@ $defs:
               required:
                 - code
     required:
-      - fiche
       - description
       - documents
 examples:
   - fiche: BAR-TH-123
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT
@@ -202,7 +194,7 @@ examples:
       - code: PREUVE_REALISATION
         url: https://api.ceeconnect.fr/archivage/{uuid}
   - fiche: BAR-TH-123
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT

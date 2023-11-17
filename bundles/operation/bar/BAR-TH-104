@@ -18,8 +18,8 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2022-04-01"
-          formatExclusiveMaximum: "2024-01-01"
+          formatMinimum: 2022-04-01
+          formatExclusiveMaximum: 2024-01-01
       required:
         - dateEngagement
     then:
@@ -32,9 +32,6 @@ $defs:
     title: BAR-TH-104v41-3
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-TH-104v41-3
       description:
         type: object
         properties:
@@ -115,12 +112,11 @@ $defs:
               required:
                 - code
     required:
-      - fiche
       - description
       - documents
 examples:
   - fiche: BAR-TH-104
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT

@@ -21,8 +21,8 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2020-10-12"
-          formatExclusiveMaximum: "2023-08-01"
+          formatMinimum: 2020-10-12
+          formatExclusiveMaximum: 2023-08-01
       required:
         - dateEngagement
     then:
@@ -33,7 +33,7 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2023-08-01"
+          formatMinimum: 2023-08-01
       required:
         - dateEngagement
     then:
@@ -51,9 +51,6 @@ $defs:
     title: BAR-TH-164v36-2
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-TH-164v36-2
       description:
         type: object
         properties:
@@ -254,7 +251,6 @@ $defs:
               required:
                 - code
     required:
-      - fiche
       - description
       - documents
   BAR-TH-164v52-3:
@@ -268,11 +264,6 @@ $defs:
     title: BAR-TH-164v52-3
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-TH-164v52-3
-      adresse:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
       description:
         type: object
         properties:
@@ -476,13 +467,11 @@ $defs:
               required:
                 - code
     required:
-      - fiche
-      - adresse
       - description
       - documents
 examples:
   - fiche: BAR-TH-164
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     adresse:
       $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
@@ -490,7 +479,7 @@ examples:
       ancienneteBatiment: EXISTANT
       surfaceHabitable: 100
       auditEnergetique:
-        dateRealisation: "2023-02-07"
+        dateRealisation: 2023-02-07
         reference: REFERENCE
         cepInitial: 200
         cepProjet: 130
@@ -504,7 +493,7 @@ examples:
       logicielAuditEnergetique:
         nom: NOM
         editeur: EDITEUR
-        date: "2022-02-06"
+        date: 2022-02-06
         version: "2.3"
       installateurs:
         - nom: NOM
@@ -513,14 +502,14 @@ examples:
           siret: "00000000000000"
           domaineTravaux: DOMAINE DE TRAVAUX
           referenceQualification: REFERENCE
-          dateQualification: "2022-01-01"
+          dateQualification: 2022-01-01
     documents:
       - code: AUDIT_ENERGETIQUE
         url: https://api.ceeconnect.fr/document/documents/{uuid}
       - code: ATTESTATION_REALISATION_TRAVAUX
         url: https://api.ceeconnect.fr/document/documents/{uuid}
   - fiche: BAR-TH-164
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     adresse:
       $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
@@ -528,7 +517,7 @@ examples:
       ancienneteBatiment: EXISTANT
       surfaceHabitable: 100
       auditEnergetique:
-        dateRealisation: "2023-02-07"
+        dateRealisation: 2023-02-07
         reference: REFERENCE
         cepInitial: 200
         cepProjet: 130
@@ -542,7 +531,7 @@ examples:
         logiciel:
           nom: NOM
           editeur: EDITEUR
-          date: "2022-02-06"
+          date: 2022-02-06
           version: "2.3"
       installateurs:
         - nom: NOM
@@ -551,7 +540,7 @@ examples:
           siret: "00000000000000"
           domaineTravaux: DOMAINE DE TRAVAUX
           referenceQualification: REFERENCE
-          dateQualification: "2022-01-01"
+          dateQualification: 2022-01-01
     documents:
       - code: AUDIT_ENERGETIQUE
         url: https://api.ceeconnect.fr/document/documents/{uuid}

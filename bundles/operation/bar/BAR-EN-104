@@ -18,8 +18,8 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2015-01-01"
-          formatExclusiveMaximum: "2024-01-01"
+          formatMinimum: 2015-01-01
+          formatExclusiveMaximum: 2024-01-01
       required:
         - dateEngagement
     then:
@@ -30,8 +30,8 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2024-01-01"
-          formatExclusiveMaximum: "2028-07-01"
+          formatMinimum: 2024-01-01
+          formatExclusiveMaximum: 2028-07-01
       required:
         - dateEngagement
     then:
@@ -44,9 +44,6 @@ $defs:
     title: BAR-EN-104v14-1
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-EN-104v14-1
       description:
         type: object
         properties:
@@ -198,7 +195,6 @@ $defs:
               required:
                 - code
     required:
-      - fiche
       - description
       - documents
   BAR-EN-104v54-2:
@@ -207,9 +203,6 @@ $defs:
     title: BAR-EN-104v54-2
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-EN-104v54-2
       description:
         type: object
         properties:
@@ -377,12 +370,11 @@ $defs:
               required:
                 - code
     required:
-      - fiche
       - description
       - documents
 examples:
   - fiche: BAR-EN-104
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     description:
       ancienneteBatiment: EXISTANT
       energieChauffage: COMBUSTIBLES
@@ -398,7 +390,7 @@ examples:
       - code: PREUVE_QUALIFICATION
         url: https://api.ceeconnect.fr/document/documents/{uuid}
   - fiche: BAR-EN-104
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     description:
       ancienneteBatiment: EXISTANT
       quantite: 10

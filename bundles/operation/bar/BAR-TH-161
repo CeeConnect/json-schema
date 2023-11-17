@@ -18,8 +18,8 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2018-12-19"
-          formatExclusiveMaximum: "2023-10-01"
+          formatMinimum: 2018-12-19
+          formatExclusiveMaximum: 2023-10-01
       required:
         - dateEngagement
     then:
@@ -30,7 +30,7 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2023-10-01"
+          formatMinimum: 2023-10-01
       required:
         - dateEngagement
     then:
@@ -43,9 +43,6 @@ $defs:
     title: BAR-TH-161v28-1
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-TH-161v28-1
       description:
         type: object
         properties:
@@ -192,7 +189,6 @@ $defs:
               required:
                 - code
     required:
-      - fiche
       - description
       - documents
   BAR-TH-161v54-2:
@@ -201,9 +197,6 @@ $defs:
     title: BAR-TH-161v54-2
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-TH-161v54-2
       description:
         type: object
         properties:
@@ -350,16 +343,15 @@ $defs:
               required:
                 - code
     required:
-      - fiche
       - description
       - documents
 examples:
   - fiche: BAR-TH-161
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT
-      dateEtatRecapitulatif: "2023-12-12"
+      dateEtatRecapitulatif: 2023-12-12
       equipements:
         - typePointSingulier: ECHANGEUR
           temperatureFluide: 60
@@ -379,11 +371,11 @@ examples:
       - code: ACCREDITATION_ORGANISME_CONTROLE
         url: https://api.ceeconnect.fr/document/documents/{uuid}
   - fiche: BAR-TH-161
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT
-      dateEtatRecapitulatif: "2023-12-12"
+      dateEtatRecapitulatif: 2023-12-12
       equipements:
         - typePointSingulier: ECHANGEUR
           temperatureFluide: 60

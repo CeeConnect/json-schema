@@ -21,8 +21,8 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2022-01-05"
-          formatExclusiveMaximum: "2024-01-01"
+          formatMinimum: 2022-01-05
+          formatExclusiveMaximum: 2024-01-01
       required:
         - dateEngagement
     then:
@@ -33,8 +33,8 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2024-01-01"
-          formatExclusiveMaximum: "2027-05-01"
+          formatMinimum: 2024-01-01
+          formatExclusiveMaximum: 2027-05-01
       required:
         - dateEngagement
     then:
@@ -47,9 +47,6 @@ $defs:
     title: BAR-EN-101v39-4
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-EN-101v39-4
       description:
         type: object
         properties:
@@ -145,7 +142,6 @@ $defs:
               required:
                 - code
     required:
-      - fiche
       - description
       - documents
   BAR-EN-101v54-5:
@@ -154,11 +150,6 @@ $defs:
     title: BAR-EN-101v54-5
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-EN-101v54-5
-      adresse:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
       description:
         type: object
         properties:
@@ -254,13 +245,11 @@ $defs:
               required:
                 - code
     required:
-      - fiche
-      - adresse
       - description
       - documents
 examples:
   - fiche: BAR-EN-101
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     adresse:
       $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
@@ -281,7 +270,7 @@ examples:
       - code: PREUVE_QUALIFICATION
         url: https://api.ceeconnect.fr/document/documents/{uuid}
   - fiche: BAR-EN-101
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     adresse:
       $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:

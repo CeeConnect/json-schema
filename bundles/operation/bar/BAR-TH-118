@@ -18,7 +18,7 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2015-01-01"
+          formatMinimum: 2015-01-01
       required:
         - dateEngagement
     then:
@@ -31,9 +31,6 @@ $defs:
     title: BAR-TH-118v14-1
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-TH-118v14-1
       description:
         type: object
         properties:
@@ -102,11 +99,10 @@ $defs:
           - reference
           - installateur
     required:
-      - fiche
       - description
 examples:
   - fiche: BAR-TH-118
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     description:
       typeBatiment: APPARTEMENT
       ancienneteBatiment: EXISTANT

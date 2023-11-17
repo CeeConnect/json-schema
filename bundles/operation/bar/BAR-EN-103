@@ -18,7 +18,7 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2022-05-01"
+          formatMinimum: 2022-05-01
       required:
         - dateEngagement
     then:
@@ -31,9 +31,6 @@ $defs:
     title: BAR-EN-103v39-5
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-EN-103v39-5
       description:
         type: object
         properties:
@@ -112,12 +109,11 @@ $defs:
               required:
                 - code
     required:
-      - fiche
       - description
       - documents
 examples:
   - fiche: BAR-EN-103
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     description:
       ancienneteBatiment: EXISTANT
       quantite: 100

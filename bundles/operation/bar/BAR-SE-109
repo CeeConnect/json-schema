@@ -18,7 +18,7 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2023-09-30"
+          formatMinimum: 2023-09-30
       required:
         - dateEngagement
     then:
@@ -34,9 +34,6 @@ $defs:
     title: BAR-SE-109v54-1
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-SE-109v54-1
       description:
         type: object
         properties:
@@ -128,12 +125,11 @@ $defs:
               required:
                 - code
     required:
-      - fiche
       - description
       - documents
 examples:
   - fiche: BAR-SE-109
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT

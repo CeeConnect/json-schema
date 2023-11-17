@@ -18,7 +18,7 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2020-05-20"
+          formatMinimum: 2020-05-20
       required:
         - dateEngagement
     then:
@@ -33,9 +33,6 @@ $defs:
     title: BAR-TH-165v34-1
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-TH-165v34-1
       description:
         type: object
         properties:
@@ -225,12 +222,11 @@ $defs:
               required:
                 - code
     required:
-      - fiche
       - description
       - documents
 examples:
   - fiche: BAR-TH-165
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT

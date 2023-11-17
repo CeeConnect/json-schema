@@ -18,8 +18,8 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2023-09-30"
-          formatExclusiveMaximum: "2028-07-01"
+          formatMinimum: 2023-09-30
+          formatExclusiveMaximum: 2028-07-01
       required:
         - dateEngagement
     then:
@@ -32,9 +32,6 @@ $defs:
     title: BAR-TH-170v54-1
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-TH-170v54-1
       description:
         type: object
         properties:
@@ -196,12 +193,11 @@ $defs:
               required:
                 - code
     required:
-      - fiche
       - description
       - documents
 examples:
   - fiche: BAR-TH-170
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     description:
       typeBatiment: IMMEUBLE
       indicateurEfficaciteEnergetique: 1
@@ -212,8 +208,8 @@ examples:
       critereRefroidissementAuxiliaire: false
       crietereCouvertureUsages: false
       contrat:
-        dateSignature: "2024-01-01"
-        dateDebut: "2024-02-01"
+        dateSignature: 2024-01-01
+        dateDebut: 2024-02-01
         duree: 5
         critereObject: true
       prestataire:

@@ -21,7 +21,7 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2022-10-14"
+          formatMinimum: 2022-10-14
       required:
         - dateEngagement
     then:
@@ -34,9 +34,6 @@ $defs:
     title: BAR-SE-108v48-1
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-SE-108v48-1
       description:
         type: object
         properties:
@@ -149,12 +146,11 @@ $defs:
               required:
                 - code
     required:
-      - fiche
       - description
       - documents
 examples:
   - fiche: BAR-SE-108
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     adresse:
       $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:

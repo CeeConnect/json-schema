@@ -18,8 +18,8 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2017-02-01"
-          formatExclusiveMaximum: "2024-01-01"
+          formatMinimum: 2017-02-01
+          formatExclusiveMaximum: 2024-01-01
       required:
         - dateEngagement
     then:
@@ -32,9 +32,6 @@ $defs:
     title: BAR-TH-106v23-2
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-TH-106v23-2
       description:
         type: object
         properties:
@@ -129,7 +126,6 @@ $defs:
               required:
                 - code
     required:
-      - fiche
       - description
       - documents
     $defs:
@@ -174,7 +170,7 @@ $defs:
           - referenceRegulateur
 examples:
   - fiche: BAR-TH-106
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT

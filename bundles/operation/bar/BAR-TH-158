@@ -18,7 +18,7 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2020-10-01"
+          formatMinimum: 2020-10-01
       required:
         - dateEngagement
     then:
@@ -31,9 +31,6 @@ $defs:
     title: BAR-TH-158v35-2
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-TH-158v35-2
       description:
         type: object
         properties:
@@ -146,12 +143,11 @@ $defs:
               required:
                 - code
     required:
-      - fiche
       - description
       - documents
 examples:
   - fiche: BAR-TH-158
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     description:
       ancienneteBatiment: EXISTANT
       typeBatiment: MAISON

@@ -18,7 +18,7 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2021-11-01"
+          formatMinimum: 2021-11-01
       required:
         - dateEngagement
     then:
@@ -31,9 +31,6 @@ $defs:
     title: BAR-TH-163v38-2
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-TH-163v38-2
       description:
         type: object
         properties:
@@ -97,9 +94,11 @@ $defs:
             then:
               properties:
                 critereRenovationEnsemble:
-                  title: |
+                  title: >
                     L'installation des conduits individuels d'évacuation est
+
                     réalisée simultanément et concerne
+
 
                     l'ensemble des logements raccordés à un conduit collectif existant
                   type: boolean
@@ -116,7 +115,6 @@ $defs:
           - typeInstallation
           - installateur
     required:
-      - fiche
       - description
     $defs:
       typeInstallation:
@@ -155,7 +153,7 @@ $defs:
             title: VMC gaz
 examples:
   - fiche: BAR-TH-163
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT

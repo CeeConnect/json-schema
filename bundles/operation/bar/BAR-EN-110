@@ -18,7 +18,7 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2020-08-03"
+          formatMinimum: 2020-08-03
       required:
         - dateEngagement
     then:
@@ -31,9 +31,6 @@ $defs:
     title: BAR-EN-110v35-1
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-EN-110v35-1
       description:
         type: object
         properties:
@@ -114,12 +111,11 @@ $defs:
               required:
                 - code
     required:
-      - fiche
       - description
       - documents
 examples:
   - fiche: BAR-EN-110
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     description:
       ancienneteBatiment: EXISTANT
       typeVentilation: NATURELLE

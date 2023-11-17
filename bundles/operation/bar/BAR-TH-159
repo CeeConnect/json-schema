@@ -18,8 +18,8 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2022-11-01"
-          formatExclusiveMaximum: "2023-04-01"
+          formatMinimum: 2022-11-01
+          formatExclusiveMaximum: 2023-04-01
       required:
         - dateEngagement
     then:
@@ -30,7 +30,7 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2023-04-01"
+          formatMinimum: 2023-04-01
       required:
         - dateEngagement
     then:
@@ -43,9 +43,6 @@ $defs:
     title: BAR-TH-159v44-3
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-TH-159v44-3
       description:
         type: object
         properties:
@@ -167,7 +164,6 @@ $defs:
               required:
                 - code
     required:
-      - fiche
       - description
       - documents
   BAR-TH-159v50-4:
@@ -176,9 +172,6 @@ $defs:
     title: BAR-TH-159v50-4
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-TH-159v50-4
       description:
         type: object
         properties:
@@ -300,12 +293,11 @@ $defs:
               required:
                 - code
     required:
-      - fiche
       - description
       - documents
 examples:
   - fiche: BAR-TH-159
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT
@@ -331,7 +323,7 @@ examples:
       - code: PREUVE_QUALIFICATION
         url: https://api.ceeconnect.fr/document/documents/{uuid}
   - fiche: BAR-TH-159
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT

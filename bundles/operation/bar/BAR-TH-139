@@ -18,7 +18,7 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2017-02-01"
+          formatMinimum: 2017-02-01
       required:
         - dateEngagement
     then:
@@ -33,9 +33,6 @@ $defs:
     title: BAR-TH-139v23-2
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-TH-139v23-2
       description:
         type: object
         properties:
@@ -64,7 +61,7 @@ $defs:
                   title: Date d'achat
                   type: string
                   format: date
-                  formatMinimum: "2015-01-01"
+                  formatMinimum: 2015-01-01
                 puissanceNominale:
                   title: Puissance nominale du moteur de la pompe (kW)
                   type: number
@@ -103,8 +100,8 @@ $defs:
                     dateAchat:
                       type: string
                       format: date
-                      formatMinimum: "2015-01-01"
-                      formatMaximum: "2016-12-31"
+                      formatMinimum: 2015-01-01
+                      formatMaximum: 2016-12-31
                     puissanceNominale:
                       type: number
                       minimum: 7.5
@@ -120,7 +117,7 @@ $defs:
                     dateAchat:
                       type: string
                       format: date
-                      formatMinimum: "2017-01-01"
+                      formatMinimum: 2017-01-01
                     puissanceNominale:
                       type: number
                       minimum: 0.75
@@ -147,18 +144,17 @@ $defs:
           - equipements
           - installateur
     required:
-      - fiche
       - description
 examples:
   - fiche: BAR-TH-139
-    dateEngagement: "2024-01-01"
+    dateEngagement: 2024-01-01
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT
       typeInstallation: COLLECTIF
       equipements:
         - moteurClasseIE2: false
-          dateAchat: "2023-01-01"
+          dateAchat: 2023-01-01
           puissanceNominale: 800
           quantite: 10
           marque: MARQUE
