@@ -143,9 +143,11 @@ $defs:
     type: object
     properties:
       nom:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/nom_famille
+        title: Nom de famille
+        type: string
       prenom:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/prenom
+        title: Prénom
+        type: string
       composition:
         title: Composition
         description: Nombre de personnes composant le ménage
@@ -188,13 +190,13 @@ $defs:
     properties:
       nom:
         title: Nom du représentant
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/nom_famille
+        type: string
       prenom:
         title: Prénom du représentant
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/prenom
+        type: string
       fonction:
         title: Fonction du représentant
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/fonction
+        type: string
       raisonSociale:
         $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/raison_sociale
       siren:
