@@ -21,8 +21,8 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2017-02-01"
-          formatExclusiveMaximum: "2024-01-01"
+          formatMinimum: ""2017-02-01""
+          formatExclusiveMaximum: ""2024-01-01""
       required:
         - dateEngagement
     then:

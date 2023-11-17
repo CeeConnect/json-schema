@@ -21,7 +21,7 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: 2015-01-01
+          formatMinimum: "2015-01-01"
       required:
         - dateEngagement
     then:

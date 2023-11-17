@@ -18,7 +18,7 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: 2017-02-01
+          formatMinimum: "2017-02-01"
       required:
         - dateEngagement
     then:
@@ -61,7 +61,7 @@ $defs:
                   title: Date d'achat
                   type: string
                   format: date
-                  formatMinimum: 2015-01-01
+                  formatMinimum: "2015-01-01"
                 puissanceNominale:
                   title: Puissance nominale du moteur de la pompe (kW)
                   type: number
@@ -100,7 +100,7 @@ $defs:
                     dateAchat:
                       type: string
                       format: date
-                      formatMinimum: 2015-01-01
+                      formatMinimum: "2015-01-01"
                       formatMaximum: 2016-12-31
                     puissanceNominale:
                       type: number
@@ -117,7 +117,7 @@ $defs:
                     dateAchat:
                       type: string
                       format: date
-                      formatMinimum: 2017-01-01
+                      formatMinimum: "2017-01-01"
                     puissanceNominale:
                       type: number
                       minimum: 0.75

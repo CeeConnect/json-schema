@@ -21,8 +21,8 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2020-10-12"
-          formatExclusiveMaximum: "2023-08-01"
+          formatMinimum: ""2020-10-12""
+          formatExclusiveMaximum: ""2023-08-01""
       required:
         - dateEngagement
     then:
@@ -33,7 +33,7 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2023-08-01"
+          formatMinimum: ""2023-08-01""
       required:
         - dateEngagement
     then:
