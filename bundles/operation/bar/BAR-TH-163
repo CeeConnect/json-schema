@@ -48,20 +48,20 @@ $defs:
             type: boolean
             const: false
           typeInstallation:
-            $ref: "#/$defs/typeInstallation"
+            $ref: "#/$defs/BAR-TH-163v38-2/$defs/typeInstallation"
           installateur:
             $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
         allOf:
           - if:
               properties:
                 typeInstallation:
-                  $ref: "#/$defs/typeInstallation/oneOf/0"
+                  $ref: "#/$defs/BAR-TH-163v38-2/$defs/typeInstallation/oneOf/0"
               required:
                 - typeInstallation
             then:
               properties:
                 typeConduit:
-                  $ref: "#/$defs/typeConduitCollectif"
+                  $ref: "#/$defs/BAR-TH-163v38-2/$defs/typeConduitCollectif"
                 quantite:
                   title: Nombre de chaudières à raccorder au conduit
                   type: integer
@@ -72,7 +72,7 @@ $defs:
           - if:
               properties:
                 typeInstallation:
-                  $ref: "#/$defs/typeInstallation/oneOf/1"
+                  $ref: "#/$defs/BAR-TH-163v38-2/$defs/typeInstallation/oneOf/1"
               required:
                 - typeInstallation
             then:
@@ -91,13 +91,13 @@ $defs:
           - if:
               properties:
                 typeInstallation:
-                  $ref: "#/$defs/typeInstallation/oneOf/2"
+                  $ref: "#/$defs/BAR-TH-163v38-2/$defs/typeInstallation/oneOf/2"
               required:
                 - typeInstallation
             then:
               properties:
                 critereRenovationEnsemble:
-                  title: >
+                  title: |
                     L'installation des conduits individuels d'évacuation est
                     réalisée simultanément et concerne
 
@@ -105,7 +105,7 @@ $defs:
                   type: boolean
                   const: true
                 typeConduit:
-                  $ref: "#/$defs/typeConduitIndividuel"
+                  $ref: "#/$defs/BAR-TH-163v38-2/$defs/typeConduitIndividuel"
               required:
                 - typeConduit
                 - critereRenovationEnsemble

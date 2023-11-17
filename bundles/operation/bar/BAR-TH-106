@@ -92,7 +92,7 @@ $defs:
                 - typeBatiment
             then:
               allOf:
-                - $ref: "#/$defs/equipement"
+                - $ref: "#/$defs/BAR-TH-106v23-2/$defs/equipement"
           - if:
               properties:
                 typeBatiment:
@@ -108,7 +108,7 @@ $defs:
                   type: array
                   minItems: 1
                   items:
-                    $ref: "#/$defs/equipement"
+                    $ref: "#/$defs/BAR-TH-106v23-2/$defs/equipement"
               required:
                 - equipements
         required:
