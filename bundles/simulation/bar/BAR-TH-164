@@ -56,8 +56,6 @@ $defs:
             $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v36-2/properties/description/properties/ancienneteBatiment
           surfaceHabitable:
             $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v36-2/properties/description/properties/surfaceHabitable
-          categoriesTravaux:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/bonification/CRMv51-1#/allOf/0/then/properties/description/properties/categoriesTravaux
           auditEnergetique:
             title: Audit énergétique
             description: Renseigner les informations issues de l'audit énergétique
@@ -74,7 +72,6 @@ $defs:
           - typeBatiment
           - ancienneteBatiment
           - surfaceHabitable
-          - categoriesTravaux
           - auditEnergetique
     required:
       - description
@@ -96,8 +93,6 @@ $defs:
             $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v52-3/properties/description/properties/ancienneteBatiment
           surfaceHabitable:
             $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v52-3/properties/description/properties/surfaceHabitable
-          categoriesTravaux:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/bonification/CRMv51-1#/allOf/0/then/properties/description/properties/categoriesTravaux
           auditEnergetique:
             title: Audit énergétique
             description: Renseigner les informations issues de l'audit énergétique
@@ -114,7 +109,6 @@ $defs:
           - typeBatiment
           - ancienneteBatiment
           - surfaceHabitable
-          - categoriesTravaux
           - auditEnergetique
     required:
       - adresse
@@ -128,9 +122,6 @@ examples:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT
       surfaceHabitable: 100
-      categoriesTravaux:
-        - ISOLATION_MURS
-        - CHAUFFAGE
       auditEnergetique:
         cefInitial: 60
         cefProjet: 30
@@ -142,9 +133,6 @@ examples:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT
       surfaceHabitable: 100
-      categoriesTravaux:
-        - ISOLATION_MURS
-        - CHAUFFAGE
       auditEnergetique:
         cefInitial: 60
         cefProjet: 30
