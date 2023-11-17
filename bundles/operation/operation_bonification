@@ -69,6 +69,6 @@ oneOf:
   - type: object
     properties:
       bonification:
-        const: "null"
+        const: null
     required:
       - bonification
