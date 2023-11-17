@@ -127,7 +127,7 @@ oneOf:
     required:
       - fiche
     allOf:
-      - https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/operation_bar
+      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/operation_bar
 # Bonifications
 allOf:
   - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/operation_bonification
