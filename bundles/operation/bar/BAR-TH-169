@@ -139,16 +139,11 @@ $defs:
             then:
               properties:
                 profilSoutirage:
-                  title: Profil de soutirage
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/profil_soutirage_chauffe_eau_solaire
-                  oneOf:
-                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/profil_soutirage_chauffe_eau_solaire#/$defs/XXL
-                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/profil_soutirage_chauffe_eau_solaire#/$defs/3XL
-                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/profil_soutirage_chauffe_eau_solaire#/$defs/4XL
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/profil_soutirage#/$defs/pacCollective
                 efficaciteEnergetique:
                   title: Efficacité énergétique pour la production d'ECS (Eta wh en %)
-                  description: Pour les chauffe-eau thermodynamiques concernés par le règlement
-                    (UE) n° 814/2013 de la Commission du 2 août 2013
+                  description: |
+                    Pour les chauffe-eau thermodynamiques concernés par le règlement (UE) n° 814/2013 de la Commission du 2 août 2013
                   type: number
                   minimum: 61
               allOf:
@@ -156,8 +151,8 @@ $defs:
                     properties:
                       profilSoutirage:
                         anyOf:
-                          - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/profil_soutirage_chauffe_eau_solaire#/$defs/3XL
-                          - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/profil_soutirage_chauffe_eau_solaire#/$defs/4XL
+                          - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/profil_soutirage#/$defs/3XL
+                          - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/profil_soutirage#/$defs/4XL
                     required:
                       - profilSoutirage
                   then:

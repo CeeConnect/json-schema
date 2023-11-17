@@ -40,3 +40,11 @@ $defs:
       - $ref: "#/$defs/XXL"
     examples:
       - M
+  pacCollective:
+    title: Profil de soutirage
+    type: string
+    oneOf:
+      - $ref: "#/$defs/XXL"
+      - $ref: "#/$defs/3XL"
+      - $ref: "#/$defs/4XL"
+
