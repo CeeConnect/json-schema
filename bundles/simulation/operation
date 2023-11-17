@@ -38,4 +38,12 @@ oneOf:
       - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/operation_bar
 # Bonifications
 allOf:
-  - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/operation_bonification
+  - if:
+      properties:
+        bonification:
+          type: string
+      required:
+        - bonification
+    then:
+      allOf:
+        - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/operation_bonification

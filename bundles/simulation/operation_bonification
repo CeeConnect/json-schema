@@ -6,9 +6,7 @@ properties:
   fiche:
     $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/operation#/properties/fiche
   bonification:
-    oneOf:
-      - type: "null"
-      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/operation#/properties/bonification
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/operation#/properties/bonification
   dateEngagement:
     $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/operation#/properties/dateEngagement
 required:
@@ -66,9 +64,3 @@ oneOf:
       - bonification
     allOf:
       - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/bonification/ZNI
-  - type: object
-    properties:
-      bonification:
-        const: "null"
-    required:
-      - bonification
