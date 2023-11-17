@@ -43,17 +43,12 @@ $defs:
   BAR-TH-145v36-3:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-145v36-3
     $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
-    $comment: >
-      - TODO: Vérifier la possibilité d'intégrer l'attestation de réalisation
-      ANAH
-
-      comme document justificatif spécifique
+    $comment: |
+      - TODO: Vérifier la possibilité d'intégrer l'attestation de réalisation ANAH comme
+      document justificatif spécifique
     title: BAR-TH-145v36-3
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-TH-145v36-3
       description:
         type: object
         properties:
@@ -63,7 +58,8 @@ $defs:
           ancienneteBatiment:
             $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           critereRegimeCopropriete:
-            title: L'immeuble relève du régime de la copropriété défini par la loi n° 65-557
+            title:
+              L'immeuble relève du régime de la copropriété défini par la loi n° 65-557
               du 10 juillet 1965
             type: boolean
           surfaceHabitable:
@@ -89,31 +85,36 @@ $defs:
                 format: date
               cepInitial:
                 title: Cep initial (kWh/m².an)
-                description: Consommation conventionnelle en énergie primaire avant les travaux
+                description:
+                  Consommation conventionnelle en énergie primaire avant les travaux
                   de rénovation
                 type: number
                 exclusiveMaximum: 331
               cepProjet:
                 title: Cep initial (kWh/m².an)
-                description: Consommation conventionnelle en énergie primaire après les travaux
+                description:
+                  Consommation conventionnelle en énergie primaire après les travaux
                   de rénovation
                 type: number
                 minimum: 0
               cefInitial:
                 title: Cef initial (kWh/m².an)
-                description: Consommation conventionnelle en énergie finale avant les travaux de
+                description:
+                  Consommation conventionnelle en énergie finale avant les travaux de
                   rénovation
                 type: number
                 minimum: 0
               cefProjet:
                 title: Cef projet (kWh/m².an)
-                description: Consommation conventionnelle en énergie après avant les travaux de
+                description:
+                  Consommation conventionnelle en énergie après avant les travaux de
                   rénovation
                 type: number
                 minimum: 0
               gainEnergetique:
                 title: Gain énergétique du projet (%)
-                description: Gain énergétique du projet par rapport à la consommation
+                description:
+                  Gain énergétique du projet par rapport à la consommation
                   conventionnelle en énergie primaire avant travaux
                 type: number
                 minimum: 35
@@ -265,27 +266,17 @@ $defs:
               required:
                 - code
     required:
-      - fiche
       - description
       - documents
   BAR-TH-145v52-4:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-145v52-4
     $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
     $comment: >
-      - TODO: Vérifier la possibilité d'intégrer l'attestation de réalisation
-      ANAH
-
-      comme document justificatif spécifique
-
+      - TODO: Vérifier la possibilité d'intégrer l'attestation de réalisation ANAH comme document justificatif spécifique
       - TODO: Intégrer les dates de qualification au bundle installateur ?
     title: BAR-TH-145v52-4
     type: object
     properties:
-      fiche:
-        type: string
-        const: BAR-TH-145v52-4
-      adresse:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
       description:
         type: object
         properties:
@@ -295,22 +286,19 @@ $defs:
           ancienneteBatiment:
             $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           critereRegimeCopropriete:
-            title: L'immeuble relève du régime de la copropriété défini par la loi n° 65-557
+            title:
+              L'immeuble relève du régime de la copropriété défini par la loi n° 65-557
               du 10 juillet 1965
             type: boolean
           critereAuditEnergetiqueReglementaire:
             title: >
               Un audit énergétique réglementaire effectué dans le cadre d'une
-              vente
-
-              ou d'une location a été réalisé préalablement aux travaux
+              vente ou d'une location a été réalisé préalablement aux travaux
             type: boolean
           critereAuditEnergetiqueIncitatif:
             title: >
               Un audit énergétique incitatif effectué par un professionnel
-              qualifié
-
-              et certifié RGE a été réalisé préalablement aux travaux
+              qualifié et certifié RGE a été réalisé préalablement aux travaux
             type: boolean
           surfaceHabitable:
             title: Surface habitable (m²)
@@ -335,31 +323,36 @@ $defs:
                 format: date
               cepInitial:
                 title: Cep initial (kWh/m².an)
-                description: Consommation conventionnelle en énergie primaire avant les travaux
+                description:
+                  Consommation conventionnelle en énergie primaire avant les travaux
                   de rénovation
                 type: number
                 exclusiveMaximum: 331
               cepProjet:
                 title: Cep initial (kWh/m².an)
-                description: Consommation conventionnelle en énergie primaire après les travaux
+                description:
+                  Consommation conventionnelle en énergie primaire après les travaux
                   de rénovation
                 type: number
                 minimum: 0
               cefInitial:
                 title: Cef initial (kWh/m².an)
-                description: Consommation conventionnelle en énergie finale avant les travaux de
+                description:
+                  Consommation conventionnelle en énergie finale avant les travaux de
                   rénovation
                 type: number
                 minimum: 0
               cefProjet:
                 title: Cef projet (kWh/m².an)
-                description: Consommation conventionnelle en énergie après avant les travaux de
+                description:
+                  Consommation conventionnelle en énergie après avant les travaux de
                   rénovation
                 type: number
                 minimum: 0
               gainEnergetique:
                 title: Gain énergétique du projet (%)
-                description: Gain énergétique du projet par rapport à la consommation
+                description:
+                  Gain énergétique du projet par rapport à la consommation
                   conventionnelle en énergie primaire avant travaux
                 type: number
                 minimum: 35
@@ -533,8 +526,6 @@ $defs:
               required:
                 - code
     required:
-      - fiche
-      - adresse
       - description
       - documents
 examples:
