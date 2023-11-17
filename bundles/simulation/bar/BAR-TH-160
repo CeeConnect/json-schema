@@ -64,11 +64,11 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160v39-2#/properties/description/properties/typeBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160#/$defs/BAR-TH-160v39-2/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160v39-2#/properties/description/properties/ancienneteBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160#/$defs/BAR-TH-160v39-2/properties/description/properties/ancienneteBatiment
           quantite:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160v39-2#/properties/description/properties/quantite
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160#/$defs/BAR-TH-160v39-2/properties/description/properties/quantite
         required:
           - typeBatiment
           - ancienneteBatiment
@@ -88,11 +88,11 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160v50-3#/properties/description/properties/typeBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160#/$defs/BAR-TH-160v50-3/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160v50-3#/properties/description/properties/ancienneteBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160#/$defs/BAR-TH-160v50-3/properties/description/properties/ancienneteBatiment
           quantite:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160v50-3#/properties/description/properties/quantite
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160#/$defs/BAR-TH-160v50-3/properties/description/properties/quantite
         required:
           - typeBatiment
           - ancienneteBatiment
@@ -113,11 +113,11 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160v54-4#/properties/description/properties/typeBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160#/$defs/BAR-TH-160v54-4/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160v54-4#/properties/description/properties/ancienneteBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160#/$defs/BAR-TH-160v54-4/properties/description/properties/ancienneteBatiment
           quantite:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160v54-4#/properties/description/properties/quantite
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160#/$defs/BAR-TH-160v54-4/properties/description/properties/quantite
         required:
           - typeBatiment
           - ancienneteBatiment

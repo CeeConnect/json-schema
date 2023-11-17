@@ -39,9 +39,9 @@ $defs:
         type: object
         properties:
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-110v35-1#/properties/description/properties/ancienneteBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-110#/$defs/BAR-EN-110v35-1/properties/description/properties/ancienneteBatiment
           quantite:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-110v35-1#/properties/description/properties/quantite
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-110#/$defs/BAR-EN-110v35-1/properties/description/properties/quantite
         required:
           - ancienneteBatiment
           - quantite

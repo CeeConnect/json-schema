@@ -39,13 +39,13 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-168v40-1#/properties/description/properties/typeBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-168#/$defs/BAR-TH-168v40-1/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-168v40-1#/properties/description/properties/ancienneteBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-168#/$defs/BAR-TH-168v40-1/properties/description/properties/ancienneteBatiment
           usage:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-168v40-1#/properties/description/properties/usage
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-168#/$defs/BAR-TH-168v40-1/properties/description/properties/usage
           surfaceCapteurs:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-168v40-1#/properties/description/properties/surfaceCapteurs
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-168#/$defs/BAR-TH-168v40-1/properties/description/properties/surfaceCapteurs
         required:
           - typeBatiment
           - ancienneteBatiment

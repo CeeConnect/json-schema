@@ -51,11 +51,11 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164v36-2#/properties/description/properties/typeBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v36-2/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164v36-2#/properties/description/properties/ancienneteBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v36-2/properties/description/properties/ancienneteBatiment
           surfaceHabitable:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164v36-2#/properties/description/properties/surfaceHabitable
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v36-2/properties/description/properties/surfaceHabitable
           categoriesTravaux:
             $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/bonification/CRMv51-1#/allOf/0/then/properties/description/properties/categoriesTravaux
           auditEnergetique:
@@ -64,9 +64,9 @@ $defs:
             type: object
             properties:
               cefInitial:
-                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164v36-2#/properties/description/properties/auditEnergetique/properties/cefInitial
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v36-2/properties/description/properties/auditEnergetique/properties/cefInitial
               cefProjet:
-                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164v36-2#/properties/description/properties/auditEnergetique/properties/cefProjet
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v36-2/properties/description/properties/auditEnergetique/properties/cefProjet
             required:
               - cefInitial
               - cefProjet
@@ -91,11 +91,11 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164v52-3#/properties/description/properties/typeBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v52-3/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164v52-3#/properties/description/properties/ancienneteBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v52-3/properties/description/properties/ancienneteBatiment
           surfaceHabitable:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164v52-3#/properties/description/properties/surfaceHabitable
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v52-3/properties/description/properties/surfaceHabitable
           categoriesTravaux:
             $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/bonification/CRMv51-1#/allOf/0/then/properties/description/properties/categoriesTravaux
           auditEnergetique:
@@ -104,9 +104,9 @@ $defs:
             type: object
             properties:
               cefInitial:
-                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164v52-3#/properties/description/properties/auditEnergetique/properties/cefInitial
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v52-3/properties/description/properties/auditEnergetique/properties/cefInitial
               cefProjet:
-                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164v52-3#/properties/description/properties/auditEnergetique/properties/cefProjet
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v52-3/properties/description/properties/auditEnergetique/properties/cefProjet
             required:
               - cefInitial
               - cefProjet

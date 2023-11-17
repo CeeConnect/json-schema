@@ -39,23 +39,23 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-150v14-1#/properties/description/properties/typeBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-150#/$defs/BAR-TH-150v14-1/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-150v14-1#/properties/description/properties/ancienneteBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-150#/$defs/BAR-TH-150v14-1/properties/description/properties/ancienneteBatiment
           logements:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-150v14-1#/properties/description/properties/logements
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-150#/$defs/BAR-TH-150v14-1/properties/description/properties/logements
           usage:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-150v14-1#/properties/description/properties/usage
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-150#/$defs/BAR-TH-150v14-1/properties/description/properties/usage
           temperatureDistribution:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-150v14-1#/properties/description/properties/temperatureDistribution
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-150#/$defs/BAR-TH-150v14-1/properties/description/properties/temperatureDistribution
           puissanceNominale:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-150v14-1#/properties/description/properties/puissanceNominale
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-150#/$defs/BAR-TH-150v14-1/properties/description/properties/puissanceNominale
           puissanceEligible:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-150v14-1#/properties/description/properties/puissanceEligible
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-150#/$defs/BAR-TH-150v14-1/properties/description/properties/puissanceEligible
           puissanceEligibleAutresFiches:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-150v14-1#/properties/description/properties/puissanceEligibleAutresFiches
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-150#/$defs/BAR-TH-150v14-1/properties/description/properties/puissanceEligibleAutresFiches
           puissanceChaufferie:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-150v14-1#/properties/description/properties/puissanceChaufferie
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-150#/$defs/BAR-TH-150v14-1/properties/description/properties/puissanceChaufferie
           critereRegimeCopropriete:
             title: L'immeuble relève du régime de la copropriété défini par la loi n° 65-557
               du 10 juillet 1965
@@ -74,8 +74,8 @@ $defs:
           - puissanceEligible
           - puissanceChaufferie
         anyOf:
-          - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-150v14-1#/properties/description/anyOf/0
-          - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-150v14-1#/properties/description/anyOf/1
+          - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-150#/$defs/BAR-TH-150v14-1/properties/description/anyOf/0
+          - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-150#/$defs/BAR-TH-150v14-1/properties/description/anyOf/1
     required:
       - description
 examples:

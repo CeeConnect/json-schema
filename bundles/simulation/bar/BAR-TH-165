@@ -39,13 +39,13 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-165v34-1#/properties/description/properties/typeBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-165#/$defs/BAR-TH-165v34-1/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-165v34-1#/properties/description/properties/ancienneteBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-165#/$defs/BAR-TH-165v34-1/properties/description/properties/ancienneteBatiment
           puissanceNominale:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-165v34-1#/properties/description/properties/puissanceNominale
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-165#/$defs/BAR-TH-165v34-1/properties/description/properties/puissanceNominale
           quantiteChaleurUtile:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-165v34-1#/properties/description/properties/quantiteChaleurUtile
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-165#/$defs/BAR-TH-165v34-1/properties/description/properties/quantiteChaleurUtile
           critereRegimeCopropriete:
             title: L'immeuble relève du régime de la copropriété défini par la loi n° 65-557
               du 10 juillet 1965

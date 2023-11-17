@@ -40,9 +40,9 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-170v54-1#/properties/description/properties/typeBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-170#/$defs/BAR-TH-170v54-1/properties/description/properties/typeBatiment
           puissanceElectrique:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-170v54-1#/properties/description/properties/puissanceElectrique
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-170#/$defs/BAR-TH-170v54-1/properties/description/properties/puissanceElectrique
         required:
           - typeBatiment
           - puissanceElectrique

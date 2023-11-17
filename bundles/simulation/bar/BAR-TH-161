@@ -51,9 +51,9 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161v28-1#/properties/description/properties/typeBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161#/$defs/BAR-TH-161v28-1/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161v28-1#/properties/description/properties/ancienneteBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161#/$defs/BAR-TH-161v28-1/properties/description/properties/ancienneteBatiment
           equipements:
             title: Liste des housses isolantes installées
             type: array
@@ -62,17 +62,17 @@ $defs:
               type: object
               properties:
                 typePointSingulier:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161v28-1#/properties/description/properties/equipements/items/properties/typePointSingulier
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161#/$defs/BAR-TH-161v28-1/properties/description/properties/equipements/items/properties/typePointSingulier
                 temperatureFluide:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161v28-1#/properties/description/properties/equipements/items/properties/temperatureFluide
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161#/$defs/BAR-TH-161v28-1/properties/description/properties/equipements/items/properties/temperatureFluide
                 quantite:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161v28-1#/properties/description/properties/equipements/items/properties/quantite
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161#/$defs/BAR-TH-161v28-1/properties/description/properties/equipements/items/properties/quantite
               required:
                 - typePointSingulier
                 - temperatureFluide
                 - quantite
               allOf:
-                - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161v28-1#/properties/description/properties/equipements/items/allOf/0
+                - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161#/$defs/BAR-TH-161v28-1/properties/description/properties/equipements/items/allOf/0
         required:
           - typeBatiment
           - ancienneteBatiment
@@ -92,9 +92,9 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161v54-2#/properties/description/properties/typeBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161#/$defs/BAR-TH-161v54-2/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161v54-2#/properties/description/properties/ancienneteBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161#/$defs/BAR-TH-161v54-2/properties/description/properties/ancienneteBatiment
           equipements:
             title: Liste des housses isolantes installées
             type: array
@@ -103,17 +103,17 @@ $defs:
               type: object
               properties:
                 typePointSingulier:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161v54-2#/properties/description/properties/equipements/items/properties/typePointSingulier
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161#/$defs/BAR-TH-161v54-2/properties/description/properties/equipements/items/properties/typePointSingulier
                 temperatureFluide:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161v54-2#/properties/description/properties/equipements/items/properties/temperatureFluide
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161#/$defs/BAR-TH-161v54-2/properties/description/properties/equipements/items/properties/temperatureFluide
                 quantite:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161v54-2#/properties/description/properties/equipements/items/properties/quantite
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161#/$defs/BAR-TH-161v54-2/properties/description/properties/equipements/items/properties/quantite
               required:
                 - typePointSingulier
                 - temperatureFluide
                 - quantite
               allOf:
-                - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161v54-2#/properties/description/properties/equipements/items/allOf/0
+                - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161#/$defs/BAR-TH-161v54-2/properties/description/properties/equipements/items/allOf/0
         required:
           - typeBatiment
           - ancienneteBatiment

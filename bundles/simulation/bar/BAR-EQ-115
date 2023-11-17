@@ -39,13 +39,13 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-115v28-1#/properties/description/properties/typeBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-115#/$defs/BAR-EQ-115v28-1/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-115v28-1#/properties/description/properties/ancienneteBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-115#/$defs/BAR-EQ-115v28-1/properties/description/properties/ancienneteBatiment
           surfaceHabitable:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-115v28-1#/properties/description/properties/surfaceHabitable
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-115#/$defs/BAR-EQ-115v28-1/properties/description/properties/surfaceHabitable
           optionSuiviConfort:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-115v28-1#/properties/description/properties/optionSuiviConfort
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-115#/$defs/BAR-EQ-115v28-1/properties/description/properties/optionSuiviConfort
         required:
           - typeBatiment
           - ancienneteBatiment

@@ -52,11 +52,11 @@ $defs:
         type: object
         properties:
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-104v14-1#/properties/description/properties/ancienneteBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-104#/$defs/BAR-EN-104v14-1/properties/description/properties/ancienneteBatiment
           energieChauffage:
             $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffage
           quantite:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-104v14-1#/properties/description/properties/quantite
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-104#/$defs/BAR-EN-104v14-1/properties/description/properties/quantite
         required:
           - ancienneteBatiment
           - energieChauffage
@@ -76,11 +76,11 @@ $defs:
         type: object
         properties:
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-104v54-2#/properties/description/properties/ancienneteBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-104#/$defs/BAR-EN-104v54-2/properties/description/properties/ancienneteBatiment
           energieChauffage:
             $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffage
           surface:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-104v54-2#/properties/description/properties/surface
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-104#/$defs/BAR-EN-104v54-2/properties/description/properties/surface
         required:
           - ancienneteBatiment
           - energieChauffage

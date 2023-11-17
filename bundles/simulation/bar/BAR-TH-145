@@ -10,7 +10,7 @@ properties:
     type: string
     format: date
   adresse:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v36-3#/properties/adresse
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145#/$defs/BAR-TH-145v36-3/properties/adresse
 required:
   - fiche
   - dateEngagement
@@ -51,15 +51,15 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v36-3#/properties/description/properties/typeBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145#/$defs/BAR-TH-145v36-3/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v36-3#/properties/description/properties/ancienneteBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145#/$defs/BAR-TH-145v36-3/properties/description/properties/ancienneteBatiment
           critereRegimeCopropriete:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v36-3#/properties/description/properties/critereRegimeCopropriete
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145#/$defs/BAR-TH-145v36-3/properties/description/properties/critereRegimeCopropriete
           surfaceHabitable:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v36-3#/properties/description/properties/surfaceHabitable
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145#/$defs/BAR-TH-145v36-3/properties/description/properties/surfaceHabitable
           logements:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v36-3#/properties/description/properties/logements
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145#/$defs/BAR-TH-145v36-3/properties/description/properties/logements
           critereChangemenentEquipement:
             title: Changement des équipements de chauffage ou de production d'eau chaude
               sanitaire
@@ -72,9 +72,9 @@ $defs:
             type: object
             properties:
               cefInitial:
-                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v36-3#/properties/description/properties/auditEnergetique/properties/cefInitial
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145#/$defs/BAR-TH-145v36-3/properties/description/properties/auditEnergetique/properties/cefInitial
               cefProjet:
-                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v36-3#/properties/description/properties/auditEnergetique/properties/cefProjet
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145#/$defs/BAR-TH-145v36-3/properties/description/properties/auditEnergetique/properties/cefProjet
             required:
               - cefInitial
               - cefProjet
@@ -111,21 +111,21 @@ $defs:
     type: object
     properties:
       adresse:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v52-4#/properties/adresse
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145#/$defs/BAR-TH-145v52-4/properties/adresse
       description:
         title: Caractéristiques
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v52-4#/properties/description/properties/typeBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145#/$defs/BAR-TH-145v52-4/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v52-4#/properties/description/properties/ancienneteBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145#/$defs/BAR-TH-145v52-4/properties/description/properties/ancienneteBatiment
           critereRegimeCopropriete:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v52-4#/properties/description/properties/critereRegimeCopropriete
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145#/$defs/BAR-TH-145v52-4/properties/description/properties/critereRegimeCopropriete
           surfaceHabitable:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v52-4#/properties/description/properties/surfaceHabitable
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145#/$defs/BAR-TH-145v52-4/properties/description/properties/surfaceHabitable
           logements:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v52-4#/properties/description/properties/logements
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145#/$defs/BAR-TH-145v52-4/properties/description/properties/logements
           critereChangemenentEquipement:
             title: Changement des équipements de chauffage ou de production d'eau chaude
               sanitaire
@@ -138,9 +138,9 @@ $defs:
             type: object
             properties:
               cefInitial:
-                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v52-4#/properties/description/properties/auditEnergetique/properties/cefInitial
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145#/$defs/BAR-TH-145v52-4/properties/description/properties/auditEnergetique/properties/cefInitial
               cefProjet:
-                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145v52-4#/properties/description/properties/auditEnergetique/properties/cefProjet
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-145#/$defs/BAR-TH-145v52-4/properties/description/properties/auditEnergetique/properties/cefProjet
             required:
               - cefInitial
               - cefProjet

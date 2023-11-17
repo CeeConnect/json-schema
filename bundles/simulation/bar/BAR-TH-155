@@ -39,15 +39,15 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-155v40-4#/properties/description/properties/typeBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-155#/$defs/BAR-TH-155v40-4/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-155v40-4#/properties/description/properties/ancienneteBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-155#/$defs/BAR-TH-155v40-4/properties/description/properties/ancienneteBatiment
           typeEquipement:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-155v40-4#/properties/description/properties/typeEquipement
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-155#/$defs/BAR-TH-155v40-4/properties/description/properties/typeEquipement
           typeExtracteur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-155v40-4#/properties/description/properties/typeExtracteur
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-155#/$defs/BAR-TH-155v40-4/properties/description/properties/typeExtracteur
           logements:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-155v40-4#/properties/description/properties/logements
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-155#/$defs/BAR-TH-155v40-4/properties/description/properties/logements
         required:
           - ancienneteBatiment
           - typeEquipement

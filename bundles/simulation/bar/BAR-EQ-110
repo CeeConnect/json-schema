@@ -36,15 +36,15 @@ $defs:
         type: object
         properties:
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110v15-1#/properties/description/properties/ancienneteBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110#/$defs/BAR-EQ-110v15-1/properties/description/properties/ancienneteBatiment
           quantite:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110v15-1#/properties/description/properties/quantite
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110#/$defs/BAR-EQ-110v15-1/properties/description/properties/quantite
           indiceProtectionChocs:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110v15-1#/properties/description/properties/indiceProtectionChocs
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110#/$defs/BAR-EQ-110v15-1/properties/description/properties/indiceProtectionChocs
           detecteurLumiere:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110v15-1#/properties/description/properties/detecteurLumiere
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110#/$defs/BAR-EQ-110v15-1/properties/description/properties/detecteurLumiere
           detecteurPresence:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110v15-1#/properties/description/properties/detecteurPresence
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110#/$defs/BAR-EQ-110v15-1/properties/description/properties/detecteurPresence
         required:
           - ancienneteBatiment
           - quantite

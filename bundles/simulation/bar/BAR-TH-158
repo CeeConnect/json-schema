@@ -42,9 +42,9 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-158v35-2#/properties/description/properties/typeBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-158#/$defs/BAR-TH-158v35-2/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-158v35-2#/properties/description/properties/ancienneteBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-158#/$defs/BAR-TH-158v35-2/properties/description/properties/ancienneteBatiment
           equipements:
             title: Liste des émetteurs électriques installés
             description: Indiquer autant de lignes que d'équipements aux caractéristiques
@@ -55,7 +55,7 @@ $defs:
               type: object
               properties:
                 quantite:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-158v35-2#/properties/description/properties/equipements/items/properties/quantite
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-158#/$defs/BAR-TH-158v35-2/properties/description/properties/equipements/items/properties/quantite
               required:
                 - quantite
         required:

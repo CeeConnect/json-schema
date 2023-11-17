@@ -39,21 +39,21 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166v38-1#/properties/description/properties/typeBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166#/$defs/BAR-TH-166v38-1/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166v38-1#/properties/description/properties/ancienneteBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166#/$defs/BAR-TH-166v38-1/properties/description/properties/ancienneteBatiment
           logements:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166v38-1#/properties/description/properties/logements
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166#/$defs/BAR-TH-166v38-1/properties/description/properties/logements
           usage:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166v38-1#/properties/description/properties/usage
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166#/$defs/BAR-TH-166v38-1/properties/description/properties/usage
           typeEquipement:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166v38-1#/properties/description/properties/typeEquipement
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166#/$defs/BAR-TH-166v38-1/properties/description/properties/typeEquipement
           performanceEnergetique:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166v38-1#/properties/description/properties/performanceEnergetique
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166#/$defs/BAR-TH-166v38-1/properties/description/properties/performanceEnergetique
           puissanceNominale:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166v38-1#/properties/description/properties/puissanceNominale
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166#/$defs/BAR-TH-166v38-1/properties/description/properties/puissanceNominale
           puissanceChaufferie:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166v38-1#/properties/description/properties/puissanceChaufferie
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-166#/$defs/BAR-TH-166v38-1/properties/description/properties/puissanceChaufferie
           critereRegimeCopropriete:
             title: L'immeuble relève du régime de la copropriété défini par la loi n° 65-557
               du 10 juillet 1965

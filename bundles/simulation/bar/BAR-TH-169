@@ -39,11 +39,11 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-169v46-1#/properties/description/properties/typeBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-169#/$defs/BAR-TH-169v46-1/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-169v46-1#/properties/description/properties/ancienneteBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-169#/$defs/BAR-TH-169v46-1/properties/description/properties/ancienneteBatiment
           logements:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-169v46-1#/properties/description/properties/logements
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-169#/$defs/BAR-TH-169v46-1/properties/description/properties/logements
           equipements:
             title: Liste des équipements installés
             type: array
@@ -52,9 +52,9 @@ $defs:
               type: object
               properties:
                 performanceEnergetique:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-169v46-1#/properties/description/properties/equipements/items/properties/performanceEnergetique
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-169#/$defs/BAR-TH-169v46-1/properties/description/properties/equipements/items/properties/performanceEnergetique
                 tauxCouverture:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-169v46-1#/properties/description/properties/equipements/items/properties/tauxCouverture
+                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-169#/$defs/BAR-TH-169v46-1/properties/description/properties/equipements/items/properties/tauxCouverture
               required:
                 - performanceEnergetique
                 - tauxCouverture

@@ -41,13 +41,13 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141v15-1#/properties/description/properties/typeBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141#/$defs/BAR-TH-141v15-1/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141v15-1#/properties/description/properties/ancienneteBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141#/$defs/BAR-TH-141v15-1/properties/description/properties/ancienneteBatiment
           quantite:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141v15-1#/properties/description/properties/quantite
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141#/$defs/BAR-TH-141v15-1/properties/description/properties/quantite
           puissanceFrigorifique:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141v15-1#/properties/description/properties/puissanceFrigorifique
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141#/$defs/BAR-TH-141v15-1/properties/description/properties/puissanceFrigorifique
           classeEnergetique:
             $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_efficacite_energetique#/$defs/climatiseurs
             title: Classe d'efficacité énergétique

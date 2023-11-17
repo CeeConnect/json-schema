@@ -40,15 +40,15 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-104v41-3#/properties/description/properties/typeBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-104#/$defs/BAR-TH-104v41-3/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-104v41-3#/properties/description/properties/ancienneteBatiment
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-104#/$defs/BAR-TH-104v41-3/properties/description/properties/ancienneteBatiment
           energieChauffage:
             $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffageResidentiel
           surfaceChauffee:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-104v41-3#/properties/description/properties/surfaceChauffee
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-104#/$defs/BAR-TH-104v41-3/properties/description/properties/surfaceChauffee
           performanceEnergetique:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-104v41-3#/properties/description/properties/performanceEnergetique
+            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-104#/$defs/BAR-TH-104v41-3/properties/description/properties/performanceEnergetique
           critereEquipementExistant:
             title: L'équipement vient en remplacement d'une chaudière individuelle
             type: boolean
