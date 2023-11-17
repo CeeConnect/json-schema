@@ -29,7 +29,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        $ref: "#/$defs/ZNIv35-1"
+        - $ref: "#/$defs/ZNIv35-1"
 $defs:
   ZNIv35-1:
     title: Version en vigueur à compter du 17/04/2021

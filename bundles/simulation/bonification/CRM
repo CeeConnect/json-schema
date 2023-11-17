@@ -28,7 +28,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        $ref: "#/$defs/CRMv51-1"
+        - $ref: "#/$defs/CRMv51-1"
 $defs:
   CRMv51-1:
     title: Version en vigueur à compter du 01/03/2023

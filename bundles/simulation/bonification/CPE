@@ -28,7 +28,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        $ref: "#/$defs/CPEv40-1"
+        - $ref: "#/$defs/CPEv40-1"
 $defs:
   CPEv40-1:
     title: Version en vigueur à compter du 24/12/2021

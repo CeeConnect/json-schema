@@ -29,7 +29,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        $ref: "#/$defs/CDPv50-1"
+        - $ref: "#/$defs/CDPv50-1"
   - if:
       properties:
         dateEngagement:
@@ -40,7 +40,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        $ref: "#/$defs/CDPv52-1"
+        - $ref: "#/$defs/CDPv52-1"
 $defs:
   CDPv50-1:
     title: Version en vigueur du 01/03/2023 au 06/10/2023

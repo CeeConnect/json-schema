@@ -28,7 +28,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        $ref: "#/$defs/CRCv51-1"
+        - $ref: "#/$defs/CRCv51-1"
 $defs:
   CRCv51-1:
     title: Version en vigueur à compter du 02/07/2023

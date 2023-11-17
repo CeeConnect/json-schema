@@ -28,7 +28,7 @@ allOf:
         - dateEngagement
     then:
       allOf:
-        $ref: "#/$defs/CFTv50-1"
+        - $ref: "#/$defs/CFTv50-1"
 $defs:
   CFTv50-1:
     title: Version en vigueur à compter du 01/03/2023
