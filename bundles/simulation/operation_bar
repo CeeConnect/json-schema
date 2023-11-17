@@ -4,9 +4,9 @@ title: Opération d'économies d'énergie - Secteur résidentiel
 type: object
 properties:
   fiche:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation#/properties/fiche
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/operation#/properties/fiche
   dateEngagement:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation#/properties/dateEngagement
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/operation#/properties/dateEngagement
 required:
   - fiche
   - dateEngagement
