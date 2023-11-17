@@ -53,11 +53,11 @@ oneOf:
   - type: object
     properties:
       bonification:
-        const: CDM
+        const: CRM
     required:
       - bonification
     allOf:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bonification/CDM
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bonification/CRM
   - type: object
     properties:
       bonification:
