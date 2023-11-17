@@ -25,7 +25,7 @@ oneOf:
     required:
       - bonification
     allOf:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bonification/CDP
+      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bonification/CDP
   - type: object
     properties:
       bonification:
@@ -33,7 +33,7 @@ oneOf:
     required:
       - bonification
     allOf:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bonification/CFT
+      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bonification/CFT
   - type: object
     properties:
       bonification:
@@ -41,7 +41,7 @@ oneOf:
     required:
       - bonification
     allOf:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bonification/CPE
+      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bonification/CPE
   - type: object
     properties:
       bonification:
@@ -49,7 +49,7 @@ oneOf:
     required:
       - bonification
     allOf:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bonification/CRC
+      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bonification/CRC
   - type: object
     properties:
       bonification:
@@ -57,7 +57,7 @@ oneOf:
     required:
       - bonification
     allOf:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bonification/CRM
+      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bonification/CRM
   - type: object
     properties:
       bonification:
@@ -65,7 +65,7 @@ oneOf:
     required:
       - bonification
     allOf:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bonification/ZNI
+      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bonification/ZNI
   - type: object
     properties:
       bonification:
