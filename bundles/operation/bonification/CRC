@@ -23,7 +23,7 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: ""2023-07-02""
+          formatMinimum: "2023-07-02"
       required:
         - dateEngagement
     then:
