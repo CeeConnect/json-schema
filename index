@@ -1,0 +1,9 @@
+title: Certificats d'économies d'énergie - Opérations standardisées
+type: object
+properties:
+  depot:
+    $ref: https://raw.githubusercontent.com/CeeConnect/json-schema/main/bundles/depot
+  operation:
+    $ref: https://raw.githubusercontent.com/CeeConnect/json-schema/main/bundles/operation/operation
+  simulation:
+    $ref: https://raw.githubusercontent.com/CeeConnect/json-schema/main/bundles/simulation/operation
