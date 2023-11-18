@@ -3,14 +3,12 @@ $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-sche
 title: BAR-TH-107
 type: object
 properties:
-  fiche:
-    type: string
-    const: BAR-TH-107
-  dateEngagement:
-    type: string
-    format: date
-  adresse:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
+  fiche: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-107#/properties/fiche
+  dateEngagement: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-107#/properties/dateEngagement
+  adresse: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-107#/properties/adresse
 required:
   - fiche
   - dateEngagement
@@ -18,15 +16,13 @@ required:
 allOf:
   - if:
       properties:
-        dateEngagement:
-          type: string
-          format: date
-          formatMinimum: "2015-01-01"
+        dateEngagement: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-107#/allOf/0/if/properties/dateEngagement
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-107v14-1"
+        - $ref: '#/$defs/BAR-TH-107v14-1'
 $defs:
   BAR-TH-107v14-1:
     $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-107v14-1
@@ -41,10 +37,12 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
             title: Le bâtiment est un immeuble collectif d'habitation
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batiment
           logements:
             title: Nombre d'appartements
             description: Nombre d'appartements raccordés à la chaudière collective
@@ -57,13 +55,16 @@ $defs:
             minimum: 0
           puissanceEligibleAutresFiches:
             title: Puissance totale de la pompe à chaleur installée (kW)
-            description: Puissance nominale totale des chaudières nouvellement installés
+            description: >-
+              Puissance nominale totale des chaudières nouvellement installés
               respectant les conditions des fiches d'opérations standardisées en
               vigueur
             type: number
             minimum: 0
           puissanceEligible:
-            title: Puissance nominale totale des chaudières nouvellement installées (kW)
+            title: >-
+              Puissance nominale totale des chaudières nouvellement installées
+              (kW)
             type: number
             minimum: 0
           puissanceChaufferie:
@@ -93,9 +94,10 @@ $defs:
       - description
 examples:
   - fiche: BAR-TH-107
-    dateEngagement: "2024-01-01"
+    dateEngagement: '2024-01-01'
     adresse:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT

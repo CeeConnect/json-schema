@@ -3,14 +3,12 @@ $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-sche
 title: BAR-EN-110
 type: object
 properties:
-  fiche:
-    type: string
-    const: BAR-EN-110
-  dateEngagement:
-    type: string
-    format: date
-  adresse:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
+  fiche: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-110#/properties/fiche
+  dateEngagement: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-110#/properties/dateEngagement
+  adresse: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-110#/properties/adresse
 required:
   - fiche
   - dateEngagement
@@ -18,15 +16,13 @@ required:
 allOf:
   - if:
       properties:
-        dateEngagement:
-          type: string
-          format: date
-          formatMinimum: "2020-08-03"
+        dateEngagement: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-110#/allOf/0/if/properties/dateEngagement
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-EN-110v35-1"
+        - $ref: '#/$defs/BAR-EN-110v35-1'
 $defs:
   BAR-EN-110v35-1:
     $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-EN-110v35-1
@@ -39,9 +35,11 @@ $defs:
         type: object
         properties:
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-110#/$defs/BAR-EN-110v35-1/properties/description/properties/ancienneteBatiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-110#/$defs/BAR-EN-110v35-1/properties/description/properties/ancienneteBatiment
           quantite:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-110#/$defs/BAR-EN-110v35-1/properties/description/properties/quantite
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-110#/$defs/BAR-EN-110v35-1/properties/description/properties/quantite
         required:
           - ancienneteBatiment
           - quantite
@@ -49,9 +47,10 @@ $defs:
       - description
 examples:
   - fiche: BAR-EN-110
-    dateEngagement: "2024-01-01"
+    dateEngagement: '2024-01-01'
     adresse:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
       ancienneteBatiment: EXISTANT
       quantite: 200

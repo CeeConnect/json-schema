@@ -3,27 +3,26 @@ $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-sche
 title: BAR-EQ-110
 type: object
 properties:
-  fiche:
-    type: string
-    const: BAR-EQ-110
-  dateEngagement:
-    type: string
-    format: date
+  fiche: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110#/properties/fiche
+  dateEngagement: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110#/properties/dateEngagement
+  adresse: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110#/properties/adresse
 required:
   - fiche
   - dateEngagement
+  - adresse
 allOf:
   - if:
       properties:
-        dateEngagement:
-          type: string
-          format: date
-          formatMinimum: "2015-01-01"
+        dateEngagement: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110#/allOf/0/if/properties/dateEngagement
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-EQ-110v15-1"
+        - $ref: '#/$defs/BAR-EQ-110v15-1'
 $defs:
   BAR-EQ-110v15-1:
     $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-EQ-110v15-1
@@ -36,15 +35,20 @@ $defs:
         type: object
         properties:
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110#/$defs/BAR-EQ-110v15-1/properties/description/properties/ancienneteBatiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110#/$defs/BAR-EQ-110v15-1/properties/description/properties/ancienneteBatiment
           quantite:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110#/$defs/BAR-EQ-110v15-1/properties/description/properties/quantite
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110#/$defs/BAR-EQ-110v15-1/properties/description/properties/quantite
           indiceProtectionChocs:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110#/$defs/BAR-EQ-110v15-1/properties/description/properties/indiceProtectionChocs
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110#/$defs/BAR-EQ-110v15-1/properties/description/properties/indiceProtectionChocs
           detecteurLumiere:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110#/$defs/BAR-EQ-110v15-1/properties/description/properties/detecteurLumiere
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110#/$defs/BAR-EQ-110v15-1/properties/description/properties/detecteurLumiere
           detecteurPresence:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110#/$defs/BAR-EQ-110v15-1/properties/description/properties/detecteurPresence
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EQ-110#/$defs/BAR-EQ-110v15-1/properties/description/properties/detecteurPresence
         required:
           - ancienneteBatiment
           - quantite
@@ -55,10 +59,10 @@ $defs:
       - description
 examples:
   - fiche: BAR-EQ-110
-    dateEngagement: "2024-01-01"
+    dateEngagement: '2024-01-01'
     description:
       ancienneteBatiment: EXISTANT
       detecteurLumiere: true
       detecteurPresence: false
       quantite: 50
-      indiceProtectionChocs: "08"
+      indiceProtectionChocs: '08'

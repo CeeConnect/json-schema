@@ -3,14 +3,12 @@ $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-sche
 title: BAR-TH-141
 type: object
 properties:
-  fiche:
-    type: string
-    const: BAR-TH-141
-  dateEngagement:
-    type: string
-    format: date
-  adresse:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceOutreMer
+  fiche: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141#/properties/fiche
+  dateEngagement: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141#/properties/dateEngagement
+  adresse: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141#/properties/adresse
 required:
   - fiche
   - dateEngagement
@@ -18,15 +16,13 @@ required:
 allOf:
   - if:
       properties:
-        dateEngagement:
-          type: string
-          format: date
-          formatMinimum: "2015-01-01"
+        dateEngagement: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141#/allOf/0/if/properties/dateEngagement
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-141v15-1"
+        - $ref: '#/$defs/BAR-TH-141v15-1'
 $defs:
   BAR-TH-141v15-1:
     $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-141v15-1
@@ -41,15 +37,20 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141#/$defs/BAR-TH-141v15-1/properties/description/properties/typeBatiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141#/$defs/BAR-TH-141v15-1/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141#/$defs/BAR-TH-141v15-1/properties/description/properties/ancienneteBatiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141#/$defs/BAR-TH-141v15-1/properties/description/properties/ancienneteBatiment
           quantite:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141#/$defs/BAR-TH-141v15-1/properties/description/properties/quantite
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141#/$defs/BAR-TH-141v15-1/properties/description/properties/quantite
           puissanceFrigorifique:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141#/$defs/BAR-TH-141v15-1/properties/description/properties/puissanceFrigorifique
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-141#/$defs/BAR-TH-141v15-1/properties/description/properties/puissanceFrigorifique
           classeEnergetique:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_efficacite_energetique#/$defs/climatiseurs
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_efficacite_energetique#/$defs/climatiseurs
             title: Classe d'efficacité énergétique
         required:
           - typeBatiment
@@ -61,9 +62,10 @@ $defs:
       - description
 examples:
   - fiche: BAR-TH-141
-    dateEngagement: "2024-01-01"
+    dateEngagement: '2024-01-01'
     adresse:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/3
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/3
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT

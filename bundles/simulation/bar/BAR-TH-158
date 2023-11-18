@@ -3,14 +3,12 @@ $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-sche
 title: BAR-TH-158
 type: object
 properties:
-  fiche:
-    type: string
-    const: BAR-TH-158
-  dateEngagement:
-    type: string
-    format: date
-  adresse:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
+  fiche: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-158#/properties/fiche
+  dateEngagement: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-158#/properties/dateEngagement
+  adresse: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-158#/properties/adresse
 required:
   - fiche
   - dateEngagement
@@ -18,15 +16,13 @@ required:
 allOf:
   - if:
       properties:
-        dateEngagement:
-          type: string
-          format: date
-          formatMinimum: "2020-10-01"
+        dateEngagement: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-158#/allOf/0/if/properties/dateEngagement
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-158v35-2"
+        - $ref: '#/$defs/BAR-TH-158v35-2'
 $defs:
   BAR-TH-158v35-2:
     $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-158v35-2
@@ -42,12 +38,15 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-158#/$defs/BAR-TH-158v35-2/properties/description/properties/typeBatiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-158#/$defs/BAR-TH-158v35-2/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-158#/$defs/BAR-TH-158v35-2/properties/description/properties/ancienneteBatiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-158#/$defs/BAR-TH-158v35-2/properties/description/properties/ancienneteBatiment
           equipements:
             title: Liste des émetteurs électriques installés
-            description: Indiquer autant de lignes que d'équipements aux caractéristiques
+            description: >-
+              Indiquer autant de lignes que d'équipements aux caractéristiques
               identiques
             type: array
             minItems: 1
@@ -55,7 +54,8 @@ $defs:
               type: object
               properties:
                 quantite:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-158#/$defs/BAR-TH-158v35-2/properties/description/properties/equipements/items/properties/quantite
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-158#/$defs/BAR-TH-158v35-2/properties/description/properties/equipements/items/properties/quantite
               required:
                 - quantite
         required:
@@ -66,9 +66,10 @@ $defs:
       - description
 examples:
   - fiche: BAR-TH-158
-    dateEngagement: "2024-01-01"
+    dateEngagement: '2024-01-01'
     adresse:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT

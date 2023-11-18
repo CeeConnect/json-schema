@@ -3,14 +3,12 @@ $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-sche
 title: BAR-TH-164
 type: object
 properties:
-  fiche:
-    type: string
-    const: BAR-TH-164
-  dateEngagement:
-    type: string
-    format: date
-  adresse:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+  fiche: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/properties/fiche
+  dateEngagement: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/properties/dateEngagement
+  adresse: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/properties/adresse
 required:
   - fiche
   - dateEngagement
@@ -18,27 +16,22 @@ required:
 allOf:
   - if:
       properties:
-        dateEngagement:
-          type: string
-          format: date
-          formatMinimum: "2020-10-12"
-          formatExclusiveMaximum: "2023-08-01"
+        dateEngagement: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/allOf/0/if/properties/dateEngagement
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-164v36-2"
+        - $ref: '#/$defs/BAR-TH-164v36-2'
   - if:
       properties:
-        dateEngagement:
-          type: string
-          format: date
-          formatMinimum: "2023-08-01"
+        dateEngagement: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/allOf/1/if/properties/dateEngagement
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-164v52-3"
+        - $ref: '#/$defs/BAR-TH-164v52-3'
 $defs:
   BAR-TH-164v36-2:
     $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-164v36-2
@@ -51,20 +44,25 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v36-2/properties/description/properties/typeBatiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v36-2/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v36-2/properties/description/properties/ancienneteBatiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v36-2/properties/description/properties/ancienneteBatiment
           surfaceHabitable:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v36-2/properties/description/properties/surfaceHabitable
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v36-2/properties/description/properties/surfaceHabitable
           auditEnergetique:
             title: Audit énergétique
             description: Renseigner les informations issues de l'audit énergétique
             type: object
             properties:
               cefInitial:
-                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v36-2/properties/description/properties/auditEnergetique/properties/cefInitial
+                $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v36-2/properties/description/properties/auditEnergetique/properties/cefInitial
               cefProjet:
-                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v36-2/properties/description/properties/auditEnergetique/properties/cefProjet
+                $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v36-2/properties/description/properties/auditEnergetique/properties/cefProjet
             required:
               - cefInitial
               - cefProjet
@@ -82,26 +80,32 @@ $defs:
     type: object
     properties:
       adresse:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
       description:
         title: Caractéristiques
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v52-3/properties/description/properties/typeBatiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v52-3/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v52-3/properties/description/properties/ancienneteBatiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v52-3/properties/description/properties/ancienneteBatiment
           surfaceHabitable:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v52-3/properties/description/properties/surfaceHabitable
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v52-3/properties/description/properties/surfaceHabitable
           auditEnergetique:
             title: Audit énergétique
             description: Renseigner les informations issues de l'audit énergétique
             type: object
             properties:
               cefInitial:
-                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v52-3/properties/description/properties/auditEnergetique/properties/cefInitial
+                $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v52-3/properties/description/properties/auditEnergetique/properties/cefInitial
               cefProjet:
-                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v52-3/properties/description/properties/auditEnergetique/properties/cefProjet
+                $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-164#/$defs/BAR-TH-164v52-3/properties/description/properties/auditEnergetique/properties/cefProjet
             required:
               - cefInitial
               - cefProjet
@@ -115,9 +119,10 @@ $defs:
       - description
 examples:
   - fiche: BAR-TH-164
-    dateEngagement: "2024-01-01"
+    dateEngagement: '2024-01-01'
     adresse:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT
@@ -126,9 +131,10 @@ examples:
         cefInitial: 60
         cefProjet: 30
   - fiche: BAR-TH-164
-    dateEngagement: "2024-01-01"
+    dateEngagement: '2024-01-01'
     adresse:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT

@@ -3,14 +3,12 @@ $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-sche
 title: BAR-EN-107
 type: object
 properties:
-  fiche:
-    type: string
-    const: BAR-EN-107
-  dateEngagement:
-    type: string
-    format: date
-  adresse:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceOutreMer
+  fiche: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-107#/properties/fiche
+  dateEngagement: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-107#/properties/dateEngagement
+  adresse: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-107#/properties/adresse
 required:
   - fiche
   - dateEngagement
@@ -18,15 +16,13 @@ required:
 allOf:
   - if:
       properties:
-        dateEngagement:
-          type: string
-          format: date
-          formatMinimum: "2016-03-13"
+        dateEngagement: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-107#/allOf/0/if/properties/dateEngagement
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-EN-107v20-3"
+        - $ref: '#/$defs/BAR-EN-107v20-3'
 $defs:
   BAR-EN-107v20-3:
     $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-EN-107v20-3
@@ -39,13 +35,17 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-107#/$defs/BAR-EN-107v20-3/properties/description/properties/typeBatiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-107#/$defs/BAR-EN-107v20-3/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-107#/$defs/BAR-EN-107v20-3/properties/description/properties/ancienneteBatiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-107#/$defs/BAR-EN-107v20-3/properties/description/properties/ancienneteBatiment
           quantite:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-107#/$defs/BAR-EN-107v20-3/properties/description/properties/quantite
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-107#/$defs/BAR-EN-107v20-3/properties/description/properties/quantite
           resistanceThermique:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-107#/$defs/BAR-EN-107v20-3/properties/description/properties/resistanceThermique
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-107#/$defs/BAR-EN-107v20-3/properties/description/properties/resistanceThermique
         required:
           - typeBatiment
           - ancienneteBatiment
@@ -55,9 +55,10 @@ $defs:
       - description
 examples:
   - fiche: BAR-EN-107
-    dateEngagement: "2024-01-01"
+    dateEngagement: '2024-01-01'
     adresse:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/3
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/3
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT

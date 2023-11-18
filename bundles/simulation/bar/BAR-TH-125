@@ -3,14 +3,12 @@ $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-sche
 title: BAR-TH-125
 type: object
 properties:
-  fiche:
-    type: string
-    const: BAR-TH-125
-  dateEngagement:
-    type: string
-    format: date
-  adresse:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+  fiche: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-125#/properties/fiche
+  dateEngagement: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-125#/properties/dateEngagement
+  adresse: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-125#/properties/adresse
 required:
   - fiche
   - dateEngagement
@@ -18,28 +16,22 @@ required:
 allOf:
   - if:
       properties:
-        dateEngagement:
-          type: string
-          format: date
-          formatMinimum: "2022-04-01"
-          formatExclusiveMaximum: "2024-01-01"
+        dateEngagement: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-125#/allOf/0/if/properties/dateEngagement
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-125v40-4"
+        - $ref: '#/$defs/BAR-TH-125v40-4'
   - if:
       properties:
-        dateEngagement:
-          type: string
-          format: date
-          formatMinimum: "2024-01-01"
-          formatExclusiveMaximum: "2028-07-01"
+        dateEngagement: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-125#/allOf/1/if/properties/dateEngagement
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-125v54-5"
+        - $ref: '#/$defs/BAR-TH-125v54-5'
 $defs:
   BAR-TH-125v40-4:
     $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-125v40-4
@@ -52,12 +44,15 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batiment
           typeInstallation:
             title: Type d'installation
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation
         required:
           - typeBatiment
           - ancienneteBatiment
@@ -66,13 +61,15 @@ $defs:
           - if:
               properties:
                 typeInstallation:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/INDIVIDUEL
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/INDIVIDUEL
               required:
                 - typeInstallation
             then:
               properties:
                 typeEquipement:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/vmcDoubleFlux
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/vmcDoubleFlux
                 surfaceHabitable:
                   title: Surface habitable du logement (m²)
                   type: number
@@ -83,13 +80,15 @@ $defs:
           - if:
               properties:
                 typeInstallation:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/COLLECTIF
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/COLLECTIF
               required:
                 - typeInstallation
             then:
               properties:
                 typeEquipement:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/VMC_AUTOREGLABLE
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/VMC_AUTOREGLABLE
                   title: Type de VMC double flux
                 logements:
                   title: Nombre de logements raccordés à la VMC double flux
@@ -107,18 +106,22 @@ $defs:
     type: object
     properties:
       adresse:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
       description:
         title: Caractéristiques
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batiment
           typeInstallation:
             title: Type d'installation
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation
         required:
           - typeBatiment
           - ancienneteBatiment
@@ -127,13 +130,15 @@ $defs:
           - if:
               properties:
                 typeInstallation:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/INDIVIDUEL
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/INDIVIDUEL
               required:
                 - typeInstallation
             then:
               properties:
                 typeEquipement:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/vmcDoubleFlux
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/vmcDoubleFlux
                 surfaceHabitable:
                   title: Surface habitable du logement (m²)
                   type: number
@@ -144,13 +149,15 @@ $defs:
           - if:
               properties:
                 typeInstallation:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/COLLECTIF
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/COLLECTIF
               required:
                 - typeInstallation
             then:
               properties:
                 typeEquipement:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/VMC_AUTOREGLABLE
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/VMC_AUTOREGLABLE
                   title: L'équipement est une VMC double flux autoréglable
                 logements:
                   title: Nombre de logements raccordés à la VMC double flux
@@ -164,9 +171,10 @@ $defs:
       - description
 examples:
   - fiche: BAR-TH-125
-    dateEngagement: "2024-01-01"
+    dateEngagement: '2024-01-01'
     adresse:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT
@@ -174,9 +182,10 @@ examples:
       typeEquipement: AUTOREGLABLE
       surfaceHabitable: 100
   - fiche: BAR-TH-125
-    dateEngagement: "2024-01-01"
+    dateEngagement: '2024-01-01'
     adresse:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT

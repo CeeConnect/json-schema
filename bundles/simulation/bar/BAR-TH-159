@@ -3,14 +3,12 @@ $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-sche
 title: BAR-TH-159
 type: object
 properties:
-  fiche:
-    type: string
-    const: BAR-TH-159
-  dateEngagement:
-    type: string
-    format: date
-  adresse:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
+  fiche: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-159#/properties/fiche
+  dateEngagement: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-159#/properties/dateEngagement
+  adresse: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-159#/properties/adresse
 required:
   - fiche
   - dateEngagement
@@ -18,27 +16,22 @@ required:
 allOf:
   - if:
       properties:
-        dateEngagement:
-          type: string
-          format: date
-          formatMinimum: "2022-11-01"
-          formatExclusiveMaximum: "2023-04-01"
+        dateEngagement: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-159#/allOf/0/if/properties/dateEngagement
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-159v44-3"
+        - $ref: '#/$defs/BAR-TH-159v44-3'
   - if:
       properties:
-        dateEngagement:
-          type: string
-          format: date
-          formatMinimum: "2023-04-01"
+        dateEngagement: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-159#/allOf/1/if/properties/dateEngagement
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-159v50-4"
+        - $ref: '#/$defs/BAR-TH-159v50-4'
 $defs:
   BAR-TH-159v44-3:
     $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-159v44-3
@@ -51,15 +44,20 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-159#/$defs/BAR-TH-159v44-3/properties/description/properties/typeBatiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-159#/$defs/BAR-TH-159v44-3/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-159#/$defs/BAR-TH-159v44-3/properties/description/properties/ancienneteBatiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-159#/$defs/BAR-TH-159v44-3/properties/description/properties/ancienneteBatiment
           energieChauffage:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffageResidentiel
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffageResidentiel
           surfaceChauffee:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-159#/$defs/BAR-TH-159v44-3/properties/description/properties/surfaceChauffee
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-159#/$defs/BAR-TH-159v44-3/properties/description/properties/surfaceChauffee
           performanceEnergetique:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-159#/$defs/BAR-TH-159v44-3/properties/description/properties/performanceEnergetique
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-159#/$defs/BAR-TH-159v44-3/properties/description/properties/performanceEnergetique
           critereEquipementExistant:
             title: L'équipement vient en remplacement d'une chaudière individuelle
             type: boolean
@@ -79,21 +77,27 @@ $defs:
     type: object
     properties:
       adresse:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
       description:
         title: Caractéristiques
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-159#/$defs/BAR-TH-159v50-4/properties/description/properties/typeBatiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-159#/$defs/BAR-TH-159v50-4/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-159#/$defs/BAR-TH-159v50-4/properties/description/properties/ancienneteBatiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-159#/$defs/BAR-TH-159v50-4/properties/description/properties/ancienneteBatiment
           energieChauffage:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffageResidentiel
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffageResidentiel
           surfaceChauffee:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-159#/$defs/BAR-TH-159v50-4/properties/description/properties/surfaceChauffee
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-159#/$defs/BAR-TH-159v50-4/properties/description/properties/surfaceChauffee
           performanceEnergetique:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-159#/$defs/BAR-TH-159v50-4/properties/description/properties/performanceEnergetique
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-159#/$defs/BAR-TH-159v50-4/properties/description/properties/performanceEnergetique
           critereEquipementExistant:
             title: L'équipement vient en remplacement d'une chaudière individuelle
             type: boolean
@@ -109,9 +113,10 @@ $defs:
       - description
 examples:
   - fiche: BAR-TH-159
-    dateEngagement: "2024-01-01"
+    dateEngagement: '2024-01-01'
     adresse:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT
@@ -120,9 +125,10 @@ examples:
       surfaceChauffee: 150
       critereEquipementExistant: true
   - fiche: BAR-TH-159
-    dateEngagement: "2024-01-01"
+    dateEngagement: '2024-01-01'
     adresse:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT

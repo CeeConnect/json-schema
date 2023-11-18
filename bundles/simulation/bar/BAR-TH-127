@@ -3,14 +3,12 @@ $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-sche
 title: BAR-TH-127
 type: object
 properties:
-  fiche:
-    type: string
-    const: BAR-TH-127
-  dateEngagement:
-    type: string
-    format: date
-  adresse:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+  fiche: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-127#/properties/fiche
+  dateEngagement: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-127#/properties/dateEngagement
+  adresse: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-127#/properties/adresse
 required:
   - fiche
   - dateEngagement
@@ -18,28 +16,22 @@ required:
 allOf:
   - if:
       properties:
-        dateEngagement:
-          type: string
-          format: date
-          formatMinimum: "2022-04-01"
-          formatExclusiveMaximum: "2024-01-01"
+        dateEngagement: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-127#/allOf/0/if/properties/dateEngagement
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-127v40-4"
+        - $ref: '#/$defs/BAR-TH-127v40-4'
   - if:
       properties:
-        dateEngagement:
-          type: string
-          format: date
-          formatMinimum: "2024-01-01"
-          formatExclusiveMaximum: "2028-07-01"
+        dateEngagement: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-127#/allOf/1/if/properties/dateEngagement
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-127v54-5"
+        - $ref: '#/$defs/BAR-TH-127v54-5'
 $defs:
   BAR-TH-127v40-4:
     $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-127v40-4
@@ -52,14 +44,18 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batiment
           typeInstallation:
             title: Type d'installation
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation
           typeEquipement:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/vmcHygroreglable
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/vmcHygroreglable
         required:
           - typeBatiment
           - ancienneteBatiment
@@ -69,7 +65,8 @@ $defs:
           - if:
               properties:
                 typeInstallation:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/INDIVIDUEL
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/INDIVIDUEL
               required:
                 - typeInstallation
             then:
@@ -78,7 +75,8 @@ $defs:
                   title: Type de caisson
                   type: string
                   oneOf:
-                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_caisson_vmc#/$defs/BASSE_CONSOMMATION
+                    - $ref: >-
+                        https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_caisson_vmc#/$defs/BASSE_CONSOMMATION
                 surfaceHabitable:
                   title: Surface habitable du logement (m²)
                   type: number
@@ -89,14 +87,16 @@ $defs:
           - if:
               properties:
                 typeInstallation:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/COLLECTIF
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/COLLECTIF
               required:
                 - typeInstallation
             then:
               properties:
                 typeCaisson:
                   title: Type de caisson
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_caisson_vmc
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_caisson_vmc
                 logements:
                   title: Nombre de logements raccordés à la VMC simple flux
                   type: integer
@@ -113,20 +113,25 @@ $defs:
     type: object
     properties:
       adresse:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
       description:
         title: Caractéristiques
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batiment
           typeInstallation:
             title: Type d'installation
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation
           typeEquipement:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/vmcHygroreglable
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/vmcHygroreglable
         required:
           - typeBatiment
           - ancienneteBatiment
@@ -136,7 +141,8 @@ $defs:
           - if:
               properties:
                 typeInstallation:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/INDIVIDUEL
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/INDIVIDUEL
               required:
                 - typeInstallation
             then:
@@ -145,7 +151,8 @@ $defs:
                   title: Type de caisson
                   type: string
                   oneOf:
-                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_caisson_vmc#/$defs/BASSE_CONSOMMATION
+                    - $ref: >-
+                        https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_caisson_vmc#/$defs/BASSE_CONSOMMATION
                 surfaceHabitable:
                   title: Surface habitable du logement (m²)
                   type: number
@@ -156,14 +163,16 @@ $defs:
           - if:
               properties:
                 typeInstallation:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/COLLECTIF
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/COLLECTIF
               required:
                 - typeInstallation
             then:
               properties:
                 typeCaisson:
                   title: Type de caisson
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_caisson_vmc
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_caisson_vmc
                 logements:
                   title: Nombre de logements raccordés à la VMC simple flux
                   type: integer
@@ -176,9 +185,10 @@ $defs:
       - description
 examples:
   - fiche: BAR-TH-127
-    dateEngagement: "2024-01-01"
+    dateEngagement: '2024-01-01'
     adresse:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT
@@ -187,9 +197,10 @@ examples:
       typeCaisson: BASSE_CONSOMMATION
       surfaceHabitable: 100
   - fiche: BAR-TH-127
-    dateEngagement: "2024-01-01"
+    dateEngagement: '2024-01-01'
     adresse:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT

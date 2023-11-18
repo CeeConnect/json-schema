@@ -3,14 +3,12 @@ $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-sche
 title: BAR-TH-137
 type: object
 properties:
-  fiche:
-    type: string
-    const: BAR-TH-137
-  dateEngagement:
-    type: string
-    format: date
-  adresse:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
+  fiche: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-137#/properties/fiche
+  dateEngagement: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-137#/properties/dateEngagement
+  adresse: >-
+    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-137#/properties/adresse
 required:
   - fiche
   - dateEngagement
@@ -18,15 +16,13 @@ required:
 allOf:
   - if:
       properties:
-        dateEngagement:
-          type: string
-          format: date
-          formatMinimum: "2022-09-01"
+        dateEngagement: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-137#/allOf/0/if/properties/dateEngagement
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-137v45-3"
+        - $ref: '#/$defs/BAR-TH-137v45-3'
 $defs:
   BAR-TH-137v45-3:
     $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-137v45-3
@@ -39,13 +35,17 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-137#/$defs/BAR-TH-137v45-3/properties/description/properties/typeBatiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-137#/$defs/BAR-TH-137v45-3/properties/description/properties/typeBatiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-137#/$defs/BAR-TH-137v45-3/properties/description/properties/ancienneteBatiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-137#/$defs/BAR-TH-137v45-3/properties/description/properties/ancienneteBatiment
           energieChauffage:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffageResidentiel
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffageResidentiel
           critereEquipementExistant:
-            title: Le raccordement au réseau de chaleur vient en remplacement d'une
+            title: >-
+              Le raccordement au réseau de chaleur vient en remplacement d'une
               chaudière
             type: boolean
         required:
@@ -54,23 +54,28 @@ $defs:
           - energieChauffage
           - critereEquipementExistant
         allOf:
-          - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-137#/$defs/BAR-TH-137v45-3/properties/description/allOf/0
-          - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-137#/$defs/BAR-TH-137v45-3/properties/description/allOf/1
+          - $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-137#/$defs/BAR-TH-137v45-3/properties/description/allOf/0
+          - $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-137#/$defs/BAR-TH-137v45-3/properties/description/allOf/1
           - if:
               properties:
                 typeBatiment:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
               required:
                 - typeBatiment
             then:
               properties:
                 critereRegimeCopropriete:
-                  title: L'immeuble relève du régime de la copropriété défini par la loi n° 65-557
-                    du 10 juillet 1965
+                  title: >-
+                    L'immeuble relève du régime de la copropriété défini par la
+                    loi n° 65-557 du 10 juillet 1965
                   type: boolean
                 critereAlimentationReseauChaleur:
-                  title: Raccordement à un réseau de chaleur alimenté majoritairement par des
-                    énergies renouvelables ou de récupération
+                  title: >-
+                    Raccordement à un réseau de chaleur alimenté majoritairement
+                    par des énergies renouvelables ou de récupération
                   type: boolean
               required:
                 - critereRegimeCopropriete
@@ -79,9 +84,10 @@ $defs:
       - description
 examples:
   - fiche: BAR-TH-137
-    dateEngagement: "2024-01-01"
+    dateEngagement: '2024-01-01'
     adresse:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT
