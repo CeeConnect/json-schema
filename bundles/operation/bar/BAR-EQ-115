@@ -9,6 +9,7 @@ properties:
   dateEngagement:
     type: string
     format: date
+    formatMinimum: '2019-01-01'
 required:
   - fiche
   - dateEngagement
@@ -18,12 +19,12 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2019-01-01"
+          formatMinimum: '2019-01-01'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-EQ-115v28-1"
+        - $ref: '#/$defs/BAR-EQ-115v28-1'
 $defs:
   BAR-EQ-115v28-1:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-EQ-115v28-1
@@ -35,14 +36,18 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           typeInstallationChauffage:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation
             title: Type d'installation de chauffage
           energieChauffage:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffage
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffage
             title: Energie de chauffage principale
           surfaceHabitable:
             title: Surface habitable (m²)
@@ -71,29 +76,22 @@ $defs:
           critereOptionAssistance:
             title: >
               Le dispositif apporte à l'utilisateur des conseils adaptés à sa
-
-              situation, l'aide à interpréter les données affichées et à réduire ses
-
-              consommations d'énergie
+              situation, l'aide à interpréter les données affichées et à réduire
+              ses consommations d'énergie
             type: boolean
             const: true
           critereOptionBilanPeriodique:
             title: >
               Le dispositif informe l'utilisateur de manière régulière, à un pas
-
-              inférieur ou égal à 1 mois, des données disponibles sur l'affichage en
-
-              lui adressant un bilan de la période écoulée, et en l'invitant à
-
-              consulter l'affichage pour davantage de détails
+              inférieur ou égal à 1 mois, des données disponibles sur
+              l'affichage en lui adressant un bilan de la période écoulée, et en
+              l'invitant à consulter l'affichage pour davantage de détails
             type: boolean
             const: true
           critereOptionAffichageConsommation:
             title: >
               Le dispositif permet l'affichage des consommations d'énergie en m3
-              et/ou en kWh selon l'énergie 
-
-              et valorisées en euros
+              et/ou en kWh selon l'énergie  et valorisées en euros
             type: boolean
             const: true
           critereOptionAlarmeDepassement:
@@ -114,25 +112,23 @@ $defs:
           critereOptionHistorique:
             title: >
               Le dispositif permet d'accèder à l'historique des cumuls, pour une
-              durée 
-
-              supérieure ou égale à la journée, disponible pendant deux années glissantes
+              durée  supérieure ou égale à la journée, disponible pendant deux
+              années glissantes
             type: boolean
             const: true
           critereOptionComparaisonHistorique:
             title: >
               Le dispositif permet de comparer les consommations réalisées à des
-              consommations 
-
-              types, établies à partir de moyennes nationales et locales pour des profils de 
-
-              consommations comparables à ceux de l'utilisateur, et à des seuils
+              consommations  types, établies à partir de moyennes nationales et
+              locales pour des profils de  consommations comparables à ceux de
+              l'utilisateur, et à des seuils
             type: boolean
             const: true
           supportsNumeriques:
             title: Support(s) numérique(s)
-            description: Renseigner le(s) support(s) numérique(s) permettant l'affichage des
-              statistiques de consommation
+            description: >-
+              Renseigner le(s) support(s) numérique(s) permettant l'affichage
+              des statistiques de consommation
             type: array
             minItems: 1
             uniqueItems: true
@@ -150,7 +146,8 @@ $defs:
                 - title: Télévision
                   const: TELEVISION
           installateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
         required:
           - ancienneteBatiment
           - typeBatiment
@@ -172,9 +169,11 @@ $defs:
           - if:
               properties:
                 typeInstallationChauffage:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/COLLECTIF
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation#/$defs/COLLECTIF
                 energieChauffage:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/COMBUSTIBLES
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/COMBUSTIBLES
               required:
                 - typeInstallationChauffage
                 - energieChauffage
@@ -214,7 +213,8 @@ $defs:
       documents:
         type: array
         items:
-          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
         allOf:
           - contains:
               title: Descriptif du dispositif issu du fabricant
@@ -229,7 +229,7 @@ $defs:
       - documents
 examples:
   - fiche: BAR-EQ-115
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     description:
       typeBatiment: APPARTEMENT
       ancienneteBatiment: EXISTANT
@@ -249,7 +249,8 @@ examples:
       supportsNumeriques:
         - SMARTPHONE
       installateur:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
     documents:
       - code: DESCRIPTIF_TECHNIQUE
         url: https://api.ceeconnect.fr/document/documents/{uuid}

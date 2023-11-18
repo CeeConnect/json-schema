@@ -9,6 +9,7 @@ properties:
   dateEngagement:
     type: string
     format: date
+    formatMinimum: '2015-01-01'
 required:
   - fiche
   - dateEngagement
@@ -18,12 +19,12 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2015-01-01"
+          formatMinimum: '2015-01-01'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-118v14-1"
+        - $ref: '#/$defs/BAR-TH-118v14-1'
 $defs:
   BAR-TH-118v14-1:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-118v14-1
@@ -35,40 +36,49 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           energieChauffage:
             title: Énergie de chauffage
             type: string
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffage
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffage
           critereAncienneteEquipement:
-            title: L'équipement de régulation est installé sur un système de chauffage
-              existant depuis plus de 2 ans
+            title: >-
+              L'équipement de régulation est installé sur un système de
+              chauffage existant depuis plus de 2 ans
             type: boolean
             const: true
           marque:
-            title: " Marque de l'équipement"
+            title: ' Marque de l''équipement'
             type: string
           reference:
             title: Référence de l'équipement
             type: string
           installateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
         allOf:
           - if:
               properties:
                 typeBatiment:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/APPARTEMENT
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/APPARTEMENT
               required:
                 - typeBatiment
             then:
               properties:
                 typeChauffage:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_chauffage
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_chauffage
                 logements:
                   title: Nombre d'appartements
-                  description: Nombre d'appartement régulés par la programmation d'intermittence
+                  description: >-
+                    Nombre d'appartement régulés par la programmation
+                    d'intermittence
                   type: integer
                   minimum: 1
               required:
@@ -77,14 +87,16 @@ $defs:
           - if:
               properties:
                 typeBatiment:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/MAISON
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/MAISON
               required:
                 - typeBatiment
             then:
               properties:
                 surfaceChaufee:
                   title: Surface chauffée
-                  description: Surface chauffée par le système de chauffage sur lequel est
+                  description: >-
+                    Surface chauffée par le système de chauffage sur lequel est
                     installé le programmateur
                   type: number
                   minimum: 0
@@ -102,7 +114,7 @@ $defs:
       - description
 examples:
   - fiche: BAR-TH-118
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     description:
       typeBatiment: APPARTEMENT
       ancienneteBatiment: EXISTANT
@@ -113,4 +125,5 @@ examples:
       marque: MARQUE
       reference: REFERENCE
       installateur:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0

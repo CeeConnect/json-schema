@@ -9,6 +9,7 @@ properties:
   dateEngagement:
     type: string
     format: date
+    formatMinimum: '2018-12-19'
 required:
   - fiche
   - dateEngagement
@@ -18,24 +19,24 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2018-12-19"
-          formatExclusiveMaximum: "2023-10-01"
+          formatMinimum: '2018-12-19'
+          formatExclusiveMaximum: '2023-10-01'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-161v28-1"
+        - $ref: '#/$defs/BAR-TH-161v28-1'
   - if:
       properties:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2023-10-01"
+          formatMinimum: '2023-10-01'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-161v54-2"
+        - $ref: '#/$defs/BAR-TH-161v54-2'
 $defs:
   BAR-TH-161v28-1:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-161v28-1
@@ -47,17 +48,18 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
             title: Le bâtiment est un immeuble collectif d'habitation
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           dateEtatRecapitulatif:
             title: Date de l'état récapitulatif
             description: >
               Renseigner la date de l'état récapitulatif établi par le
-              professionnel à l'issue de travaux, mentionnant
-
-              les housses isolantes mises en place et les points singuliers isolés
+              professionnel à l'issue de travaux, mentionnant les housses
+              isolantes mises en place et les points singuliers isolés
             type: string
             format: date
           equipements:
@@ -69,13 +71,13 @@ $defs:
               type: object
               properties:
                 typePointSingulier:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_point_singulier
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_point_singulier
                 quantite:
                   title: Nombre de housses d'isolation
                   description: >
                     Dans le cas d'un point singulier de type échangeur à plaque,
                     renseigner le nombre d'échangeurs à plaques de 
-
                     caractéristiques identiques
                   type: integer
                   minimum: 1
@@ -88,21 +90,27 @@ $defs:
                   type: number
                   exclusiveMinimum: 200
                 resistance50:
-                  title: Résistance thermique de l'isolant R (m2.K/W) à une température moyenne de
-                    50°C
+                  title: >-
+                    Résistance thermique de l'isolant R (m2.K/W) à une
+                    température moyenne de 50°C
                   type: number
                   minimum: 1.5
                 resistance100:
-                  title: Résistance thermique de l'isolant R (m2.K/W) à une température moyenne de
-                    100°C
+                  title: >-
+                    Résistance thermique de l'isolant R (m2.K/W) à une
+                    température moyenne de 100°C
                   type: number
                   minimum: 1
                 critereNature:
-                  title: La housse est souple, démontable et équipée d'un système de fermeture
+                  title: >-
+                    La housse est souple, démontable et équipée d'un système de
+                    fermeture
                   type: boolean
                   const: true
                 critereMateriau:
-                  title: La housse est constituée d'un isolant à base de laine minérale
+                  title: >-
+                    La housse est constituée d'un isolant à base de laine
+                    minérale
                   type: boolean
                   const: true
                 marque:
@@ -126,7 +134,8 @@ $defs:
                 - if:
                     properties:
                       typePointSingulier:
-                        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_point_singulier#/$defs/HORS_ECHANGEUR
+                        $ref: >-
+                          https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_point_singulier#/$defs/HORS_ECHANGEUR
                     required:
                       - typePointSingulier
                   then:
@@ -139,7 +148,8 @@ $defs:
                     required:
                       - diametreNominal
           installateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
         required:
           - ancienneteBatiment
           - typeBatiment
@@ -149,7 +159,8 @@ $defs:
       documents:
         type: array
         items:
-          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
         allOf:
           - contains:
               title: Récapitulatif
@@ -157,17 +168,19 @@ $defs:
                 Etat récapitulatif daté et signé par le professionnel et le
                 bénéficiaire de l'opération. Il comporte :
 
-                - le lieu d'implantation des matelas en chaufferie ou sous-station ;
+                - le lieu d'implantation des matelas en chaufferie ou
+                sous-station ;
 
-                - les marques, références ou numéros de repérage internes des points singuliers isolés par les housses ainsi que le
+                - les marques, références ou numéros de repérage internes des
+                points singuliers isolés par les housses ainsi que le diamètre
+                nominal des canalisations auxquelles sont raccordés les points
+                singuliers ;
 
-                diamètre nominal des canalisations auxquelles sont raccordés les points singuliers ;
-
-                - les marques et références des housses installées, la résistance thermique de l'âme isolante à la température
-
-                exigée, la température maximale de service de leur âme isolante et, le cas échéant, les numéros de repérage
-
-                internes des housses isolantes ;
+                - les marques et références des housses installées, la
+                résistance thermique de l'âme isolante à la température exigée,
+                la température maximale de service de leur âme isolante et, le
+                cas échéant, les numéros de repérage internes des housses
+                isolantes ;
 
                 - la température du fluide caloporteur.
               type: object
@@ -179,8 +192,9 @@ $defs:
                 - code
           - contains:
               title: Justification de l'accréditation de l'organisme d'inspection
-              description: La décision de qualification ou le certificat Qualibat 553 ou 554
-                du prestataire, à la date d'entrée en vigueur du contrat
+              description: >-
+                La décision de qualification ou le certificat Qualibat 553 ou
+                554 du prestataire, à la date d'entrée en vigueur du contrat
               type: object
               properties:
                 code:
@@ -201,17 +215,18 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
             title: Le bâtiment est un immeuble collectif d'habitation
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           dateEtatRecapitulatif:
             title: Date de l'état récapitulatif
             description: >
               Renseigner la date de l'état récapitulatif établi par le
-              professionnel à l'issue de travaux, mentionnant
-
-              les housses isolantes mises en place et les points singuliers isolés
+              professionnel à l'issue de travaux, mentionnant les housses
+              isolantes mises en place et les points singuliers isolés
             type: string
             format: date
           equipements:
@@ -223,13 +238,13 @@ $defs:
               type: object
               properties:
                 typePointSingulier:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_point_singulier
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_point_singulier
                 quantite:
                   title: Nombre de housses d'isolation
                   description: >
                     Dans le cas d'un point singulier de type échangeur à plaque,
                     renseigner le nombre d'échangeurs à plaques de 
-
                     caractéristiques identiques
                   type: integer
                   minimum: 1
@@ -242,21 +257,27 @@ $defs:
                   type: number
                   exclusiveMinimum: 200
                 resistance50:
-                  title: Résistance thermique de l'isolant R (m2.K/W) à une température moyenne de
-                    50°C
+                  title: >-
+                    Résistance thermique de l'isolant R (m2.K/W) à une
+                    température moyenne de 50°C
                   type: number
                   minimum: 1.5
                 resistance100:
-                  title: Résistance thermique de l'isolant R (m2.K/W) à une température moyenne de
-                    100°C
+                  title: >-
+                    Résistance thermique de l'isolant R (m2.K/W) à une
+                    température moyenne de 100°C
                   type: number
                   minimum: 1
                 critereNature:
-                  title: La housse est souple, démontable et équipée d'un système de fermeture
+                  title: >-
+                    La housse est souple, démontable et équipée d'un système de
+                    fermeture
                   type: boolean
                   const: true
                 critereMateriau:
-                  title: La housse est constituée d'un isolant à base de laine minérale
+                  title: >-
+                    La housse est constituée d'un isolant à base de laine
+                    minérale
                   type: boolean
                   const: true
                 marque:
@@ -280,7 +301,8 @@ $defs:
                 - if:
                     properties:
                       typePointSingulier:
-                        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_point_singulier#/$defs/HORS_ECHANGEUR
+                        $ref: >-
+                          https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_point_singulier#/$defs/HORS_ECHANGEUR
                     required:
                       - typePointSingulier
                   then:
@@ -293,7 +315,8 @@ $defs:
                     required:
                       - diametreNominal
           installateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
         required:
           - ancienneteBatiment
           - typeBatiment
@@ -303,7 +326,8 @@ $defs:
       documents:
         type: array
         items:
-          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
         allOf:
           - contains:
               title: Récapitulatif
@@ -311,17 +335,19 @@ $defs:
                 Etat récapitulatif daté et signé par le professionnel et le
                 bénéficiaire de l'opération. Il comporte :
 
-                - le lieu d'implantation des matelas en chaufferie ou sous-station ;
+                - le lieu d'implantation des matelas en chaufferie ou
+                sous-station ;
 
-                - les marques, références ou numéros de repérage internes des points singuliers isolés par les housses ainsi que le
+                - les marques, références ou numéros de repérage internes des
+                points singuliers isolés par les housses ainsi que le diamètre
+                nominal des canalisations auxquelles sont raccordés les points
+                singuliers ;
 
-                diamètre nominal des canalisations auxquelles sont raccordés les points singuliers ;
-
-                - les marques et références des housses installées, la résistance thermique de l'âme isolante à la température
-
-                exigée, la température maximale de service de leur âme isolante et, le cas échéant, les numéros de repérage
-
-                internes des housses isolantes ;
+                - les marques et références des housses installées, la
+                résistance thermique de l'âme isolante à la température exigée,
+                la température maximale de service de leur âme isolante et, le
+                cas échéant, les numéros de repérage internes des housses
+                isolantes ;
 
                 - la température du fluide caloporteur.
               type: object
@@ -333,8 +359,9 @@ $defs:
                 - code
           - contains:
               title: Justification de l'accréditation de l'organisme d'inspection
-              description: La décision de qualification ou le certificat Qualibat 553 ou 554
-                du prestataire, à la date d'entrée en vigueur du contrat
+              description: >-
+                La décision de qualification ou le certificat Qualibat 553 ou
+                554 du prestataire, à la date d'entrée en vigueur du contrat
               type: object
               properties:
                 code:
@@ -347,11 +374,11 @@ $defs:
       - documents
 examples:
   - fiche: BAR-TH-161
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT
-      dateEtatRecapitulatif: 2023-12-12
+      dateEtatRecapitulatif: 2023-12-12T00:00:00.000Z
       equipements:
         - typePointSingulier: ECHANGEUR
           temperatureFluide: 60
@@ -364,18 +391,19 @@ examples:
           marque: MARQUE
           reference: REFERENCE
       installateur:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
     documents:
       - code: ETAT_RECAPITULATIF
         url: https://api.ceeconnect.fr/document/documents/{uuid}
       - code: ACCREDITATION_ORGANISME_CONTROLE
         url: https://api.ceeconnect.fr/document/documents/{uuid}
   - fiche: BAR-TH-161
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT
-      dateEtatRecapitulatif: 2023-12-12
+      dateEtatRecapitulatif: 2023-12-12T00:00:00.000Z
       equipements:
         - typePointSingulier: ECHANGEUR
           temperatureFluide: 60
@@ -388,7 +416,8 @@ examples:
           marque: MARQUE
           reference: REFERENCE
       installateur:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
     documents:
       - code: ETAT_RECAPITULATIF
         url: https://api.ceeconnect.fr/document/documents/{uuid}

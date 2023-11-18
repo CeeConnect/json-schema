@@ -9,6 +9,7 @@ properties:
   dateEngagement:
     type: string
     format: date
+    formatMinimum: '2024-01-01'
 required:
   - fiche
   - dateEngagement
@@ -18,13 +19,13 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2024-01-01"
-          formatExclusiveMaximum: "2028-07-01"
+          formatMinimum: '2024-01-01'
+          formatExclusiveMaximum: '2028-07-01'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-171v55-1"
+        - $ref: '#/$defs/BAR-TH-171v55-1'
 $defs:
   BAR-TH-171v55-1:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-171v55-1
@@ -36,20 +37,25 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           temperatureDistribution:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution
           surfaceChauffee:
             title: Surface chaufée par l'équipement (m²)
             type: number
             minimum: 0
           usage:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_usage#/$defs/chauffages
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_usage#/$defs/chauffages
             title: Usage couvert par l'équipement installé
           performanceEnergetique:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/performance_energetique#/$defs/etas
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/performance_energetique#/$defs/etas
             minimum: 111
           marque:
             title: Marque des équipements
@@ -58,7 +64,8 @@ $defs:
             title: Référence des équipements
             type: string
           performanceEnergetiqueRegulateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_regulateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_regulateur
             title: Classe du régulateur
           marqueRegulateur:
             title: Marque du régulateur
@@ -67,21 +74,24 @@ $defs:
             title: Référence du régulateur
             type: string
           installateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
             type: object
             properties:
               qualificationsRge:
                 type: array
                 contains:
                   oneOf:
-                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/89
+                    - $ref: >-
+                        https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/89
             required:
               - qualificationsRge
         allOf:
           - if:
               properties:
                 temperatureDistribution:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution#/$defs/BASSE_TEMPERATURE
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution#/$defs/BASSE_TEMPERATURE
               required:
                 - temperatureDistribution
             then:
@@ -107,7 +117,8 @@ $defs:
       documents:
         type: array
         items:
-          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
         allOf:
           - contains:
               title: Note de dimensionnement
@@ -132,7 +143,7 @@ $defs:
       - documents
 examples:
   - fiche: BAR-TH-171
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT
@@ -146,7 +157,8 @@ examples:
       marqueRegulateur: MARQUE
       referenceRegulateur: REFERENCE
       installateur:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
     documents:
       - code: PREUVE_QUALIFICATION
         url: https://api.ceeconnect.fr/document/documents/{uuid}

@@ -9,6 +9,7 @@ properties:
   dateEngagement:
     type: string
     format: date
+    formatMinimum: '2020-05-20'
 required:
   - fiche
   - dateEngagement
@@ -18,12 +19,12 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2020-05-20"
+          formatMinimum: '2020-05-20'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-165v34-1"
+        - $ref: '#/$defs/BAR-TH-165v34-1'
 $defs:
   BAR-TH-165v34-1:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-165v34-1
@@ -37,10 +38,12 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
             title: Le bâtiment est un immeuble collectif d'habitation
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           logements:
             title: Nombre d'appartements
             description: Nombre d'appartement d'un même bâtiment
@@ -51,9 +54,10 @@ $defs:
             type: number
             minimum: 0
           critereBiomasseLigneuse:
-            title: Biomasse ligneuse à base de bûches de bois, de copeaux de bois, de bois
-              comprimé sous forme de granulés, de bois comprimé sous forme de
-              briquettes ou de sciure de bois
+            title: >-
+              Biomasse ligneuse à base de bûches de bois, de copeaux de bois, de
+              bois comprimé sous forme de granulés, de bois comprimé sous forme
+              de briquettes ou de sciure de bois
             type: boolean
             const: true
           puissanceNominale:
@@ -62,12 +66,14 @@ $defs:
             minimum: 0
           quantiteChaleurUtile:
             title: Quantité de chaleur nette utile (kWh)
-            description: Cette donnée est reprise de l'étude de dimensionnement préalable à
+            description: >-
+              Cette donnée est reprise de l'étude de dimensionnement préalable à
               l'installation de la chaudière biomasse
             type: number
             exclusiveMaximum: 12000000
           classeRegulateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_regulateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_regulateur
           marque:
             title: Marque de la chaudière
             type: string
@@ -82,7 +88,8 @@ $defs:
                 title: Raison sociale
                 type: string
               siren:
-                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siren
+                $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siren
               referenceEtude:
                 title: Référence de l'étude de dimensionnement
                 type: string
@@ -91,14 +98,16 @@ $defs:
               - siren
               - referenceEtude
           installateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
             type: object
             properties:
               qualificationsRge:
                 type: array
                 contains:
                   oneOf:
-                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/87
+                    - $ref: >-
+                        https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/87
             required:
               - qualificationsRge
         required:
@@ -127,11 +136,14 @@ $defs:
               title: Chaudière de puissance nominale inférieure ou égale à 70kw
               properties:
                 performanceEnergetique:
-                  title: Efficacité énergétique saisonnière (ηs) de la chaudière biomasse
+                  title: >-
+                    Efficacité énergétique saisonnière (ηs) de la chaudière
+                    biomasse
                   type: number
                   minimum: 83
                 typeEquipement:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/chaudiereBiomasse
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/chaudiereBiomasse
                 critereFlammeVerte:
                   title: L'équipement possède le label Flamme Verte 7*
                   type: boolean
@@ -144,7 +156,8 @@ $defs:
                 - if:
                     properties:
                       typeEquipement:
-                        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/CHAUDIERE_BIOMASSE_CHARGEMENT_AUTOMATIQUE
+                        $ref: >-
+                          https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/CHAUDIERE_BIOMASSE_CHARGEMENT_AUTOMATIQUE
                     required:
                       - typeEquipement
                   then:
@@ -158,7 +171,8 @@ $defs:
                 - if:
                     properties:
                       typeEquipement:
-                        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/CHAUDIERE_BIOMASSE_CHARGEMENT_MANUEL
+                        $ref: >-
+                          https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/CHAUDIERE_BIOMASSE_CHARGEMENT_MANUEL
                     required:
                       - typeEquipement
                   then:
@@ -201,7 +215,8 @@ $defs:
       documents:
         type: array
         items:
-          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
         allOf:
           - contains:
               title: Note de dimensionnement
@@ -226,7 +241,7 @@ $defs:
       - documents
 examples:
   - fiche: BAR-TH-165
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT
@@ -244,10 +259,11 @@ examples:
       reference: REFERENCE
       entrepriseEtudeDimensionnement:
         raisonSociale: Raison sociale
-        siren: "000000000"
+        siren: '000000000'
         referenceEtude: Référence.
       installateur:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
     documents:
       - code: NOTE_DIMENSIONNEMENT
         url: https://api.ceeconnect.fr/document/documents/{uuid}

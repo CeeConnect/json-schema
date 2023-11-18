@@ -9,8 +9,10 @@ properties:
   dateEngagement:
     type: string
     format: date
+    formatMinimum: '2020-10-01'
   adresse:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceOutreMer
+    $ref: >-
+      https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceOutreMer
 required:
   - fiche
   - dateEngagement
@@ -21,12 +23,12 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2020-10-01"
+          formatMinimum: '2020-10-01'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-124v35-3"
+        - $ref: '#/$defs/BAR-TH-124v35-3'
 $defs:
   BAR-TH-124v35-3:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-124v35-3
@@ -38,14 +40,18 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/MAISON
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/MAISON
             title: Le bâtiment est une maison individuelle
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete
-            description: Les parties nouvelles de logements existants sont considérées comme
-              des logements neufs
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete
+            description: >-
+              Les parties nouvelles de logements existants sont considérées
+              comme des logements neufs
           typeVente:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_vente
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_vente
           quantite:
             title: Nombre d'appareils installé
             type: integer
@@ -56,26 +62,30 @@ $defs:
             minimum: 0
           performanceEnergetique:
             title: Efficacité énergétique pour le chauffage de l'eau (%)
-            description: Indiquer l'efficacité énergétique conformément au règlement (UE) n°
-              814/2013
+            description: >-
+              Indiquer l'efficacité énergétique conformément au règlement (UE)
+              n° 814/2013
             type: number
             minimum: 36
           installateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
             type: object
             properties:
               qualificationsRge:
                 type: array
                 contains:
                   oneOf:
-                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/86
+                    - $ref: >-
+                        https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/86
             required:
               - qualificationsRge
         allOf:
           - if:
               properties:
                 typeBatiment:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/APPARTEMENT
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/APPARTEMENT
               required:
                 - typeBatiment
             then:
@@ -88,7 +98,8 @@ $defs:
           - if:
               properties:
                 typeVente:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_vente#/$defs/ABONNEMENT
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_vente#/$defs/ABONNEMENT
               required:
                 - typeVente
             then:
@@ -96,11 +107,9 @@ $defs:
                 critereAbonnement:
                   title: >
                     Le contrat de vente par abonnement a d'une durée minimale de
-                    dix ans et il comporte une clause
-
-                    de maintien, par le professionnel, du bon état de fonctionnement du CESI pendant toute la durée du
-
-                    contrat d'abonnement
+                    dix ans et il comporte une clause de maintien, par le
+                    professionnel, du bon état de fonctionnement du CESI pendant
+                    toute la durée du contrat d'abonnement
                   type: boolean
                   const: true
               required:
@@ -118,11 +127,13 @@ $defs:
       documents:
         type: array
         items:
-          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
         allOf:
           - contains:
-              title: Certification QB dont le domaine d'emploi de l'avis technique couvre
-                explicitement les départements d'outremer
+              title: >-
+                Certification QB dont le domaine d'emploi de l'avis technique
+                couvre explicitement les départements d'outremer
               type: object
               properties:
                 code:
@@ -130,8 +141,9 @@ $defs:
               required:
                 - code
           - contains:
-              title: Preuve de qualification du professionnel ayant assuré la réalisation de
-                l'opération
+              title: >-
+                Preuve de qualification du professionnel ayant assuré la
+                réalisation de l'opération
               type: object
               properties:
                 code:
@@ -143,9 +155,10 @@ $defs:
       - documents
 examples:
   - fiche: BAR-TH-124
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     adresse:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/3
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/3
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT
@@ -156,7 +169,8 @@ examples:
       marque: MARQUE
       reference: REFERENCE
       installateur:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
     documents:
       - code: CERTIFICATION
         url: https://api.ceeconnect.fr/document/documents/{uuid}

@@ -9,6 +9,7 @@ properties:
   dateEngagement:
     type: string
     format: date
+    formatMinimum: '2015-01-01'
 required:
   - fiche
   - dateEngagement
@@ -18,12 +19,12 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2015-01-01"
+          formatMinimum: '2015-01-01'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-110v16-1"
+        - $ref: '#/$defs/BAR-TH-110v16-1'
 $defs:
   BAR-TH-110v16-1:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-110v16-1
@@ -35,9 +36,11 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           critereChauffageCentral:
             title: Logement(s) chauffé(s) par un système de chauffage central
             type: boolean
@@ -53,18 +56,21 @@ $defs:
             title: Référence des équipements
             type: string
           installateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
         allOf:
           - if:
               properties:
                 typeBatiment:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/APPARTEMENT
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/APPARTEMENT
               required:
                 - typeBatiment
             then:
               properties:
                 typeInstallation:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_installation
               required:
                 - typeInstallation
         required:
@@ -79,7 +85,7 @@ $defs:
       - description
 examples:
   - fiche: BAR-TH-110
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT
@@ -88,4 +94,5 @@ examples:
       marque: MARQUE
       reference: REFERENCE
       installateur:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0

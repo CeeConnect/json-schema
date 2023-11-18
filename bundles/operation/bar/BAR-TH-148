@@ -9,6 +9,7 @@ properties:
   dateEngagement:
     type: string
     format: date
+    formatMinimum: '2015-01-01'
 required:
   - fiche
   - dateEngagement
@@ -18,12 +19,12 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2015-01-01"
+          formatMinimum: '2015-01-01'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-148v15-2"
+        - $ref: '#/$defs/BAR-TH-148v15-2'
 $defs:
   BAR-TH-148v15-2:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-148v15-2
@@ -35,13 +36,17 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           typeEquipement:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/chauffeEauThermodynamique
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/chauffeEauThermodynamique
           performanceEnergetique:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/performance_energetique#/$defs/cop
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/performance_energetique#/$defs/cop
             exclusiveMinimum: 2.4
           marque:
             title: Marque
@@ -50,21 +55,24 @@ $defs:
             title: Référence
             type: string
           installateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
             type: object
             properties:
               qualificationsRge:
                 type: array
                 contains:
                   oneOf:
-                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/90
+                    - $ref: >-
+                        https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/90
             required:
               - qualificationsRge
         allOf:
           - if:
               properties:
                 typeEquipement:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_CET_AIR_EXTRAIT
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_CET_AIR_EXTRAIT
               required:
                 - typeEquipement
             then:
@@ -85,10 +93,13 @@ $defs:
       documents:
         type: array
         items:
-          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
         allOf:
           - contains:
-              title: Preuve de qualification du professionnel ayan réalisé l'opération
+              title: >-
+                Preuve de qualification du professionnel ayan réalisé
+                l'opération
               type: object
               properties:
                 code:
@@ -100,7 +111,7 @@ $defs:
       - documents
 examples:
   - fiche: BAR-TH-148
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT
@@ -109,7 +120,8 @@ examples:
       marque: MARQUE
       reference: REFERENCE
       installateur:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
     documents:
       - code: PREUVE_QUALIFICATION
         url: https://api.ceeconnect.fr/document/documents/{uuid}

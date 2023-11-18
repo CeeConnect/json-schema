@@ -4,13 +4,11 @@ title: BAR-EN-101
 type: object
 properties:
   fiche:
-    type: string
-    const: BAR-EN-101
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-101#/properties/fiche
   dateEngagement:
-    type: string
-    format: date
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-101#/properties/dateEngagement
   adresse:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-EN-101#/properties/adresse
 required:
   - fiche
   - dateEngagement

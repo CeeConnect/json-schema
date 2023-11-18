@@ -9,6 +9,7 @@ properties:
   dateEngagement:
     type: string
     format: date
+    formatMinimum: '2015-01-01'
 required:
   - fiche
   - dateEngagement
@@ -18,12 +19,12 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2015-01-01"
+          formatMinimum: '2015-01-01'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-111v17-1"
+        - $ref: '#/$defs/BAR-TH-111v17-1'
 $defs:
   BAR-TH-111v17-1:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-111v17-1
@@ -35,15 +36,19 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/MAISON
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/MAISON
             title: Le logement est une maison individuelle
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           energieChauffage:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffage
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffage
           critereAncienneteEquipement:
-            title: Système de chauffage sur boucle à eau chaude existant depuis plus de 2
-              ans
+            title: >-
+              Système de chauffage sur boucle à eau chaude existant depuis
+              plus de 2 ans
             type: boolean
             const: true
           surfaceHabitable:
@@ -57,7 +62,8 @@ $defs:
             title: Référence des équipements
             type: string
           installateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
         required:
           - typeBatiment
           - ancienneteBatiment
@@ -71,7 +77,7 @@ $defs:
       - description
 examples:
   - fiche: BAR-TH-111
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT
@@ -81,4 +87,5 @@ examples:
       marque: MARQUE
       reference: REFERENCE
       installateur:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0

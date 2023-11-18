@@ -9,6 +9,7 @@ properties:
   dateEngagement:
     type: string
     format: date
+    formatMinimum: '2015-01-01'
 required:
   - fiche
   - dateEngagement
@@ -18,12 +19,12 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2015-01-01"
+          formatMinimum: '2015-01-01'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-107v14-1"
+        - $ref: '#/$defs/BAR-TH-107v14-1'
 $defs:
   BAR-TH-107v14-1:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-107v14-1
@@ -35,10 +36,12 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
             title: Le bâtiment est un immeuble collectif d'habitation
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           logements:
             title: Nombre d'appartements
             description: Nombre d'appartement d'un même bâtiment
@@ -50,13 +53,16 @@ $defs:
             minimum: 0
           puissanceEligibleAutresFiches:
             title: Puissance totale de la pompe à chaleur installée (kW)
-            description: Puissance nominale totale des chaudières nouvellement installés
+            description: >-
+              Puissance nominale totale des chaudières nouvellement installés
               respectant les conditions des fiches d'opérations standardisées en
               vigueur
             type: number
             minimum: 0
           puissanceEligible:
-            title: Puissance nominale totale des chaudières nouvellement installées (kW)
+            title: >-
+              Puissance nominale totale des chaudières nouvellement installées
+              (kW)
             type: number
             minimum: 0
           puissanceChaufferie:
@@ -69,14 +75,16 @@ $defs:
             title: Référence de la chaudière
             type: string
           installateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
             type: object
             properties:
               qualificationsRge:
                 type: array
                 contains:
                   oneOf:
-                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/86
+                    - $ref: >-
+                        https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/86
             required:
               - qualificationsRge
         allOf:
@@ -104,7 +112,8 @@ $defs:
       documents:
         type: array
         items:
-          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
         contains:
           title: Preuve de qualification de l'installateur
           type: object
@@ -119,7 +128,7 @@ $defs:
       - documents
 examples:
   - fiche: BAR-TH-107
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT
@@ -129,7 +138,8 @@ examples:
       marque: MARQUE
       reference: REFERENCE
       installateur:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
     documents:
       - code: PREUVE_QUALIFICATION
         url: https://api.ceeconnect.fr/document/documents/{uuid}

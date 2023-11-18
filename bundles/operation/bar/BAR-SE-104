@@ -9,6 +9,7 @@ properties:
   dateEngagement:
     type: string
     format: date
+    formatMinimum: '2016-01-04'
 required:
   - fiche
   - dateEngagement
@@ -18,12 +19,12 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2016-01-04"
+          formatMinimum: '2016-01-04'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-SE-104v19-1"
+        - $ref: '#/$defs/BAR-SE-104v19-1'
 $defs:
   BAR-SE-104v19-1:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-SE-104v19-1
@@ -35,17 +36,20 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
             title: Le bâtiment est un immeuble collectif d'habitation
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           logements:
             title: Nombre d'appartements
             description: Nombre d'appartement d'un même bâtiment
             type: integer
             minimum: 1
           installateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
         required:
           - ancienneteBatiment
           - typeBatiment
@@ -54,11 +58,13 @@ $defs:
       documents:
         type: array
         items:
-          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
         allOf:
           - contains:
               title: Schéma hydraulique
-              description: Un schéma hydraulique simplifié des installations de chauffage
+              description: >-
+                Un schéma hydraulique simplifié des installations de chauffage
                 précisant l'implantation de toutes les vannes réglées et
                 étiquetées sur site
               type: object
@@ -70,16 +76,17 @@ $defs:
                 - code
           - contains:
               title: Grille d'équilibrage
-              description: "une grille d'équilibrage dans laquelle sont précisés, pour chacune
-                des vannes réglée: - le numéro de repérage ; - la marque et
-                référence ou les caractéristiques hydrauliques (tableau de
+              description: >-
+                une grille d'équilibrage dans laquelle sont précisés, pour
+                chacune des vannes réglée: - le numéro de repérage ; - la marque
+                et référence ou les caractéristiques hydrauliques (tableau de
                 pertes de charge ou équivalent) de chaque type et diamètre de
                 vanne réglée ; - le débit théorique visé ou, pour une
                 température de départ donnée, la température de retour théorique
                 visée ; - le débit final mesuré ou, pour une température de
                 départ donnée, la température de retour finale mesurée ; - la
                 valeur finale de réglage (nombre de tour, graduations ou
-                équivalent)."
+                équivalent).
               type: object
               properties:
                 code:
@@ -88,9 +95,11 @@ $defs:
               required:
                 - code
           - contains:
-              title: Tableau d'enregistrement des températures moyennes sur un échantillon des
-                logements, après équilibrage.
-              description: L'écart de température entre l'appartement le plus chauffé et le
+              title: >-
+                Tableau d'enregistrement des températures moyennes sur un
+                échantillon des logements, après équilibrage.
+              description: >-
+                L'écart de température entre l'appartement le plus chauffé et le
                 moins chauffé doit être strictement inférieur à 2°C.
               type: object
               properties:
@@ -104,13 +113,14 @@ $defs:
       - documents
 examples:
   - fiche: BAR-SE-104
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT
       logements: 10
       installateur:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
     documents:
       - code: SCHEMA_HYDRAULIQUE
         url: https://api.ceeconnect.fr/archivage/

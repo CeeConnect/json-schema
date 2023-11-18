@@ -9,6 +9,7 @@ properties:
   dateEngagement:
     type: string
     format: date
+    formatMinimum: '2022-08-05'
 required:
   - fiche
   - dateEngagement
@@ -18,12 +19,12 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2022-08-05"
+          formatMinimum: '2022-08-05'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-169v46-1"
+        - $ref: '#/$defs/BAR-TH-169v46-1'
 $defs:
   BAR-TH-169v46-1:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-169v46-1
@@ -35,10 +36,12 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
             title: Le bâtiment est un immeuble collectif d'habitation
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           logements:
             title: Nombre d'appartements
             description: Nombre d'appartement d'un même bâtiment
@@ -54,16 +57,18 @@ $defs:
             type: array
             minItems: 1
             items:
-              $ref: "#/$defs/BAR-TH-169v46-1/$defs/equipement"
+              $ref: '#/$defs/BAR-TH-169v46-1/$defs/equipement'
           installateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
             type: object
             properties:
               qualificationsRge:
                 type: array
                 contains:
                   oneOf:
-                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/89
+                    - $ref: >-
+                        https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/89
             required:
               - qualificationsRge
         required:
@@ -76,24 +81,34 @@ $defs:
     $defs:
       equipement:
         type: object
-        title: Caractéristiques du système centralisé de production d'ECS par pompe(s) à
-          chaleur (PAC)
+        title: >-
+          Caractéristiques du système centralisé de production d'ECS par
+          pompe(s) à chaleur (PAC)
         properties:
           typeEquipement:
             title: Type de pompe(s) à chaleur
             type: string
             oneOf:
-              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_CET
-              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_AIR_EXTERIEUR_EAU
-              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_AIR_EXTRAIT_EAU
-              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_EAU_NAPPE_EAU
-              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_EAU_GLYCOLEE_EAU
-              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_SOLAIRE
-              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_EAUX_GRISES
-              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_CO2
+              - $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_CET
+              - $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_AIR_EXTERIEUR_EAU
+              - $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_AIR_EXTRAIT_EAU
+              - $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_EAU_NAPPE_EAU
+              - $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_EAU_GLYCOLEE_EAU
+              - $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_SOLAIRE
+              - $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_EAUX_GRISES
+              - $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_CO2
           puissanceNominale:
             title: Puissance nominale de(s) pompe(s) à chaleur
-            description: La pompe à chaleur chauffant l'eau chaude sanitaire ou le
+            description: >-
+              La pompe à chaleur chauffant l'eau chaude sanitaire ou le
               chauffe-eau a une puissance nominale ne dépassant pas 400 kW
             type: number
             maximum: 400
@@ -105,11 +120,10 @@ $defs:
             title: Taux de couverture (%)
             description: >
               Renseigner le rapport entre l'énergie annuelle cumulée produite
-              par la PAC sans l'appoint pour 
-
-              le chauffage de l'eau et la somme des besoins annuels cumulés liés au puisage de l'eau chaude 
-
-              sanitaire et des pertes de distribution d'eau chaude sanitaire cumulées sur l'année
+              par la PAC sans l'appoint pour  le chauffage de l'eau et la somme
+              des besoins annuels cumulés liés au puisage de l'eau chaude 
+              sanitaire et des pertes de distribution d'eau chaude sanitaire
+              cumulées sur l'année
             type: number
             minimum: 0
             maximum: 100
@@ -130,15 +144,19 @@ $defs:
           - if:
               properties:
                 typeEquipement:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_CET
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_CET
               required:
                 - typeEquipement
             then:
               properties:
                 profilSoutirage:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/profil_soutirage#/$defs/pacCollective
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/profil_soutirage#/$defs/pacCollective
                 efficaciteEnergetique:
-                  title: Efficacité énergétique pour la production d'ECS (Eta wh en %)
+                  title: >-
+                    Efficacité énergétique pour la production d'ECS (Eta wh en
+                    %)
                   description: >
                     Pour les chauffe-eau thermodynamiques concernés par le
                     règlement (UE) n° 814/2013 de la Commission du 2 août 2013
@@ -149,8 +167,10 @@ $defs:
                     properties:
                       profilSoutirage:
                         anyOf:
-                          - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/profil_soutirage#/$defs/3XL
-                          - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/profil_soutirage#/$defs/4XL
+                          - $ref: >-
+                              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/profil_soutirage#/$defs/3XL
+                          - $ref: >-
+                              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/profil_soutirage#/$defs/4XL
                     required:
                       - profilSoutirage
                   then:
@@ -167,10 +187,14 @@ $defs:
               properties:
                 typeEquipement:
                   anyOf:
-                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_AIR_EXTERIEUR_EAU
-                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_AIR_EXTRAIT_EAU
-                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_EAU_NAPPE_EAU
-                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_EAU_GLYCOLEE_EAU
+                    - $ref: >-
+                        https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_AIR_EXTERIEUR_EAU
+                    - $ref: >-
+                        https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_AIR_EXTRAIT_EAU
+                    - $ref: >-
+                        https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_EAU_NAPPE_EAU
+                    - $ref: >-
+                        https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_EAU_GLYCOLEE_EAU
               required:
                 - typeEquipement
             then:
@@ -184,110 +208,126 @@ $defs:
           - if:
               properties:
                 typeEquipement:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_AIR_EXTERIEUR_EAU
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_AIR_EXTERIEUR_EAU
               required:
                 - typeEquipement
             then:
               properties:
                 performanceEnergetique:
-                  description: "Selon la norme NF EN 14511, sous les conditions suivantes de
+                  description: >-
+                    Selon la norme NF EN 14511, sous les conditions suivantes de
                     température : température à l'entrée (échangeur extérieur)
                     de 7°C extérieur/température à la sortie (échangeur
-                    intérieur) de 45°C, pour une PAC air extérieur/eau"
+                    intérieur) de 45°C, pour une PAC air extérieur/eau
               required:
                 - performanceEnergetique
           - if:
               properties:
                 typeEquipement:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_AIR_EXTRAIT_EAU
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_AIR_EXTRAIT_EAU
               required:
                 - typeEquipement
             then:
               properties:
                 performanceEnergetique:
-                  description: "Selon la norme NF EN 14511, sous les conditions de température :
-                    température à l'entrée (échangeur extérieur) de
-                    20°C/température à la sortie (échangeur intérieur) de 45°C,
-                    pour une PAC air extrait/eau"
+                  description: >-
+                    Selon la norme NF EN 14511, sous les conditions de
+                    température : température à l'entrée (échangeur extérieur)
+                    de 20°C/température à la sortie (échangeur intérieur) de
+                    45°C, pour une PAC air extrait/eau
               required:
                 - performanceEnergetique
           - if:
               properties:
                 typeEquipement:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_EAU_NAPPE_EAU
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_EAU_NAPPE_EAU
               required:
                 - typeEquipement
             then:
               properties:
                 performanceEnergetique:
-                  description: "Selon la norme NF EN 14511, sous les conditions de température :
-                    température à l'entrée (échangeur extérieur) de
-                    10°C/température à la sortie (échangeur intérieur) de 45°C,
-                    pour une PAC eau/eau sur eau de nappe"
+                  description: >-
+                    Selon la norme NF EN 14511, sous les conditions de
+                    température : température à l'entrée (échangeur extérieur)
+                    de 10°C/température à la sortie (échangeur intérieur) de
+                    45°C, pour une PAC eau/eau sur eau de nappe
               required:
                 - performanceEnergetique
           - if:
               properties:
                 typeEquipement:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_EAU_GLYCOLEE_EAU
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_EAU_GLYCOLEE_EAU
               required:
                 - typeEquipement
             then:
               properties:
                 performanceEnergetique:
-                  description: "Selon la norme NF EN 14511, sous les conditions de température :
-                    température à l'entrée (échangeur extérieur) de
-                    0°C/température à la sortie (échangeur intérieur) de 45°C,
-                    pour une PAC eau glycolée /eau sur capteurs enterrés"
+                  description: >-
+                    Selon la norme NF EN 14511, sous les conditions de
+                    température : température à l'entrée (échangeur extérieur)
+                    de 0°C/température à la sortie (échangeur intérieur) de
+                    45°C, pour une PAC eau glycolée /eau sur capteurs enterrés
               required:
                 - performanceEnergetique
           - if:
               properties:
                 typeEquipement:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_SOLAIRE
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_SOLAIRE
               required:
                 - typeEquipement
             then:
               properties:
                 performanceEnergetique:
-                  description: "Selon la norme NF EN 14511, sous les conditions de température :
-                    10°C/45°C, pour une PAC à capteur solaire atmosphérique"
+                  description: >-
+                    Selon la norme NF EN 14511, sous les conditions de
+                    température : 10°C/45°C, pour une PAC à capteur solaire
+                    atmosphérique
               required:
                 - performanceEnergetique
           - if:
               properties:
                 typeEquipement:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_EAUX_GRISES
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_EAUX_GRISES
               required:
                 - typeEquipement
             then:
               properties:
                 performanceEnergetique:
-                  description: "Selon la norme NF EN 14511, sous les conditions de température :
-                    19°C/45°C, pour une PAC sur eaux grises"
+                  description: >-
+                    Selon la norme NF EN 14511, sous les conditions de
+                    température : 19°C/45°C, pour une PAC sur eaux grises
               required:
                 - performanceEnergetique
           - if:
               properties:
                 typeEquipement:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_CO2
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_CO2
               required:
                 - typeEquipement
             then:
               properties:
                 performanceEnergetique:
-                  description: "Arrêté du 6 avril 2022 modifiant les arrêtés pris en application
-                    des articles R. 122-22 à R. 122-25 et R. 172-1 à R. 172-9 du
-                    code de la construction et de l'habitation (intégrant le «
-                    Titre V Système » PAC CO2), sous les conditions de
-                    température : 7°C/T eau entrée = 15°C avec T eau sortie >
-                    55°C, pour une PAC au CO2"
+                  description: >-
+                    Arrêté du 6 avril 2022 modifiant les arrêtés pris en
+                    application des articles R. 122-22 à R. 122-25 et R. 172-1 à
+                    R. 172-9 du code de la construction et de l'habitation
+                    (intégrant le « Titre V Système » PAC CO2), sous les
+                    conditions de température : 7°C/T eau entrée = 15°C avec T
+                    eau sortie > 55°C, pour une PAC au CO2
               required:
                 - performanceEnergetique
       documents:
         type: array
         items:
-          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
         allOf:
           - contains:
               title: Preuve de qualification du professionnel
@@ -303,7 +343,7 @@ $defs:
       - documents
 examples:
   - fiche: BAR-TH-169
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT
@@ -319,7 +359,8 @@ examples:
           marque: MARQUE
           reference: REFERENCE
       installateur:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
     documents:
       - code: PREUVE_QUALIFICATION
         url: https://api.ceeconnect.fr/document/documents/{uuid}

@@ -9,8 +9,10 @@ properties:
   dateEngagement:
     type: string
     format: date
+    formatMinimum: '2016-12-23'
   adresse:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceOutreMer
+    $ref: >-
+      https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceOutreMer
 required:
   - fiche
   - dateEngagement
@@ -21,12 +23,12 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2016-12-23"
+          formatMinimum: '2016-12-23'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-EN-109v24-1"
+        - $ref: '#/$defs/BAR-EN-109v24-1'
 $defs:
   BAR-EN-109v24-1:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-EN-109v24-1
@@ -38,17 +40,21 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/batiment
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/batiment
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           energieChauffage:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffage
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/energie#/$defs/energiesChauffage
           quantite:
             title: Surface de toiture protégée (en m²)
             type: number
             minimum: 0
           compositionToiture:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/constitution_toiture
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/constitution_toiture
           facteurSolaire:
             title: Facteur solaire (m².K/W)
             type: number
@@ -60,16 +66,20 @@ $defs:
             title: Référence de l'isolant
             type: string
           installateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
             type: object
             properties:
               qualificationsRge:
                 type: array
                 contains:
                   oneOf:
-                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/95
-                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/97
-                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/98
+                    - $ref: >-
+                        https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/95
+                    - $ref: >-
+                        https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/97
+                    - $ref: >-
+                        https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/98
             required:
               - qualificationsRge
         required:
@@ -85,7 +95,8 @@ $defs:
       documents:
         type: array
         items:
-          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
         contains:
           title: Preuve de qualification de l'installateur
           type: object
@@ -103,7 +114,7 @@ $defs:
               properties:
                 codeCommune:
                   type: string
-                  pattern: "[976].+"
+                  pattern: '[976].+'
               required:
                 - codeCommune
           required:
@@ -126,7 +137,8 @@ $defs:
               type: object
               properties:
                 compositionToiture:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/constitution_toiture#/$defs/ENSEMBLE_ELEMENTS
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/constitution_toiture#/$defs/ENSEMBLE_ELEMENTS
               required:
                 - compositionToiture
           required:
@@ -151,9 +163,10 @@ $defs:
       - documents
 examples:
   - fiche: BAR-EN-109
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     adresse:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/3
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/3
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT
@@ -164,7 +177,8 @@ examples:
       marque: MARQUE
       reference: REFERENCE
       installateur:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
     documents:
       - code: NOTE_CALCUL
         url: https://api.ceeconnect.fr/document/documents/{uuid}

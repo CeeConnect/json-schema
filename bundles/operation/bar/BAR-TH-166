@@ -9,6 +9,7 @@ properties:
   dateEngagement:
     type: string
     format: date
+    formatMinimum: '2021-08-01'
 required:
   - fiche
   - dateEngagement
@@ -18,12 +19,12 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2021-08-01"
+          formatMinimum: '2021-08-01'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-166v38-1"
+        - $ref: '#/$defs/BAR-TH-166v38-1'
 $defs:
   BAR-TH-166v38-1:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-166v38-1
@@ -35,10 +36,12 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
             title: Le bâtiment est un immeuble collectif d'habitation
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           logements:
             title: Nombre d'appartements chauffés
             description: Nombre d'appartement d'un même bâtiment
@@ -48,12 +51,16 @@ $defs:
             title: Type de pompe à chaleur
             type: string
             oneOf:
-              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_AIR_EAU
-              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_EAU_EAU
+              - $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_AIR_EAU
+              - $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_equipement#/$defs/PAC_EAU_EAU
           temperatureDistribution:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution
           usage:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_usage
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_usage
           performanceEnergetique:
             title: Efficacité énergétique saisonnière (ηs)
             type: number
@@ -63,12 +70,17 @@ $defs:
             type: number
             minimum: 0
           puissanceEligible:
-            title: Puissance nominale de la (ou des) pompe(s) à chaleur installée(s) (kW)
+            title: >-
+              Puissance nominale de la (ou des) pompe(s) à chaleur installée(s)
+              (kW)
             type: number
             minimum: 0
           puissanceEligibleAutresFiches:
-            title: Puissance nominale totale des équipements nouvellement installés (kW)
-            description: Puissance nominale totale des équipements nouvellement installés
+            title: >-
+              Puissance nominale totale des équipements nouvellement installés
+              (kW)
+            description: >-
+              Puissance nominale totale des équipements nouvellement installés
               respectant les conditions des fiches d'opérations standardisées en
               vigueur
             type: number
@@ -84,28 +96,33 @@ $defs:
             title: Référence de la pompe à chaleur installée
             type: string
           autreEquipement:
-            title: Mise en place d'un ou plusieurs autres équipements (chaudières ou pompes
-              à chaleur)
-            description: La mise en place de la chaudière haute performance énergétique
+            title: >-
+              Mise en place d'un ou plusieurs autres équipements (chaudières ou
+              pompes à chaleur)
+            description: >-
+              La mise en place de la chaudière haute performance énergétique
               s'accompagne de la mise en place d'un ou plusieurs autres
               équipements (chaudières ou pompes à chaleur)
             type: boolean
           installateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
             type: object
             properties:
               qualificationsRge:
                 type: array
                 contains:
                   oneOf:
-                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/89
+                    - $ref: >-
+                        https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/89
             required:
               - qualificationsRge
         allOf:
           - if:
               properties:
                 temperatureDistribution:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution#/$defs/BASSE_TEMPERATURE
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution#/$defs/BASSE_TEMPERATURE
               required:
                 - temperatureDistribution
             then:
@@ -119,8 +136,10 @@ $defs:
               properties:
                 temperatureDistribution:
                   oneOf:
-                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution#/$defs/MOYENNE_TEMPERATURE
-                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution#/$defs/HAUTE_TEMPERATURE
+                    - $ref: >-
+                        https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution#/$defs/MOYENNE_TEMPERATURE
+                    - $ref: >-
+                        https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/temperature_distribution#/$defs/HAUTE_TEMPERATURE
               required:
                 - temperatureDistribution
             then:
@@ -148,7 +167,8 @@ $defs:
       documents:
         type: array
         items:
-          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
         allOf:
           - contains:
               title: Preuve de qualification du professionnel
@@ -164,7 +184,7 @@ $defs:
       - documents
 examples:
   - fiche: BAR-TH-166
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT
@@ -180,7 +200,8 @@ examples:
       marque: MARQUE
       reference: REFERENCE
       installateur:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
     documents:
       - code: PREUVE_QUALIFICATION
         url: https://api.ceeconnect.fr/document/documents/{uuid}

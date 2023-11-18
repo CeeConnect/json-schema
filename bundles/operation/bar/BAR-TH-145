@@ -9,8 +9,10 @@ properties:
   dateEngagement:
     type: string
     format: date
+    formatMinimum: '2020-10-12'
   adresse:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+    $ref: >-
+      https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
 required:
   - fiche
   - dateEngagement
@@ -21,33 +23,31 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2020-10-12"
-          formatExclusiveMaximum: "2023-08-01"
+          formatMinimum: '2020-10-12'
+          formatExclusiveMaximum: '2023-08-01'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-145v36-3"
+        - $ref: '#/$defs/BAR-TH-145v36-3'
   - if:
       properties:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2023-08-01"
+          formatMinimum: '2023-08-01'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-145v52-4"
+        - $ref: '#/$defs/BAR-TH-145v52-4'
 $defs:
   BAR-TH-145v36-3:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-145v36-3
     $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
     $comment: >
       - TODO: Vérifier la possibilité d'intégrer l'attestation de réalisation
-      ANAH comme
-
-      document justificatif spécifique
+      ANAH comme document justificatif spécifique
     title: BAR-TH-145v36-3
     type: object
     properties:
@@ -55,13 +55,16 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
             title: Le bâtiment est un immeuble collectif d'habitation
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           critereRegimeCopropriete:
-            title: L'immeuble relève du régime de la copropriété défini par la loi n° 65-557
-              du 10 juillet 1965
+            title: >-
+              L'immeuble relève du régime de la copropriété défini par la loi n°
+              65-557 du 10 juillet 1965
             type: boolean
           surfaceHabitable:
             title: Surface habitable (m²)
@@ -86,40 +89,44 @@ $defs:
                 format: date
               cepInitial:
                 title: Cep initial (kWh/m².an)
-                description: Consommation conventionnelle en énergie primaire avant les travaux
-                  de rénovation
+                description: >-
+                  Consommation conventionnelle en énergie primaire avant les
+                  travaux de rénovation
                 type: number
                 exclusiveMaximum: 331
               cepProjet:
                 title: Cep initial (kWh/m².an)
-                description: Consommation conventionnelle en énergie primaire après les travaux
-                  de rénovation
+                description: >-
+                  Consommation conventionnelle en énergie primaire après les
+                  travaux de rénovation
                 type: number
                 minimum: 0
               cefInitial:
                 title: Cef initial (kWh/m².an)
-                description: Consommation conventionnelle en énergie finale avant les travaux de
-                  rénovation
+                description: >-
+                  Consommation conventionnelle en énergie finale avant les
+                  travaux de rénovation
                 type: number
                 minimum: 0
               cefProjet:
                 title: Cef projet (kWh/m².an)
-                description: Consommation conventionnelle en énergie après avant les travaux de
-                  rénovation
+                description: >-
+                  Consommation conventionnelle en énergie après avant les
+                  travaux de rénovation
                 type: number
                 minimum: 0
               gainEnergetique:
                 title: Gain énergétique du projet (%)
-                description: Gain énergétique du projet par rapport à la consommation
+                description: >-
+                  Gain énergétique du projet par rapport à la consommation
                   conventionnelle en énergie primaire avant travaux
                 type: number
                 minimum: 35
               critereEmissionsGes:
                 title: >
                   Les émissions de gaz à effet de serre après rénovation,
-                  exprimées en kgeqCO2/m².an, sont inférieures 
-
-                  ou égales à la valeur initiale de ces émissions avant travaux
+                  exprimées en kgeqCO2/m².an, sont inférieures  ou égales à la
+                  valeur initiale de ces émissions avant travaux
                 type: boolean
                 const: true
             required:
@@ -161,7 +168,8 @@ $defs:
                 title: Raison sociale
                 type: string
               siren:
-                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siren
+                $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siren
             required:
               - raisonSociale
               - siren
@@ -183,7 +191,8 @@ $defs:
                   title: Raison sociale
                   type: string
                 siret:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siret
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siret
                 domaineTravaux:
                   title: Domaine des travaux réalisés
                   type: string
@@ -215,24 +224,23 @@ $defs:
       documents:
         type: array
         items:
-          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
         allOf:
           - contains:
               title: Rapport de synthèse de l'audit énergétique
               description: >
                 Le rapport de synthèse mentionne les données de consommations
+                conventionnelles en énergie primaire  et en énergie finale (sans
+                déduction de la production d'électricité autoconsommée ou
+                exportée), avant  et après travaux ainsi que le gain énergétique
+                apporté par la rénovation du bâtiment et les quantités 
+                annuelles de gaz à effet de serre émis dans l'atmosphère avant
+                et après travaux du fait de la quantité  d'énergie consommée,
+                rapportés à la surface habitable du bâtiment.
 
-                conventionnelles en énergie primaire 
-
-                et en énergie finale (sans déduction de la production d'électricité autoconsommée ou exportée), avant 
-
-                et après travaux ainsi que le gain énergétique apporté par la rénovation du bâtiment et les quantités 
-
-                annuelles de gaz à effet de serre émis dans l'atmosphère avant et après travaux du fait de la quantité 
-
-                d'énergie consommée, rapportés à la surface habitable du bâtiment.
-
-                Ce rapport précise le nom du logiciel de calcul utilisé dans le cadre de l'opération et son numéro de version.
+                Ce rapport précise le nom du logiciel de calcul utilisé dans le
+                cadre de l'opération et son numéro de version.
               type: object
               properties:
                 code:
@@ -244,17 +252,18 @@ $defs:
               description: >
                 L'attestation de réalisation de travaux mentionne :
 
-                - la liste des travaux préconisés avec leurs niveaux de performance et la correspondance avec la liste 
+                - la liste des travaux préconisés avec leurs niveaux de
+                performance et la correspondance avec la liste  des travaux
+                réalisés, datée et signée par le bénéficiaire, le professionnel
+                ayant réalisé l'audit  énergétique et chaque professionnel
+                mettant en oeuvre ou assurant la maîtrise d'oeuvre de tout ou
+                partie  de l'opération, permettant d'atteindre les performances
+                énergétiques requises ;
 
-                des travaux réalisés, datée et signée par le bénéficiaire, le professionnel ayant réalisé l'audit 
-
-                énergétique et chaque professionnel mettant en oeuvre ou assurant la maîtrise d'oeuvre de tout ou partie 
-
-                de l'opération, permettant d'atteindre les performances énergétiques requises ;
-
-                - la liste des entreprises ayant effectué les travaux de rénovation en indiquant la nature de ces travaux 
-
-                et la référence de leur qualification ou certification lorsque celle-ci est requise.
+                - la liste des entreprises ayant effectué les travaux de
+                rénovation en indiquant la nature de ces travaux  et la
+                référence de leur qualification ou certification lorsque
+                celle-ci est requise.
               type: object
               properties:
                 code:
@@ -278,13 +287,16 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
             title: Le bâtiment est un immeuble collectif d'habitation
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           critereRegimeCopropriete:
-            title: L'immeuble relève du régime de la copropriété défini par la loi n° 65-557
-              du 10 juillet 1965
+            title: >-
+              L'immeuble relève du régime de la copropriété défini par la loi n°
+              65-557 du 10 juillet 1965
             type: boolean
           critereAuditEnergetiqueReglementaire:
             title: >
@@ -319,40 +331,44 @@ $defs:
                 format: date
               cepInitial:
                 title: Cep initial (kWh/m².an)
-                description: Consommation conventionnelle en énergie primaire avant les travaux
-                  de rénovation
+                description: >-
+                  Consommation conventionnelle en énergie primaire avant les
+                  travaux de rénovation
                 type: number
                 exclusiveMaximum: 331
               cepProjet:
                 title: Cep initial (kWh/m².an)
-                description: Consommation conventionnelle en énergie primaire après les travaux
-                  de rénovation
+                description: >-
+                  Consommation conventionnelle en énergie primaire après les
+                  travaux de rénovation
                 type: number
                 minimum: 0
               cefInitial:
                 title: Cef initial (kWh/m².an)
-                description: Consommation conventionnelle en énergie finale avant les travaux de
-                  rénovation
+                description: >-
+                  Consommation conventionnelle en énergie finale avant les
+                  travaux de rénovation
                 type: number
                 minimum: 0
               cefProjet:
                 title: Cef projet (kWh/m².an)
-                description: Consommation conventionnelle en énergie après avant les travaux de
-                  rénovation
+                description: >-
+                  Consommation conventionnelle en énergie après avant les
+                  travaux de rénovation
                 type: number
                 minimum: 0
               gainEnergetique:
                 title: Gain énergétique du projet (%)
-                description: Gain énergétique du projet par rapport à la consommation
+                description: >-
+                  Gain énergétique du projet par rapport à la consommation
                   conventionnelle en énergie primaire avant travaux
                 type: number
                 minimum: 35
               critereEmissionsGes:
                 title: >
                   Les émissions de gaz à effet de serre après rénovation,
-                  exprimées
-
-                  en kgeqCO2/m².an, sont inférieures ou égales à la valeur initiale de ces émissions avant travaux
+                  exprimées en kgeqCO2/m².an, sont inférieures ou égales à la
+                  valeur initiale de ces émissions avant travaux
                 type: boolean
                 const: true
               auditeur:
@@ -363,7 +379,8 @@ $defs:
                     title: Raison sociale
                     type: string
                   siren:
-                    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siren
+                    $ref: >-
+                      https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siren
                 required:
                   - raisonSociale
                   - siren
@@ -418,7 +435,8 @@ $defs:
                   title: Raison sociale
                   type: string
                 siret:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siret
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siret
                 domaineTravaux:
                   title: Domaine des travaux réalisés
                   type: string
@@ -471,23 +489,23 @@ $defs:
       documents:
         type: array
         items:
-          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
         allOf:
           - contains:
               title: Rapport de synthèse de l'audit énergétique
               description: >
                 Le rapport de synthèse mentionne les données de consommations
-                conventionnelles en énergie primaire et 
+                conventionnelles en énergie primaire et  en énergie finale (sans
+                déduction de la production d'électricité autoconsommée ou
+                exportée), avant  et après travaux ainsi que le gain énergétique
+                apporté par la rénovation du bâtiment et les quantités 
+                annuelles de gaz à effet de serre émis dans l'atmosphère avant
+                et après travaux du fait de la quantité  d'énergie consommée,
+                rapportés à la surface habitable du bâtiment.
 
-                en énergie finale (sans déduction de la production d'électricité autoconsommée ou exportée), avant 
-
-                et après travaux ainsi que le gain énergétique apporté par la rénovation du bâtiment et les quantités 
-
-                annuelles de gaz à effet de serre émis dans l'atmosphère avant et après travaux du fait de la quantité 
-
-                d'énergie consommée, rapportés à la surface habitable du bâtiment.
-
-                Ce rapport précise le nom du logiciel de calcul utilisé dans le cadre de l'opération et son numéro de version.
+                Ce rapport précise le nom du logiciel de calcul utilisé dans le
+                cadre de l'opération et son numéro de version.
               type: object
               properties:
                 code:
@@ -499,17 +517,18 @@ $defs:
               description: >
                 L'attestation de réalisation de travaux mentionne :
 
-                - la liste des travaux préconisés avec leurs niveaux de performance et la correspondance avec la liste 
+                - la liste des travaux préconisés avec leurs niveaux de
+                performance et la correspondance avec la liste  des travaux
+                réalisés, datée et signée par le bénéficiaire, le professionnel
+                ayant réalisé l'audit  énergétique et chaque professionnel
+                mettant en oeuvre ou assurant la maîtrise d'oeuvre de tout ou
+                partie  de l'opération, permettant d'atteindre les performances
+                énergétiques requises ;
 
-                des travaux réalisés, datée et signée par le bénéficiaire, le professionnel ayant réalisé l'audit 
-
-                énergétique et chaque professionnel mettant en oeuvre ou assurant la maîtrise d'oeuvre de tout ou partie 
-
-                de l'opération, permettant d'atteindre les performances énergétiques requises ;
-
-                - la liste des entreprises ayant effectué les travaux de rénovation en indiquant la nature de ces travaux 
-
-                et la référence de leur qualification ou certification lorsque celle-ci est requise.
+                - la liste des entreprises ayant effectué les travaux de
+                rénovation en indiquant la nature de ces travaux  et la
+                référence de leur qualification ou certification lorsque
+                celle-ci est requise.
               type: object
               properties:
                 code:
@@ -521,9 +540,10 @@ $defs:
       - documents
 examples:
   - fiche: BAR-TH-145
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     adresse:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT
@@ -531,7 +551,7 @@ examples:
       surfaceHabitable: 1000
       logements: 40
       auditEnergetique:
-        dateRealisation: 2023-02-07
+        dateRealisation: 2023-02-07T00:00:00.000Z
         reference: REFERENCE
         cepInitial: 200
         cepProjet: 130
@@ -541,29 +561,30 @@ examples:
         critereEmissionsGes: true
       auditeur:
         raisonSociale: RAISON SOCIALE
-        siren: "000000000"
+        siren: '000000000'
       logicielAuditEnergetique:
         nom: NOM
         editeur: EDITEUR
-        date: 2022-02-06
-        version: "2.3"
+        date: 2022-02-06T00:00:00.000Z
+        version: '2.3'
       installateurs:
         - nom: NOM
           prenom: PRENOM
           raisonSociale: RAISON SOCIALE
-          siret: "00000000000000"
+          siret: '00000000000000'
           domaineTravaux: DOMAINE DE TRAVAUX
           referenceQualification: REFERENCE
-          dateQualification: 2022-01-01
+          dateQualification: 2022-01-01T00:00:00.000Z
     documents:
       - code: AUDIT_ENERGETIQUE
         url: https://api.ceeconnect.fr/document/documents/{uuid}
       - code: ATTESTATION_REALISATION_TRAVAUX
         url: https://api.ceeconnect.fr/document/documents/{uuid}
   - fiche: BAR-TH-145
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     adresse:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT
@@ -573,7 +594,7 @@ examples:
       surfaceHabitable: 1000
       logements: 40
       auditEnergetique:
-        dateRealisation: 2023-02-07
+        dateRealisation: 2023-02-07T00:00:00.000Z
         reference: REFERENCE
         cepInitial: 200
         cepProjet: 130
@@ -583,20 +604,20 @@ examples:
         critereEmissionsGes: true
         auditeur:
           raisonSociale: RAISON SOCIALE
-          siren: "000000000"
+          siren: '000000000'
         logiciel:
           nom: NOM
           editeur: EDITEUR
-          date: 2022-02-06
-          version: "2.3"
+          date: 2022-02-06T00:00:00.000Z
+          version: '2.3'
       installateurs:
         - nom: NOM
           prenom: PRENOM
           raisonSociale: RAISON SOCIALE
-          siret: "00000000000000"
+          siret: '00000000000000'
           domaineTravaux: DOMAINE DE TRAVAUX
           referenceQualification: REFERENCE
-          dateQualification: 2022-01-01
+          dateQualification: 2022-01-01T00:00:00.000Z
     documents:
       - code: AUDIT_ENERGETIQUE
         url: https://api.ceeconnect.fr/document/documents/{uuid}

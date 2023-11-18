@@ -9,8 +9,10 @@ properties:
   dateEngagement:
     type: string
     format: date
+    formatMinimum: '2022-05-01'
   adresse:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+    $ref: >-
+      https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
 required:
   - fiche
   - dateEngagement
@@ -21,48 +23,47 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2022-05-01"
-          formatExclusiveMaximum: "2023-04-01"
+          formatMinimum: '2022-05-01'
+          formatExclusiveMaximum: '2023-04-01'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-160v39-2"
+        - $ref: '#/$defs/BAR-TH-160v39-2'
   - if:
       properties:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2023-04-01"
-          formatExclusiveMaximum: "2023-10-01"
+          formatMinimum: '2023-04-01'
+          formatExclusiveMaximum: '2023-10-01'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-160v50-3"
+        - $ref: '#/$defs/BAR-TH-160v50-3'
   - if:
       properties:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2023-10-01"
-          formatExclusiveMaximum: "2028-04-01"
+          formatMinimum: '2023-10-01'
+          formatExclusiveMaximum: '2028-04-01'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-160v54-4"
+        - $ref: '#/$defs/BAR-TH-160v54-4'
 $defs:
   BAR-TH-160v39-2:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-160v39-2
     $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
     $comment: >
       - TODO: Vérifier si le rapport de contrôle n'est pas couvert par la
-      doctrine
+      doctrine contrôle avant dépôt
 
-      contrôle avant dépôt
-
-      - TODO: Vérifier si le justificatif d'accréditation de l'ogranisme de contrôle n'est pas couvert par la doctrine contrôle avant dépôt
+      - TODO: Vérifier si le justificatif d'accréditation de l'ogranisme de
+      contrôle n'est pas couvert par la doctrine contrôle avant dépôt
     title: BAR-TH-160v39-2
     type: object
     properties:
@@ -70,21 +71,22 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
             title: Le bâtiment est un immeuble collectif d'habitation
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           critereRemplacementInstallation:
             title: >
               L'installation de chauffage collectif ou de production d'eau
-              chaude
-
-              sanitaire a été remplacée après le 01/01/2018
+              chaude sanitaire a été remplacée après le 01/01/2018
             type: boolean
             const: false
           critereReseauExistant:
-            title: L'opération est réalisée sur un réseau hydraulique de chauffage ou d'eau
-              chaude sanitaire existant
+            title: >-
+              L'opération est réalisée sur un réseau hydraulique de chauffage ou
+              d'eau chaude sanitaire existant
             type: boolean
             const: true
           critereReseauNonIsole:
@@ -93,15 +95,16 @@ $defs:
               d'eau chaude non isolé
             type: boolean
           critereReseauIsole:
-            title: |
+            title: >
               L'opération est réalisée sur un réseau hydraulique de chauffage ou
-              d'eau chaude dont l'isolation 
 
-              en place est de classe inférieure ou égale à 2
+              d'eau chaude dont l'isolation en place est de classe inférieure ou
+              égale à 2
             type: boolean
           quantite:
             title: Longueur isolée de réseau
-            description: Longueur isolée de réseau de chauffage ou d'eau chaude sanitaire
+            description: >-
+              Longueur isolée de réseau de chauffage ou d'eau chaude sanitaire
               situé hors du volume chauffé
             type: integer
             minimum: 0
@@ -113,9 +116,12 @@ $defs:
             title: Classe de l'isolant
             type: string
             oneOf:
-              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/04
-              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/05
-              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/06
+              - $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/04
+              - $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/05
+              - $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/06
           marque:
             title: Marque de l'isolant
             type: string
@@ -123,7 +129,8 @@ $defs:
             title: Référence de l'isolant
             type: string
           installateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
         anyOf:
           - properties:
               critereReseauNonIsole:
@@ -147,7 +154,8 @@ $defs:
       documents:
         type: array
         items:
-          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
         allOf:
           - contains:
               title: Rapport de conformité établi par l'organisme d'inspection
@@ -162,9 +170,7 @@ $defs:
               title: Justification de l'accréditation de l'organisme d'inspection
               description: >
                 La décision de qualification ou le certificat Qualibat 553 ou
-                554 du
-
-                prestataire, à la date d'entrée en vigueur du contrat
+                554 du prestataire, à la date d'entrée en vigueur du contrat
               type: object
               properties:
                 code:
@@ -180,11 +186,10 @@ $defs:
     $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
     $comment: >
       - TODO: Vérifier si le rapport de contrôle n'est pas couvert par la
-      doctrine
+      doctrine contrôle avant dépôt
 
-      contrôle avant dépôt
-
-      - TODO: Vérifier si le justificatif d'accréditation de l'ogranisme de contrôle n'est pas couvert par la doctrine contrôle avant dépôt
+      - TODO: Vérifier si le justificatif d'accréditation de l'ogranisme de
+      contrôle n'est pas couvert par la doctrine contrôle avant dépôt
     title: BAR-TH-160v50-3
     type: object
     properties:
@@ -192,21 +197,22 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
             title: Le bâtiment est un immeuble collectif d'habitation
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           critereRemplacementInstallation:
             title: >
               L'installation de chauffage collectif ou de production d'eau
-              chaude
-
-              sanitaire a été remplacée après le 01/01/2018
+              chaude sanitaire a été remplacée après le 01/01/2018
             type: boolean
             const: false
           critereReseauExistant:
-            title: L'opération est réalisée sur un réseau hydraulique de chauffage ou d'eau
-              chaude sanitaire existant
+            title: >-
+              L'opération est réalisée sur un réseau hydraulique de chauffage ou
+              d'eau chaude sanitaire existant
             type: boolean
             const: true
           critereReseauNonIsole:
@@ -217,13 +223,13 @@ $defs:
           critereReseauIsole:
             title: >
               L'opération est réalisée sur un réseau hydraulique de chauffage ou
-              d'eau chaude dont l'isolation 
-
-              en place est de classe inférieure ou égale à 2
+              d'eau chaude dont l'isolation  en place est de classe inférieure
+              ou égale à 2
             type: boolean
           quantite:
             title: Longueur isolée de réseau
-            description: Longueur isolée de réseau de chauffage ou d'eau chaude sanitaire
+            description: >-
+              Longueur isolée de réseau de chauffage ou d'eau chaude sanitaire
               situé hors du volume chauffé
             type: integer
             minimum: 0
@@ -235,9 +241,12 @@ $defs:
             title: Classe de l'isolant
             type: string
             oneOf:
-              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/04
-              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/05
-              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/06
+              - $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/04
+              - $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/05
+              - $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/06
           marque:
             title: Marque de l'isolant
             type: string
@@ -245,7 +254,8 @@ $defs:
             title: Référence de l'isolant
             type: string
           installateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
         anyOf:
           - properties:
               critereReseauNonIsole:
@@ -269,7 +279,8 @@ $defs:
       documents:
         type: array
         items:
-          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
         allOf:
           - contains:
               title: Rapport de conformité établi par l'organisme d'inspection
@@ -284,9 +295,7 @@ $defs:
               title: Justification de l'accréditation de l'organisme d'inspection
               description: >
                 La décision de qualification ou le certificat Qualibat 553 ou
-                554 du
-
-                prestataire, à la date d'entrée en vigueur du contrat
+                554 du prestataire, à la date d'entrée en vigueur du contrat
               type: object
               properties:
                 code:
@@ -302,11 +311,10 @@ $defs:
     $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
     $comment: >
       - TODO: Vérifier si le rapport de contrôle n'est pas couvert par la
-      doctrine
+      doctrine contrôle avant dépôt
 
-      contrôle avant dépôt
-
-      - TODO: Vérifier si le justificatif d'accréditation de l'ogranisme de contrôle n'est pas couvert par la doctrine contrôle avant dépôt
+      - TODO: Vérifier si le justificatif d'accréditation de l'ogranisme de
+      contrôle n'est pas couvert par la doctrine contrôle avant dépôt
     title: BAR-TH-160v54-4
     type: object
     properties:
@@ -314,21 +322,22 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
             title: Le bâtiment est un immeuble collectif d'habitation
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           critereRemplacementInstallation:
             title: >
               L'installation de chauffage collectif ou de production d'eau
-              chaude
-
-              sanitaire a été remplacée après le 01/01/2018
+              chaude sanitaire a été remplacée après le 01/01/2018
             type: boolean
             const: false
           critereReseauExistant:
-            title: L'opération est réalisée sur un réseau hydraulique de chauffage ou d'eau
-              chaude sanitaire existant
+            title: >-
+              L'opération est réalisée sur un réseau hydraulique de chauffage ou
+              d'eau chaude sanitaire existant
             type: boolean
             const: true
           critereReseauNonIsole:
@@ -339,13 +348,13 @@ $defs:
           critereReseauIsole:
             title: >
               L'opération est réalisée sur un réseau hydraulique de chauffage ou
-              d'eau chaude dont l'isolation 
-
-              en place est de classe inférieure ou égale à 2
+              d'eau chaude dont l'isolation  en place est de classe inférieure
+              ou égale à 2
             type: boolean
           quantite:
             title: Longueur isolée de réseau
-            description: Longueur isolée de réseau de chauffage ou d'eau chaude sanitaire
+            description: >-
+              Longueur isolée de réseau de chauffage ou d'eau chaude sanitaire
               situé hors du volume chauffé
             type: integer
             minimum: 0
@@ -357,9 +366,12 @@ $defs:
             title: Classe de l'isolant
             type: string
             oneOf:
-              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/04
-              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/05
-              - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/06
+              - $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/04
+              - $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/05
+              - $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/classe_isolation#/$defs/06
           marque:
             title: Marque de l'isolant
             type: string
@@ -374,7 +386,8 @@ $defs:
                 title: Raison sociale
                 type: string
               siren:
-                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siren
+                $ref: >-
+                  https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siren
               referenceRapport:
                 title: Référence du rapport établi par l'organisme
                 type: string
@@ -392,7 +405,8 @@ $defs:
               - numeroAccreditation
               - dateFinAccreditation
           installateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
         anyOf:
           - properties:
               critereReseauNonIsole:
@@ -417,7 +431,8 @@ $defs:
       documents:
         type: array
         items:
-          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
         allOf:
           - contains:
               title: Rapport de conformité établi par l'organisme d'inspection
@@ -432,9 +447,7 @@ $defs:
               title: Justification de l'accréditation de l'organisme d'inspection
               description: >
                 La décision de qualification ou le certificat Qualibat 553 ou
-                554 du
-
-                prestataire, à la date d'entrée en vigueur du contrat
+                554 du prestataire, à la date d'entrée en vigueur du contrat
               type: object
               properties:
                 code:
@@ -447,9 +460,10 @@ $defs:
       - documents
 examples:
   - fiche: BAR-TH-160
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     adresse:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT
@@ -459,20 +473,22 @@ examples:
       critereReseauIsole: false
       quantite: 100
       epaisseur: 300
-      classeIsolation: "4"
+      classeIsolation: '4'
       marque: MARQUE
       reference: REFERENCE
       installateur:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
     documents:
       - code: RAPPORT_CONTROLE
         url: https://api.ceeconnect.fr/document/documents/{uuid}
       - code: ACCREDITATION
         url: https://api.ceeconnect.fr/document/documents/{uuid}
   - fiche: BAR-TH-160
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     adresse:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT
@@ -482,20 +498,22 @@ examples:
       critereReseauIsole: false
       quantite: 100
       epaisseur: 300
-      classeIsolation: "4"
+      classeIsolation: '4'
       marque: MARQUE
       reference: REFERENCE
       installateur:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
     documents:
       - code: RAPPORT_CONTROLE
         url: https://api.ceeconnect.fr/document/documents/{uuid}
       - code: ACCREDITATION
         url: https://api.ceeconnect.fr/document/documents/{uuid}
   - fiche: BAR-TH-160
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     adresse:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT
@@ -505,17 +523,18 @@ examples:
       critereReseauIsole: false
       quantite: 100
       epaisseur: 300
-      classeIsolation: "4"
+      classeIsolation: '4'
       marque: MARQUE
       reference: REFERENCE
       organismeControle:
         raisonSociale: L'Organisme de Contrôle
-        siren: "000000000"
+        siren: '000000000'
         referenceRapport: Référence du rapport
         numeroAccreditation: AF 15167191
-        dateFinAccreditation: 2025-10-23
+        dateFinAccreditation: 2025-10-23T00:00:00.000Z
       installateur:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
     documents:
       - code: RAPPORT_CONTROLE
         url: https://api.ceeconnect.fr/document/documents/{uuid}

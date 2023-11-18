@@ -9,8 +9,10 @@ properties:
   dateEngagement:
     type: string
     format: date
+    formatMinimum: '2018-12-19'
   adresse:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+    $ref: >-
+      https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
 required:
   - fiche
   - dateEngagement
@@ -21,12 +23,12 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2018-12-19"
+          formatMinimum: '2018-12-19'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-162v28-1"
+        - $ref: '#/$defs/BAR-TH-162v28-1'
 $defs:
   BAR-TH-162v28-1:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-162v28-1
@@ -38,23 +40,27 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/MAISON
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/MAISON
             title: Le bâtiment est une maison individuelle
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           surfaceCapteurs:
             title: surface totale de capteurs hybrides mis en place
             type: number
             minimum: 6
           productiviteCapteurs:
             title: Productivité des capteurs (W/m2)
-            description: Productivité des capteurs est calculée avec un rayonnement de 1 000
-              W/m²
+            description: >-
+              Productivité des capteurs est calculée avec un rayonnement de 1
+              000 W/m²
             type: number
             minimum: 500
           critereCapteursHybrides:
-            title: Les capteurs solaires sont exclusivement des capteurs hybrides produisant
-              à la fois électricité et chaleur
+            title: >-
+              Les capteurs solaires sont exclusivement des capteurs hybrides
+              produisant à la fois électricité et chaleur
             type: boolean
             const: true
           marque:
@@ -64,14 +70,16 @@ $defs:
             title: Référence de l'équipement
             type: string
           installateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
             type: object
             properties:
               qualificationsRge:
                 type: array
                 contains:
                   oneOf:
-                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/101
+                    - $ref: >-
+                        https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/101
             required:
               - qualificationsRge
         required:
@@ -86,7 +94,8 @@ $defs:
       documents:
         type: array
         items:
-          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
         allOf:
           - contains:
               title: Certification CSTBat ou Solar Keymark
@@ -97,7 +106,9 @@ $defs:
               required:
                 - code
           - contains:
-              title: Preuve de qualification du professionnel ayan réalisé l'opération
+              title: >-
+                Preuve de qualification du professionnel ayan réalisé
+                l'opération
               type: object
               properties:
                 code:
@@ -109,9 +120,10 @@ $defs:
       - documents
 examples:
   - fiche: BAR-TH-162
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     adresse:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT
@@ -121,7 +133,8 @@ examples:
       marque: MARQUE
       reference: REFERENCE
       installateur:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
     documents:
       - code: CERTIFICATION
         url: https://api.ceeconnect.fr/document/documents/{uuid}

@@ -9,8 +9,10 @@ properties:
   dateEngagement:
     type: string
     format: date
+    formatMinimum: '2022-05-01'
   adresse:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+    $ref: >-
+      https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
 required:
   - fiche
   - dateEngagement
@@ -21,12 +23,12 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2022-05-01"
+          formatMinimum: '2022-05-01'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-EN-102v39-2"
+        - $ref: '#/$defs/BAR-EN-102v39-2'
 $defs:
   BAR-EN-102v39-2:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-EN-102v39-2
@@ -38,18 +40,22 @@ $defs:
         type: object
         properties:
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           typeIsolation:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_isolation#/$defs/murs
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_isolation#/$defs/murs
           quantite:
             title: Surface d'isolant posé (m²)
-            description: Dans le cas d'une pose superposée de plusieurs isolants, indiquer
+            description: >-
+              Dans le cas d'une pose superposée de plusieurs isolants, indiquer
               la surface résultant de la superposition des isolants
             type: number
             minimum: 0
           resistanceThermique:
             title: Résistance thermmique de l'isolant
-            description: Dans le cas d'une pose superposée de plusieurs isolants, indiquer
+            description: >-
+              Dans le cas d'une pose superposée de plusieurs isolants, indiquer
               la résistance thermique globale
             type: number
             minimum: 3.7
@@ -59,7 +65,8 @@ $defs:
             minimum: 0
           references:
             title: Marques et références
-            description: Dans le cas d'une pose superposée de plusieurs isolants, indiquer
+            description: >-
+              Dans le cas d'une pose superposée de plusieurs isolants, indiquer
               les marques et références de chacun des isolants posés
             type: array
             minItems: 1
@@ -76,15 +83,18 @@ $defs:
                 - marque
                 - reference
           installateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
             type: object
             properties:
               qualificationsRge:
                 type: array
                 contains:
                   oneOf:
-                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/95
-                    - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/96
+                    - $ref: >-
+                        https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/95
+                    - $ref: >-
+                        https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/96
             required:
               - qualificationsRge
         required:
@@ -99,7 +109,8 @@ $defs:
           - if:
               properties:
                 typeIsolation:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_isolation#/$defs/ISOLATION_MURS_INTERIEUR
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_isolation#/$defs/ISOLATION_MURS_INTERIEUR
               required:
                 - typeIsolation
             then:
@@ -112,7 +123,8 @@ $defs:
                       type: array
                       contains:
                         oneOf:
-                          - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/95
+                          - $ref: >-
+                              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/95
                   required:
                     - qualificationsRge
               required:
@@ -120,7 +132,8 @@ $defs:
           - if:
               properties:
                 typeIsolation:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_isolation#/$defs/ISOLATION_MURS_EXTERIEUR
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_isolation#/$defs/ISOLATION_MURS_EXTERIEUR
               required:
                 - typeIsolation
             then:
@@ -133,7 +146,8 @@ $defs:
                       type: array
                       contains:
                         oneOf:
-                          - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/96
+                          - $ref: >-
+                              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/domaine_rge#/$defs/96
                   required:
                     - qualificationsRge
               required:
@@ -141,7 +155,8 @@ $defs:
       documents:
         type: array
         items:
-          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
         allOf:
           - contains:
               title: Preuve de qualification du professionnel
@@ -156,9 +171,10 @@ $defs:
       - documents
 examples:
   - fiche: BAR-EN-102
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     adresse:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
       ancienneteBatiment: EXISTANT
       typeIsolation: ISOLATION_MURS_EXTERIEUR
@@ -171,7 +187,8 @@ examples:
         - marque: MARQUE
           reference: REFERENCE
       installateur:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
     documents:
       - code: PREUVE_QUALIFICATION
         url: https://api.ceeconnect.fr/document/documents/{uuid}

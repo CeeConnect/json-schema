@@ -9,6 +9,7 @@ properties:
   dateEngagement:
     type: string
     format: date
+    formatMinimum: '2015-01-01'
 required:
   - fiche
   - dateEngagement
@@ -18,12 +19,12 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2015-01-01"
+          formatMinimum: '2015-01-01'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-117v14-1"
+        - $ref: '#/$defs/BAR-TH-117v14-1'
 $defs:
   BAR-TH-117v14-1:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-117v14-1
@@ -35,17 +36,23 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/individuel
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           ancienneteChaudiere:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/EXISTANT
-            title: Chaudière existante depuis plus de deux ans à la date d'engagement de
-              l'opération
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/EXISTANT
+            title: >-
+              Chaudière existante depuis plus de deux ans à la date d'engagement
+              de l'opération
           ancienneteRadiateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/EXISTANT
-            title: Radiateur existant depuis plus de deux ans à la date d'engagement de
-              l'opération
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/EXISTANT
+            title: >-
+              Radiateur existant depuis plus de deux ans à la date d'engagement
+              de l'opération
           quantite:
             title: Nombre d'équipements installés
             type: integer
@@ -57,7 +64,8 @@ $defs:
             title: Référence des équipements
             type: string
           installateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
         required:
           - typeBatiment
           - ancienneteBatiment
@@ -71,21 +79,23 @@ $defs:
           - if:
               properties:
                 typeBatiment:
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/APPARTEMENT
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/APPARTEMENT
               required:
                 - typeBatiment
             then:
               properties:
                 typeInstallationChauffage:
                   title: Type de chauffage central
-                  $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_chauffage
+                  $ref: >-
+                    https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_chauffage
               required:
                 - typeInstallationChauffage
     required:
       - description
 examples:
   - fiche: BAR-TH-117
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     description:
       typeBatiment: MAISON
       ancienneteBatiment: EXISTANT
@@ -95,4 +105,5 @@ examples:
       marque: MARQUE
       reference: REFERENCE
       installateur:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0

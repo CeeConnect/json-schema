@@ -9,6 +9,7 @@ properties:
   dateEngagement:
     type: string
     format: date
+    formatMinimum: '2021-11-01'
 required:
   - fiche
   - dateEngagement
@@ -18,12 +19,12 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2021-11-01"
+          formatMinimum: '2021-11-01'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-TH-163v38-2"
+        - $ref: '#/$defs/BAR-TH-163v38-2'
 $defs:
   BAR-TH-163v38-2:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-163v38-2
@@ -35,30 +36,34 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
             title: Le bâtiment est un immeuble collectif d'habitation
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           critereChaudiereIndividuelle:
-            title: Le chauffage central de chaque logement est assuré par une chaudière
-              individuelle au gaz
+            title: >-
+              Le chauffage central de chaque logement est assuré par une
+              chaudière individuelle au gaz
             type: boolean
             const: false
           typeInstallation:
-            $ref: "#/$defs/BAR-TH-163v38-2/$defs/typeInstallation"
+            $ref: '#/$defs/BAR-TH-163v38-2/$defs/typeInstallation'
           installateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
         allOf:
           - if:
               properties:
                 typeInstallation:
-                  $ref: "#/$defs/BAR-TH-163v38-2/$defs/typeInstallation/oneOf/0"
+                  $ref: '#/$defs/BAR-TH-163v38-2/$defs/typeInstallation/oneOf/0'
               required:
                 - typeInstallation
             then:
               properties:
                 typeConduit:
-                  $ref: "#/$defs/BAR-TH-163v38-2/$defs/typeConduitCollectif"
+                  $ref: '#/$defs/BAR-TH-163v38-2/$defs/typeConduitCollectif'
                 quantite:
                   title: Nombre de chaudières à raccorder au conduit
                   type: integer
@@ -69,18 +74,19 @@ $defs:
           - if:
               properties:
                 typeInstallation:
-                  $ref: "#/$defs/BAR-TH-163v38-2/$defs/typeInstallation/oneOf/1"
+                  $ref: '#/$defs/BAR-TH-163v38-2/$defs/typeInstallation/oneOf/1'
               required:
                 - typeInstallation
             then:
               properties:
                 longueurConduit:
-                  title: Longueur du conduit individuel d'évacuation des produits de combustion
+                  title: >-
+                    Longueur du conduit individuel d'évacuation des produits de
+                    combustion
                   description: >
                     Dans le cas de la mise en place d'un conduit individuel
-                    d'évacuation des produits de combustion
-
-                    dans un conduit de fumée individuel existant
+                    d'évacuation des produits de combustion dans un conduit de
+                    fumée individuel existant
                   type: number
                   minimum: 10
               required:
@@ -88,7 +94,7 @@ $defs:
           - if:
               properties:
                 typeInstallation:
-                  $ref: "#/$defs/BAR-TH-163v38-2/$defs/typeInstallation/oneOf/2"
+                  $ref: '#/$defs/BAR-TH-163v38-2/$defs/typeInstallation/oneOf/2'
               required:
                 - typeInstallation
             then:
@@ -96,15 +102,12 @@ $defs:
                 critereRenovationEnsemble:
                   title: >
                     L'installation des conduits individuels d'évacuation est
-
-                    réalisée simultanément et concerne
-
-
-                    l'ensemble des logements raccordés à un conduit collectif existant
+                    réalisée simultanément et concerne l'ensemble des logements
+                    raccordés à un conduit collectif existant
                   type: boolean
                   const: true
                 typeConduit:
-                  $ref: "#/$defs/BAR-TH-163v38-2/$defs/typeConduitIndividuel"
+                  $ref: '#/$defs/BAR-TH-163v38-2/$defs/typeConduitIndividuel'
               required:
                 - typeConduit
                 - critereRenovationEnsemble
@@ -153,7 +156,7 @@ $defs:
             title: VMC gaz
 examples:
   - fiche: BAR-TH-163
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT
@@ -162,4 +165,5 @@ examples:
       typeConduit: SHUNT
       quantite: 10
       installateur:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0

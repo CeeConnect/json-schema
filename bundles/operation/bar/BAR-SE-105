@@ -9,6 +9,7 @@ properties:
   dateEngagement:
     type: string
     format: date
+    formatMinimum: '2018-12-19'
 required:
   - fiche
   - dateEngagement
@@ -18,12 +19,12 @@ allOf:
         dateEngagement:
           type: string
           format: date
-          formatMinimum: "2018-12-19"
+          formatMinimum: '2018-12-19'
       required:
         - dateEngagement
     then:
       allOf:
-        - $ref: "#/$defs/BAR-SE-105v28-1"
+        - $ref: '#/$defs/BAR-SE-105v28-1'
 $defs:
   BAR-SE-105v28-1:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-SE-105v28-1
@@ -38,10 +39,12 @@ $defs:
         type: object
         properties:
           typeBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bar/type_batiment#/$defs/IMMEUBLE
             title: Le bâtiment est un immeuble collectif d'habitation
           ancienneteBatiment:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/anciennete#/$defs/batimentExistant
           logements:
             title: Nombre d'appartements
             type: integer
@@ -53,37 +56,36 @@ $defs:
               critereContratEligible:
                 title: >
                   Le contrat est un CPE Services avec engagement d'économies
-                  d'énergie exprimé en %, sans recourir à
-
-                  des opérations éligibles au dispositif des certificats d'économies d'énergie (CEE)
+                  d'énergie exprimé en %, sans recourir à des opérations
+                  éligibles au dispositif des certificats d'économies d'énergie
+                  (CEE)
                 type: boolean
                 const: true
               critereSituationReference:
                 title: >
                   La situation de référence prend en compte les consommations
-                  historiques corrigées des données climatiques, 
-
-                  ainsi que les opérations d'amélioration énergétique qui auraient été mises en oeuvre pendant la période de 
-
-                  détermination de la situation de référence et qui auraient donné lieu ou donneront lieu à demande de CEE
+                  historiques corrigées des données climatiques,  ainsi que les
+                  opérations d'amélioration énergétique qui auraient été mises
+                  en oeuvre pendant la période de  détermination de la situation
+                  de référence et qui auraient donné lieu ou donneront lieu à
+                  demande de CEE
                 type: boolean
                 const: true
               critereSuivi:
                 title: >
                   Le CPE comporte un plan de mesure et de vérification de la
-                  performance énergétique, faisant l'objet d'un 
-
-                  bilan annuel écrit transmis au bénéficiaire par l'opérateur titulaire du contrat
+                  performance énergétique, faisant l'objet d'un  bilan annuel
+                  écrit transmis au bénéficiaire par l'opérateur titulaire du
+                  contrat
                 type: boolean
                 const: true
               criterePenalites:
                 title: >
                   En cas de non atteinte de la performance garantie par le CPE
-                  Services, ce dernier prévoit que l'opérateur 
-
-                  supporte une pénalité, représentant 100 % du surcoût dû à l'écart de consommation constaté par rapport à 
-
-                  l'engagement contractualisé
+                  Services, ce dernier prévoit que l'opérateur  supporte une
+                  pénalité, représentant 100 % du surcoût dû à l'écart de
+                  consommation constaté par rapport à  l'engagement
+                  contractualisé
                 type: boolean
                 const: true
               engagementEconomiesEnergie:
@@ -94,9 +96,8 @@ $defs:
                 title: Durée éligible à l'opération (années)
                 description: >
                   Renseigner durée garantie au contrat (en années pleines)
-                  pendant laquelle, si les économies
-
-                  d'énergie ne sont pas atteintes, la pénalité s'applique
+                  pendant la d'énergie ne sont pas atteintes, la pénalité
+                  s'applique
                 type: integer
                 minimum: 2
               puissanceChaufferie:
@@ -110,36 +111,34 @@ $defs:
                 title: Opérations éligibles aux CEE
                 description: >
                   Renseigner les opérations engagées ou réalisées pendant la
-                  période de référence éligibles 
-
-                  dans le cadre du dispositif des Certificats d'Economies d'Energie (CEE)
+                  période de référence éligibles  dans le cadre du dispositif
+                  des Certificats d'Economies d'Energie (CEE)
                 type: string
               periodesReference:
                 title: Période de référence
                 description: >
                   Renseigner les années de référence concernées (a minima trois
-                  années calendaires consécutives et récentes),
-
-                  représentatives d'un taux d'occupation normal du site
+                  années calendaires consécutives et récentes), représentatives
+                  d'un taux d'occupation normal du site
                 type: string
               modalitesCalcul:
                 title: Modalités de calcul
-                description: Renseigner les modalités de calcul des consommations de référence
-                  (comptage / facture / mesures…)
+                description: >-
+                  Renseigner les modalités de calcul des consommations de
+                  référence (comptage / facture / mesures…)
                 type: string
               consommationReference:
                 title: Consommation de référence
-                description: Renseigner la consommation énergétique moyenne durant la période de
-                  référence
+                description: >-
+                  Renseigner la consommation énergétique moyenne durant la
+                  période de référence
                 type: number
                 minimum: 0
               consommationReferenceRetenue:
                 title: Consommation de référence retenue
                 description: >
                   Renseigner la consommation énergétique moyenne durant la
-                  période de référence corrigée des paramètres
-
-                  d'ajustements
+                  période de référence corrigée des paramètres d'ajustements
                 type: number
                 minimum: 0
               temperatureExterieure:
@@ -147,12 +146,15 @@ $defs:
                 type: number
               consommationEauChaudeSanitaire:
                 title: Consommation d'ECS (m3)
-                description: Renseigner le cas échéant la consommation annuelle d'eau chaude
-                  sanitaire de référence
+                description: >-
+                  Renseigner le cas échéant la consommation annuelle d'eau
+                  chaude sanitaire de référence
                 type: number
                 minimum: 0
               utilisationLocaux:
-                title: Affectation des locaux, taux d'occupation, durée de fonctionnement
+                title: >-
+                  Affectation des locaux, taux d'occupation, durée de
+                  fonctionnement
                 type: string
             required:
               - critereContratEligible
@@ -171,7 +173,8 @@ $defs:
               - temperatureExterieure
               - utilisationLocaux
           installateur:
-            $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+            $ref: >-
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
         required:
           - typeBatiment
           - ancienneteBatiment
@@ -181,7 +184,8 @@ $defs:
       documents:
         type: array
         items:
-          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
         allOf:
           - contains:
               title: Contrat signé entre l'opérateur et le bénéficiaire
@@ -192,17 +196,20 @@ $defs:
 
                 - La situation de référence prise en compte ;
 
-                - L'économie d'énergie garantie sur le périmètre du contrat, en énergie finale (en %) ;
+                - L'économie d'énergie garantie sur le périmètre du contrat, en
+                énergie finale (en %) ;
 
-                - Les niveaux de services attendus, les paramètres d'influence et les modalités d'ajustement,
+                - Les niveaux de services attendus, les paramètres d'influence
+                et les modalités d'ajustement,
 
-                - Les modalités du plan de mesure et de vérification et l'engagement de transmettre annuellement un bilan 
-
-                écrit au bénéficiaire ;
+                - Les modalités du plan de mesure et de vérification et
+                l'engagement de transmettre annuellement un bilan  écrit au
+                bénéficiaire ;
 
                 - La durée de la garantie ;
 
-                - La pénalité en cas de non-atteinte de la performance garantie par le contrat.
+                - La pénalité en cas de non-atteinte de la performance garantie
+                par le contrat.
               type: object
               properties:
                 code:
@@ -214,9 +221,9 @@ $defs:
               title: Preuve de qualification de l'opérateur
               description: >
                 La preuve de qualification du professionnel est la décision de
-                qualification ou le certificat Qualibat 553
-
-                ou 554 (ou équivalent) de l'opérateur, à la date d'entrée en vigueur du contrat
+                qualification ou le certificat Qualibat 553 ou 554 (ou
+                équivalent) de l'opérateur, à la date d'entrée en vigueur du
+                contrat
               type: object
               properties:
                 code:
@@ -229,7 +236,7 @@ $defs:
       - documents
 examples:
   - fiche: BAR-SE-105
-    dateEngagement: 2024-01-01
+    dateEngagement: '2024-01-01'
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT
@@ -251,7 +258,8 @@ examples:
         temperatureExterieure: 14
         utilisationLocaux: A renseigner
       installateur:
-        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+        $ref: >-
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
     documents:
       - code: CONTRAT
         url: https://api.ceeconnect.fr/archivage/
