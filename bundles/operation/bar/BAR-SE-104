@@ -10,9 +10,12 @@ properties:
     type: string
     format: date
     formatMinimum: '2016-01-04'
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
 required:
   - fiche
   - dateEngagement
+  - adresse
 allOf:
   - if:
       properties:
@@ -114,6 +117,9 @@ $defs:
 examples:
   - fiche: BAR-SE-104
     dateEngagement: '2024-01-01'
+    adresse:
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
       typeBatiment: IMMEUBLE
       ancienneteBatiment: EXISTANT

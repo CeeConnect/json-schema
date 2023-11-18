@@ -10,9 +10,12 @@ properties:
     type: string
     format: date
     formatMinimum: '2015-01-01'
+  adresse:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
 required:
   - fiche
   - dateEngagement
+  - adresse
 allOf:
   - if:
       properties:
@@ -415,6 +418,9 @@ $defs:
 examples:
   - fiche: BAR-EN-104
     dateEngagement: '2024-01-01'
+    adresse:
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
       ancienneteBatiment: EXISTANT
       energieChauffage: COMBUSTIBLES
@@ -432,6 +438,9 @@ examples:
         url: https://api.ceeconnect.fr/document/documents/{uuid}
   - fiche: BAR-EN-104
     dateEngagement: '2024-01-01'
+    adresse:
+      $ref: >-
+        https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
     description:
       ancienneteBatiment: EXISTANT
       quantite: 10
