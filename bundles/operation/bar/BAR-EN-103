@@ -10,9 +10,13 @@ properties:
     type: string
     format: date
     formatMinimum: '2022-05-01'
+  adresse:
+    $ref: >-
+      https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
 required:
   - fiche
   - dateEngagement
+  - adresse
 allOf:
   - if:
       properties:
