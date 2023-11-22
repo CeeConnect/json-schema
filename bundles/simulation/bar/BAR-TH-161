@@ -3,12 +3,15 @@ $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-sche
 title: BAR-TH-161
 type: object
 properties:
-  fiche: >-
-    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161#/properties/fiche
-  dateEngagement: >-
-    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161#/properties/dateEngagement
-  adresse: >-
-    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161#/properties/adresse
+  fiche:
+    $ref: >-
+      https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161#/properties/fiche
+  dateEngagement:
+    $ref: >-
+      https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161#/properties/dateEngagement
+  adresse:
+    $ref: >-
+      https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161#/properties/adresse
 required:
   - fiche
   - dateEngagement
@@ -16,8 +19,9 @@ required:
 allOf:
   - if:
       properties:
-        dateEngagement: >-
-          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161#/allOf/0/if/properties/dateEngagement
+        dateEngagement:
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161#/allOf/0/if/properties/dateEngagement
       required:
         - dateEngagement
     then:
@@ -25,8 +29,9 @@ allOf:
         - $ref: '#/$defs/BAR-TH-161v28-1'
   - if:
       properties:
-        dateEngagement: >-
-          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161#/allOf/1/if/properties/dateEngagement
+        dateEngagement:
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-161#/allOf/1/if/properties/dateEngagement
       required:
         - dateEngagement
     then:
@@ -85,8 +90,9 @@ $defs:
     type: object
     properties:
       adresse:
-        $ref: >-
-          https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
+        $ref:
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
       description:
         title: Caractéristiques
         type: object

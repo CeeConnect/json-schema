@@ -3,12 +3,15 @@ $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-sche
 title: BAR-TH-160
 type: object
 properties:
-  fiche: >-
-    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160#/properties/fiche
-  dateEngagement: >-
-    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160#/properties/dateEngagement
-  adresse: >-
-    https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160#/properties/adresse
+  fiche:
+    $ref: >-
+      https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160#/properties/fiche
+  dateEngagement:
+    $ref: >-
+      https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160#/properties/dateEngagement
+  adresse:
+    $ref: >-
+      https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160#/properties/adresse
 required:
   - fiche
   - dateEngagement
@@ -16,8 +19,9 @@ required:
 allOf:
   - if:
       properties:
-        dateEngagement: >-
-          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160#/allOf/0/if/properties/dateEngagement
+        dateEngagement:
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160#/allOf/0/if/properties/dateEngagement
       required:
         - dateEngagement
     then:
@@ -25,8 +29,9 @@ allOf:
         - $ref: '#/$defs/BAR-TH-160v39-2'
   - if:
       properties:
-        dateEngagement: >-
-          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160#/allOf/1/if/properties/dateEngagement
+        dateEngagement:
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160#/allOf/1/if/properties/dateEngagement
       required:
         - dateEngagement
     then:
@@ -34,8 +39,9 @@ allOf:
         - $ref: '#/$defs/BAR-TH-160v50-3'
   - if:
       properties:
-        dateEngagement: >-
-          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160#/allOf/2/if/properties/dateEngagement
+        dateEngagement:
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/bar/BAR-TH-160#/allOf/2/if/properties/dateEngagement
       required:
         - dateEngagement
     then:
@@ -74,8 +80,9 @@ $defs:
     type: object
     properties:
       adresse:
-        $ref: >-
-          https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+        $ref:
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
       description:
         title: Caractéristiques
         type: object
@@ -103,8 +110,9 @@ $defs:
     type: object
     properties:
       adresse:
-        $ref: >-
-          https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
+        $ref:
+          $ref: >-
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
       description:
         title: Caractéristiques
         type: object

@@ -1,0 +1,66 @@
+$id: https://schemas.ceeconnect.fr/enums/bar/energie
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Energie
+type: string
+oneOf:
+  - $ref: "#/$defs/ELECTRICITE"
+  - $ref: "#/$defs/GAZ_NATUREL"
+  - $ref: "#/$defs/FIOUL"
+  - $ref: "#/$defs/PAC"
+  - $ref: "#/$defs/BOIS"
+  - $ref: "#/$defs/GPL"
+  - $ref: "#/$defs/CHARBON"
+  - $ref: "#/$defs/HYBRIDE"
+$defs:
+  ELECTRICITE:
+    const: ELECTRICITE
+    title: Electricité
+  GAZ_NATUREL:
+    const: GAZ_NATUREL
+    title: Gaz naturel
+  FIOUL:
+    const: FIOUL
+    title: Fioul
+  PAC:
+    const: PAC
+    title: Pompe à chaleur
+  BOIS:
+    const: BOIS
+    title: Bois
+  GPL:
+    const: GPL
+    title: Gaz de pétrole liquéfié (GPL)
+  CHARBON:
+    const: CHARBON
+    title: Charbon
+  COMBUSTIBLES:
+    const: COMBUSTIBLES
+    title: Combustibles
+  AUTRES:
+    const: AUTRES
+    title: AUTRES
+  HYBRIDE:
+    const: HYBRIDE
+    title: Module hybride
+  energiesChauffage:
+    title: Energie de chauffage principale
+    type: string
+    oneOf:
+      - $ref: "#/$defs/ELECTRICITE"
+      - $ref: "#/$defs/COMBUSTIBLES"
+  energiesChauffageFossiles:
+    title: Energie de chauffage principale
+    type: string
+    oneOf:
+      - $ref: "#/$defs/GAZ_NATUREL"
+      - $ref: "#/$defs/FIOUL"
+      - $ref: "#/$defs/CHARBON"
+  energiesChauffageResidentiel:
+    title: Energie de chauffage principale
+    type: string
+    oneOf:
+      - $ref: "#/$defs/ELECTRICITE"
+      - $ref: "#/$defs/GAZ_NATUREL"
+      - $ref: "#/$defs/FIOUL"
+      - $ref: "#/$defs/CHARBON"
+      - $ref: "#/$defs/BOIS"
