@@ -81,10 +81,6 @@ $defs:
     title: BAR-TH-159v50-4
     type: object
     properties:
-      adresse:
-        $ref:
-          $ref: >-
-            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
       description:
         title: Caractéristiques
         type: object
@@ -115,7 +111,6 @@ $defs:
           - performanceEnergetique
           - critereEquipementExistant
     required:
-      - adresse
       - description
 examples:
   - fiche: BAR-TH-159

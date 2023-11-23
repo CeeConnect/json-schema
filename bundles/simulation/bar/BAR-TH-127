@@ -117,10 +117,6 @@ $defs:
     title: BAR-TH-127v54-5
     type: object
     properties:
-      adresse:
-        $ref:
-          $ref: >-
-            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
       description:
         title: Caractéristiques
         type: object
@@ -187,7 +183,6 @@ $defs:
                 - typeCaisson
                 - logements
     required:
-      - adresse
       - description
 examples:
   - fiche: BAR-TH-127

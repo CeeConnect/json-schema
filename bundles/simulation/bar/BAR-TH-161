@@ -89,10 +89,6 @@ $defs:
     title: BAR-TH-161v54-2
     type: object
     properties:
-      adresse:
-        $ref:
-          $ref: >-
-            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
       description:
         title: Caractéristiques
         type: object
@@ -131,7 +127,6 @@ $defs:
           - ancienneteBatiment
           - equipements
     required:
-      - adresse
       - description
 examples:
   - fiche: BAR-TH-161

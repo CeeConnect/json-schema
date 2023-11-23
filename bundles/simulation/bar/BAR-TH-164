@@ -84,10 +84,6 @@ $defs:
     title: BAR-TH-164v52-3
     type: object
     properties:
-      adresse:
-        $ref:
-          $ref: >-
-            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
       description:
         title: Caractéristiques
         type: object
@@ -121,7 +117,6 @@ $defs:
           - surfaceHabitable
           - auditEnergetique
     required:
-      - adresse
       - description
 examples:
   - fiche: BAR-TH-164

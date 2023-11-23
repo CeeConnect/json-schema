@@ -79,10 +79,6 @@ $defs:
     title: BAR-TH-160v50-3
     type: object
     properties:
-      adresse:
-        $ref:
-          $ref: >-
-            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
       description:
         title: Caractéristiques
         type: object
@@ -101,7 +97,6 @@ $defs:
           - ancienneteBatiment
           - quantite
     required:
-      - adresse
       - description
   BAR-TH-160v54-4:
     $id: https://schemas.ceeconnect.fr/bundles/simulation/bar/BAR-TH-160v54-4
@@ -109,10 +104,6 @@ $defs:
     title: BAR-TH-160v54-4
     type: object
     properties:
-      adresse:
-        $ref:
-          $ref: >-
-            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/franceMetropolitaine
       description:
         title: Caractéristiques
         type: object
@@ -131,7 +122,6 @@ $defs:
           - ancienneteBatiment
           - quantite
     required:
-      - adresse
       - description
 examples:
   - fiche: BAR-TH-160
