@@ -1,4 +1,4 @@
-$id: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/demandeur
+$id: https://schemas.ceeconnect.fr/bundles/demandeur
 $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
 title: Demandeur
 description: Obligé au titre du dispositif des certificats d'économies d'énergie

@@ -3,8 +3,8 @@ $schema: https://json-schema.org/draft/2020-12/schema
 title: Identifiant fiscal
 type: string
 oneOf:
-  - $ref: https://schemas.ceeconnect.fr/formats/numero_fiscal
-  - $ref: https://schemas.ceeconnect.fr/formats/siren
+  - $ref: https://raw.githubusercontent.com/CeeConnect/json-schema/main/formats/numero_fiscal
+  - $ref: https://raw.githubusercontent.com/CeeConnect/json-schema/main/formats/siren
 examples:
   - "0000000000000"
   - "000000000"
