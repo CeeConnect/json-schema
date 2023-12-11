@@ -13,6 +13,9 @@ properties:
     title: Fiche d'opération standardisée
   bonification:
     title: Bonification
+    type:
+      - string
+      - "null"
     oneOf:
       - type: "null"
       - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bonification
