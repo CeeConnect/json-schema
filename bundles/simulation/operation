@@ -8,19 +8,17 @@ properties:
     title: Fiche d'opération standardisée
   bonification:
     title: Bonification
-    type:
-      - string
-      - "null"
-    oneOf:
+    anyOf:
+      - type: string
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bonification
       - type: "null"
-      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bonification
   dateEngagement:
     title: Date d'engagement de l'opération
     type: string
     format: date
   precarite:
     title: Précarité énergétique
-    oneOf:
+    anyOf:
       - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/precarite
       - type: "null"
 required:
@@ -44,7 +42,7 @@ allOf:
   - if:
       properties:
         bonification:
-          type: string
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bonification
       required:
         - bonification
     then:

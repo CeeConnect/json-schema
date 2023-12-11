@@ -13,12 +13,10 @@ properties:
     title: Fiche d'opération standardisée
   bonification:
     title: Bonification
-    type:
-      - string
-      - "null"
-    oneOf:
+    anyOf:
+      - type: string
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bonification
       - type: "null"
-      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bonification
   dateVisitePrealable:
     title: Date de la visite préalable
     type: string
@@ -58,8 +56,9 @@ properties:
     $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/professionnel
   precarite:
     title: Précarité énergétique
-    oneOf:
-      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/precarite
+    anyOf:
+      - type: object
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/precarite
       - type: "null"
   documents:
     title: Liste des documents
@@ -131,12 +130,12 @@ oneOf:
       - fiche
     allOf:
       - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/operation_bar
+allOf:
 # Bonifications
-
   - if:
       properties:
         bonification:
-          type: string
+          $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bonification
       required:
         - bonification
     then:
