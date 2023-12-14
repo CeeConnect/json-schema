@@ -33,6 +33,8 @@ $defs:
     properties:
       nature:
         $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/nature_juridique#/$defs/PERSONNE_PHYSIQUE
+      type:
+        $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/type_beneficiaire#/$defs/PERSONNE_PHYSIQUE
       nom:
         title: Nom
         type: string
@@ -40,6 +42,7 @@ $defs:
         title: Prénom
         type: string
     required:
+      - nature
       - type
       - nom
       - prenom
