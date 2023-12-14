@@ -22,4 +22,4 @@ oneOf:
     required:
       - fiche
     allOf:
-      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/operation_bar
+      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/operation_bar
