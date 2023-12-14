@@ -119,19 +119,10 @@ required:
   - precarite
   - documents
   - description
-# Sous-schémas par secteur d'application
-oneOf:
-  - type: object
-    properties:
-      fiche:
-        type: string
-        pattern: ^BAR[-].+$
-    required:
-      - fiche
-    allOf:
-      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/operation_bar
 allOf:
-# Bonifications
+  # Fiche d'opération standardisée
+  - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/operation_fiche
+  # Bonifications
   - if:
       properties:
         bonification:

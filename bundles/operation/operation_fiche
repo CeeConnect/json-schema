@@ -1,0 +1,25 @@
+$id: https://schemas.ceeconnect/bundles/operation/operation_fiche
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+type: object
+properties:
+  fiche:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/fiche
+    title: Fiche d'opération standardisée
+  dateVisitePrealable:
+    title: Date de la visite préalable
+    type: string
+    format: date
+required:
+  - fiche
+  - dateEngagement
+# Sous-schémas par secteur d'application
+oneOf:
+  - type: object
+    properties:
+      fiche:
+        type: string
+        pattern: ^BAR[-].+$
+    required:
+      - fiche
+    allOf:
+      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/operation_bar
