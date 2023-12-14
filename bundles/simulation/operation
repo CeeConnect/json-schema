@@ -8,7 +8,8 @@ properties:
     title: Fiche d'opération standardisée
   bonification:
     title: Bonification
-    anyOf:
+    type: [string, "null"]
+    oneOf:
       - type: string
         $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/bonification
       - type: "null"
@@ -18,7 +19,8 @@ properties:
     format: date
   precarite:
     title: Précarité énergétique
-    anyOf:
+    type: [object, "null"]
+    oneOf:
       - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/precarite
       - type: "null"
 required:
@@ -26,19 +28,10 @@ required:
   - bonification
   - dateEngagement
   - precarite
-# Sous-schémas par secteur d'application
-oneOf:
-  - type: object
-    properties:
-      fiche:
-        type: string
-        pattern: ^BAR[-].+$
-    required:
-      - fiche
-    allOf:
-      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/operation_bar
-# Bonifications
 allOf:
+  # Fiches d'opération standardisée
+  - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/operation_fiche
+  # Bonifications
   - if:
       properties:
         bonification:

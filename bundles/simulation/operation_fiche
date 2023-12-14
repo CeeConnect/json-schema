@@ -1,4 +1,4 @@
-$id: https://schemas.ceeconnect.com/bundles/operation/operation_fiche
+$id: https://schemas.ceeconnect.com/bundles/simulation/operation_fiche
 $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
 type: object
 properties:
@@ -22,4 +22,4 @@ oneOf:
     required:
       - fiche
     allOf:
-      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/simulation/operation_bar
+      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/operation_bar
