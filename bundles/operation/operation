@@ -42,13 +42,8 @@ properties:
     title: Volume de CEE précarité
     type: integer
     minimum: 0
-  natureContribution:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/nature_contribution
-    title: Nature du rôle actif et incitatif
-  valeurContribution:
-    title: Montant du rôle actif et incitatif
-    type: number
-    minimum: 0
+  contribution:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/contribution
   adresse:
     $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
   beneficiaire:
@@ -113,8 +108,7 @@ required:
   - dateAchevement
   - volumeCeeClassique
   - volumeCeePrecarite
-  - natureContribution
-  - valeurContribution
+  - contribution
   - adresse
   - beneficiaire
   - professionnel

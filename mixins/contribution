@@ -1,0 +1,15 @@
+$id: https://schemas.ceeconnect.fr/mixins/contribution
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Rôle actif et incitatif
+type: object
+properties:
+  nature:
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/nature_contribution
+    title: Nature du rôle actif et incitatif
+  valeur:
+    title: Montant du rôle actif et incitatif
+    type: number
+    minimum: 0
+required:
+  - nature
+  - valeur
