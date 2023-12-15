@@ -225,7 +225,7 @@ $defs:
         type: array
         items:
           $ref: >-
-            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/document
         allOf:
           - contains:
               title: Rapport de synthèse de l'audit énergétique
@@ -490,7 +490,7 @@ $defs:
         type: array
         items:
           $ref: >-
-            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/document
         allOf:
           - contains:
               title: Rapport de synthèse de l'audit énergétique

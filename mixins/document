@@ -1,4 +1,4 @@
-$id: https://schemas.ceeconnect.fr/bundles/document
+$id: https://schemas.ceeconnect.fr/mixins/document
 $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
 title: Document
 type: object

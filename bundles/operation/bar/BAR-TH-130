@@ -162,7 +162,7 @@ $defs:
         type: array
         items:
           $ref: >-
-            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/document
         allOf:
           - contains:
               title: Récépissé du dépôt de persmis de construire
@@ -332,7 +332,7 @@ $defs:
         type: array
         items:
           $ref: >-
-            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/document
         allOf:
           - contains:
               title: Récépissé du dépôt de persmis de construire

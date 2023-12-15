@@ -89,7 +89,7 @@ $defs:
             type: string
           installateur:
             $ref: >-
-              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur
             type: object
             properties:
               qualificationsRge:
@@ -217,7 +217,7 @@ $defs:
         type: array
         items:
           $ref: >-
-            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/document
         allOf:
           - contains:
               title: Avis technique du système de ventilation hybride hygroréglable
@@ -285,7 +285,7 @@ $defs:
             type: string
           installateur:
             $ref: >-
-              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur
             type: object
             properties:
               qualificationsRge:
@@ -418,7 +418,7 @@ $defs:
         type: array
         items:
           $ref: >-
-            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/document
         allOf:
           - contains:
               title: Avis technique du système de ventilation hybride hygroréglable
@@ -462,7 +462,7 @@ examples:
       referenceBouchesExtraction: REFERENCE
       installateur:
         $ref: >-
-          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur#/examples/0
     documents:
       - code: AVIS_TECHNIQUE
         url: https://api.ceeconnect.fr/document/documents/{uuid}
@@ -490,7 +490,7 @@ examples:
       referenceBouchesExtraction: REFERENCE
       installateur:
         $ref: >-
-          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur#/examples/0
     documents:
       - code: AVIS_TECHNIQUE
         url: https://api.ceeconnect.fr/document/documents/{uuid}

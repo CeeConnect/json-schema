@@ -55,7 +55,7 @@ $defs:
             $ref: '#/$defs/BAR-TH-163v38-2/$defs/typeInstallation'
           installateur:
             $ref: >-
-              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur
         allOf:
           - if:
               properties:
@@ -172,4 +172,4 @@ examples:
       quantite: 10
       installateur:
         $ref: >-
-          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur#/examples/0

@@ -1,4 +1,5 @@
 $id: https://schemas.ceeconnect.fr/enums/bonification
+$schema: https://json-schema.org/draft/2020-12/schema
 title: Bonification
 type: string
 oneOf:

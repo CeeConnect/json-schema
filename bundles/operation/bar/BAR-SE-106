@@ -124,7 +124,7 @@ $defs:
             const: true
           installateur:
             $ref: >-
-              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur
         required:
           - ancienneteBatiment
           - typeBatiment
@@ -143,7 +143,7 @@ $defs:
         type: array
         items:
           $ref: >-
-            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/document
         allOf:
           - contains:
               title: Descriptif du dispositif
@@ -197,7 +197,7 @@ examples:
       critereAlerteDepassement: true
       installateur:
         $ref: >-
-          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur#/examples/0
     documents:
       - code: DESCRIPTIF_DISPOSITIF
         url: https://api.ceeconnect.fr/archivage/

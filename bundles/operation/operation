@@ -1,4 +1,4 @@
-$id: https://schemas.ceeconnect/bundles/operation/operation
+$id: https://schemas.ceeconnect.fr/bundles/operation/operation
 $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
 title: Opération d'économies d'énergie
 type: object
@@ -47,9 +47,9 @@ properties:
   adresse:
     $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/$defs/france
   beneficiaire:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/beneficiaire
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/beneficiaire
   professionnel:
-    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/professionnel
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/professionnel
   precarite:
     title: Précarité énergétique
     type: [object, "null"]
@@ -61,7 +61,7 @@ properties:
     title: Liste des documents
     type: array
     items:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/document
     allOf:
       - contains:
           title: Preuve d'engagement de l'opération

@@ -130,7 +130,7 @@ $defs:
                         - critereFonctionIndicationSurconsommation
           installateur:
             $ref: >-
-              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur
             type: object
             properties:
               qualificationsRge:
@@ -150,7 +150,7 @@ $defs:
         type: array
         items:
           $ref: >-
-            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/document
         allOf:
           - contains:
               title: >-
@@ -182,7 +182,7 @@ examples:
           reference: REFERENCE
       installateur:
         $ref: >-
-          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur#/examples/0
     documents:
       - code: PREUVE_QUALIFICATION
         url: https://api.ceeconnect.fr/document/documents/{uuid}

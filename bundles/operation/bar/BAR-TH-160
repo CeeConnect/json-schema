@@ -130,7 +130,7 @@ $defs:
             type: string
           installateur:
             $ref: >-
-              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur
         anyOf:
           - properties:
               critereReseauNonIsole:
@@ -155,7 +155,7 @@ $defs:
         type: array
         items:
           $ref: >-
-            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/document
         allOf:
           - contains:
               title: Rapport de conformité établi par l'organisme d'inspection
@@ -255,7 +255,7 @@ $defs:
             type: string
           installateur:
             $ref: >-
-              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur
         anyOf:
           - properties:
               critereReseauNonIsole:
@@ -280,7 +280,7 @@ $defs:
         type: array
         items:
           $ref: >-
-            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/document
         allOf:
           - contains:
               title: Rapport de conformité établi par l'organisme d'inspection
@@ -406,7 +406,7 @@ $defs:
               - dateFinAccreditation
           installateur:
             $ref: >-
-              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur
         anyOf:
           - properties:
               critereReseauNonIsole:
@@ -432,7 +432,7 @@ $defs:
         type: array
         items:
           $ref: >-
-            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/document
         allOf:
           - contains:
               title: Rapport de conformité établi par l'organisme d'inspection
@@ -478,7 +478,7 @@ examples:
       reference: REFERENCE
       installateur:
         $ref: >-
-          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur#/examples/0
     documents:
       - code: RAPPORT_CONTROLE
         url: https://api.ceeconnect.fr/document/documents/{uuid}
@@ -503,7 +503,7 @@ examples:
       reference: REFERENCE
       installateur:
         $ref: >-
-          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur#/examples/0
     documents:
       - code: RAPPORT_CONTROLE
         url: https://api.ceeconnect.fr/document/documents/{uuid}
@@ -534,7 +534,7 @@ examples:
         dateFinAccreditation: 2025-10-23T00:00:00.000Z
       installateur:
         $ref: >-
-          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur#/examples/0
     documents:
       - code: RAPPORT_CONTROLE
         url: https://api.ceeconnect.fr/document/documents/{uuid}

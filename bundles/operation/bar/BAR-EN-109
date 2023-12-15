@@ -67,7 +67,7 @@ $defs:
             type: string
           installateur:
             $ref: >-
-              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur
             type: object
             properties:
               qualificationsRge:
@@ -96,7 +96,7 @@ $defs:
         type: array
         items:
           $ref: >-
-            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/document
         contains:
           title: Preuve de qualification de l'installateur
           type: object
@@ -178,7 +178,7 @@ examples:
       reference: REFERENCE
       installateur:
         $ref: >-
-          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur#/examples/0
     documents:
       - code: NOTE_CALCUL
         url: https://api.ceeconnect.fr/document/documents/{uuid}

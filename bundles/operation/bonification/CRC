@@ -96,7 +96,7 @@ $defs:
             documents:
               type: array
               items:
-                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/document
               allOf:
                 - contains:
                     title: Délibération, votée par l'Assemblée générale
@@ -129,7 +129,7 @@ $defs:
             documents:
               type: array
               items:
-                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+                $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/document
               allOf:
                 - contains:
                     title: Justification de l'impossibilité technique ou économique du raccordement

@@ -92,7 +92,7 @@ $defs:
               - referenceEtude
           installateur:
             $ref: >-
-              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur
           gestionnaire:
             title: Prestataire titulaire du contrat d'exploitation et de maintenance
             type: object
@@ -138,7 +138,7 @@ $defs:
         type: array
         items:
           $ref: >-
-            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/document
         allOf:
           - contains:
               title: >-
@@ -179,7 +179,7 @@ examples:
         referenceEtude: REFERENCE ETUDE
       installateur:
         $ref: >-
-          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur#/examples/0
       gestionnaire:
         nom: NOM
         prenom: PRENOM

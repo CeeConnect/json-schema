@@ -149,7 +149,7 @@ $defs:
               - adresse
           installateur:
             $ref: >-
-              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur
         required:
           - typeBatiment
           - indicateurEfficaciteEnergetique
@@ -165,7 +165,7 @@ $defs:
         type: array
         items:
           $ref: >-
-            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/document
         allOf:
           - contains:
               title: Étude préalable de dimensionnement
@@ -246,7 +246,7 @@ examples:
             https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/adresse#/examples/0
       installateur:
         $ref: >-
-          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur#/examples/0
     documents:
       - code: ETURE_DIMENSIONNEMENT
         url: https://api.ceeconnect.fr/document/documents/{uuid}

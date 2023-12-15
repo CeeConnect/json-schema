@@ -152,7 +152,7 @@ $defs:
                       - diametreNominal
           installateur:
             $ref: >-
-              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur
         required:
           - ancienneteBatiment
           - typeBatiment
@@ -163,7 +163,7 @@ $defs:
         type: array
         items:
           $ref: >-
-            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/document
         allOf:
           - contains:
               title: Récapitulatif
@@ -319,7 +319,7 @@ $defs:
                       - diametreNominal
           installateur:
             $ref: >-
-              https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur
+              https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur
         required:
           - ancienneteBatiment
           - typeBatiment
@@ -330,7 +330,7 @@ $defs:
         type: array
         items:
           $ref: >-
-            https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/document
+            https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/document
         allOf:
           - contains:
               title: Récapitulatif
@@ -398,7 +398,7 @@ examples:
           reference: REFERENCE
       installateur:
         $ref: >-
-          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur#/examples/0
     documents:
       - code: ETAT_RECAPITULATIF
         url: https://api.ceeconnect.fr/document/documents/{uuid}
@@ -426,7 +426,7 @@ examples:
           reference: REFERENCE
       installateur:
         $ref: >-
-          https://raw.githubusercontent.com/ceeconnect/json-schema/main/bundles/operation/installateur#/examples/0
+          https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/installateur#/examples/0
     documents:
       - code: ETAT_RECAPITULATIF
         url: https://api.ceeconnect.fr/document/documents/{uuid}
