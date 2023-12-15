@@ -272,7 +272,7 @@ $defs:
                 - code
     required:
       - description
-      - documents
+      #- documents
   BAR-TH-145v52-4:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-145v52-4
     $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
@@ -537,7 +537,7 @@ $defs:
                 - code
     required:
       - description
-      - documents
+      #- documents
 examples:
   - fiche: BAR-TH-145
     dateEngagement: '2024-01-01'

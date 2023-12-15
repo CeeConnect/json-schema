@@ -113,7 +113,7 @@ $defs:
                 - code
     required:
       - description
-      - documents
+      #- documents
 examples:
   - fiche: BAR-SE-104
     dateEngagement: '2024-01-01'

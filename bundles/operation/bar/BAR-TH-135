@@ -149,7 +149,7 @@ $defs:
             - documents
     required:
       - description
-      - documents
+      #- documents
 examples:
   - fiche: BAR-TH-135
     dateEngagement: '2024-01-01'

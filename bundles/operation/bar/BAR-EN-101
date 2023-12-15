@@ -157,7 +157,7 @@ $defs:
                 - code
     required:
       - description
-      - documents
+      #- documents
   BAR-EN-101v54-5:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-EN-101v54-5
     $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
@@ -272,7 +272,7 @@ $defs:
                 - code
     required:
       - description
-      - documents
+      #- documents
 examples:
   - fiche: BAR-EN-101
     dateEngagement: '2024-01-01'

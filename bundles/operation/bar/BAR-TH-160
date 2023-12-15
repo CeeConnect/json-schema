@@ -180,7 +180,7 @@ $defs:
                 - code
     required:
       - description
-      - documents
+      #- documents
   BAR-TH-160v50-3:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-160v50-3
     $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
@@ -305,7 +305,7 @@ $defs:
                 - code
     required:
       - description
-      - documents
+      #- documents
   BAR-TH-160v54-4:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-TH-160v54-4
     $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
@@ -457,7 +457,7 @@ $defs:
                 - code
     required:
       - description
-      - documents
+      #- documents
 examples:
   - fiche: BAR-TH-160
     dateEngagement: '2024-01-01'

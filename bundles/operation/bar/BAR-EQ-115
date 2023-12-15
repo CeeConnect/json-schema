@@ -229,7 +229,7 @@ $defs:
                 - code
     required:
       - description
-      - documents
+      #- documents
 examples:
   - fiche: BAR-EQ-115
     dateEngagement: '2024-01-01'

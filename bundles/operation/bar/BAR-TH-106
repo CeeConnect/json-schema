@@ -142,7 +142,7 @@ $defs:
                 - code
     required:
       - description
-      - documents
+      #- documents
     $defs:
       equipement:
         type: object

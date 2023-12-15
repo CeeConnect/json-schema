@@ -117,7 +117,7 @@ $defs:
                 - code
     required:
       - description
-      - documents
+      #- documents
   BAR-EN-108v54-3:
     $id: https://schemas.ceeconnect.fr/bundles/operation/bar/BAR-EN-108v54-3
     $schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
