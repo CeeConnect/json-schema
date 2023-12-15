@@ -111,8 +111,6 @@ $defs:
                         const: ASSEMBLEE_GENERALE
                     required:
                       - code
-          required:
-            - documents
       - if:
           type: object
           properties:
@@ -147,8 +145,6 @@ $defs:
                         const: JUSTIFICATIF_GESTIONNAIRE
                     required:
                       - code
-          required:
-            - documents
 examples:
   - fiche: BAR-TH-145
     bonification: CRC
