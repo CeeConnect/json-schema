@@ -5,7 +5,7 @@ properties:
   fiche:
     $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/fiche
     title: Fiche d'opération standardisée
-  dateVisitePrealable:
+  dateEngagement:
     title: Date de la visite préalable
     type: string
     format: date
