@@ -112,7 +112,7 @@ $defs:
                       type: string
                       format: date
                       formatMinimum: '2015-01-01'
-                      formatMaximum: 2016-12-31T00:00:00.000Z
+                      formatMaximum: '2016-12-31'
                     puissanceNominale:
                       type: number
                       minimum: 7.5
