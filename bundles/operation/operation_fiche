@@ -6,7 +6,7 @@ properties:
     $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/fiche
     title: Fiche d'opération standardisée
   dateEngagement:
-    title: Date de la visite préalable
+    title: Date d'engagement de l'opération
     type: string
     format: date
 required:
