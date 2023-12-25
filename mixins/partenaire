@@ -1,0 +1,16 @@
+$id: https://schemas.ceeconnect.fr/mixins/partenaire
+$schema: https://raw.githubusercontent.com/ceeconnect/json-schema/main/meta-schema
+title: Partenaire
+description: Partenaire du demandeur
+type: object
+properties:
+  raisonSociale: 
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/raison_sociale
+  siren: 
+    $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/formats/siren
+required:
+  - raisonSociale
+  - siren
+examples:
+  - raisonSociale: RAISON SOCIALE
+    siren: "000000000"
