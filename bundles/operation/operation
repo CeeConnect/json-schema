@@ -8,6 +8,12 @@ properties:
     description: Identifiant unique au format UUID
     type: string
     format: uuid
+  partenaire:
+    title: Partenaire du demandeur
+    type: [object, "null"]
+    oneOf:
+      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/partenaire
+      - type: "null"
   fiche:
     $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/enums/fiche
     title: Fiche d'opération standardisée
@@ -100,6 +106,7 @@ properties:
     type: object
 required:
   - uuid
+  - partenaire
   - fiche
   - bonification
   - dateVisitePrealable

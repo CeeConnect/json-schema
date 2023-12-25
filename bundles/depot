@@ -13,12 +13,6 @@ properties:
     type: string
   demandeur:
     $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/demandeur
-  partenaire:
-    title: Partenaire du demandeur
-    type: [object, "null"]
-    oneOf:
-      - $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/partenaire
-      - type: "null"
   dateDepot:
     title: Date de dépôt
     description: Date de dépôt des opérations au PNCEE
@@ -33,7 +27,6 @@ required:
   - uuid
   - referenceEmmy
   - demandeur
-  - partenaire
   - dateDepot
   - operations
 examples:
@@ -41,7 +34,5 @@ examples:
     referenceEmmy: 974aa6de-deaf-4452-b491-3badde8972ac
     demandeur:
       $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/demandeur#/examples/0
-    partenaire:
-      $ref: https://raw.githubusercontent.com/ceeconnect/json-schema/main/mixins/partenaire#/examples/0
     dateDepot: "2023-01-01"
     operations: []
